@@ -1,0 +1,31 @@
+CakePHP Code Sniffer
+====================
+
+This code works with [phpcs](http://pear.php.net/manual/en/package.php.php-codesniffer.php)
+and checks code against the coding standards used in CakePHP.
+
+Installation
+------------
+
+Its generally recommended to install these code sniffs with the PEAR
+installer:
+
+	pear channel-discover pear.cakephp.org
+	pear install cakephp/CakePHP_CodeSniffer
+
+Usage
+-----
+
+After installation you can check code compliance to the standard using
+`phpcs`:
+
+	phpcs --standard=CakePHP /path/to/code
+
+Releasing CakePHP Code Sniffer
+==============================
+
+* Update version number in build.xml
+* Add changelog entry.
+* Commit changes.
+* Create git tag.
+* Run `phing release`
