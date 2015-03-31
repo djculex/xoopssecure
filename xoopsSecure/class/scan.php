@@ -15,8 +15,8 @@
  * @copyright       Michael Albertsen (culex)
  * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
  * @package         XoopSecure
- * @author 			Michael Albertsen (http://www.culex.dk)
- * @version		    $Id $
+ * @author          Michael Albertsen (http://www.culex.dk)
+ * @version         $Id $
  * ****************************************************************************
  */
 
@@ -179,7 +179,7 @@ class xoopsSecure_scan
                 $result['dir']['dirdate'][] = $filename->getCtime();
                 $result['dir']['dirperm'][] = substr(decoct(fileperms($filename)), 1);
             }
-            if (true == $this->verifyExt($filename)
+            if (true === $this->verifyExt($filename)
             && filesize($filename)/* skip empty ones */
             && !stripos($filename, 'scan.php')/* skip this file */) {
                 if ($filename->isFile()) {
@@ -364,7 +364,7 @@ class xoopsSecure_scan
                                 'issuecode'         => htmlentities(substr($content, $match[1], 200), ENT_QUOTES),
                                 'tag'               => "security"
                             );
-                            if ($this->checkExistIssue($dbresult[$count]) == false) {
+                            if ($this->checkExistIssue($dbresult[$count]) === false) {
                                 $issues[] = array(
                                 'status'        => 'Issue',
                                 'issuename'     => $pattern,
@@ -377,7 +377,7 @@ class xoopsSecure_scan
                     }
                 }
             }
-            if ($this->cronscan == false) {
+            if ($this->cronscan === false) {
                 header('Content-type: application/json');
                 echo json_encode($issues);
                 unset($content);
@@ -412,7 +412,7 @@ class xoopsSecure_scan
                     'issuecount'    => $total_results
                 );
         }
-        if ($this->cronscan == false) {
+        if ($this->cronscan === false) {
             header('Content-type: application/json');
             echo json_encode($issues);
             unset($content);
@@ -492,7 +492,7 @@ class xoopsSecure_scan
                 '".htmlentities($data['issuecode'], ENT_QUOTES)."',
                 '".$data['tag']."'
             )";
-        if ($this->checkExistIssue($data) == false) {
+        if ($this->checkExistIssue($data) === false) {
             $result = $xoopsDB->queryF($sql);
         }
     }
@@ -550,10 +550,10 @@ class xoopsSecure_scan
      public function doStats($inittime, $issues, $badusers)
      {
          global $xoopsDB;
-         if ($self::checkTodaysStats() == true) {
+         if ($self::checkTodaysStats() === true) {
              $sql = "UPDATE ".$xoopsDB->prefix('xoopsecure_stats'). " SET 'date' = {$inittime},
                 issuenr = ".count($issues).", issues = ".serialize($issues).", badusers = ".serialize($badusers)."
-				WHERE 'date' BETWEEN ".strtotime('today midnight')." AND ".strtotime('tomorrow midnight');
+                WHERE 'date' BETWEEN ".strtotime('today midnight')." AND ".strtotime('tomorrow midnight');
          } else {
          }
      }
@@ -636,7 +636,7 @@ class xoopsSecure_scan
         $count = $xoopsDB->getRowsNum($resp);
         while ($row = $xoopsDB->fetchArray($resp)) {
             $hash = ($row['hashvalue'] == hash_file('md5', $file)) ? true : false;
-            if ($hash == false) {
+            if ($hash === false) {
                 $codestring = _AM_XOOPSSECURE_HASHCHEGEDVALUES;
                 $filename = htmlentities($file, ENT_QUOTES);
                 $fileext = filetype($file);
@@ -804,7 +804,7 @@ class xoopsSecure_scan
                     'tag'               => "security"
                 );
                 
-                if ($this->checkExistIssue($arr) == false) {
+                if ($this->checkExistIssue($arr) === false) {
                     (!empty($arr)) ? $this->insert_content($arr):'';
                     header('Content-type: application/json');
                     echo json_encode($issues);
@@ -826,7 +826,7 @@ class xoopsSecure_scan
      */
     public function createHttaccess($dir)
     {
-        if (true == xoopssecure_apachemodule('mod_rewrite')) {
+        if (true === xoopssecure_apachemodule('mod_rewrite')) {
             $result = array();
             $arr = array();
             $url = xoopssecure_removequot($dir);
@@ -883,7 +883,7 @@ class xoopsSecure_scan
     /**
      * Chmods files and folders with different permissions.
      *
-     * @param An $path
+     * @param  An      $path
      * @param $ref
      * @return Returns TRUE if the path if found and FALSE if not.
      * @internal param The $filePerm permissions any found files should get.
@@ -1341,7 +1341,7 @@ class xoopsSecure_scan
         }
         if (xoopssecure_isfolderonlist($file, $val) !== true) {
             if (xoopssecure_relToAbsUrlCheck($file) != xoopssecure_relToAbsUrlCheck($this->urlToScan."/")) {
-                if ($test == false) {
+                if ($test === false) {
                     $sql = "INSERT INTO ".$xoopsDB->prefix('xoopsecure_ignores'). "(
                         url,
                         isfile,

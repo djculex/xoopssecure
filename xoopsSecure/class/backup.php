@@ -82,7 +82,7 @@ class xoopsSecureZipper
      */
     public static function folderToZip($folder, $zipFile, $subfolder = null)
     {
-        if ($zipFile == null) {
+        if ($zipFile === null) {
             // no resource given, exit
          return false;
         }
@@ -96,13 +96,13 @@ class xoopsSecureZipper
             while ($f = readdir($handle)) {
                 if ($f != "." && $f != "..") {
                     if (is_file($folder . $f)) {
-                        if ($subfolder != null) {
+                        if ($subfolder !== null) {
                             $zipFile->addFile($folder . $f, $subfolder . $f);
                         } else {
                             $zipFile->addFile($folder . $f);
                         }
                     } elseif (is_dir($folder . $f)) {
-                        if ($subfolder != null) {
+                        if ($subfolder !== null) {
                             $zipFile->addEmptyDir($subfolder . $f);
                             xoopsSecureZipper::folderToZip($folder . $f, $zipFile, $subfolder . $f);
                         } else {

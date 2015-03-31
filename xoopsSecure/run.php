@@ -48,7 +48,7 @@ if (file_exists(XOOPS_ROOT_PATH.'/modules/xoopsSecure/language/'.$lang.'/admin.p
     . '/modules/xoopsSecure/language/english/admin.php');
 }
 
-if (true == $scan->checkCronDate()) {
+if (true === $scan->checkCronDate()) {
     $adminscript  =  "var xoopssecure_url = '" . XOOPS_URL . "/modules/xoopssecure/admin/'\n";
     $adminscript .=  "var xoopssecure_anonurl = '" . XOOPS_URL . "/modules/xoopssecure/'\n";
     $adminscript .=  "var xoopssecure_xoopsurl = '" . XOOPS_URL . "'\n";
