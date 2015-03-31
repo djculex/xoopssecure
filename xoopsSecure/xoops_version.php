@@ -26,7 +26,7 @@ if (!defined('XOOPS_ROOT_PATH')) {
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/include/functions.php';
 include_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/scan.php';
 
-$moduleDirName = basename( dirname( __FILE__ ) ) ;
+$moduleDirName = basename(__DIR__) ;
 $scan = new xoopsSecure_scan;
 
 $modversion['name'] = _MI_XOOPSSECURE_NAME;
@@ -99,7 +99,7 @@ $modversion['templates'][$i]['description'] = '';
  */
 $i = 0;
 $os = getenv("OS");
-$modrw = xoopssecure_apachemodule( $val = 'mod_rewrite' );
+$modrw = xoopssecure_apachemodule($val = 'mod_rewrite');
 $iswin = xoopssecure_iswin();
 
 $modversion['config'][$i]['name'] = 'break1';
@@ -156,7 +156,7 @@ $modversion['config'][$i]['description'] = '_MI_XOOPSSECURE_CSSTYLE_DESC';
 $modversion['config'][$i]['formtype'] = 'select';
 $modversion['config'][$i]['valuetype'] = 'array';
 $modversion['config'][$i]['default'] = 'Xoops';
-$modversion['config'][$i]['options'] = array (
+$modversion['config'][$i]['options'] = array(
                                         _MI_XOOPSSECURE_CFCHOOSE_PEAR => 'PEAR',
                                         _MI_XOOPSSECURE_CFCHOOSE_XOOPS => 'Xoops',
                                         _MI_XOOPSSECURE_CFCHOOSE_ZEND => 'Zend'
@@ -177,7 +177,7 @@ $modversion['config'][$i]['description'] = '_MI_XOOPSSECURE_AUTOINDEXFILESSELECT
 $modversion['config'][$i]['formtype'] = 'select';
 $modversion['config'][$i]['valuetype'] = 'int';
 $modversion['config'][$i]['default'] = '1';
-$modversion['config'][$i]['options'] = xoopssecure_modversion_apachemod ();
+$modversion['config'][$i]['options'] = xoopssecure_modversion_apachemod();
 
 $i++;
 $modversion['config'][$i]['name'] = 'contentofhtmlindex';
@@ -198,11 +198,11 @@ $modversion['config'][$i]['default'] = 'RewriteEngine On<br># disable directory 
 $i++;
 $modversion['config'][$i]['name'] = 'autofileperm';
 $modversion['config'][$i]['title'] = '_MI_XOOPSSECURE_AUTOFILEPERM';
-$modversion['config'][$i]['description'] = ( $iswin = false ) ? '_MI_XOOPSSECURE_AUTOFILEPERM_DESC':'_MI_XOOPSSECURE_AUTOFILEPERMWIN_DESC';
+$modversion['config'][$i]['description'] = ($iswin = false) ? '_MI_XOOPSSECURE_AUTOFILEPERM_DESC':'_MI_XOOPSSECURE_AUTOFILEPERMWIN_DESC';
 $modversion['config'][$i]['formtype'] = 'select';
 $modversion['config'][$i]['valuetype'] = 'array';
 $modversion['config'][$i]['default'] = '0';
-$modversion['config'][$i]['options'] = ($iswin = false) ? array (_NO => 0 , _YES => 1 ) : array (_NO => 0);
+$modversion['config'][$i]['options'] = ($iswin = false) ? array(_NO => 0 , _YES => 1 ) : array(_NO => 0);
 
 $i++;
 $modversion['config'][$i]['name'] = 'logphpmysqlissues';
@@ -221,7 +221,7 @@ $modversion['config'][$i]['valuetype'] = 'textbox';
 $modversion['config'][$i]['default'] = 'head';
 
 $i++;
-$obj = $scan->malwareWordstrings ();
+$obj = $scan->malwareWordstrings();
 $modversion['config'][$i]['name'] = 'fullscansfunctionsearch';
 $modversion['config'][$i]['title'] = '_MI_XOOPSSECURE_FULLSCANFUNCTIONSEARCH_TITLE';
 $modversion['config'][$i]['description'] = '_MI_XOOPSSECURE_FULLSCANFUNCTIONSEARCH_DESC';
@@ -230,7 +230,7 @@ $modversion['config'][$i]['valuetype'] = 'string';
 $modversion['config'][$i]['default'] = xoopssecure_ArrayToString($obj);
 
 $i++;
-$obj = $scan->mallwareStrings ();
+$obj = $scan->mallwareStrings();
 $modversion['config'][$i]['name'] = 'fullscansbadboysearch';
 $modversion['config'][$i]['title'] = '_MI_XOOPSSECURE_FULLSCANBADBOYSSEARCH_TITLE';
 $modversion['config'][$i]['description'] = '_MI_XOOPSSECURE_FULLSCANBADBOYSSEARCH_DESC';
@@ -253,7 +253,7 @@ $modversion['config'][$i]['description'] = '_MI_XOOPSSECURE_CRONSCAN_INTERVAL_DE
 $modversion['config'][$i]['formtype'] = 'select';
 $modversion['config'][$i]['valuetype'] = 'array';
 $modversion['config'][$i]['default'] = 0;
-$modversion['config'][$i]['options'] = array (
+$modversion['config'][$i]['options'] = array(
                                         _MI_XOOPSSECURE_CONFIG_ALWAYS => 0,
                                         '12'._MI_XOOPSSECURE_CONFIG_HOURS => 43200,
                                         '1'._MI_XOOPSSECURE_CONFIG_DAY => 86400,
@@ -282,7 +282,7 @@ $modversion['config'][$i]['description'] = '_MI_XOOPSSECURE_BACKUPSELECTTYPE_DES
 $modversion['config'][$i]['formtype'] = 'select';
 $modversion['config'][$i]['valuetype'] = 'array';
 $modversion['config'][$i]['default'] = 'Minimum';
-$modversion['config'][$i]['options'] = array (
+$modversion['config'][$i]['options'] = array(
                                         _MI_XOOPSSECURE_NONE => 'none',
                                         _MI_XOOPSSECURE_MIN => 'Minimum',
                                         _MI_XOOPSSECURE_FULL => 'Full',
@@ -290,7 +290,7 @@ $modversion['config'][$i]['options'] = array (
                                     );
 
 $i++;
-$obj = xoopssecure_backupFilesMin ();
+$obj = xoopssecure_backupFilesMin();
 $modversion['config'][$i]['name'] = 'backupcustomfiles';
 $modversion['config'][$i]['title'] = '_MI_XOOPSSECURE_BACKUPCUSTOMFILES_TITLE';
 $modversion['config'][$i]['description'] = '_MI_XOOPSSECURE_BACKUPCUSTOMFILES_DESC';

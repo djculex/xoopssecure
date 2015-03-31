@@ -20,7 +20,7 @@
  * ****************************************************************************
  */
 
-include_once dirname(__FILE__) . '/admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 require_once XOOPS_ROOT_PATH . '/class/template.php';
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/log.php';
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/scan.php';
@@ -56,7 +56,7 @@ $adminscript .=  "var xoopssecure_dbhasfiles = ".$scan->xoopssecure_fullscan_has
 $adminscript .=  "var xoopssecure_dbhasissues = ".$scan->xoopssecure_dbHasMallIssues().";\n";
 $adminscript .=  "var xoopssecure_backuptype = '".$scan->backuptype[0]."';\n";
 
-$xoTheme->addScript('','',$adminscript);
+$xoTheme->addScript('', '', $adminscript);
 $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery.js');
 $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery-ui.js');
 $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/xoopssecure.js');
@@ -67,13 +67,13 @@ $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery.confirm.j
 $xoTheme->addStylesheet('/modules/xoopssecure/assets/css/base/jquery.ui.all.css');
 $xoTheme->addStyleSheet('modules/xoopssecure/assets/css/xoopsSecure.css');
 
-$xoopsTpl->assign('singleFilesIgnore', $scan->getIgnoreArray ('ignore', 'isfile'));
-$xoopsTpl->assign('chmodDirList', $scan->getIgnoreArray ('chmod', 'isdir'));
-$xoopsTpl->assign('chmodFileList', $scan->getIgnoreArray ('chmod', 'isfile'));
-$xoopsTpl->assign('DirIgnore', $scan->getIgnoreArray ('ignore', 'isdir'));
+$xoopsTpl->assign('singleFilesIgnore', $scan->getIgnoreArray('ignore', 'isfile'));
+$xoopsTpl->assign('chmodDirList', $scan->getIgnoreArray('chmod', 'isdir'));
+$xoopsTpl->assign('chmodFileList', $scan->getIgnoreArray('chmod', 'isfile'));
+$xoopsTpl->assign('DirIgnore', $scan->getIgnoreArray('ignore', 'isdir'));
 /*echo"<pre>";
 print_r($scan->getIgnoreArray ('ignore', 'isfile'));
 echo"</pre>";  */
 $xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/admin/config.tpl');
 
-include "admin_footer.php";
+include __DIR__ . '/admin_footer.php';

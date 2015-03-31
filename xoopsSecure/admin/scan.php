@@ -20,8 +20,8 @@
  * ****************************************************************************
  */
 
-require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/include/cp_header.php';
-include_once dirname(__FILE__) . '/admin_header.php';
+require_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
+include_once __DIR__ . '/admin_header.php';
 include_once(XOOPS_ROOT_PATH.'/class/template.php');
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/log.php';
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/scan.php';

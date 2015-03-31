@@ -20,7 +20,7 @@
  * ****************************************************************************
  */
 
-include_once dirname(__FILE__) . '/admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 require_once XOOPS_ROOT_PATH . '/class/template.php';
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/log.php';
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/scan.php';
@@ -56,7 +56,7 @@ $adminscript .=  "var xoopssecure_dbhasfiles = ".$scan->xoopssecure_fullscan_has
 $adminscript .=  "var xoopssecure_dbhasissues = ".$scan->xoopssecure_dbHasMallIssues().";\n";
 $adminscript .=  "var xoopssecure_backuptype = '".$scan->backuptype[0]."';\n";
 
-$xoTheme->addScript('','',$adminscript);
+$xoTheme->addScript('', '', $adminscript);
 $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery.js');
 $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery-ui.js');
 $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/xoopssecure.js');
@@ -65,13 +65,13 @@ $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery.colorbox.
 $xoTheme->addStylesheet('/modules/xoopssecure/assets/css/base/jquery.ui.all.css');
 $xoTheme->addStyleSheet('modules/xoopssecure/assets/css/xoopsSecure.css');
 
-$log->getIssues ('file');
-$log->getIssues ('dir');
+$log->getIssues('file');
+$log->getIssues('dir');
 
-$test = $sys->testServer (); // viser 5.3.13 php version
-$vul  = $sys->systemArray (); //get versions and vulnerbilities
+$test = $sys->testServer(); // viser 5.3.13 php version
+$vul  = $sys->systemArray(); //get versions and vulnerbilities
 $dropdts = $log->getdropdates();
-$drop = $log->dropdown( "scandatedrop", array ($dropdts), $selected=0 ); // Get all dates
+$drop = $log->dropdown("scandatedrop", array($dropdts), $selected=0); // Get all dates
 
 $xoopsTpl->assign('phpinfo', $test['phpini']);
 $xoopsTpl->assign('phpver', $vul['php']['version']);
@@ -90,4 +90,4 @@ $xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/admin/showlo
 //$xoTheme->addStylesheet('/modules/xoopssecure/css/base/jquery.ui.all.css');
 
 
-include "admin_footer.php";
+include __DIR__ . '/admin_footer.php';

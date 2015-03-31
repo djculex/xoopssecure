@@ -15,11 +15,11 @@
 //
 // Output a list of files for jQuery File Tree
 //
-include_once dirname(__FILE__) . '/admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 global $xoopsLogger;
 $xoopsLogger->activated = false;
 
 $root = isset($root) ? $root : XOOPS_ROOT_PATH;
 $dir = urldecode($_POST['dir']);
 
-xoopssecure_ignoreFileTree ($root, $dir, $type = 'ignorelist');
+xoopssecure_ignoreFileTree($root, $dir, $type = 'ignorelist');

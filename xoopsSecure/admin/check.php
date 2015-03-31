@@ -20,8 +20,8 @@
  * ****************************************************************************
  */
 
-require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/include/cp_header.php';
-include_once dirname(__FILE__) . '/admin_header.php';
+require_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
+include_once __DIR__ . '/admin_header.php';
 require_once XOOPS_ROOT_PATH . '/class/template.php';
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/log.php';
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/scan.php';
@@ -31,10 +31,10 @@ if (!isset($xoopsTpl)) {
 }
 $xoopsTpl->caching=0;
 
-define ('XOOPSSECURE_SCANBEGINTIMESTAMP', time());
+define('XOOPSSECURE_SCANBEGINTIMESTAMP', time());
 
 $scan = new xoopsSecure_scan;
-$scan->inittime = date ("d-m-Y H:i:s", XOOPSSECURE_SCANBEGINTIMESTAMP);
+$scan->inittime = date("d-m-Y H:i:s", XOOPSSECURE_SCANBEGINTIMESTAMP);
 $log  = new xoopsSecure_log;
 $sys = new xoopsSecure_mech;
 
@@ -65,7 +65,7 @@ $langdefs .= "var backupbuttons = { };\n";
 $langdefs .= "backupbuttons['"._AM_XOOPSSECURE_BACKUP_CONFIRM_DELETE_YES."'] = true;\n";
 $langdefs .= "backupbuttons['"._AM_XOOPSSECURE_BACKUP_CONFIRM_DELETE_NO."'] = false;\n";
 
-$xoTheme->addScript('','',$adminscript);
+$xoTheme->addScript('', '', $adminscript);
 
 $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery.js');
 $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery-ui.js');
@@ -73,7 +73,7 @@ $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/xoopssecure.js')
 $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery.colorbox.js');
 $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jqueryFileTree.js');
 $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery-impromptu.js');
-$xoTheme->addScript('','',$langdefs);
+$xoTheme->addScript('', '', $langdefs);
 
 $xoTheme->addStylesheet('/modules/xoopssecure/assets/css/base/jquery.ui.all.css');
 $xoTheme->addStyleSheet('/modules/xoopssecure/assets/css/xoopsSecure.css');
@@ -87,4 +87,4 @@ $xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/admin/check.
 // echo $indexAdmin->renderIndex();
     
     
-include "admin_footer.php";
+include __DIR__ . '/admin_footer.php';

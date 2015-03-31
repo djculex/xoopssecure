@@ -20,7 +20,7 @@
  * ****************************************************************************
  */
 
-include_once dirname(__FILE__) . '/admin_header.php';
+include_once __DIR__ . '/admin_header.php';
 global $xoTheme;
 xoops_cp_header();
 
@@ -31,4 +31,4 @@ echo $indexAdmin->addNavigation('index.php');
 echo $indexAdmin->renderIndex();
     
 
-include "admin_footer.php";
+include __DIR__ . '/admin_footer.php';
