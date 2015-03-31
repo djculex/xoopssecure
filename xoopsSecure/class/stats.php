@@ -11,23 +11,25 @@
  * @since      Class available since Release 1.0.0
  */
  
- class XoopsSecureStats {
+ class XoopsSecureStats
+ {
     
-    var $totalscans;
+    public $totalscans;
 
      /**
       *
       */
-     function __construct() {
-        $totalscans = $this->getCount ('inittime');
+     public function __construct()
+     {
+         $totalscans = $this->getCount('inittime');
         //$lastscan = $this->getLastScan($type);
-    }
+     }
     /**
      * Get Date of last scan based on type
      * @param  integer $type of scan (1,3 or cron)
      * @return date    $date
      */
-     function getLastScan ($type)
+     public function getLastScan($type)
      {
          global $xoopsDB;
          $sql = "SELECT ".$what." FROM ".$xoopsDB->prefix('xoopsecure_stats');
@@ -42,7 +44,7 @@
      * @param  string  $what to count
      * @return integer $count
      */
-     function getCount ($what)
+     public function getCount($what)
      {
          global $xoopsDB;
          $sql = "SELECT ".$what." FROM ".$xoopsDB->prefix('xoopsecure_stats');
@@ -62,15 +64,15 @@
       * @internal param issuenr $array issues this day
       * @internal param badusers $array users with bad ip
       */
-     function doStats ($inittime, $type, $issues, $badusers)
+     public function doStats($inittime, $type, $issues, $badusers)
      {
-        global $xoopsDB;
-        if ($this->checkTodaysStats () > 0) {
+         global $xoopsDB;
+         if ($this->checkTodaysStats() > 0) {
              $sql = "UPDATE ".$xoopsDB->prefix('xoopsecure_stats'). " SET inittime = ".$inittime.",
                 typenr = ".$type.", issuenr = ".count($issues).", issues = '".serialize($issues)."', badusers = '".serialize($badusers)."'
-				 WHERE from_unixtime(inittime, '%m-%d-%Y') = '".date('m-d-Y',$inittime)."'";
-        } else {
-            $sql = "INSERT INTO ".$xoopsDB->prefix('xoopsecure_stats'). "(
+				 WHERE from_unixtime(inittime, '%m-%d-%Y') = '".date('m-d-Y', $inittime)."'";
+         } else {
+             $sql = "INSERT INTO ".$xoopsDB->prefix('xoopsecure_stats'). "(
                 inittime,
 				typenr,
                 issuenr,
@@ -83,8 +85,8 @@
                         '".serialize($issues)."',
                         '".serialize($badusers)."'
                     )";
-        }
-        $result = $xoopsDB->queryF($sql);
+         }
+         $result = $xoopsDB->queryF($sql);
      }
      
     /**
@@ -92,7 +94,7 @@
      *
      * @return false or true
      */
-    function checkTodaysStats ()
+    public function checkTodaysStats()
     {
         global $xoopsDB;
         $sql = "SELECT inittime FROM ".$xoopsDB->prefix("xoopsecure_stats")." WHERE from_unixtime(inittime, '%m-%d-%Y') = '".date('m-d-Y', time())."'";
@@ -107,7 +109,7 @@
      *
      * @return void
      */
-    function rmTodaysData ()
+    public function rmTodaysData()
     {
         global $xoopsDB;
         $tdm = strtotime('today midnight');
@@ -115,4 +117,4 @@
         $sql = "DELETE FROM ".$xoopsDB->prefix("xoopsecure_stats")." WHERE inittime BETWEEN ".$tdm." AND ".$tmm."";
         $result = $xoopsDB->queryF($sql);
     }
-}
+ }

@@ -22,7 +22,7 @@
 if (!defined('XOOPS_ROOT_PATH')) {
     die('XOOPS root path not defined');
 }
-include_once (XOOPS_ROOT_PATH.'/class/template.php');
+include_once(XOOPS_ROOT_PATH.'/class/template.php');
 include_once XOOPS_ROOT_PATH . '/modules/xoopsSecure/class/scan.php';
 set_time_limit(999999);
 if (!isset($xoopsTpl)) {
@@ -33,23 +33,25 @@ if (!isset($xoopsTpl)) {
 /**
  * Class xoopsSecure_log
  */
-class xoopsSecure_log {
-    var $filenameArray;
-    var $userdatetype;
-    var $singleFilesIgnore;
-    var $DirIgnore;
-    var $DbHasFiles = false;
-    var $dbHasMallIssues;
+class xoopsSecure_log
+{
+    public $filenameArray;
+    public $userdatetype;
+    public $singleFilesIgnore;
+    public $DirIgnore;
+    public $DbHasFiles = false;
+    public $dbHasMallIssues;
 
     /**
      *
      */
-    public function __construct(){
+    public function __construct()
+    {
         global $scan;
         $this->userdatetype = xoopssecure_GetModuleOption('dateformat');
-        $this->singleFilesIgnore = $scan->getIgnoreArray ('ignore', 'isfile');
-        $this->DirIgnore= $scan->getIgnoreArray ('ignore', 'isdir');
-        $this->DbHasFiles = $this->dbHasFiles ();
+        $this->singleFilesIgnore = $scan->getIgnoreArray('ignore', 'isfile');
+        $this->DirIgnore= $scan->getIgnoreArray('ignore', 'isdir');
+        $this->DbHasFiles = $this->dbHasFiles();
         $this->dbHasMallIssues = $scan->xoopssecure_dbHasMallIssues();
     }
 
@@ -60,54 +62,53 @@ class xoopsSecure_log {
     /**
      * @param $filetype
      */
-    function getIssues ($filetype)
-     {
+    public function getIssues($filetype)
+    {
         global $xoopsDB, $xoopsTpl, $xoopsTheme, $scan;
-            foreach ($this->singleFilesIgnore as $r) {
-                $sfi[] = "'".$r['url']."'";
-            }
+        foreach ($this->singleFilesIgnore as $r) {
+            $sfi[] = "'".$r['url']."'";
+        }
             
-            $query  = "SELECT * FROM ".$xoopsDB->prefix('xoopsecure_issues')." WHERE filetype = '".$filetype."'";
-                if (!empty($sfi)) {
-                $query  .= " AND filename NOT in (".implode(",", xoopssecure_flatten($sfi)).")";
-                }
-                $query  .= " AND ignored = 0 GROUP BY filename";
-            $result = $xoopsDB->queryF($query);
-            $count = $xoopsDB->getRowsNum($result);
-            $arr = array();
-            if ($count != 0) {
-                while ($row = $xoopsDB->fetchArray($result)) {
-                    $data[] = $row;
-                }
-                foreach ($data as $r) {
-
-                    $arr['id'] = $r['id'];
-                    $arr['scantype'] = $r['scantype'];
-                    $arr['time'] = $this->getdatetime ($r['scantype']);
-                    $arr['filename'] = $r['filename'];
-                    $arr['dirname'] = dirname($r['filename']);
-                    $arr['fileicon']  = $r['filename'];
-                    $arr['diricon']  = dirname($r['filename']);
-                    $arr['filetype'] = $r['filetype'];
-                    $arr['shortfilename'] = basename($r['filename']);
-                    $arr['accessed'] = ($r['accessed'] != '') ? date($this->userdatetype, $r['accessed']):'';
-                    $arr['changed'] = ($r['changed'] != '') ? date($this->userdatetype, $r['changed']):'';
-                    $arr['modified'] = ($r['modified'] != '') ? date($this->userdatetype, $r['modified']):'';
-                    $arr['permission'] = ($r['permission'] != '') ? sprintf("%04s", $r['permission']):'';
-                    $arr['issuearray'] = $this->Issues($r['filename'], $filetype);
-                    $arr['issuecount'] = count ($arr['issuearray']);
-                    if ($filetype == 'file') {
-                        $xoopsTpl->append('issues', $arr['issuearray']);
-                        $xoopsTpl->append('fileinfo', $arr);
-                    } else {
-                        $xoopsTpl->append('dirissues', $arr['issuearray']);
-                        $xoopsTpl->append('dirinfo', $arr);
-                    }
+        $query  = "SELECT * FROM ".$xoopsDB->prefix('xoopsecure_issues')." WHERE filetype = '".$filetype."'";
+        if (!empty($sfi)) {
+            $query  .= " AND filename NOT in (".implode(",", xoopssecure_flatten($sfi)).")";
+        }
+        $query  .= " AND ignored = 0 GROUP BY filename";
+        $result = $xoopsDB->queryF($query);
+        $count = $xoopsDB->getRowsNum($result);
+        $arr = array();
+        if ($count != 0) {
+            while ($row = $xoopsDB->fetchArray($result)) {
+                $data[] = $row;
+            }
+            foreach ($data as $r) {
+                $arr['id'] = $r['id'];
+                $arr['scantype'] = $r['scantype'];
+                $arr['time'] = $this->getdatetime($r['scantype']);
+                $arr['filename'] = $r['filename'];
+                $arr['dirname'] = dirname($r['filename']);
+                $arr['fileicon']  = $r['filename'];
+                $arr['diricon']  = dirname($r['filename']);
+                $arr['filetype'] = $r['filetype'];
+                $arr['shortfilename'] = basename($r['filename']);
+                $arr['accessed'] = ($r['accessed'] != '') ? date($this->userdatetype, $r['accessed']):'';
+                $arr['changed'] = ($r['changed'] != '') ? date($this->userdatetype, $r['changed']):'';
+                $arr['modified'] = ($r['modified'] != '') ? date($this->userdatetype, $r['modified']):'';
+                $arr['permission'] = ($r['permission'] != '') ? sprintf("%04s", $r['permission']):'';
+                $arr['issuearray'] = $this->Issues($r['filename'], $filetype);
+                $arr['issuecount'] = count($arr['issuearray']);
+                if ($filetype == 'file') {
+                    $xoopsTpl->append('issues', $arr['issuearray']);
+                    $xoopsTpl->append('fileinfo', $arr);
+                } else {
+                    $xoopsTpl->append('dirissues', $arr['issuearray']);
+                    $xoopsTpl->append('dirinfo', $arr);
                 }
             }
-            $xoopsTpl->assign('dbhasfiles', $this->DbHasFiles);
-            $xoopsTpl->assign('dbHasMallIssues', $this->dbHasMallIssues);
-     }
+        }
+        $xoopsTpl->assign('dbhasfiles', $this->DbHasFiles);
+        $xoopsTpl->assign('dbHasMallIssues', $this->dbHasMallIssues);
+    }
      
      /**
      * @Get issues based on filename
@@ -149,14 +150,13 @@ class xoopsSecure_log {
 
             return $iss;
         }
-        
     }
 
     /**
      * @param $type
      * @return bool|int|string
      */
-    public function getdatetime ($type)
+    public function getdatetime($type)
     {
         global $xoopsDB;
         $min = 0;
@@ -169,13 +169,12 @@ class xoopsSecure_log {
         }
 
         return ($min != $max) ? $min." - ".$max : $min;
-        
     }
 
     /**
      * @return bool
      */
-    public function dbHasFiles ()
+    public function dbHasFiles()
     {
         global $xoopsDB;
         $sql = "select min(lastdate) as min from ".$xoopsDB->prefix("xoopsecure_files");
@@ -189,16 +188,15 @@ class xoopsSecure_log {
         } else {
             return false;
         }
-        
     }
 
     /**
      * @param $file
      */
-    public function clear ($file)
+    public function clear($file)
     {
         global $xoopsDB;
-        $sql = "DELETE FROM ".$xoopsDB->prefix("xoopsecure_issues")." WHERE filename = '".xoopssecure_removequot ($file)."'";
+        $sql = "DELETE FROM ".$xoopsDB->prefix("xoopsecure_issues")." WHERE filename = '".xoopssecure_removequot($file)."'";
         $result = $xoopsDB->queryF($sql);
     }
     
@@ -209,12 +207,13 @@ class xoopsSecure_log {
      * @param  string $selected (optional)
      * @return string
      */
-    function dropdown( $name, array $options, $selected=null ){
+    public function dropdown($name, array $options, $selected=null)
+    {
         $dropdown = '<select name="'.$name.'" id="'.$name.'">'."<br>";
         $selected = $selected;
-        foreach( $options as $key=>$option ) {
+        foreach ($options as $key=>$option) {
             $select = $selected==$key ? ' selected="yes"' : "";
-            $dropdown .= '<option value="'.$option.'"'.$select.'>'.date('d-m-Y',$option).'</option>'."<br>";
+            $dropdown .= '<option value="'.$option.'"'.$select.'>'.date('d-m-Y', $option).'</option>'."<br>";
         }
         $dropdown .= '</select>'."<br>";
 
@@ -224,7 +223,7 @@ class xoopsSecure_log {
     /**
      * @return mixed
      */
-    public function getdropdates ()
+    public function getdropdates()
     {
         global $xoopsDB;
         $sql = "Select DISTINCT(inittime) AS Date FROM ".$xoopsDB->prefix("xoopsecure_issues")." ORDER BY Date DESC" ;
@@ -235,5 +234,4 @@ class xoopsSecure_log {
 
         return $dates;
     }
- 
 }

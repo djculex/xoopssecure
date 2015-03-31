@@ -27,36 +27,34 @@ set_time_limit(999999);
 /**
  * Class xoopsSecure_Mech
  */
-class xoopsSecure_Mech {
+class xoopsSecure_Mech
+{
     //var $userdatetype;
 
     /**
      *
      */
-    public function __construct(){
+    public function __construct()
+    {
         //$this->userdatetype = xoopssecure_GetModuleOption('dateformat');
     }
 
     /**
      * @return array
      */
-    function phpinfo_array()
+    public function phpinfo_array()
     {
         ob_start();
         phpinfo();
         $info_arr = array();
         $info_lines = explode("\n", strip_tags(ob_get_clean(), "<tr><td><h2>"));
         $cat = "General";
-        foreach($info_lines as $line)
-        {
+        foreach ($info_lines as $line) {
             // new cat?
             preg_match("~<h2>(.*)</h2>~", $line, $title) ? $cat = $title[1] : null;
-            if(preg_match("~<tr><td[^>]+>([^<]*)</td><td[^>]+>([^<]*)</td></tr>~", $line, $val))
-            {
+            if (preg_match("~<tr><td[^>]+>([^<]*)</td><td[^>]+>([^<]*)</td></tr>~", $line, $val)) {
                 $info_arr[$cat][trim($val[1])] = trim($val[2]);
-            }
-            elseif(preg_match("~<tr><td[^>]+>([^<]*)</td><td[^>]+>([^<]*)</td><td[^>]+>([^<]*)</td></tr>~", $line, $val))
-            {
+            } elseif (preg_match("~<tr><td[^>]+>([^<]*)</td><td[^>]+>([^<]*)</td><td[^>]+>([^<]*)</td></tr>~", $line, $val)) {
                 $info_arr[$cat][trim($val[1])] = array("local" => trim($val[2]), "master" => trim($val[3]));
             }
         }
@@ -71,13 +69,13 @@ class xoopsSecure_Mech {
     /**
      * @return array
      */
-    function testServer ()
+    public function testServer()
     {
         $init = $this->phpinfo_array();
         $resp = array();
         // Software installed
         $phpversion = $init['Core']['PHP Version'];
-        $mysqlversion_temp = explode( "-" , $init['mysql']['Client API version'] );
+        $mysqlversion_temp = explode("-", $init['mysql']['Client API version']);
         $mysqlversion = preg_replace('/[^0-9.]+/', '', $mysqlversion_temp[0]);
         
         if (preg_match('|Apache\/(\d+)\.(\d+)\.(\d+)|', $_SERVER['SERVER_SOFTWARE'], $version)) {
@@ -274,23 +272,22 @@ class xoopsSecure_Mech {
     /**
      * @return array
      */
-    function systemArray ()
+    public function systemArray()
     {
-
-        $info = $this->testServer ();
+        $info = $this->testServer();
         $resp = array();
         
         if (preg_match('|Apache\/(\d+)\.(\d+)\.(\d+)|', $_SERVER['SERVER_SOFTWARE'], $version)) {
             $apacheversionnum =  $version[1].'.'.$version[2].'.'.$version[3];
         }
         $resp['php']['version'] = phpversion();
-        $resp['php']['vulner']  = $this->getVul ('php', $resp['php']['version'], 8);
-        $resp['mysql']['version'] = $this->getServerValues ('mysql_version');
-        $resp['mysql']['vulner']  = $this->getVul ('mysql', $resp['mysql']['version'], 8);
+        $resp['php']['vulner']  = $this->getVul('php', $resp['php']['version'], 8);
+        $resp['mysql']['version'] = $this->getServerValues('mysql_version');
+        $resp['mysql']['vulner']  = $this->getVul('mysql', $resp['mysql']['version'], 8);
         $resp['apache']['version'] = $apacheversionnum;
-        $resp['apache']['vulner']  = $this->getVul ('apache', $apacheversionnum, 6);
+        $resp['apache']['vulner']  = $this->getVul('apache', $apacheversionnum, 6);
         $resp['xoops']['version'] = preg_replace('/[^0-9.]+/', '', substr(XOOPS_VERSION, 6, strlen(XOOPS_VERSION)-6));
-        $resp['xoops']['vulner']  = $this->getVul ('xoops', $resp['xoops']['version'], 4);
+        $resp['xoops']['vulner']  = $this->getVul('xoops', $resp['xoops']['version'], 4);
 
         return $resp;
     }
@@ -304,9 +301,9 @@ class xoopsSecure_Mech {
      * @param $val
      * @return mixed|string
      */
-    function getServerValues ($val)
+    public function getServerValues($val)
     {
-        switch($val){
+        switch ($val) {
             case 'os':
                 return PHP_OS;
                 break;
@@ -314,10 +311,10 @@ class xoopsSecure_Mech {
                 return PHP_VERSION;
                 break;
             case 'mysqlversion':
-                return getApacheModules ($val='', $version=false);
+                return getApacheModules($val='', $version=false);
                 break;
             case 'mod_rewrite':
-                $search = $this->getApacheModules ($val='mod_rewrite');
+                $search = $this->getApacheModules($val='mod_rewrite');
 
                 return $search['value'];
                 break;
@@ -345,47 +342,47 @@ class xoopsSecure_Mech {
      * @return json
      */
 
-    function getVul ($software, $ver, $severe) {
+    public function getVul($software, $ver, $severe)
+    {
         $result = array();
         switch ($software) {
             case 'php':
                 $vendor_id = 74;
                 $product_id = 128;
-                $version_id = $this->getNumCVE ($software, $ver);
+                $version_id = $this->getNumCVE($software, $ver);
                 
                 break;
             case 'apache':
                 $vendor_id = 45;
                 $product_id = 66;
-                $version_id = $this->getNumCVE ($software, $ver);
+                $version_id = $this->getNumCVE($software, $ver);
                 break;
             case 'mysql':
                 $vendor_id = 185;
                 $product_id = 316;
-                $version_id = $this->getNumCVE ($software, $ver);
+                $version_id = $this->getNumCVE($software, $ver);
                 break;
             case 'xoops':
                 $vendor_id = 1081;
                 $product_id = 1876;
-                $version_id = $this->getNumCVE ($software, $ver);
+                $version_id = $this->getNumCVE($software, $ver);
                 break;
     }
 
-    $postURL = "http://www.cvedetails.com/json-feed.php?".
+        $postURL = "http://www.cvedetails.com/json-feed.php?".
         "numrows=10&".
         "cvssscoremin=".$severe."&".
         "vendor_id=".$vendor_id.
         "&product_id=".$product_id.
         "&version_id=".$version_id;
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_URL,$postURL);
-    $result=curl_exec($ch);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL, $postURL);
+        $result=curl_exec($ch);
 
-    return json_decode($result, true);
-    
+        return json_decode($result, true);
     }
 
     /**
@@ -394,9 +391,10 @@ class xoopsSecure_Mech {
      * @param  intval $ver
      * @return intval
      */
-    function getNumCVE ($soft, $ver) {
-        $resp = array (
-            'xoops' => array (
+    public function getNumCVE($soft, $ver)
+    {
+        $resp = array(
+            'xoops' => array(
                 '2.5.1.a' => 117067,
                 '2.5.1' => 117068,
                 '2.5.0' => 114352,
@@ -453,7 +451,7 @@ class xoopsSecure_Mech {
                 '1.0' => 9835
             ),
             
-            'apache' => array (
+            'apache' => array(
                 '3.1' =>  2590,
                 '2.4.4' =>  148839,
                 '2.4.3' =>  142325,
@@ -570,7 +568,7 @@ class xoopsSecure_Mech {
                 '2.0' => 6333
             ),
             
-            'mysql' => array (
+            'mysql' => array(
                 '6.0.10' => 73142,
                 '6.0.9' => 71381,
                 '6.0.4' => 50086,
@@ -665,7 +663,7 @@ class xoopsSecure_Mech {
                 '5.0.70' => 140326
             ),
             
-            'php' => array (
+            'php' => array(
                 '5.3.0' => 82589,
                 '5.3.1' => 87778,
                 '5.3.2' => 90936,
@@ -750,29 +748,29 @@ class xoopsSecure_Mech {
      * @param $name
      * @return array
      */
-    function parsePHPModules($name)
+    public function parsePHPModules($name)
     {
         ob_start();
         phpinfo($name);
         $s = ob_get_contents();
         ob_end_clean();
 
-        $s = strip_tags($s,'<h2><th><td>');
-        $s = preg_replace('/<th[^>]*>([^<]+)<\/th>/',"<info>\\1</info>",$s);
-        $s = preg_replace('/<td[^>]*>([^<]+)<\/td>/',"<info>\\1</info>",$s);
-        $vTmp = preg_split('/(<h2[^>]*>[^<]+<\/h2>)/',$s,-1,PREG_SPLIT_DELIM_CAPTURE);
+        $s = strip_tags($s, '<h2><th><td>');
+        $s = preg_replace('/<th[^>]*>([^<]+)<\/th>/', "<info>\\1</info>", $s);
+        $s = preg_replace('/<td[^>]*>([^<]+)<\/td>/', "<info>\\1</info>", $s);
+        $vTmp = preg_split('/(<h2[^>]*>[^<]+<\/h2>)/', $s, -1, PREG_SPLIT_DELIM_CAPTURE);
         $vModules = array();
         for ($i=1;$i<count($vTmp);$i++) {
-            if (preg_match('/<h2[^>]*>([^<]+)<\/h2>/',$vTmp[$i],$vMat)) {
+            if (preg_match('/<h2[^>]*>([^<]+)<\/h2>/', $vTmp[$i], $vMat)) {
                 $vName = trim($vMat[1]);
-                $vTmp2 = explode("\n",$vTmp[$i+1]);
-                foreach ($vTmp2 AS $vOne) {
+                $vTmp2 = explode("\n", $vTmp[$i+1]);
+                foreach ($vTmp2 as $vOne) {
                     $vPat = '<info>([^<]+)<\/info>';
                     $vPat3 = "/$vPat\s*$vPat\s*$vPat/";
                     $vPat2 = "/$vPat\s*$vPat/";
-                    if (preg_match($vPat3,$vOne,$vMat)) { // 3cols
+                    if (preg_match($vPat3, $vOne, $vMat)) { // 3cols
                         $vModules[$vName][trim($vMat[1])] = array(trim($vMat[2]),trim($vMat[3]));
-                    } elseif (preg_match($vPat2,$vOne,$vMat)) { // 2cols
+                    } elseif (preg_match($vPat2, $vOne, $vMat)) { // 2cols
                         $vModules[$vName][trim($vMat[1])] = trim($vMat[2]);
                     }
                 }

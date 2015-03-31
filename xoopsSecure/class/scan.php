@@ -28,34 +28,36 @@ set_time_limit(999999);
 /**
  * Class xoopsSecure_scan
  */
-class xoopsSecure_scan {
+class xoopsSecure_scan
+{
     
-    var $ext;
-    var $urlToScan;
-    var $autoindexcreate;
-    var $autochmod;
-    var $logphpmysqlissues;
-    var $ignore;
-    var $scantype;
-    var $indexfiletype;
-    var $autoHtaccessCreate;
-    var $contentofhtmlindex;
-    var $contentofhtaccessindex;
-    var $excludeDirs;
-    var $excludeFiles;
-    var $xoops_reservedfolders;
-    var $badboys;
-    var $badfuncs;
-    var $inittime;
-    var $cronscan;
-    var $cronscaninterval;
-    var $backuptype;
-    var $backupfiles;
+    public $ext;
+    public $urlToScan;
+    public $autoindexcreate;
+    public $autochmod;
+    public $logphpmysqlissues;
+    public $ignore;
+    public $scantype;
+    public $indexfiletype;
+    public $autoHtaccessCreate;
+    public $contentofhtmlindex;
+    public $contentofhtaccessindex;
+    public $excludeDirs;
+    public $excludeFiles;
+    public $xoops_reservedfolders;
+    public $badboys;
+    public $badfuncs;
+    public $inittime;
+    public $cronscan;
+    public $cronscaninterval;
+    public $backuptype;
+    public $backupfiles;
 
     /**
      *
      */
-    public function __construct(){
+    public function __construct()
+    {
         $this->urlToScan = xoopssecure_GetModuleOption('urltoscan');
         $this->autoindexcreate = xoopssecure_GetModuleOption('auto_indexfiles');
         $this->autochmod = xoopssecure_GetModuleOption('autofileperm');
@@ -65,11 +67,11 @@ class xoopsSecure_scan {
         $this->autoHtaccessCreate = xoopssecure_GetModuleOption('indexfiletypes');
         $this->contentofhtmlindex = xoopssecure_ntobr(xoopssecure_GetModuleOption('contentofhtmlindex'));
         $this->contentofhtaccessindex = xoopssecure_ntobr(xoopssecure_GetModuleOption('contentofhtaccessindex'));
-        $this->excludeDirs = $this->getIgnoreArrayToVar ('ignore', 'isdir');
-        $this->excludeFiles = $this->getIgnoreArrayToVar ('ignore', 'isfile');
-        $this->xoops_reservedfolders = $this->getIgnoreArrayToVar ('chmod', 'isdir');
-        $this->badboys = xoopssecure_StringToArray (xoopssecure_GetModuleOption('fullscansbadboysearch'));
-        $this->badfuncs = xoopssecure_StringToArray (xoopssecure_GetModuleOption('fullscansfunctionsearch'));
+        $this->excludeDirs = $this->getIgnoreArrayToVar('ignore', 'isdir');
+        $this->excludeFiles = $this->getIgnoreArrayToVar('ignore', 'isfile');
+        $this->xoops_reservedfolders = $this->getIgnoreArrayToVar('chmod', 'isdir');
+        $this->badboys = xoopssecure_StringToArray(xoopssecure_GetModuleOption('fullscansbadboysearch'));
+        $this->badfuncs = xoopssecure_StringToArray(xoopssecure_GetModuleOption('fullscansfunctionsearch'));
         $this->cronscan = false;
         $this->cronscaninterval = xoopssecure_GetModuleOption('cronschedulehours');
         $this->backuptype = xoopssecure_GetModuleOption('backuptype');
@@ -92,7 +94,7 @@ class xoopsSecure_scan {
      * @param void
      * @return void
      */
-    function getExt ()
+    public function getExt()
     {
         $this->ext = explode('|', xoopssecure_GetModuleOption('extensions'));
     }
@@ -105,8 +107,9 @@ class xoopsSecure_scan {
      * @param $url
      * @return array
      */
-    function getDirs ($url) {
-        return $this->getArray ($url, $type = 'dir');
+    public function getDirs($url)
+    {
+        return $this->getArray($url, $type = 'dir');
     }
 
     /* Get fileinfo recursively as array
@@ -117,17 +120,18 @@ class xoopsSecure_scan {
      * @param $url
      * @return array
      */
-    function getFiles ($url) {
-        return $this->getArray ($url, $type = 'file');
+    public function getFiles($url)
+    {
+        return $this->getArray($url, $type = 'file');
     }
 
     /**
      * @param $filename
      * @return bool
      */
-    function verifyExt ($filename)
+    public function verifyExt($filename)
     {
-        $fullext = explode ("|", 'php|php3|php4|php5|phps|html|phtml|txt|asp|htaccess|gif|js');
+        $fullext = explode("|", 'php|php3|php4|php5|phps|html|phtml|txt|asp|htaccess|gif|js');
         if ($this->scantype === 3) {
             if (in_array(pathinfo($filename, PATHINFO_EXTENSION), $fullext)) {
                 return true;
@@ -153,51 +157,52 @@ class xoopsSecure_scan {
      * @param $type
      * @return array
      */
-    function getArray ($url, $type) {
+    public function getArray($url, $type)
+    {
         $result = array();
-        $this->getExt ();
-        $url = isset ($url) ? xoopssecure_cleanUrl($url) : xoopssecure_cleanUrl($this->urlToScan);
+        $this->getExt();
+        $url = isset($url) ? xoopssecure_cleanUrl($url) : xoopssecure_cleanUrl($this->urlToScan);
         $obj = new RecursiveIteratorIterator(
                 new RecursiveDirectoryIterator($url),
                 RecursiveIteratorIterator::SELF_FIRST);
         foreach ($obj as $filename) {
             if ($filename->isDir()) {
-                        if (xoopssecure_in_array_r(
-                            xoopssecure_rootToUrl ($filename),
-                            xoopssecure_rootToUrl ($this->excludeDirs),
+                if (xoopssecure_in_array_r(
+                            xoopssecure_rootToUrl($filename),
+                            xoopssecure_rootToUrl($this->excludeDirs),
                             $strict = false
                             ) === true) {
-                            continue;
-                        }
-                    $result['dir']['dirname'][] = str_replace ("\\", "/", $filename->getPathname());
-                    $result['dir']['dirsize'][] = $filename->getSize();
-                    $result['dir']['dirdate'][] = $filename->getCtime();
-                    $result['dir']['dirperm'][] = substr(decoct(fileperms($filename)),1);
+                    continue;
+                }
+                $result['dir']['dirname'][] = str_replace("\\", "/", $filename->getPathname());
+                $result['dir']['dirsize'][] = $filename->getSize();
+                $result['dir']['dirdate'][] = $filename->getCtime();
+                $result['dir']['dirperm'][] = substr(decoct(fileperms($filename)), 1);
             }
             if (true == $this->verifyExt($filename)
             && filesize($filename)/* skip empty ones */
             && !stripos($filename, 'scan.php')/* skip this file */) {
-                if ($filename->isFile()){
-                        if (xoopssecure_in_array_r(
-                                xoopssecure_rootToUrl ($filename),
-                                xoopssecure_rootToUrl ($this->excludeFiles),
+                if ($filename->isFile()) {
+                    if (xoopssecure_in_array_r(
+                                xoopssecure_rootToUrl($filename),
+                                xoopssecure_rootToUrl($this->excludeFiles),
                                 $strict = false
                             ) === true) {
-                            continue;
-                        }
+                        continue;
+                    }
                             
-                       $result['file']['filename'][] = str_replace ("\\", "/", $url."/".substr($filename, strlen($url) + 1));
-                       $result['file']['filesize'][] = $filename->getSize();
-                       $result['file']['filedate'][] = $filename->getCTime();
-                       $result['file']['hash'][] = md5_file($filename);
-                       $result['file']['fileperm'][] = substr(decoct(fileperms($filename)),2);
-                       $this->savefileinfo (str_replace ("\\", "/", $filename));
+                    $result['file']['filename'][] = str_replace("\\", "/", $url."/".substr($filename, strlen($url) + 1));
+                    $result['file']['filesize'][] = $filename->getSize();
+                    $result['file']['filedate'][] = $filename->getCTime();
+                    $result['file']['hash'][] = md5_file($filename);
+                    $result['file']['fileperm'][] = substr(decoct(fileperms($filename)), 2);
+                    $this->savefileinfo(str_replace("\\", "/", $filename));
                 }
             }
         }
         
-        $result['dir']['dircount'] = (!empty($result['dir'])) ? count ($result['dir']['dirname']) : 0;
-        $result['file']['filecount'] = count ($result['file']['filename']);
+        $result['dir']['dircount'] = (!empty($result['dir'])) ? count($result['dir']['dirname']) : 0;
+        $result['file']['filecount'] = count($result['file']['filename']);
         if ($type == 'dir') {
             return array_unique($result['dir']);
         } else {
@@ -212,25 +217,25 @@ class xoopsSecure_scan {
     /**
      * @return mixed|string
      */
-    function getFileInfoFromDb ()
-     {
+    public function getFileInfoFromDb()
+    {
         global $xoopsDB;
         $array = array();
         $sql = "SELECT * FROM ".$xoopsDB->prefix("xoopsecure_files");
         $result = $xoopsDB->queryF($sql);
         $count = $xoopsDB->getRowsNum($result);
         if (!$result || $count <= 0) {
-            $url = isset ($url) ? $url : $this->urlToScan;
+            $url = isset($url) ? $url : $this->urlToScan;
             $array = array_merge($this->getDirs($url), $this->getFiles($url));
         } else {
             while ($row = $xoopsDB->fetchArray($result)) {
                 $array = $row;
             }
         }
-        $this->backupCheck ();
+        $this->backupCheck();
 
         return json_encode($array);
-     }
+    }
      
      
     /*
@@ -241,15 +246,15 @@ class xoopsSecure_scan {
      * @param $url
      * @return mixed|string
      */
-    function getnewfileinfo ($url)
+    public function getnewfileinfo($url)
     {
         global $xoopsDB;
         $array = array();
-        $url = isset ($url) ? $url : $this->urlToScan;
+        $url = isset($url) ? $url : $this->urlToScan;
         $url = rtrim($url, '\\');
         $url = rtrim($url, '/');
         $array = array_merge($this->getDirs($url), $this->getFiles($url));
-        $this->backupCheck ();
+        $this->backupCheck();
 
         return json_encode($array);
     }
@@ -260,11 +265,11 @@ class xoopsSecure_scan {
      * @throws xoopsSecureZipper If settings are set
      * @return void
  */
-    function backupCheck ()
+    public function backupCheck()
     {
         if ($this->backuptype != 'none') {
             $zip = new xoopsSecureZipper;
-            $zip->doZip ($zip->archive, $zip->dirToBackup);
+            $zip->doZip($zip->archive, $zip->dirToBackup);
         }
     }
     
@@ -277,7 +282,7 @@ class xoopsSecure_scan {
      * @param $file
      * @param $ref
      */
-    function getLines ($file, $ref )
+    public function getLines($file, $ref)
     {
         global $xoopsConfig;
         $patterns = $this->getPatterns();
@@ -286,10 +291,10 @@ class xoopsSecure_scan {
         $issuecount = 0;
         $issues = array();
         //Check for hash modifying
-        $hash = $this->hashcheck ($file, $ref);
+        $hash = $this->hashcheck($file, $ref);
         if (!empty($hash)) {
             $total_results ++;
-            $issues[] = array (
+            $issues[] = array(
                 'status'        => 'Issue',
                 'issuename'     => $hash['issuename'],
                 'issuecount'    => $total_results
@@ -300,7 +305,7 @@ class xoopsSecure_scan {
             $error = _AM_XOOPSSECURE_SCANFILEERROR.$file;
             echo $error;
         } else { // do a search for fingerprints
-            foreach ($patterns As $pattern) {
+            foreach ($patterns as $pattern) {
                 if (is_array($pattern)) { // it's a pattern
                     // RegEx modifiers: i=case-insensitive; s=dot matches also newlines; S=optimization
                     preg_match_all('#' . $pattern[0] . '#isS', $content, $found, PREG_OFFSET_CAPTURE);
@@ -316,7 +321,7 @@ class xoopsSecure_scan {
                     $count++;
                     if (is_array($pattern)) {
                         foreach ($all_results as $match) {
-                            $dbresult[$count] = array (
+                            $dbresult[$count] = array(
                                 'status'            => "Issue",
                                 'scantype'          => $ref,
                                 'time'              => time(),
@@ -325,7 +330,7 @@ class xoopsSecure_scan {
                                 'fileaccessed'      => fileatime($file),
                                 'filechanged'       => filectime($file),
                                 'filemodified'      => filemtime($file),
-                                'filepermission'    => substr(decoct(fileperms($file)),2),
+                                'filepermission'    => substr(decoct(fileperms($file)), 2),
                                 'issuecat'          => 'mal',
                                 'issuename'         => $pattern[1],
                                 'issuedesc'         => $pattern[3],
@@ -333,16 +338,16 @@ class xoopsSecure_scan {
                                 'issuecode'         => htmlentities(substr($content, $match[1], 200), ENT_QUOTES),
                                 'tag'               => "security"
                             );
-                            $issues[] = array (
+                            $issues[] = array(
                                 'status'        => 'Issue',
                                 'issuename'     => $pattern[1],
                                 'issuecount'    => $total_results
                             );
-                            $this->insert_content ($dbresult[$count]);
+                            $this->insert_content($dbresult[$count]);
                         }
                     } else {
                         foreach ($all_results as $match) {
-                            $dbresult[$count] = array (
+                            $dbresult[$count] = array(
                                 'status'            => "Issue",
                                 'scantype'          => $ref,
                                 'time'              => time(),
@@ -351,7 +356,7 @@ class xoopsSecure_scan {
                                 'fileaccessed'      => fileatime($file),
                                 'filechanged'       => filectime($file),
                                 'filemodified'      => filemtime($file),
-                                'filepermission'    => substr(decoct(fileperms($file)),2),
+                                'filepermission'    => substr(decoct(fileperms($file)), 2),
                                 'issuecat'          => 'mal',
                                 'issuename'         => $pattern,
                                 'issuedesc'         => 'String '.$pattern,
@@ -359,17 +364,15 @@ class xoopsSecure_scan {
                                 'issuecode'         => htmlentities(substr($content, $match[1], 200), ENT_QUOTES),
                                 'tag'               => "security"
                             );
-                            if ($this->checkExistIssue ($dbresult[$count]) == false) {
-                            $issues[] = array (
+                            if ($this->checkExistIssue($dbresult[$count]) == false) {
+                                $issues[] = array(
                                 'status'        => 'Issue',
                                 'issuename'     => $pattern,
                                 'issuecount'    => $total_results
                             );
                             } else {
-                                
                             }
-                            $this->insert_content ($dbresult[$count]);
-                            
+                            $this->insert_content($dbresult[$count]);
                         }
                     }
                 }
@@ -379,7 +382,7 @@ class xoopsSecure_scan {
                 echo json_encode($issues);
                 unset($content);
             } else {
-                $this->sendCronMail ($issues);
+                $this->sendCronMail($issues);
             }
         }
     }
@@ -393,30 +396,30 @@ class xoopsSecure_scan {
      * @param $ref
      * @return array
      */
-    function gethashes ($file, $ref )
+    public function gethashes($file, $ref)
     {
-            $count = 0;
-            $total_results = 0;
-            $issuecount = 0;
-            $issues = array();
+        $count = 0;
+        $total_results = 0;
+        $issuecount = 0;
+        $issues = array();
             //Check for hash modifying
-            $hash = $this->hashcheck ($file, $ref);
-            if (!empty($hash)) {
-                $total_results ++;
-                $issues[] = array (
+            $hash = $this->hashcheck($file, $ref);
+        if (!empty($hash)) {
+            $total_results ++;
+            $issues[] = array(
                     'status'        => 'Issue',
                     'issuename'     => $hash['issuename'],
                     'issuecount'    => $total_results
                 );
-            }
-                if ($this->cronscan == false) {
-                header('Content-type: application/json');
-                echo json_encode($issues);
-                unset($content);
-                } else {
-                    return $issues;
-                    unset($content);
-                }
+        }
+        if ($this->cronscan == false) {
+            header('Content-type: application/json');
+            echo json_encode($issues);
+            unset($content);
+        } else {
+            return $issues;
+            unset($content);
+        }
     }
     /* Checks issue db for existing errors
      * @param array $data using the htmlentities sanitazion
@@ -426,21 +429,21 @@ class xoopsSecure_scan {
      * @param $data
      * @return bool
      */
-    function checkExistIssue ($data)
+    public function checkExistIssue($data)
     {
         global $xoopsDB;
-            $test  = "SELECT * FROM ".$xoopsDB->prefix('xoopsecure_issues');
-            $test .= " Where filename = '".htmlentities($data['filename'], ENT_QUOTES)."'";
-            $test .= " AND linenumber = '".htmlentities($data['linenumber'], ENT_QUOTES)."'";
-            $test .= " AND issuecat = '".htmlentities($data['issuecat'], ENT_QUOTES)."'";
-            $test .= " AND inittime = '".$this->inittime."' ORDER BY id";
-            $resulttest = $xoopsDB->queryF($test);
-            $testcount = $xoopsDB->getRowsNum($resulttest);
-            if ($testcount <= 0) {
-                return false;
-            } else {
-                return true;
-            }
+        $test  = "SELECT * FROM ".$xoopsDB->prefix('xoopsecure_issues');
+        $test .= " Where filename = '".htmlentities($data['filename'], ENT_QUOTES)."'";
+        $test .= " AND linenumber = '".htmlentities($data['linenumber'], ENT_QUOTES)."'";
+        $test .= " AND issuecat = '".htmlentities($data['issuecat'], ENT_QUOTES)."'";
+        $test .= " AND inittime = '".$this->inittime."' ORDER BY id";
+        $resulttest = $xoopsDB->queryF($test);
+        $testcount = $xoopsDB->getRowsNum($resulttest);
+        if ($testcount <= 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
     
     /*
@@ -451,7 +454,7 @@ class xoopsSecure_scan {
     /**
      * @param $data
      */
-    function insert_content ($data)
+    public function insert_content($data)
     {
         global $xoopsDB,$xoopsLogger;
         $xoopsLogger->activated = false;
@@ -489,17 +492,16 @@ class xoopsSecure_scan {
                 '".htmlentities($data['issuecode'], ENT_QUOTES)."',
                 '".$data['tag']."'
             )";
-        if ($this->checkExistIssue ($data) == false) {
+        if ($this->checkExistIssue($data) == false) {
             $result = $xoopsDB->queryF($sql);
         }
-
     }
     
     /**
      * @desc Emties table xoopssecure_issues before initiating NEW full scan
      * @return void
      */
-    function emptyIssues ()
+    public function emptyIssues()
     {
         global $xoopsDB;
         $sql = "TRUNCATE TABLE ".$xoopsDB->prefix('xoopsecure_issues')."";
@@ -512,7 +514,7 @@ class xoopsSecure_scan {
      *
      * @return void
      */
-    function rmTodaysData ()
+    public function rmTodaysData()
     {
         global $xoopsDB;
         $tdm = strtotime('today midnight');
@@ -526,7 +528,7 @@ class xoopsSecure_scan {
      *
      * @return false or true
      */
-    function checkTodaysStats ()
+    public function checkTodaysStats()
     {
         global $xoopsDB;
         $tdm = strtotime('today midnight');
@@ -545,10 +547,10 @@ class xoopsSecure_scan {
      * @param array badusers users with bad ip
      * @return void
      */
-     function doStats ($inittime, $issues, $badusers)
+     public function doStats($inittime, $issues, $badusers)
      {
          global $xoopsDB;
-         if ($self::checkTodaysStats () == true) {
+         if ($self::checkTodaysStats() == true) {
              $sql = "UPDATE ".$xoopsDB->prefix('xoopsecure_stats'). " SET 'date' = {$inittime},
                 issuenr = ".count($issues).", issues = ".serialize($issues).", badusers = ".serialize($badusers)."
 				WHERE 'date' BETWEEN ".strtotime('today midnight')." AND ".strtotime('tomorrow midnight');
@@ -561,7 +563,7 @@ class xoopsSecure_scan {
      * @desc Emties table xoopssecure_files before initiating NEW full scan
      * @return void
      */
-    function emptyFiles ()
+    public function emptyFiles()
     {
         global $xoopsDB;
         $sql = "TRUNCATE TABLE ".$xoopsDB->prefix('xoopsecure_files')."";
@@ -576,7 +578,7 @@ class xoopsSecure_scan {
      * @return int Returns line number where the subject code was found
      * @internal param str $content The file content in string format
      */
-    function calculate_line_number($offset, $file_content)
+    public function calculate_line_number($offset, $file_content)
     {
         $file_content = htmlentities($file_content, ENT_QUOTES);
         list($first_part) = str_split($file_content, $offset); // fetches all the text before the match
@@ -592,15 +594,15 @@ class xoopsSecure_scan {
     * @return void
     */
        
-    function savefileinfo ($file)
+    public function savefileinfo($file)
     {
         global $xoopsDB;
-        $file = xoopssecure_removequot ($file);
+        $file = xoopssecure_removequot($file);
         $checkfile = "SELECT * FROM ".$xoopsDB->prefix('xoopsecure_files')." WHERE filename = '".$file."'";
         $resp = $xoopsDB->queryF($checkfile);
         $count = $xoopsDB->getRowsNum($resp);
         if ($count <= 0) {
-           $sql = "INSERT INTO ".$xoopsDB->prefix('xoopsecure_files'). "(
+            $sql = "INSERT INTO ".$xoopsDB->prefix('xoopsecure_files'). "(
                 filename,
                 filesize,
                 lastdate,
@@ -624,10 +626,10 @@ class xoopsSecure_scan {
      * @return json $arr containing values if difference check is true
      */
     
-    function hashcheck ($file, $ref)
+    public function hashcheck($file, $ref)
     {
         global $xoopsDB;
-        $file = xoopssecure_removequot ($file);
+        $file = xoopssecure_removequot($file);
         $arr = array();
         $checkfile = "SELECT * FROM ".$xoopsDB->prefix('xoopsecure_files')." WHERE filename = '".$file."'";
         $resp = $xoopsDB->queryF($checkfile);
@@ -635,25 +637,25 @@ class xoopsSecure_scan {
         while ($row = $xoopsDB->fetchArray($resp)) {
             $hash = ($row['hashvalue'] == hash_file('md5', $file)) ? true : false;
             if ($hash == false) {
-                 $codestring = _AM_XOOPSSECURE_HASHCHEGEDVALUES;
-                 $filename = htmlentities($file, ENT_QUOTES);
-                 $fileext = filetype($file);
-                 $fileatime = intval(fileatime($file));
-                 $filemtime = intval(filemtime($file));
-                 $filectime = intval(filectime($file));
-                 $fileperm = substr(sprintf('%o', fileperms($file)), -4);
-                 $filehash = hash_file('md5', $file);
-                 $filecat  = "hash_change";
-                 $filetype = htmlentities(_AM_XOOPSSECURE_SCANHASHCHANGEDFILE, ENT_QUOTES);
-                 $filedesc = htmlentities(_AM_XOOPSSECURE_SCANHASHCHANGEDFILE_DESC, ENT_QUOTES);
-                 $filecode = sprintf($codestring, $row['hashvalue'], $filehash, $row['filesize'],filesize($file));
-                 $filetag  = htmlentities('security', ENT_QUOTES);
+                $codestring = _AM_XOOPSSECURE_HASHCHEGEDVALUES;
+                $filename = htmlentities($file, ENT_QUOTES);
+                $fileext = filetype($file);
+                $fileatime = intval(fileatime($file));
+                $filemtime = intval(filemtime($file));
+                $filectime = intval(filectime($file));
+                $fileperm = substr(sprintf('%o', fileperms($file)), -4);
+                $filehash = hash_file('md5', $file);
+                $filecat  = "hash_change";
+                $filetype = htmlentities(_AM_XOOPSSECURE_SCANHASHCHANGEDFILE, ENT_QUOTES);
+                $filedesc = htmlentities(_AM_XOOPSSECURE_SCANHASHCHANGEDFILE_DESC, ENT_QUOTES);
+                $filecode = sprintf($codestring, $row['hashvalue'], $filehash, $row['filesize'], filesize($file));
+                $filetag  = htmlentities('security', ENT_QUOTES);
                 
                 $issuecheck = "SELECT filename FROM ".$xoopsDB->prefix('xoopsecure_issues'). " WHERE filename = '".$file."'";
                 $issuecheck_resp = $xoopsDB->queryF($issuecheck);
                 $issuecheck_count = $xoopsDB->getRowsNum($issuecheck_resp);
                 
-                $arr = array (
+                $arr = array(
                     'status'            => "Issue",
                     'scantype'          => $ref,
                     'time'              => time(),
@@ -662,18 +664,18 @@ class xoopsSecure_scan {
                     'fileaccessed'      => fileatime($file),
                     'filechanged'       => filectime($file),
                     'filemodified'      => filemtime($file),
-                    'filepermission'    => substr(decoct(fileperms($file)),2),
+                    'filepermission'    => substr(decoct(fileperms($file)), 2),
                     'issuecat'          => 'hash-change',
                     'issuename'         => _AM_XOOPSSECURE_SCANHASHCHANGEDFILE,
                     'issuedesc'         => _AM_XOOPSSECURE_SCANHASHCHANGEDFILE_DESC,
                     'linenumber'        => '',
-                    'issuecode'         => sprintf($codestring, $row['hashvalue'], $filehash, $row['filesize'],filesize($file)),
+                    'issuecode'         => sprintf($codestring, $row['hashvalue'], $filehash, $row['filesize'], filesize($file)),
                     'tag'               => "security"
                 );
                                 
                 if (!$issuecheck_count || $issuecheck_resp <= 0) {
-                        $this->insert_content ($arr);
-                        $result = $xoopsDB->queryF($sql);
+                    $this->insert_content($arr);
+                    $result = $xoopsDB->queryF($sql);
                 } else {
                     $sql = "UPDATE ".$xoopsDB->prefix('xoopsecure_issues'). " SET
                             scantype = ".$this->scantype.", filename = '".$filename."',
@@ -683,7 +685,7 @@ class xoopsSecure_scan {
                             issuetype = '".$filetype."', issuedesc = '".$filedesc."',
                             issuecode = '".$filecode."', tag = '".$filetag."'
                             WHERE filename = '".$file."'";
-                        $result = $xoopsDB->queryF($sql);
+                    $result = $xoopsDB->queryF($sql);
                 }
             }
 
@@ -696,11 +698,11 @@ class xoopsSecure_scan {
      * @param string $dir the full url to dir being checked
      *                    Return array $issues where issue is set if index file is not found
      */
-    function createindexfiles($dir)
+    public function createindexfiles($dir)
     {
         $result = array();
         $arr = array();
-        $url = xoopssecure_removequot ($dir);
+        $url = xoopssecure_removequot($dir);
         $orgch = substr(sprintf('%o', fileperms($url)), -4);
         
         if ($this->indexfiletype == 1 xor $this->indexfiletype == 2) {
@@ -712,7 +714,7 @@ class xoopsSecure_scan {
                 if (!file_exists($url.'/index.html') && !file_exists($url.'/index.htm') &&
                     !file_exists($url.'/index.php') && !file_exists($url.'/index.xhtml')) {
                     //str_replace ("\\", "/", $Path)
-                    file_put_contents( $url . '/index.html' ,
+                    file_put_contents($url . '/index.html',
                         $this->contentofhtmlindex);
                     // SAVE INFO TO DB
                     $count = 0;
@@ -720,21 +722,21 @@ class xoopsSecure_scan {
                     $issuecount = 0;
                     $issues = array();
                     $total_results ++;
-                    $issues[] = array (
+                    $issues[] = array(
                         'status'        => 'Issue',
                         'issuename'     => 'missing-indexfile',
                         'issuecount'    => $total_results
                     );
-                    $arr = array (
+                    $arr = array(
                         'status'            => "Issue",
                         'scantype'          => 3,
                         'time'              => time(),
-                        'filename'          => str_replace ("\\", "/", $url),
+                        'filename'          => str_replace("\\", "/", $url),
                         'filetype'          => filetype($url),
                         'fileaccessed'      => fileatime($url),
                         'filechanged'       => filectime($url),
                         'filemodified'      => filemtime($url),
-                        'filepermission'    => substr(decoct(fileperms($url)),2),
+                        'filepermission'    => substr(decoct(fileperms($url)), 2),
                         'issuecat'          => 'missing-indexfile-html',
                         'issuename'         => _AM_XOOPSSECURE_MISSINGHTMLINDEXFILE,
                         'issuedesc'         => _AM_XOOPSSECURE_MISSINGHTMLINDEXFILE_DESC,
@@ -743,7 +745,7 @@ class xoopsSecure_scan {
                         'tag'               => "security"
                     );
                     
-                    (!empty($arr)) ? $this->insert_content ($arr):'';
+                    (!empty($arr)) ? $this->insert_content($arr):'';
                     header('Content-type: application/json');
                     echo json_encode($issues);
                     unset($content);
@@ -756,11 +758,11 @@ class xoopsSecure_scan {
     /**
      * @param $dir
      */
-    function checkMissingIndexfile($dir)
+    public function checkMissingIndexfile($dir)
     {
         $result = array();
         $arr = array();
-        $url = xoopssecure_removequot ($dir);
+        $url = xoopssecure_removequot($dir);
         $orgch = substr(sprintf('%o', fileperms($url)), -4);
         if (is_dir($url)) {
             if (!is_writable($url)) {
@@ -779,21 +781,21 @@ class xoopsSecure_scan {
                 $issuecount = 0;
                 $issues = array();
                 $total_results ++;
-                $issues[] = array (
+                $issues[] = array(
                     'status'        => 'Issue',
                     'issuename'     => 'missing-indexfile',
                     'issuecount'    => $total_results
                 );
-                $arr = array (
+                $arr = array(
                     'status'            => "Issue",
                     'scantype'          => 11,
                     'time'              => time(),
-                    'filename'          => str_replace ("\\", "/", $url),
+                    'filename'          => str_replace("\\", "/", $url),
                     'filetype'          => filetype($url),
                     'fileaccessed'      => fileatime($url),
                     'filechanged'       => filectime($url),
                     'filemodified'      => filemtime($url),
-                    'filepermission'    => substr(decoct(fileperms($url)),2),
+                    'filepermission'    => substr(decoct(fileperms($url)), 2),
                     'issuecat'          => 'missing-indexfile',
                     'issuename'         => _AM_XOOPSSECURE_MISSINGANYINDEXFILE,
                     'issuedesc'         => _AM_XOOPSSECURE_MISSINGANYINDEXFILE_DESC,
@@ -802,12 +804,12 @@ class xoopsSecure_scan {
                     'tag'               => "security"
                 );
                 
-                if ($this->checkExistIssue ($arr) == false) {
-                    (!empty($arr)) ? $this->insert_content ($arr):'';
+                if ($this->checkExistIssue($arr) == false) {
+                    (!empty($arr)) ? $this->insert_content($arr):'';
                     header('Content-type: application/json');
                     echo json_encode($issues);
                 } else {
-                     header('Content-type: application/json');
+                    header('Content-type: application/json');
                     echo json_encode(array());
                 }
                
@@ -822,12 +824,12 @@ class xoopsSecure_scan {
      * @param string $dir the full url to dir being scanned
      *                    Return array $issues set if file found missing else empty
      */
-    function createHttaccess($dir)
+    public function createHttaccess($dir)
     {
         if (true == xoopssecure_apachemodule('mod_rewrite')) {
             $result = array();
             $arr = array();
-            $url = xoopssecure_removequot ($dir);
+            $url = xoopssecure_removequot($dir);
             $orgch = substr(sprintf('%o', fileperms($url)), -4);
             
             if ($this->autoindexcreate != 0 && $this->indexfiletype == 0 xor $this->indexfiletype == 2) {
@@ -837,28 +839,28 @@ class xoopsSecure_scan {
                         $this->createHttaccess($url);
                     }
                     if (!file_exists($url.'/.htaccess')) {
-                        file_put_contents( $url . '/.htaccess' ,
+                        file_put_contents($url . '/.htaccess',
                             $this->contentofhtaccessindex);
                         $count = 0;
                         $total_results = 0;
                         $issuecount = 0;
                         $issues = array();
                         $total_results ++;
-                        $issues[] = array (
+                        $issues[] = array(
                             'status'        => 'Issue',
                             'issuename'     => 'missing-httaccess',
                             'issuecount'    => $total_results
                         );
-                        $arr = array (
+                        $arr = array(
                             'status'            => "Issue",
                             'scantype'          => 7,
                             'time'              => time(),
-                            'filename'          => str_replace ("\\", "/", $url),
+                            'filename'          => str_replace("\\", "/", $url),
                             'filetype'          => filetype($url),
                             'fileaccessed'      => fileatime($url),
                             'filechanged'       => filectime($url),
                             'filemodified'      => filemtime($url),
-                            'filepermission'    => substr(decoct(fileperms($url)),2),
+                            'filepermission'    => substr(decoct(fileperms($url)), 2),
                             'issuecat'          => 'missing-indexfile-htaccess',
                             'issuename'         => _AM_XOOPSSECURE_MISSINGHTTACCESS,
                             'issuedesc'         => _AM_XOOPSSECURE_MISSINGHTTACCESS_DESC,
@@ -867,7 +869,7 @@ class xoopsSecure_scan {
                             'tag'               => "security"
                         );
                         
-                        (!empty($arr)) ? $this->insert_content ($arr):'';
+                        (!empty($arr)) ? $this->insert_content($arr):'';
                         header('Content-type: application/json');
                         echo json_encode($issues);
                         unset($content);
@@ -890,9 +892,10 @@ class xoopsSecure_scan {
      * @warning The permission levels has to be entered in octal format, which normally means adding a zero ("0") in front of the permission level.
      */
 
-    function recursiveChmod ($path, $ref) {
+    public function recursiveChmod($path, $ref)
+    {
         $ex_dir = $this->xoops_reservedfolders;
-        $path = xoopssecure_removequot ($path);
+        $path = xoopssecure_removequot($path);
         $count = 0;
         $total_results = 0;
         $issuecount = 0;
@@ -906,7 +909,7 @@ class xoopsSecure_scan {
         if (is_file($path)) {
             // Chmod the file with our given filepermissions
             if (in_array($path, $this->xoops_reservedfolders)) {
-                $arr = array (
+                $arr = array(
                     'status'            => "Issue",
                     'scantype'          => $ref,
                     'time'              => time(),
@@ -915,7 +918,7 @@ class xoopsSecure_scan {
                     'fileaccessed'      => fileatime($path),
                     'filechanged'       => filectime($path),
                     'filemodified'      => filemtime($path),
-                    'filepermission'    => substr(decoct(fileperms($path)),2),
+                    'filepermission'    => substr(decoct(fileperms($path)), 2),
                     'issuecat'          => 'chmod',
                     'issuename'         => _AM_XOOPSSECURE_CHMOD,
                     'issuedesc'         => _AM_XOOPSSECURE_CHMOD_DESC,
@@ -924,17 +927,17 @@ class xoopsSecure_scan {
                     'tag'               => "security"
                     );
                     
-                (!empty($arr)) ? $this->insert_content ($arr):'';
+                (!empty($arr)) ? $this->insert_content($arr):'';
                 
                 chmod($path, 0444);
                 $total_results ++;
-                $issues[] = array (
+                $issues[] = array(
                     'status'        => 'Issue',
                     'issuename'     => _AM_XOOPSSECURE_CHMODSPECIALFILE,
                     'issuecount'    => $total_results
                 );
             } else {
-                $arr = array (
+                $arr = array(
                     'status'            => "Issue",
                     'scantype'          => $ref,
                     'time'              => time(),
@@ -943,7 +946,7 @@ class xoopsSecure_scan {
                     'fileaccessed'      => fileatime($path),
                     'filechanged'       => filectime($path),
                     'filemodified'      => filemtime($path),
-                    'filepermission'    => substr(decoct(fileperms($path)),2),
+                    'filepermission'    => substr(decoct(fileperms($path)), 2),
                     'issuecat'          => 'chmod',
                     'issuename'         => _AM_XOOPSSECURE_CHMOD,
                     'issuedesc'         => _AM_XOOPSSECURE_CHMOD_DESC,
@@ -952,11 +955,11 @@ class xoopsSecure_scan {
                     'tag'               => "security"
                     );
                     
-                (!empty($arr)) ? $this->insert_content ($arr):'';
+                (!empty($arr)) ? $this->insert_content($arr):'';
             
                 chmod($path, 0644);
                 $total_results ++;
-                $issues[] = array (
+                $issues[] = array(
                     'status'        => 'Issue',
                     'issuename'     => _AM_XOOPSSECURE_CHMODFILE,
                     'issuecount'    => $total_results
@@ -965,8 +968,7 @@ class xoopsSecure_scan {
         // If this is a directory...
         } elseif (is_dir($path)) {
             if (!in_array($path, $this->xoops_reservedfolders)) {
-                
-                $arr = array (
+                $arr = array(
                     'status'            => "Issue",
                     'scantype'          => $ref,
                     'time'              => time(),
@@ -975,7 +977,7 @@ class xoopsSecure_scan {
                     'fileaccessed'      => fileatime($path),
                     'filechanged'       => filectime($path),
                     'filemodified'      => filemtime($path),
-                    'filepermission'    => substr(decoct(fileperms($path)),2),
+                    'filepermission'    => substr(decoct(fileperms($path)), 2),
                     'issuecat'          => 'chmod',
                     'issuename'         => _AM_XOOPSSECURE_CHMOD,
                     'issuedesc'         => _AM_XOOPSSECURE_CHMOD_DESC,
@@ -984,18 +986,17 @@ class xoopsSecure_scan {
                     'tag'               => "security"
                     );
                     
-                (!empty($arr)) ? $this->insert_content ($arr):'';
+                (!empty($arr)) ? $this->insert_content($arr):'';
                 
                 chmod($path, 0755);
                 $total_results ++;
-                $issues[] = array (
+                $issues[] = array(
                     'status'        => 'Issue',
                     'issuename'     => _AM_XOOPSSECURE_CHMODDIR,
                     'issuecount'    => $total_results
                 );
             } else {
-                
-                $arr = array (
+                $arr = array(
                     'status'            => "Issue",
                     'scantype'          => $ref,
                     'time'              => time(),
@@ -1004,7 +1005,7 @@ class xoopsSecure_scan {
                     'fileaccessed'      => fileatime($path),
                     'filechanged'       => filectime($path),
                     'filemodified'      => filemtime($path),
-                    'filepermission'    => substr(decoct(fileperms($path)),2),
+                    'filepermission'    => substr(decoct(fileperms($path)), 2),
                     'issuecat'          => 'chmod',
                     'issuename'         => _AM_XOOPSSECURE_CHMOD,
                     'issuedesc'         => _AM_XOOPSSECURE_CHMOD_DESC,
@@ -1013,11 +1014,11 @@ class xoopsSecure_scan {
                     'tag'               => "security"
                     );
                     
-                (!empty($arr)) ? $this->insert_content ($arr):'';
+                (!empty($arr)) ? $this->insert_content($arr):'';
                 
                 chmod($path, 0777);
                 $total_results ++;
-                $issues[] = array (
+                $issues[] = array(
                     'status'        => 'Issue',
                     'issuename'     => _AM_XOOPSSECURE_CHMODSPECIALDIR,
                     'issuecount'    => $total_results
@@ -1035,7 +1036,7 @@ class xoopsSecure_scan {
      * @return array $patternAll the extended array of values to search for
      *
      */
-    function getPatterns ()
+    public function getPatterns()
     {
         /*
          * @desc Pattern to search for
@@ -1053,9 +1054,9 @@ class xoopsSecure_scan {
      * @desc An array of potential bad strings to search for
      * @return array $ss the words
      */
-    function malwareWordstrings ()
+    public function malwareWordstrings()
     {
-        $ss = Array (
+        $ss = array(
             'eval',
             'base64_decode',
             'base64_encode',
@@ -1087,9 +1088,9 @@ class xoopsSecure_scan {
      * @desc Array of potential bad words to search for
      * @return array $mallwareStrings the array of words
      */
-     function mallwareStrings ()
+     public function mallwareStrings()
      {
-        $mallwareStrings = array (
+         $mallwareStrings = array(
             'r0nin',
             'm0rtix',
             'upl0ad',
@@ -1136,14 +1137,14 @@ class xoopsSecure_scan {
             'findsysfolder'
         );
 
-        return $mallwareStrings;
+         return $mallwareStrings;
      }
     
     /**
      * @desc Array of regex patterns to look for in file content
      * @retuen array $mp
      */
-    function mallwarepatterns ()
+    public function mallwarepatterns()
     {
         $mp = array(
             array('preg_replace\s*\(\s*[\"\']\s*(\W)(?-s).*\1[imsxADSUXJu\s]
@@ -1266,13 +1267,13 @@ class xoopsSecure_scan {
      * @param $val
      * @return mixed
      */
-    function getApacheModules ($val)
+    public function getApacheModules($val)
     {
         $apachemod = apache_get_modules();
         $rtn = array();
         $rtn['exists'] = false;
         $trn['value'] = '';
-        if (in_array($val,$apachemod)) {
+        if (in_array($val, $apachemod)) {
             $rtn['exists'] = true;
             $trn['value'] = array_search($val, $apachemod);
         }
@@ -1289,7 +1290,7 @@ class xoopsSecure_scan {
      * @param $id
      * @param $table
      */
-    function deleteById($id, $table)
+    public function deleteById($id, $table)
     {
         global $xoopsDB;
         $sql = "DELETE FROM ".$xoopsDB->prefix("xoopsecure_".$table)." WHERE id = '".$id."'";
@@ -1305,10 +1306,10 @@ class xoopsSecure_scan {
      * @param $file
      * @param $linenumber
      */
-    function Ignore($file, $linenumber)
+    public function Ignore($file, $linenumber)
     {
         global $xoopsDB;
-        $file = xoopssecure_removequot ($file);
+        $file = xoopssecure_removequot($file);
         $sql = "UPDATE ".$xoopsDB->prefix('xoopsecure_issues'). " SET ignored = '1'
                 WHERE filename = '".$file."' AND linenumber = '".$linenumber."'";
         $result = $xoopsDB->queryF($sql);
@@ -1325,12 +1326,12 @@ class xoopsSecure_scan {
      * @param $type
      * @param $val
      */
-    function ignoreFile ($file, $type, $val)
+    public function ignoreFile($file, $type, $val)
     {
         global $xoopsDB;
-        xoopssecure_rmChildren ($file, $val);
-        $file = xoopssecure_removequot ($file);
-        $test = $this->checkIgnoreExists ($file, $type, $val);
+        xoopssecure_rmChildren($file, $val);
+        $file = xoopssecure_removequot($file);
+        $test = $this->checkIgnoreExists($file, $type, $val);
         if ($type == 'dir' && !is_file($file)) {
             $isdir = 1;
             $isfile = 0;
@@ -1338,8 +1339,8 @@ class xoopsSecure_scan {
             $isdir = 0;
             $isfile = 1;
         }
-        if (xoopssecure_isfolderonlist ($file, $val) !== true) {
-            if (xoopssecure_relToAbsUrlCheck ($file) != xoopssecure_relToAbsUrlCheck ($this->urlToScan."/")) {
+        if (xoopssecure_isfolderonlist($file, $val) !== true) {
+            if (xoopssecure_relToAbsUrlCheck($file) != xoopssecure_relToAbsUrlCheck($this->urlToScan."/")) {
                 if ($test == false) {
                     $sql = "INSERT INTO ".$xoopsDB->prefix('xoopsecure_ignores'). "(
                         url,
@@ -1354,16 +1355,16 @@ class xoopsSecure_scan {
                         )";
                     $result = $xoopsDB->queryF($sql);
                 } else {
-                    $err = sprintf (_AM_XOOPSSECURE_ALREADYONLIST, $file);
+                    $err = sprintf(_AM_XOOPSSECURE_ALREADYONLIST, $file);
                     header($_SERVER["SERVER_PROTOCOL"]." 404 {$err}");
                 }
             } else {
-                $err = sprintf (_AM_XOOPSSECURE_DROPURLISSAMEASSTART, $file);
+                $err = sprintf(_AM_XOOPSSECURE_DROPURLISSAMEASSTART, $file);
                 header($_SERVER["SERVER_PROTOCOL"]." 404 {$err}");
             }
         } else {
-                $err = sprintf (_AM_XOOPSSECURE_DROPURLISPARTOFOTHER, $file);
-                header($_SERVER["SERVER_PROTOCOL"]." 404 {$err}");
+            $err = sprintf(_AM_XOOPSSECURE_DROPURLISPARTOFOTHER, $file);
+            header($_SERVER["SERVER_PROTOCOL"]." 404 {$err}");
         }
     }
 
@@ -1374,7 +1375,7 @@ class xoopsSecure_scan {
      * @return bool
      * @return bool
      */
-    function checkIgnoreExists ($file, $type, $val)
+    public function checkIgnoreExists($file, $type, $val)
     {
         global $xoopsDB;
         $test = "SELECT * FROM ".$xoopsDB->prefix("xoopsecure_ignores").
@@ -1394,7 +1395,7 @@ class xoopsSecure_scan {
      * @param $genus
      * @param $val
      */
-    function getIgnores ($genus, $val)
+    public function getIgnores($genus, $val)
     {
         global $xoopsDB;
         $html = "";
@@ -1410,7 +1411,7 @@ class xoopsSecure_scan {
             " val = '".$val."'";
         $result = $xoopsDB->queryF($sql);
         while ($row = $xoopsDB->fetchArray($result)) {
-             $html .= '<li>
+            $html .= '<li>
                 <a  href="#"
                     id = "xoopssecure_deleteissue"
                     data-id = '.$row['id'].'
@@ -1425,8 +1426,6 @@ class xoopsSecure_scan {
                 />
                 </a>
             </li>';
-                
-                
         }
         echo $html;
     }
@@ -1442,7 +1441,7 @@ class xoopsSecure_scan {
      * @param $type
      * @return array
      */
-    function getIgnoreArray ($genus, $type)
+    public function getIgnoreArray($genus, $type)
     {
         global $xoopsDB;
         $sql = "SELECT * FROM ".$xoopsDB->prefix('xoopsecure_ignores').
@@ -1463,7 +1462,7 @@ class xoopsSecure_scan {
      * @param $type
      * @return array
      */
-    function getIgnoreArrayToVar ($genus, $type)
+    public function getIgnoreArrayToVar($genus, $type)
     {
         global $xoopsDB;
         $sql = "SELECT url FROM ".$xoopsDB->prefix('xoopsecure_ignores').
@@ -1482,7 +1481,7 @@ class xoopsSecure_scan {
     /**
      * @return int
      */
-    function xoopssecure_fullscan_hasFiles()
+    public function xoopssecure_fullscan_hasFiles()
     {
         global $xoopsDB;
         $sql = "SELECT * FROM " . $xoopsDB->prefix('xoopsecure_files');
@@ -1494,7 +1493,7 @@ class xoopsSecure_scan {
     /**
      * @return int
      */
-    function xoopssecure_dbHasMallIssues()
+    public function xoopssecure_dbHasMallIssues()
     {
         global $xoopsDB;
         $sql = "SELECT * FROM " . $xoopsDB->prefix('xoopsecure_issues');
@@ -1506,9 +1505,10 @@ class xoopsSecure_scan {
     /**
      * @param $info
      */
-    function sendCronMail ($info) {
+    public function sendCronMail($info)
+    {
         global $xoopsConfig, $xoopsUser;
-        $date = date('m-d-Y H:i:s',time());
+        $date = date('m-d-Y H:i:s', time());
         $mail = new XoopsMultiMailer;
         $tpl = new XoopsTpl();
         $message = '';
@@ -1518,15 +1518,15 @@ class xoopsSecure_scan {
             
         $subject = _XOOPSSECURE_MAIL_FROM." - ".$xoopsConfig['sitename'];
 
-        $time = date(xoopssecure_GetModuleOption('dateformat'),$data['time']);
+        $time = date(xoopssecure_GetModuleOption('dateformat'), $data['time']);
         $link = XOOPS_ROOT_PATH .'/modules/xoopsSecure/admin/showlog.php';
 
         $tpl = new XoopsTpl();
-        $tpl->assign('sendername',_XOOPSSECURE_MAIL_SENDERNAME);
-        $tpl->assign('time',$time);
-        $tpl->assign('link',$link);
-        $tpl->assign('sitename',$xoopsConfig['sitename']);
-        $tpl->assign('issues',$info);
+        $tpl->assign('sendername', _XOOPSSECURE_MAIL_SENDERNAME);
+        $tpl->assign('time', $time);
+        $tpl->assign('link', $link);
+        $tpl->assign('sitename', $xoopsConfig['sitename']);
+        $tpl->assign('issues', $info);
         
         $lnk = XOOPS_ROOT_PATH
             .'/modules/xoopsSecure/language/'
@@ -1543,10 +1543,8 @@ class xoopsSecure_scan {
         $mail->Subject = $subject;
         
         
-        if(!$mail->Send())
-        {}
-        else {
+        if (!$mail->Send()) {
+        } else {
         }
     }
-
 }

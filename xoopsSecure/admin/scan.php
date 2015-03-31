@@ -22,7 +22,7 @@
 
 require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/include/cp_header.php';
 include_once dirname(__FILE__) . '/admin_header.php';
-include_once (XOOPS_ROOT_PATH.'/class/template.php');
+include_once(XOOPS_ROOT_PATH.'/class/template.php');
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/log.php';
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/scan.php';
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/mech.php';
@@ -46,7 +46,7 @@ $scan->inittime = $_GET['scanstart'];
 // Quick scan = 1
 if ($task == 1) {
     $scan->scantype = $scanref;
-    $info = $scan->getnewfileinfo ($url = $scanurl);
+    $info = $scan->getnewfileinfo($url = $scanurl);
     header('Content-type: application/json');
     echo "{\"result\":$info}";
 }
@@ -64,7 +64,7 @@ if ($task == 2) {
 
     $_SERVER['argv'] = array("phpcs.php",$standard,$url,$report,$reportWidth);
     echo "<div class='xoopssecure_csf_report_cont'><p>";
-    echo sprintf( _AM_XOOPSSECURE_DEVELOPERSCANRESULTTITLE, $url, $type[0] );
+    echo sprintf(_AM_XOOPSSECURE_DEVELOPERSCANRESULTTITLE, $url, $type[0]);
     echo "</p>";
     echo "<div id = 'xoopssecure_showoksign' style='display:none;'><img src = '../assets/images/okstamp.PNG' "
         ." height='100px' width= '100px' /></div>";
@@ -78,12 +78,12 @@ if ($task == 2) {
 if ($task == 3) {
     $scan->scantype = $scanref;
     if ($scanref == 3) {
-        $scan->emptyFiles ();
+        $scan->emptyFiles();
     }
     if ($scanurl !== XOOPS_ROOT_PATH) {
-        $scan->getnewfileinfo ($url = XOOPS_ROOT_PATH);
+        $scan->getnewfileinfo($url = XOOPS_ROOT_PATH);
     }
-    $info = $scan->getnewfileinfo ($url = $scanurl);
+    $info = $scan->getnewfileinfo($url = $scanurl);
     header('Content-type: application/json');
     echo "{\"result\":$info}";
 }
@@ -93,7 +93,7 @@ if ($task == 4) {
     $scan->scantype = $scanref;
     $file = $_GET['file'];
     //$scan->savefileinfo ($file);
-    $scanref == 3 ? $scan->getLines (json_decode($file), $scanref) : $scan->gethashes(json_decode($file), $scanref);
+    $scanref == 3 ? $scan->getLines(json_decode($file), $scanref) : $scan->gethashes(json_decode($file), $scanref);
 }
 
 // indexfile creating
@@ -109,7 +109,7 @@ if ($task == 6) {
     // auto indexfile creation
     header('content-type: application/json; charset=utf-8');
     if ($scan->autochmod[0] == 1) {
-        echo $scan->recursiveChmod (str_replace ("\\", "/", $dir), $scanref);
+        echo $scan->recursiveChmod(str_replace("\\", "/", $dir), $scanref);
     } else {
         break;
     }
@@ -168,8 +168,8 @@ if ($task == "12f") {
 
 // Show Malware log
 if ($task == 13) {
-    $log->getIssues ('file');
-    $log->getIssues ('dir');
+    $log->getIssues('file');
+    $log->getIssues('dir');
     $xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/admin/showscan.tpl');
 }
 
@@ -180,9 +180,9 @@ if ($task == 14) {
     $val = $_GET['val'];
     $table = isset($_GET['table']) ? $_GET['table'] : '';
     if ($val != 'clear') {
-        $scan->ignoreFile ($file, $type, $val);
+        $scan->ignoreFile($file, $type, $val);
     } else {
-        $log->clear ($file);
+        $log->clear($file);
     }
 }
 
@@ -192,21 +192,21 @@ if ($task == 16) {
     $type = $_GET['ref'];
     $val = $_GET['val'];
     $table = $_GET['table'];
-    $scan->ignoreFile ($file, $type, $val);
+    $scan->ignoreFile($file, $type, $val);
 }
 
 // Get list back of ignore dirs / files
 if ($task == 17) {
     $genus = $_GET['ref'];
     $val = $_GET['val'];
-    $scan->getIgnores ($genus, $val);
+    $scan->getIgnores($genus, $val);
 }
 
 // do backup
 if ($task == 18) {
     if ($this->backuptype != 'none') {
-        $zip->doZip ($zip->archive, $zip->dirToBackup);
-        $nl = str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$zip->archive);
+        $zip->doZip($zip->archive, $zip->dirToBackup);
+        $nl = str_replace(XOOPS_ROOT_PATH, XOOPS_URL, $zip->archive);
         $link  = "<a id = 'xoopssecure_bdl' href = '".$nl."'> "
         . _AM_XOOPSSECURE_BACKUP_LINK_DESC." "
         . $nl
@@ -217,15 +217,15 @@ if ($task == 18) {
 
 // download the zip file
 if ($task == 19) {
-    if ($scan->autobackup = 1 OR $scanref = 18) {
+    if ($scan->autobackup = 1 || $scanref = 18) {
         xoopssecure_DownloadFile($zip->archive);
     }
 }
 
 //delete backupfolder from server
 if ($task == 20) {
-    if ($scan->autobackup = 1 OR $scanref = 18) {
+    if ($scan->autobackup = 1 || $scanref = 18) {
         //xoopssecure_deleteBackupFolder ($zip->archive);
-        xoopssecure_deleteFolder ($zip->dest);
+        xoopssecure_deleteFolder($zip->dest);
     }
 }

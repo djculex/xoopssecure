@@ -11,25 +11,26 @@
  * @link       http://dev.zend.com/package/PackageName
  * @since      Class available since Release 1.0.0
  */
-class xoopsSecureZipper {
+class xoopsSecureZipper
+{
     
-    var $dirToBackup;
-    var $dest;
-    var $filename;
-    var $archive;
-    var $sqlname;
-    var $backup_file_sql;
-    var $dbname;
+    public $dirToBackup;
+    public $dest;
+    public $filename;
+    public $archive;
+    public $sqlname;
+    public $backup_file_sql;
+    public $dbname;
 
     /**
      *
      */
-    function __construct()
+    public function __construct()
     {
-        $this->dirToBackup = $this->caltypeofbackup ();
+        $this->dirToBackup = $this->caltypeofbackup();
         $this->dest = XOOPS_ROOT_PATH."/uploads/backup/"; // make sure this directory exists!
         // make project backup folder
-        if(!file_exists($this->dest)){
+        if (!file_exists($this->dest)) {
             mkdir($this->dest, 0775, true);
         }
         
@@ -37,8 +38,7 @@ class xoopsSecureZipper {
         $this->archive = $this->dest.$this->filename;
         $this->sqlname = XOOPS_DB_NAME;
         $this->backup_file_sql  = XOOPS_ROOT_PATH."/uploads/backup/tmp/sql.sql";
-        if (!is_dir(dirname($this->backup_file_sql)))
-        {
+        if (!is_dir(dirname($this->backup_file_sql))) {
             mkdir(dirname($this->backup_file_sql), 0755, true);
         }
         $this->dbname = XOOPS_DB_NAME;
@@ -47,7 +47,7 @@ class xoopsSecureZipper {
     /**
      * @return array
      */
-    public static function caltypeofbackup ()
+    public static function caltypeofbackup()
     {
         $config = xoopssecure_GetModuleOption($option='backuptype', $repmodule='xoopssecure');
         if ($config[0] == "Minimum") {
@@ -60,7 +60,7 @@ class xoopsSecureZipper {
                 XOOPS_ROOT_PATH."/install/page_end.php"
             );
         } elseif ($config[0] == "Full") {
-            return array (
+            return array(
                 XOOPS_ROOT_PATH
             );
         } elseif ($config[0] == "Custom") {
@@ -80,9 +80,10 @@ class xoopsSecureZipper {
      * @param  null $subfolder
      * @return bool
      */
-    public static function folderToZip($folder, $zipFile, $subfolder = null) {
+    public static function folderToZip($folder, $zipFile, $subfolder = null)
+    {
         if ($zipFile == null) {
-         // no resource given, exit
+            // no resource given, exit
          return false;
         }
         if (is_file($folder)) {
@@ -90,27 +91,27 @@ class xoopsSecureZipper {
         } elseif (is_dir($folder) && $folder != XOOPS_ROOT_PATH."/uploads/backup") {
             $folder .= end(str_split($folder)) == "/" ? "" : "/";
             $subfolder .= end(str_split($subfolder)) == "/" ? "" : "/";
-            $subfolder = (substr($subfolder,0,1)=='/')? substr($subfolder,1):$subfolder;
+            $subfolder = (substr($subfolder, 0, 1)=='/')? substr($subfolder, 1):$subfolder;
             $handle = opendir($folder);
-                while ($f = readdir($handle)) {
-                    if ($f != "." && $f != "..") {
-                        if (is_file($folder . $f)) {
-                            if ($subfolder != null) {
-                                $zipFile->addFile($folder . $f, $subfolder . $f);
-                            } else {
-                                $zipFile->addFile($folder . $f);
-                            }
-                        } elseif (is_dir($folder . $f)) {
-                            if ($subfolder != null) {
-                                $zipFile->addEmptyDir($subfolder . $f);
-                                xoopsSecureZipper::folderToZip($folder . $f, $zipFile, $subfolder . $f);
-                            } else {
-                                $zipFile->addEmptyDir($f);
-                                xoopsSecureZipper::folderToZip($folder . $f, $zipFile, $f);
-                            }
+            while ($f = readdir($handle)) {
+                if ($f != "." && $f != "..") {
+                    if (is_file($folder . $f)) {
+                        if ($subfolder != null) {
+                            $zipFile->addFile($folder . $f, $subfolder . $f);
+                        } else {
+                            $zipFile->addFile($folder . $f);
+                        }
+                    } elseif (is_dir($folder . $f)) {
+                        if ($subfolder != null) {
+                            $zipFile->addEmptyDir($subfolder . $f);
+                            xoopsSecureZipper::folderToZip($folder . $f, $zipFile, $subfolder . $f);
+                        } else {
+                            $zipFile->addEmptyDir($f);
+                            xoopsSecureZipper::folderToZip($folder . $f, $zipFile, $f);
                         }
                     }
                 }
+            }
         }
     }
 
@@ -118,7 +119,7 @@ class xoopsSecureZipper {
      * @param $archive
      * @param $dirToBackup
      */
-    function doZip ($archive, $dirToBackup)
+    public function doZip($archive, $dirToBackup)
     {
         global $xoopsUser, $xoTheme, $xoopsTpl,$xoopsLogger, $scan, $backup_file_sql;
         // create the zip
@@ -147,7 +148,7 @@ class xoopsSecureZipper {
             echo 'An error has ocurred.';
         }
         */
-        foreach($dirToBackup as $d){
+        foreach ($dirToBackup as $d) {
             self::folderToZip($d, $z, $d);
         }
         $z->addFile($this->backup_file_sql, "/mysqlbackup/sql.sql");
@@ -163,7 +164,8 @@ class xoopsSecureZipper {
  * @copyright No one. You can copy, edit, do anything you want. If you change anything to better, please let me know.
  *
  */
-Class DBBackup {
+class DBBackup
+{
     /**
      *
      * The host you will connect
@@ -236,14 +238,25 @@ Class DBBackup {
      * @param Array $args{host, driver, user, password, database}
      * @example $db = new DBBackup(array('host'=>'my_host', 'driver'=>'bd_type(mysql)', 'user'=>'db_user', 'password'=>'db_password', 'database'=>'db_name'));
      */
-    public function DBBackup($args){
-        if(!$args['host']) $this->error[] = 'Parameter host missing';
-        if(!$args['user']) $this->error[] = 'Parameter user missing';
-        if(!isset($args['password'])) $this->error[] = 'Parameter password missing';
-        if(!$args['database']) $this->error[] = 'Parameter database missing';
-        if(!$args['driver']) $this->error[] = 'Parameter driver missing';
+    public function DBBackup($args)
+    {
+        if (!$args['host']) {
+            $this->error[] = 'Parameter host missing';
+        }
+        if (!$args['user']) {
+            $this->error[] = 'Parameter user missing';
+        }
+        if (!isset($args['password'])) {
+            $this->error[] = 'Parameter password missing';
+        }
+        if (!$args['database']) {
+            $this->error[] = 'Parameter database missing';
+        }
+        if (!$args['driver']) {
+            $this->error[] = 'Parameter driver missing';
+        }
 
-        if(count($this->error)>0){
+        if (count($this->error)>0) {
             return;
         }
 
@@ -255,7 +268,7 @@ Class DBBackup {
 
         $this->final = 'CREATE DATABASE ' . $this->dbName.";\n\n";
 
-        if($this->host=='localhost'){
+        if ($this->host=='localhost') {
             // We have a little issue in unix systems when you set the host as localhost
             $this->host = '127.0.0.1';
         }
@@ -271,9 +284,10 @@ Class DBBackup {
      * Call this function to get the database backup
      * @example DBBackup::backup();
      */
-    public function backup(){
+    public function backup()
+    {
         //return $this->final;
-        if(count($this->error)>0){
+        if (count($this->error)>0) {
             return array('error'=>true, 'msg'=>$this->error);
         }
 
@@ -285,7 +299,8 @@ Class DBBackup {
      * Generate backup string
      * @uses Private use
      */
-    private function generate(){
+    private function generate()
+    {
         foreach ($this->tables as $tbl) {
             $this->final .= '--CREATING TABLE '.$tbl['name']."\n";
             $this->final .= $tbl['create'] . ";\n\n";
@@ -300,7 +315,8 @@ Class DBBackup {
      * Connect to a database
      * @uses Private use
      */
-    private function connect(){
+    private function connect()
+    {
         try {
             $this->handler = new PDO($this->dsn, $this->user, $this->password);
         } catch (PDOException $e) {
@@ -316,12 +332,13 @@ Class DBBackup {
      * Get the list of tables
      * @uses Private use
      */
-    private function getTables(){
+    private function getTables()
+    {
         try {
             $stmt = $this->handler->query('SHOW TABLES');
             $tbs = $stmt->fetchAll();
             $i=0;
-            foreach($tbs as $table){
+            foreach ($tbs as $table) {
                 $this->tables[$i]['name'] = $table[0];
                 $this->tables[$i]['create'] = $this->getColumns($table[0]);
                 $this->tables[$i]['data'] = $this->getData($table[0]);
@@ -347,14 +364,15 @@ Class DBBackup {
      * @param $tableName
      * @return bool
      */
-    private function getColumns($tableName){
+    private function getColumns($tableName)
+    {
         try {
             $stmt = $this->handler->query('SHOW CREATE TABLE '.$tableName);
             $q = $stmt->fetchAll();
             $q[0][1] = preg_replace("/AUTO_INCREMENT=[\w]*./", '', $q[0][1]);
 
             return $q[0][1];
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             $this->handler = null;
             $this->error[] = $e->getMessage();
 
@@ -369,20 +387,21 @@ Class DBBackup {
      * @param $tableName
      * @return bool|string
      */
-    private function getData($tableName){
+    private function getData($tableName)
+    {
         try {
             $stmt = $this->handler->query('SELECT * FROM '.$tableName);
             $q = $stmt->fetchAll(PDO::FETCH_NUM);
             $data = '';
-            foreach ($q as $pieces){
-                foreach($pieces as &$value){
+            foreach ($q as $pieces) {
+                foreach ($pieces as &$value) {
                     $value = htmlentities(addslashes($value));
                 }
                 $data .= 'INSERT INTO '. $tableName .' VALUES (\'' . implode('\',\'', $pieces) . '\');'."\n";
             }
 
             return $data;
-        } catch (PDOException $e){
+        } catch (PDOException $e) {
             $this->handler = null;
             $this->error[] = $e->getMessage();
 

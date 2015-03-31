@@ -22,7 +22,7 @@
 
 include_once("../../mainfile.php");
 include_once(XOOPS_ROOT_PATH."/modules/xoopsSecure/include/functions.php");
-include_once (XOOPS_ROOT_PATH.'/class/template.php');
+include_once(XOOPS_ROOT_PATH.'/class/template.php');
 include_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/log.php';
 include_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/scan.php';
 include_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/mech.php';
@@ -39,7 +39,7 @@ error_reporting(E_ALL);
 set_time_limit(999999);
 
 $lang = $xoopsConfig['language'];
-if ( file_exists(XOOPS_ROOT_PATH.'/modules/xoopsSecure/language/'.$lang.'/admin.php') ) {
+if (file_exists(XOOPS_ROOT_PATH.'/modules/xoopsSecure/language/'.$lang.'/admin.php')) {
     include(XOOPS_ROOT_PATH
     . '/modules/xoopsSecure/language/'
     . $lang.'/admin.php');
@@ -48,34 +48,33 @@ if ( file_exists(XOOPS_ROOT_PATH.'/modules/xoopsSecure/language/'.$lang.'/admin.
     . '/modules/xoopsSecure/language/english/admin.php');
 }
 
-if (TRUE == $scan->checkCronDate ()) {
+if (true == $scan->checkCronDate()) {
+    $adminscript  =  "var xoopssecure_url = '" . XOOPS_URL . "/modules/xoopssecure/admin/'\n";
+    $adminscript .=  "var xoopssecure_anonurl = '" . XOOPS_URL . "/modules/xoopssecure/'\n";
+    $adminscript .=  "var xoopssecure_xoopsurl = '" . XOOPS_URL . "'\n";
+    $adminscript .=  "var xoopssecure_root = '".XOOPS_ROOT_PATH."'\n";
+    $adminscript .=  "var xoopssecure_scanurl = '" . $scan->urlToScan . "';\n";
+    $adminscript .=  "var xoopssecure_malwaretitle = '" . _XOOPSSECURETITLEMALWARE . "';\n";
+    $adminscript .=  "var xoopssecure_autoindexfilestitle = '" . _XOOPSSECURETITLEINDEXFILES . "';\n";
+    $adminscript .=  "var xoopssecure_checkindexfilestitle = '" . _XOOPSSECURETITLECHECKINDEXFILES . "';\n";
+    $adminscript .=  "var xoopssecure_autoindexfiles = {$scan->autoindexcreate};\n";
+    $adminscript .=  "var xoopssecure_indexfiletype = {$scan->indexfiletype};\n";
+    $adminscript .=  "var xoopssecure_autochmod = {$scan->autochmod[0]};\n";
+    $adminscript .=  "var xoopssecure_autochmodtitle = '"._XOOPSSECURETITLECHMOD."';\n";
+    $adminscript .=  "var xoopssecure_dbhasfiles = ".$scan->xoopssecure_fullscan_hasFiles().";\n";
+    $adminscript .=  "var xoopssecure_dbhasissues = ".$scan->xoopssecure_dbHasMallIssues().";\n";
 
-$adminscript  =  "var xoopssecure_url = '" . XOOPS_URL . "/modules/xoopssecure/admin/'\n";
-$adminscript .=  "var xoopssecure_anonurl = '" . XOOPS_URL . "/modules/xoopssecure/'\n";
-$adminscript .=  "var xoopssecure_xoopsurl = '" . XOOPS_URL . "'\n";
-$adminscript .=  "var xoopssecure_root = '".XOOPS_ROOT_PATH."'\n";
-$adminscript .=  "var xoopssecure_scanurl = '" . $scan->urlToScan . "';\n";
-$adminscript .=  "var xoopssecure_malwaretitle = '" . _XOOPSSECURETITLEMALWARE . "';\n";
-$adminscript .=  "var xoopssecure_autoindexfilestitle = '" . _XOOPSSECURETITLEINDEXFILES . "';\n";
-$adminscript .=  "var xoopssecure_checkindexfilestitle = '" . _XOOPSSECURETITLECHECKINDEXFILES . "';\n";
-$adminscript .=  "var xoopssecure_autoindexfiles = {$scan->autoindexcreate};\n";
-$adminscript .=  "var xoopssecure_indexfiletype = {$scan->indexfiletype};\n";
-$adminscript .=  "var xoopssecure_autochmod = {$scan->autochmod[0]};\n";
-$adminscript .=  "var xoopssecure_autochmodtitle = '"._XOOPSSECURETITLECHMOD."';\n";
-$adminscript .=  "var xoopssecure_dbhasfiles = ".$scan->xoopssecure_fullscan_hasFiles().";\n";
-$adminscript .=  "var xoopssecure_dbhasissues = ".$scan->xoopssecure_dbHasMallIssues().";\n";
+    $xoTheme->addScript('', '', $adminscript);
+    $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery.js');
+    $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery-ui.js');
+    $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/xoopssecure.js');
+    $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery.colorbox.js');
+    $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jqueryFileTree.js');
+    $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/xoopssecure_cron.js');
+    $xoTheme->addStylesheet('/modules/xoopssecure/assets/css/base/jquery.ui.all.css');
+    $xoTheme->addStyleSheet('/modules/xoopssecure/assets/css/xoopsSecure.css');
 
-$xoTheme->addScript('','',$adminscript);
-$xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery.js');
-$xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery-ui.js');
-$xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/xoopssecure.js');
-$xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery.colorbox.js');
-$xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jqueryFileTree.js');
-$xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/xoopssecure_cron.js');
-$xoTheme->addStylesheet('/modules/xoopssecure/assets/css/base/jquery.ui.all.css');
-$xoTheme->addStyleSheet('/modules/xoopssecure/assets/css/xoopsSecure.css');
-
-$xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/xoopssecure_run.tpl');
+    $xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/xoopssecure_run.tpl');
 } else {
     echo "NOT TRUE";
 }

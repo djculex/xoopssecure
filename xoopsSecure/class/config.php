@@ -27,7 +27,8 @@ set_time_limit(999999);
 /**
  * Class xoopsSecure_Config
  */
-class xoopsSecure_Config {
+class xoopsSecure_Config
+{
     
     //var $term;
 
@@ -42,7 +43,7 @@ class xoopsSecure_Config {
     /**
      * @param $term
      */
-    function getDirsForPrefs($term)
+    public function getDirsForPrefs($term)
     {
         global $xoopsDB;
         //LOCATE('{$term}','filename') > 0
@@ -51,19 +52,17 @@ class xoopsSecure_Config {
         $result = $xoopsDB->queryF($sql);
         // loop through each zipcode returned and format the response for jQuery
         $data = array();
-            while( $row = $xoopsDB->fetchArray($result) )
-            {
-                if(strpos(xoopssecure_cleanUrl($row['filename']), $term) !== false){
-                   $data[] = array(
+        while ($row = $xoopsDB->fetchArray($result)) {
+            if (strpos(xoopssecure_cleanUrl($row['filename']), $term) !== false) {
+                $data[] = array(
                         'label' => $row['filename'],
                         'value' => $row['filename']
                     );
-                }
             }
+        }
          
         // jQuery wants JSON data
         echo json_encode($data);
         flush();
     }
-    
 }// end class
