@@ -29,7 +29,6 @@
 class Squiz_Tests_Debug_JavaScriptLintUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Should this test be skipped for some reason.
      *
@@ -38,6 +37,7 @@ class Squiz_Tests_Debug_JavaScriptLintUnitTest extends AbstractSniffUnitTest
     protected function shouldSkipTest()
     {
         $jslPath = PHP_CodeSniffer::getConfigData('jsl_path');
+
         return (is_null($jslPath));
 
     }//end shouldSkipTest()
@@ -76,5 +76,4 @@ class Squiz_Tests_Debug_JavaScriptLintUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

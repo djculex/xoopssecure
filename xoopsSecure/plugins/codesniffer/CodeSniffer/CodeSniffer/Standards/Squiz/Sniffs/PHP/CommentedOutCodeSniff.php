@@ -47,7 +47,6 @@ class Squiz_Sniffs_PHP_CommentedOutCodeSniff implements PHP_CodeSniffer_Sniff
      */
     public $maxPercentage = 35;
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -210,5 +209,4 @@ class Squiz_Sniffs_PHP_CommentedOutCodeSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-
-?>
+;

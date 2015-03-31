@@ -31,7 +31,6 @@
 class Generic_Tests_Formatting_MultipleStatementAlignmentUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -130,5 +129,4 @@ class Generic_Tests_Formatting_MultipleStatementAlignmentUnitTest extends Abstra
 
 
 }//end class
-
-?>
+;

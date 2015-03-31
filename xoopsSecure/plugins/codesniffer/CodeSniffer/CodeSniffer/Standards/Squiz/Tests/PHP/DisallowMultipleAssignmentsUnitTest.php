@@ -31,7 +31,6 @@
 class Squiz_Tests_PHP_DisallowMultipleAssignmentsUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -70,5 +69,4 @@ class Squiz_Tests_PHP_DisallowMultipleAssignmentsUnitTest extends AbstractSniffU
 
 
 }//end class
-
-?>
+;

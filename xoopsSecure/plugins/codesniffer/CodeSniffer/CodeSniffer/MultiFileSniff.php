@@ -30,7 +30,6 @@
 interface PHP_CodeSniffer_MultiFileSniff
 {
 
-
     /**
      * Called once per script run to allow for processing of this sniff.
      *
@@ -41,7 +40,5 @@ interface PHP_CodeSniffer_MultiFileSniff
      */
     public function process(array $files);
 
-
 }//end interface
-
-?>
+;

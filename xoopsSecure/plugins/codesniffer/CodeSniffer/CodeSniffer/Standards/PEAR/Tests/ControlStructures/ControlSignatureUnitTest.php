@@ -31,7 +31,6 @@
 class PEAR_Tests_ControlStructures_ControlSignatureUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -86,5 +85,4 @@ class PEAR_Tests_ControlStructures_ControlSignatureUnitTest extends AbstractSnif
 
 
 }//end class
-
-?>
+;

@@ -122,7 +122,6 @@ class PEAR_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
                                        ),
                 );
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -191,11 +190,13 @@ class PEAR_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
         } else if ($tokens[$commentStart]['code'] === T_COMMENT) {
             $error = 'You must use "/**" style comments for a file comment';
             $phpcsFile->addError($error, $errorToken, 'WrongStyle');
+
             return;
         } else if ($commentStart === false
             || $tokens[$commentStart]['code'] !== T_DOC_COMMENT
         ) {
             $phpcsFile->addError('Missing file doc comment', $errorToken, 'Missing');
+
             return;
         } else {
 
@@ -245,6 +246,7 @@ class PEAR_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
                         // The doc block is most likely a class comment.
                         $error = 'Missing file doc comment';
                         $phpcsFile->addError($error, $errorToken, 'Missing');
+
                         return;
                     }
                 }
@@ -262,6 +264,7 @@ class PEAR_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
             } catch (PHP_CodeSniffer_CommentParser_ParserException $e) {
                 $line = ($e->getLineWithinComment() + $commentStart);
                 $phpcsFile->addError($e->getMessage(), $line, 'FailedParse');
+
                 return;
             }
 
@@ -269,6 +272,7 @@ class PEAR_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
             if (is_null($comment) === true) {
                 $error = 'File doc comment is empty';
                 $phpcsFile->addError($error, $commentStart, 'Empty');
+
                 return;
             }
 
@@ -787,5 +791,4 @@ class PEAR_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-
-?>
+;

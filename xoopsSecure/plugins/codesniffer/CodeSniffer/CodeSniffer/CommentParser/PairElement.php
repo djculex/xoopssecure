@@ -64,7 +64,6 @@ class PHP_CodeSniffer_CommentParser_PairElement extends PHP_CodeSniffer_CommentP
      */
     private $_commentWhitespace = '';
 
-
     /**
      * Constructs a PHP_CodeSniffer_CommentParser_PairElement doc tag.
      *
@@ -167,5 +166,4 @@ class PHP_CodeSniffer_CommentParser_PairElement extends PHP_CodeSniffer_CommentP
 
 
 }//end class
-
-?>
+;

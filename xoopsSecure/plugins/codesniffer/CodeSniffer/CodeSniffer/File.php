@@ -251,7 +251,6 @@ class PHP_CodeSniffer_File
      */
     protected $ruleset = array();
 
-
     /**
      * Constructs a PHP_CodeSniffer_File.
      *
@@ -405,6 +404,7 @@ class PHP_CodeSniffer_File
                     $this->_warnings     = array();
                     $this->_errorCount   = 0;
                     $this->_warningCount = 0;
+
                     return;
                 }
             }
@@ -562,6 +562,7 @@ class PHP_CodeSniffer_File
             $this->eolChar = self::detectLineEndings($this->_file, $contents);
         } catch (PHP_CodeSniffer_Exception $e) {
             $this->addWarning($e->getMessage(), null, 'Internal.DetectLineEndings');
+
             return;
         }
 
@@ -1553,6 +1554,7 @@ class PHP_CodeSniffer_File
                         // As we are going back to where we started originally, restore
                         // the ignore value back to its original value.
                         $ignore = $originalIgnore;
+
                         return $opener;
                     } else {
                         return $i;
@@ -1912,8 +1914,8 @@ class PHP_CodeSniffer_File
      * @param int $stackPtr The position of the declaration token which
      *                      declared the class, interface or function.
      *
-     * @return string|null The name of the class, interface or function.
-     *                     or NULL if the function is a closure.
+     * @return string|null               The name of the class, interface or function.
+     *                                   or NULL if the function is a closure.
      * @throws PHP_CodeSniffer_Exception If the specified token is not of type
      *                                   T_FUNCTION, T_CLASS or T_INTERFACE.
      */
@@ -1934,6 +1936,7 @@ class PHP_CodeSniffer_File
         }
 
         $token = $this->findNext(T_STRING, $stackPtr);
+
         return $this->_tokens[$token]['content'];
 
     }//end getDeclarationName()
@@ -2234,6 +2237,7 @@ class PHP_CodeSniffer_File
                 ) {
                     $error = 'Possible parse error: interfaces may not include member vars';
                     $this->addWarning($error, $stackPtr, 'Internal.ParseError.InterfaceHasMemberVar');
+
                     return array();
                 }
             } else {
@@ -2767,5 +2771,4 @@ class PHP_CodeSniffer_File
 
 
 }//end class
-
-?>
+;

@@ -37,7 +37,6 @@ class PHP_CodeSniffer_Reports_Hgblame extends PHP_CodeSniffer_Reports_VersionCon
      */
     protected $reportName = 'MERCURIAL';
 
-
     /**
      * Extract the author from a blame line.
      *
@@ -130,5 +129,4 @@ class PHP_CodeSniffer_Reports_Hgblame extends PHP_CodeSniffer_Reports_VersionCon
 
 
 }//end class
-
-?>
+;

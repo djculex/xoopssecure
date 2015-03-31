@@ -20,7 +20,6 @@
  * ****************************************************************************
  */
 
-
 include_once dirname(__FILE__) . '/admin_header.php';
 require_once XOOPS_ROOT_PATH . '/class/template.php';
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/log.php';
@@ -39,7 +38,7 @@ $log = new xoopsSecure_log;
 xoops_cp_header();
 global $xoopsUser, $xoTheme, $xoopsTpl,$xoopsLogger, $scan, $xoopsLogger;
 $xoopsLogger->activated = true;
-  //error_reporting(E_ALL); 
+  //error_reporting(E_ALL);
 
 $adminscript  =  "var xoopssecure_url = '" . XOOPS_URL . "/modules/xoopssecure/admin/'\n";
 $adminscript .=  "var xoopssecure_anonurl = '" . XOOPS_URL . "/modules/xoopssecure/'\n";
@@ -85,7 +84,7 @@ $xoopsTpl->assign('xoopsver', $vul['xoops']['version']);
 $xoopsTpl->assign('xoopsvul', $vul['xoops']['vulner']);
 $xoopsTpl->assign('datedropdown', $drop);
 
-$xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/admin/showlog.tpl'); 
+$xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/admin/showlog.tpl');
 
 //$xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/js/jquery.colorbox.js');
 //$xoTheme->addStylesheet('/modules/xoopssecure/css/base/jquery.ui.all.css');

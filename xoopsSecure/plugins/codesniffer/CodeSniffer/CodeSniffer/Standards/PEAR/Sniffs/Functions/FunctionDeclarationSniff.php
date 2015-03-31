@@ -28,7 +28,6 @@
 class PEAR_Sniffs_Functions_FunctionDeclarationSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -272,6 +271,7 @@ class PEAR_Sniffs_Functions_FunctionDeclarationSniff implements PHP_CodeSniffer_
                 }
 
                 $phpcsFile->addError($error, ($closeBracket + 1), $code, $data);
+
                 return;
             }
 
@@ -309,5 +309,4 @@ class PEAR_Sniffs_Functions_FunctionDeclarationSniff implements PHP_CodeSniffer_
 
 
 }//end class
-
-?>
+;

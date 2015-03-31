@@ -71,7 +71,6 @@ class Generic_Sniffs_NamingConventions_CamelCapsFunctionNameSniff extends PHP_Co
      */
     public $strict = true;
 
-
     /**
      * Constructs a Generic_Sniffs_NamingConventions_CamelCapsFunctionNameSniff.
      */
@@ -180,10 +179,8 @@ class Generic_Sniffs_NamingConventions_CamelCapsFunctionNameSniff extends PHP_Co
             $phpcsFile->addError($error, $stackPtr, 'NotCamelCaps', $errorData);
         }
 
-
     }//end processTokenOutsideScope()
 
 
 }//end class
-
-?>
+;

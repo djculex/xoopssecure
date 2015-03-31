@@ -31,7 +31,6 @@
 class Generic_Tests_Files_LineEndingsUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -65,5 +64,4 @@ class Generic_Tests_Files_LineEndingsUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

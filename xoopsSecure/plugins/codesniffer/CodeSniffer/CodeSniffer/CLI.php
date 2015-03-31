@@ -53,7 +53,6 @@ class PHP_CodeSniffer_CLI
      */
     public $warningSeverity = 0;
 
-
     /**
      * Exits if the minimum requirements of PHP_CodSniffer are not met.
      *
@@ -204,6 +203,7 @@ class PHP_CodeSniffer_CLI
         }//end for
 
         $this->values = $values;
+
         return $values;
 
     }//end getCommandLineValues()
@@ -743,5 +743,4 @@ class PHP_CodeSniffer_CLI
 
 
 }//end class
-
-?>
+;

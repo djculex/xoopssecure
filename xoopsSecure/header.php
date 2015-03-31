@@ -24,8 +24,8 @@ if ( !@include_once(XOOPS_ROOT_PATH."/modules/".$xoopsModule->getVar("dirname").
 }
 
 if (!isset($xoopsTpl) || !is_object($xoopsTpl)) {
-	include_once(XOOPS_ROOT_PATH."/class/template.php");
-	$xoopsTpl = new XoopsTpl();
+    include_once(XOOPS_ROOT_PATH."/class/template.php");
+    $xoopsTpl = new XoopsTpl();
 }
 
 xoops_cp_header();
@@ -34,5 +34,4 @@ xoops_cp_header();
 $xoTheme->addStylesheet( XOOPS_URL . "/modules/" . $xoopsModule->getVar("dirname") . "/assets/css/admin.css" );
 //$xoTheme->addScript("browse.php?Frameworks/jquery/jquery.js");
 //$xoTheme->addScript("browse.php?modules/" . $xoopsModule->getVar("dirname") . "/assets/js/admin.js");
-
-?>
+;

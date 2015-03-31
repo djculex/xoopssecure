@@ -35,13 +35,12 @@ if (class_exists('PSR2_Sniffs_Classes_ClassDeclarationSniff', true) === false) {
 class Squiz_Sniffs_Classes_ClassDeclarationSniff extends PSR2_Sniffs_Classes_ClassDeclarationSniff
 {
 
-
     /**
      * Processes this test, when one of its tokens is encountered.
      *
      * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the current token
-     *                                         in the stack passed in $tokens.
+     *                                        in the stack passed in $tokens.
      *
      * @return void
      */
@@ -173,5 +172,4 @@ class Squiz_Sniffs_Classes_ClassDeclarationSniff extends PSR2_Sniffs_Classes_Cla
 
 
 }//end class
-
-?>
+;

@@ -31,7 +31,6 @@
 class Zend_Tests_Debug_CodeAnalyzerUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Should this test be skipped for some reason.
      *
@@ -40,6 +39,7 @@ class Zend_Tests_Debug_CodeAnalyzerUnitTest extends AbstractSniffUnitTest
     protected function shouldSkipTest()
     {
         $analyzerPath = PHP_CodeSniffer::getConfigData('zend_ca_path');
+
         return (is_null($analyzerPath));
 
     }//end shouldSkipTest()
@@ -78,5 +78,4 @@ class Zend_Tests_Debug_CodeAnalyzerUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

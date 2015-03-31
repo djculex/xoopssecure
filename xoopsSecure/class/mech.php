@@ -20,17 +20,26 @@
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
-	die('XOOPS root path not defined');	
+    die('XOOPS root path not defined');
 }
 set_time_limit(999999);
 
-class xoopsSecure_Mech {    
+/**
+ * Class xoopsSecure_Mech
+ */
+class xoopsSecure_Mech {
     //var $userdatetype;
-    
+
+    /**
+     *
+     */
     public function __construct(){
         //$this->userdatetype = xoopssecure_GetModuleOption('dateformat');
     }
- 
+
+    /**
+     * @return array
+     */
     function phpinfo_array()
     {
         ob_start();
@@ -51,12 +60,16 @@ class xoopsSecure_Mech {
                 $info_arr[$cat][trim($val[1])] = array("local" => trim($val[2]), "master" => trim($val[3]));
             }
         }
+
         return $info_arr;
     }
 
     /*
      * Testing various php settings on server.
      * @return array $resp with values on vulnerable php ini settings
+     */
+    /**
+     * @return array
      */
     function testServer ()
     {
@@ -65,11 +78,11 @@ class xoopsSecure_Mech {
         // Software installed
         $phpversion = $init['Core']['PHP Version'];
         $mysqlversion_temp = explode( "-" , $init['mysql']['Client API version'] );
-        $mysqlversion = preg_replace('/[^0-9.]+/', '', $mysqlversion_temp[0]);   
+        $mysqlversion = preg_replace('/[^0-9.]+/', '', $mysqlversion_temp[0]);
         
         if (preg_match('|Apache\/(\d+)\.(\d+)\.(\d+)|', $_SERVER['SERVER_SOFTWARE'], $version)) {
             $apacheversionnum =  $version[1].'.'.$version[2].'.'.$version[3];
-        } 
+        }
                
         // core
         $allowurlfopen = $init['Core']['allow_url_fopen']['local']; // off
@@ -98,7 +111,7 @@ class xoopsSecure_Mech {
             $resp['phpini']['current'][] = _AM_XOOPSSECURE_SETTING_ON;
             $resp['phpini']['recommended'][] = _AM_XOOPSSECURE_SETTING_OFF;
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_ALLOWURLFOPEN;
-            $resp['phpini']['ref'][] = "";  
+            $resp['phpini']['ref'][] = "";
             $resp['phpini']['errortype'][] = "warning";
         }
         
@@ -107,8 +120,8 @@ class xoopsSecure_Mech {
             $resp['phpini']['current'][] = _AM_XOOPSSECURE_SETTING_ON;
             $resp['phpini']['recommended'][] = _AM_XOOPSSECURE_SETTING_OFF;
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_ALLOWURLINCLUDE;
-            $resp['phpini']['ref'][] = "";  
-            $resp['phpini']['errortype'][] = "warning";        
+            $resp['phpini']['ref'][] = "";
+            $resp['phpini']['errortype'][] = "warning";
         }
         
         if ($enabledl == 'On') {
@@ -116,8 +129,8 @@ class xoopsSecure_Mech {
             $resp['phpini']['current'][] = _AM_XOOPSSECURE_SETTING_ON;
             $resp['phpini']['recommended'][] = _AM_XOOPSSECURE_SETTING_OFF;
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_DYNAMICDL;
-            $resp['phpini']['ref'][] = "";  
-            $resp['phpini']['errortype'][] = "notice";                
+            $resp['phpini']['ref'][] = "";
+            $resp['phpini']['errortype'][] = "notice";
         }
         
         if ($registerglobals == 'On' && $phpversion < '5.3.0') {
@@ -125,17 +138,17 @@ class xoopsSecure_Mech {
             $resp['phpini']['current'][] = _AM_XOOPSSECURE_SETTING_ON;
             $resp['phpini']['recommended'][] = _AM_XOOPSSECURE_SETTING_OFF;
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_REGISTERGLOBALS;
-            $resp['phpini']['ref'][] = "";  
-            $resp['phpini']['errortype'][] = "warning";                
+            $resp['phpini']['ref'][] = "";
+            $resp['phpini']['errortype'][] = "warning";
         }
 
         if ($openbasedir == '' || $openbasedir == 'no value') {
             $resp['phpini']['name'][] = "open_basedir";
             $resp['phpini']['current'][] = '';
             $resp['phpini']['recommended'][] = _AM_XOOPSSECURE_SETTINGS_CUSTOMDIR;
-            $resp['phpini']['description'][] = _AM_XOOPSSECURE_OPENBASEDIR; 
-            $resp['phpini']['ref'][] = "";          
-            $resp['phpini']['errortype'][] = "notice";    
+            $resp['phpini']['description'][] = _AM_XOOPSSECURE_OPENBASEDIR;
+            $resp['phpini']['ref'][] = "";
+            $resp['phpini']['errortype'][] = "notice";
         }
         
         if ($safemode == "On" && $phpversion < '5.3.0') {
@@ -143,8 +156,8 @@ class xoopsSecure_Mech {
             $resp['phpini']['current'][] = _AM_XOOPSSECURE_SETTING_ON;
             $resp['phpini']['recommended'][] = _AM_XOOPSSECURE_SETTING_OFF;
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_SAFEMODE;
-            $resp['phpini']['ref'][] = "";  
-            $resp['phpini']['errortype'][] = "notice";    
+            $resp['phpini']['ref'][] = "";
+            $resp['phpini']['errortype'][] = "notice";
         }
         
         if ($safemodegid == "On") {
@@ -152,7 +165,7 @@ class xoopsSecure_Mech {
             $resp['phpini']['current'][] = _AM_XOOPSSECURE_SETTING_ON;
             $resp['phpini']['recommended'][] = _AM_XOOPSSECURE_SETTING_OFF;
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_SAFEMODE;
-            $resp['phpini']['ref'][] = "";  
+            $resp['phpini']['ref'][] = "";
             $resp['phpini']['errortype'][] = "warning";
         }
 
@@ -161,52 +174,52 @@ class xoopsSecure_Mech {
             $resp['phpini']['current'][] = $maxexecutiontime;
             $resp['phpini']['recommended'][] = "< 30";
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_MAXEXECUTIONTIME;
-            $resp['phpini']['ref'][] = "";  
+            $resp['phpini']['ref'][] = "";
             $resp['phpini']['errortype'][] = "notice";
-        }    
+        }
         
         if ($maxinputtime > 60) {
             $resp['phpini']['name'][] = "max_input_time";
             $resp['phpini']['current'][] = $maxinoputtime;
             $resp['phpini']['recommended'][] = "< 60";
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_MAXEXECUTIONTIME;
-            $resp['phpini']['ref'][] = "";  
+            $resp['phpini']['ref'][] = "";
             $resp['phpini']['errortype'][] = "notice";
-        }  
+        }
         
         if ($memorylimit > xoopssecure_convertToBytes('60M')) {
             $resp['phpini']['name'][] = "memory_limit";
             $resp['phpini']['current'][] = $memorylimit;
             $resp['phpini']['recommended'][] = "< ".xoopssecure_convertToBytes('60M');
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_MAXEXECUTIONTIME;
-            $resp['phpini']['ref'][] = "";  
+            $resp['phpini']['ref'][] = "";
             $resp['phpini']['errortype'][] = "notice";
-        } 
+        }
         
         if ($uploadmaxfilesize > xoopssecure_convertToBytes('2M')) {
             $resp['phpini']['name'][] = "max_file_uploads";
             $resp['phpini']['current'][] = $uploadmaxfilesize;
             $resp['phpini']['recommended'][] = "< ".xoopssecure_convertToBytes('2M');
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_UPLOADMAXFILESIZE;
-            $resp['phpini']['ref'][] = "";  
+            $resp['phpini']['ref'][] = "";
             $resp['phpini']['errortype'][] = "notice";
-        } 
+        }
         
         if ($postmaxsize > xoopssecure_convertToBytes('8M')) {
             $resp['phpini']['name'][] = "post_max_size";
             $resp['phpini']['current'][] = $postmaxsize;
             $resp['phpini']['recommended'][] = "< ".xoopssecure_convertToBytes('8M');
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_POSTMAXSIZE;
-            $resp['phpini']['ref'][] = "";  
+            $resp['phpini']['ref'][] = "";
             $resp['phpini']['errortype'][] = "notice";
-        } 
+        }
         
         if ($maxinputnestinglevels > 32) {
             $resp['phpini']['name'][] = "max_input_nesting_levels";
             $resp['phpini']['current'][] = $maxinputnestinglevels;
             $resp['phpini']['recommended'][] = "< 32";
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_MAXINPUTNESTINGLEVELS;
-            $resp['phpini']['ref'][] = "";  
+            $resp['phpini']['ref'][] = "";
             $resp['phpini']['errortype'][] = "notice";
         }
         
@@ -215,7 +228,7 @@ class xoopsSecure_Mech {
             $resp['phpini']['current'][] = _AM_XOOPSSECURE_SETTING_ON;
             $resp['phpini']['recommended'][] = _AM_XOOPSSECURE_SETTING_OFF;
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_DISPLAYERRORS;
-            $resp['phpini']['ref'][] = "";  
+            $resp['phpini']['ref'][] = "";
             $resp['phpini']['errortype'][] = "notice";
         }
         
@@ -224,8 +237,8 @@ class xoopsSecure_Mech {
             $resp['phpini']['current'][] = _AM_XOOPSSECURE_SETTING_OFF;
             $resp['phpini']['recommended'][] = _AM_XOOPSSECURE_SETTING_ON;
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_LOGERRORS;
-            $resp['phpini']['ref'][] = "";  
-            $resp['phpini']['errortype'][] = "notice";    
+            $resp['phpini']['ref'][] = "";
+            $resp['phpini']['errortype'][] = "notice";
         }
         
         if ($errorlog == '' || $errorlog == 'no value') {
@@ -233,8 +246,8 @@ class xoopsSecure_Mech {
             $resp['phpini']['current'][] = '';
             $resp['phpini']['recommended'][] = "C:\path\of\your\choice";
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_ERRORLOG;
-            $resp['phpini']['ref'][] = "";  
-            $resp['phpini']['errortype'][] = "notice"; 
+            $resp['phpini']['ref'][] = "";
+            $resp['phpini']['errortype'][] = "notice";
         }
 
         if ($exposephp == 'On') {
@@ -242,8 +255,8 @@ class xoopsSecure_Mech {
             $resp['phpini']['current'][] = _AM_XOOPSSECURE_SETTING_ON;
             $resp['phpini']['recommended'][] = _AM_XOOPSSECURE_SETTING_OFF;
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_EXPOSEPHP;
-            $resp['phpini']['ref'][] = "";  
-            $resp['phpini']['errortype'][] = "warning";     
+            $resp['phpini']['ref'][] = "";
+            $resp['phpini']['errortype'][] = "warning";
         }
         
         if ($disablefunc == '' || $disablefunc == 'no value') {
@@ -251,13 +264,16 @@ class xoopsSecure_Mech {
             $resp['phpini']['current'][] = '';
             $resp['phpini']['recommended'][] = _AM_XOOPSSECURE_DISABLEFUNCTIONS;
             $resp['phpini']['description'][] = _AM_XOOPSSECURE_DISABLEFUNCTIONS_DESC;
-            $resp['phpini']['ref'][] = "";     
-            $resp['phpini']['errortype'][] = "notice";     
+            $resp['phpini']['ref'][] = "";
+            $resp['phpini']['errortype'][] = "notice";
         }
         
         return $resp;
     }
 
+    /**
+     * @return array
+     */
     function systemArray ()
     {
 
@@ -273,8 +289,9 @@ class xoopsSecure_Mech {
         $resp['mysql']['vulner']  = $this->getVul ('mysql', $resp['mysql']['version'], 8);
         $resp['apache']['version'] = $apacheversionnum;
         $resp['apache']['vulner']  = $this->getVul ('apache', $apacheversionnum, 6);
-        $resp['xoops']['version'] = preg_replace('/[^0-9.]+/', '', substr(XOOPS_VERSION, 6, strlen(XOOPS_VERSION)-6)); 
-        $resp['xoops']['vulner']  = $this->getVul ('xoops', $resp['xoops']['version'], 4);        
+        $resp['xoops']['version'] = preg_replace('/[^0-9.]+/', '', substr(XOOPS_VERSION, 6, strlen(XOOPS_VERSION)-6));
+        $resp['xoops']['vulner']  = $this->getVul ('xoops', $resp['xoops']['version'], 4);
+
         return $resp;
     }
     
@@ -283,6 +300,10 @@ class xoopsSecure_Mech {
      * @param strint $val the name of the value to return setting for
      * @return bolean containing php, mysql, apache value
     */
+    /**
+     * @param $val
+     * @return mixed|string
+     */
     function getServerValues ($val)
     {
         switch($val){
@@ -291,34 +312,37 @@ class xoopsSecure_Mech {
                 break;
             case 'phpversion':
                 return PHP_VERSION;
-                break;  
+                break;
             case 'mysqlversion':
                 return getApacheModules ($val='', $version=false);
                 break;
             case 'mod_rewrite':
                 $search = $this->getApacheModules ($val='mod_rewrite');
+
                 return $search['value'];
                 break;
             case 'mysql_version':
                 $search = $this->parsePHPModules($name=INFO_ALL);
                 $value = $search['mysql']['Client API version'];
                 $result = explode("-", $value);
+
                 return preg_replace('/[^0-9.]+/', '', $result[0]);
                 break;
             case 'allow_urlfopen':
                 $search = $this->parsePHPModules($name=INFO_ALL);
                 $value = $search['Core']['allow_url_fopen'];
+
                 return $value;
            
         }
-    } 
+    }
  
     /**
      * Get cvedetail json related issues to software and version number
-     * @param string $software which software to retrieve value from
-     * @param intval $ver version number of software
-     * @param intval $severe value from 0-10 describing how many security issues to return
-     * @return json 
+     * @param  string $software which software to retrieve value from
+     * @param  intval $ver      version number of software
+     * @param  intval $severe   value from 0-10 describing how many security issues to return
+     * @return json
      */
 
     function getVul ($software, $ver, $severe) {
@@ -359,14 +383,15 @@ class xoopsSecure_Mech {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_URL,$postURL);
     $result=curl_exec($ch);
+
     return json_decode($result, true);
     
-    } 
+    }
 
     /**
-     * get value from software and version number corresponding the cvedetail.com value 
-     * @param string $soft 
-     * @param intval $ver 
+     * get value from software and version number corresponding the cvedetail.com value
+     * @param  string $soft
+     * @param  intval $ver
      * @return intval
      */
     function getNumCVE ($soft, $ver) {
@@ -412,7 +437,7 @@ class xoopsSecure_Mech {
                 '2.0.6' => 24061,
                 '2.0.5.2' => 19696,
                 '2.0.5.1' => 19695,
-                '2.0.5' => 19694,           
+                '2.0.5' => 19694,
                 '2.0.4' => 24060,
                 '2.0.3' => 19693,
                 '2.0.2' => 19692,
@@ -542,7 +567,7 @@ class xoopsSecure_Mech {
                 '2.0.12' => 117149,
                 '2.0.11' => 117150,
                 '2.0.9' => 10693,
-                '2.0' => 6333    
+                '2.0' => 6333
             ),
             
             'mysql' => array (
@@ -702,10 +727,11 @@ class xoopsSecure_Mech {
                 '6.0' => 42348
             )
         );
+
         return (isset($resp[$soft][$ver])) ? $resp[$soft][$ver]:"";
     }
 
-    /* parse php modules from phpinfo 
+    /* parse php modules from phpinfo
      *
      * @param $name Which part of info to get. Possible names are =
      *  INFO_GENERAL	    The configuration line, php.ini location, build date, Web Server, System and more.
@@ -720,7 +746,11 @@ class xoopsSecure_Mech {
      * @return array of $config name => values
     */
 
-    function parsePHPModules($name) 
+    /**
+     * @param $name
+     * @return array
+     */
+    function parsePHPModules($name)
     {
         ob_start();
         phpinfo($name);
@@ -748,6 +778,7 @@ class xoopsSecure_Mech {
                 }
             }
         }
+
         return $vModules;
     }
 }// end class

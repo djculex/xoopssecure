@@ -48,7 +48,6 @@ class Generic_Sniffs_Files_LineEndingsSniff implements PHP_CodeSniffer_Sniff
      */
     public $eolChar = '\n';
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -99,5 +98,4 @@ class Generic_Sniffs_Files_LineEndingsSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-
-?>
+;

@@ -40,7 +40,6 @@ class PHP_CodeSniffer_CommentParser_MemberCommentParser extends PHP_CodeSniffer_
      */
     private $_var = null;
 
-
     /**
      * Parses Var tags.
      *
@@ -87,5 +86,4 @@ class PHP_CodeSniffer_CommentParser_MemberCommentParser extends PHP_CodeSniffer_
 
 
 }//end class
-
-?>
+;

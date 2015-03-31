@@ -92,7 +92,6 @@ class Squiz_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sn
      */
     protected $currentFile = null;
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -150,10 +149,12 @@ class Squiz_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sn
                 $error = 'You must use "/**" style comments for a function comment';
                 $phpcsFile->addError($error, $stackPtr, 'WrongStyle');
             }
+
             return;
         } else if ($code !== T_DOC_COMMENT) {
             $error = 'Missing function doc comment';
             $phpcsFile->addError($error, $stackPtr, 'Missing');
+
             return;
         }
 
@@ -167,6 +168,7 @@ class Squiz_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sn
         $prevToken = $phpcsFile->findPrevious($ignore, ($stackPtr - 1), null, true);
         if ($prevToken !== $commentEnd) {
             $phpcsFile->addError('Missing function doc comment', $stackPtr, 'Missing');
+
             return;
         }
 
@@ -191,6 +193,7 @@ class Squiz_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sn
         } catch (PHP_CodeSniffer_CommentParser_ParserException $e) {
             $line = ($e->getLineWithinComment() + $commentStart);
             $phpcsFile->addError($e->getMessage(), $line, 'FailedParse');
+
             return;
         }
 
@@ -198,6 +201,7 @@ class Squiz_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sn
         if (is_null($comment) === true) {
             $error = 'Function doc comment is empty';
             $phpcsFile->addError($error, $commentStart, 'Empty');
+
             return;
         }
 
@@ -219,6 +223,7 @@ class Squiz_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sn
         if (trim($short) === '') {
             $error = 'Missing short description in function doc comment';
             $phpcsFile->addError($error, $commentStart, 'MissingShort');
+
             return;
         }
 
@@ -377,6 +382,7 @@ class Squiz_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sn
                 if (count($index) > 1) {
                     $error = 'Only 1 @return tag is allowed in function comment';
                     $this->currentFile->addError($error, $errorPos, 'DuplicateReturn');
+
                     return;
                 }
 
@@ -802,5 +808,4 @@ class Squiz_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sn
 
 
 }//end class
-
-?>
+;

@@ -51,5 +51,4 @@ class Squiz_Sniffs_CodeAnalysis_EmptyStatementSniff extends Generic_Sniffs_CodeA
                                );
 
 }//end class
-
-?>
+;

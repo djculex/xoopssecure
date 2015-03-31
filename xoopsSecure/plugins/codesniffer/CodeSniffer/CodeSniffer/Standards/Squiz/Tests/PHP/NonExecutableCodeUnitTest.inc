@@ -21,6 +21,10 @@ switch ($var) {
 
 }
 
+/**
+ * @param $var
+ * @return bool|void
+ */
 function myFunction($var)
 {
     if ($something === TRUE) {
@@ -96,6 +100,9 @@ function myFunction()
 
 }//end myFunction()
 
+/**
+ * @return bool
+ */
 function myFunction()
 {
     return uksort(
@@ -108,7 +115,9 @@ function myFunction()
 
 }//end myFunction()
 
-public static function thisCausesAnError() {
+public static /**
+ * @return foo
+ */function thisCausesAnError() {
 return new foo(function() {return $foo;}
 );
 }
@@ -134,7 +143,9 @@ switch ($var) {
 }
 
 defined('FOO') or die('error');
-interface myInterface {
+/**
+ * Interface myInterface
+ */interface myInterface {
     function myFunc();
 }
 echo 'hello';
@@ -155,7 +166,9 @@ function test() {
     echo 'no error';
 }
 
-class myClass {
+/**
+ * Class myClass
+ */class myClass {
     function myFunc() {
         echo 'no error';
     }

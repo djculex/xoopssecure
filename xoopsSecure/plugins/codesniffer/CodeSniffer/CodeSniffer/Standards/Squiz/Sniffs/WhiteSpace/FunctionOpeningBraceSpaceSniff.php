@@ -40,7 +40,6 @@ class Squiz_Sniffs_WhiteSpace_FunctionOpeningBraceSpaceSniff implements PHP_Code
                                    'JS',
                                   );
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -108,6 +107,7 @@ class Squiz_Sniffs_WhiteSpace_FunctionOpeningBraceSpaceSniff implements PHP_Code
                 if ($lineDifference === 0) {
                     $error = 'Opening brace should be on a new line';
                     $phpcsFile->addError($error, $openBrace, 'ContentBefore');
+
                     return;
                 }
 
@@ -115,6 +115,7 @@ class Squiz_Sniffs_WhiteSpace_FunctionOpeningBraceSpaceSniff implements PHP_Code
                     $error = 'Opening brace should be on the line after the declaration; found %s blank line(s)';
                     $data  = array(($lineDifference - 1));
                     $phpcsFile->addError($error, $openBrace, 'SpacingBefore', $data);
+
                     return;
                 }
             }//end if
@@ -124,5 +125,4 @@ class Squiz_Sniffs_WhiteSpace_FunctionOpeningBraceSpaceSniff implements PHP_Code
 
 
 }//end class
-
-?>
+;

@@ -32,7 +32,6 @@
 class PHP_CodeSniffer_Reports_Xml implements PHP_CodeSniffer_Report
 {
 
-
     /**
      * Prints all violations for processed files, in a proprietary XML format.
      *
@@ -103,5 +102,4 @@ class PHP_CodeSniffer_Reports_Xml implements PHP_CodeSniffer_Report
 
 
 }//end class
-
-?>
+;

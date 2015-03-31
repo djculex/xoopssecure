@@ -31,7 +31,6 @@
 class Squiz_Tests_Strings_EchoedStringsUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -68,5 +67,4 @@ class Squiz_Tests_Strings_EchoedStringsUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

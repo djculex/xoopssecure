@@ -28,14 +28,12 @@
 interface PHP_CodeSniffer_CommentParser_DocElement
 {
 
-
     /**
      * Returns the name of the tag this element represents, omitting the @ symbol.
      *
      * @return string
      */
     public function getTag();
-
 
     /**
      * Returns the whitespace that exists before this element.
@@ -45,7 +43,6 @@ interface PHP_CodeSniffer_CommentParser_DocElement
      */
     public function getWhitespaceBefore();
 
-
     /**
      * Returns the whitespace that exists after this element.
      *
@@ -53,7 +50,6 @@ interface PHP_CodeSniffer_CommentParser_DocElement
      * @see getWhitespaceBefore()
      */
     public function getWhitespaceAfter();
-
 
     /**
      * Returns the order that this element appears in the doc comment.
@@ -64,7 +60,6 @@ interface PHP_CodeSniffer_CommentParser_DocElement
      */
     public function getOrder();
 
-
     /**
      * Returns the element that appears before this element.
      *
@@ -72,7 +67,6 @@ interface PHP_CodeSniffer_CommentParser_DocElement
      * @see getNextElement()
      */
     public function getPreviousElement();
-
 
     /**
      * Returns the element that appears after this element.
@@ -82,14 +76,12 @@ interface PHP_CodeSniffer_CommentParser_DocElement
      */
     public function getNextElement();
 
-
     /**
      * Returns the line that this element started on.
      *
      * @return int
      */
     public function getLine();
-
 
     /**
      * Returns the raw content of this element, ommiting the tag.
@@ -98,7 +90,5 @@ interface PHP_CodeSniffer_CommentParser_DocElement
      */
     public function getRawContent();
 
-
 }//end interface
-
-?>
+;

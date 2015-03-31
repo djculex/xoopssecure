@@ -178,7 +178,6 @@ abstract class PHP_CodeSniffer_CommentParser_AbstractParser
      */
     public $orders = array();
 
-
     /**
      * Constructs a Doc Comment Parser.
      *
@@ -416,6 +415,7 @@ abstract class PHP_CodeSniffer_CommentParser_AbstractParser
         );
 
         $this->sees[] = $see;
+
         return $see;
 
     }//end parseSee()
@@ -500,6 +500,7 @@ abstract class PHP_CodeSniffer_CommentParser_AbstractParser
         );
 
         $this->links[] = $link;
+
         return $link;
 
     }//end parseLink()
@@ -654,7 +655,6 @@ abstract class PHP_CodeSniffer_CommentParser_AbstractParser
      */
     protected abstract function getAllowedTags();
 
-
     /**
      * Returns the tag orders (index => tagName).
      *
@@ -680,5 +680,4 @@ abstract class PHP_CodeSniffer_CommentParser_AbstractParser
 
 
 }//end class
-
-?>
+;

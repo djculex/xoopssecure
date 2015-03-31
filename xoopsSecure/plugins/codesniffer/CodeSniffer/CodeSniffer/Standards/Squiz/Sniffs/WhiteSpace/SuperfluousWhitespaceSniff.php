@@ -200,5 +200,4 @@ class Squiz_Sniffs_WhiteSpace_SuperfluousWhitespaceSniff implements PHP_CodeSnif
 
 
 }//end class
-
-?>
+;

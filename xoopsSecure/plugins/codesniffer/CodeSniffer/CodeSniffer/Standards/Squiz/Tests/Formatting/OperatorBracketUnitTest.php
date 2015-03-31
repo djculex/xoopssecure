@@ -31,7 +31,6 @@
 class Squiz_Tests_Formatting_OperatorBracketUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -116,5 +115,4 @@ class Squiz_Tests_Formatting_OperatorBracketUnitTest extends AbstractSniffUnitTe
 
 
 }//end class
-
-?>
+;

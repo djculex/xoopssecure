@@ -33,7 +33,6 @@ class MySource_Sniffs_Debug_FirebugConsoleSniff implements PHP_CodeSniffer_Sniff
      */
     public $supportedTokenizers = array('JS');
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -73,5 +72,4 @@ class MySource_Sniffs_Debug_FirebugConsoleSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-
-?>
+;

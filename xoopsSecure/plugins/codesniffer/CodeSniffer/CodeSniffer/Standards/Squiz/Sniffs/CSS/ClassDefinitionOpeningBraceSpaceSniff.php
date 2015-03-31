@@ -36,7 +36,6 @@ class Squiz_Sniffs_CSS_ClassDefinitionOpeningBraceSpaceSniff implements PHP_Code
      */
     public $supportedTokenizers = array('CSS');
 
-
     /**
      * Returns the token types that this sniff is interested in.
      *
@@ -114,5 +113,4 @@ class Squiz_Sniffs_CSS_ClassDefinitionOpeningBraceSpaceSniff implements PHP_Code
 
 
 }//end class
-
-?>
+;

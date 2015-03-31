@@ -37,7 +37,6 @@ class Squiz_Sniffs_Functions_FunctionDeclarationArgumentSpacingSniff implements 
      */
     public $equalsSpacing = 0;
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -268,5 +267,4 @@ class Squiz_Sniffs_Functions_FunctionDeclarationArgumentSpacingSniff implements 
 
 
 }//end class
-
-?>
+;

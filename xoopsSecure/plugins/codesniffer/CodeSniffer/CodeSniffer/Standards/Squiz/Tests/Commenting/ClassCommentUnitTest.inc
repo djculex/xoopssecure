@@ -12,6 +12,9 @@ class No_Comment
 //
 //
 //
+/**
+ * Class Invalid_Comment_Style1
+ */
 class Invalid_Comment_Style1
 {
 

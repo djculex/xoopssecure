@@ -31,7 +31,6 @@
 class Generic_Tests_PHP_UpperCaseConstantUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -76,5 +75,4 @@ class Generic_Tests_PHP_UpperCaseConstantUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

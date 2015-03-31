@@ -31,7 +31,6 @@
 class PEAR_Tests_ControlStructures_MultiLineConditionUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -81,5 +80,4 @@ class PEAR_Tests_ControlStructures_MultiLineConditionUnitTest extends AbstractSn
 
 
 }//end class
-
-?>
+;

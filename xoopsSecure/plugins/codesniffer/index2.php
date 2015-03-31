@@ -9,7 +9,7 @@
  */
 
  // Notifications
-//require 'CodeSniffer/wcs_notification.php'; 
+//require 'CodeSniffer/wcs_notification.php';
 require_once dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/include/cp_header.php';
 include_once dirname(dirname(dirname(__FILE__))) . '/admin/admin_header.php';
 require_once XOOPS_ROOT_PATH . '/class/template.php';
@@ -23,5 +23,3 @@ require_once XOOPS_ROOT_PATH . '/class/template.php';
     echo '<div class="report"><pre>';
     include XOOPS_ROOT_PATH. '/modules/xoopsSecure/plugins/codesniffer/CodeSniffer/phpcs.php';
     echo '</pre></div>';
-
-?>

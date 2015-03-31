@@ -20,26 +20,35 @@
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
-	die('XOOPS root path not defined');	
+    die('XOOPS root path not defined');
 }
 set_time_limit(999999);
 
-class xoopsSecure_Config {    
+/**
+ * Class xoopsSecure_Config
+ */
+class xoopsSecure_Config {
     
     //var $term;
-    
+
+    /**
+     *
+     */
     public function __construct()
     {
         //$this->term = isset($_GET['preferences_get_dir_term']) ? $_GET['preferences_get_dir_term'] : '';
     }
-    
+
+    /**
+     * @param $term
+     */
     function getDirsForPrefs($term)
     {
         global $xoopsDB;
         //LOCATE('{$term}','filename') > 0
         $sql = "SELECT filename FROM ".$xoopsDB->prefix('xoopsecure_files').
                " ORDER BY filename";
-        $result = $xoopsDB->queryF($sql);       
+        $result = $xoopsDB->queryF($sql);
         // loop through each zipcode returned and format the response for jQuery
         $data = array();
             while( $row = $xoopsDB->fetchArray($result) )
@@ -49,7 +58,7 @@ class xoopsSecure_Config {
                         'label' => $row['filename'],
                         'value' => $row['filename']
                     );
-                }   
+                }
             }
          
         // jQuery wants JSON data

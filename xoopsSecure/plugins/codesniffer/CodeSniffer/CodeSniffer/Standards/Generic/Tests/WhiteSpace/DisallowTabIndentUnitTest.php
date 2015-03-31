@@ -31,7 +31,6 @@
 class Generic_Tests_WhiteSpace_DisallowTabIndentUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -87,5 +86,4 @@ class Generic_Tests_WhiteSpace_DisallowTabIndentUnitTest extends AbstractSniffUn
 
 
 }//end class
-
-?>
+;

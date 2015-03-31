@@ -31,7 +31,6 @@
 class Squiz_Tests_PHP_GlobalKeywordUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -66,5 +65,4 @@ class Squiz_Tests_PHP_GlobalKeywordUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

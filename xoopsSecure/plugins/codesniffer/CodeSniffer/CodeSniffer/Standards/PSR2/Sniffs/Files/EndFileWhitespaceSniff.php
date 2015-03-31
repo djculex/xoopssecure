@@ -83,5 +83,4 @@ class PSR2_Sniffs_Files_EndFileWhitespaceSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-
-?>
+;

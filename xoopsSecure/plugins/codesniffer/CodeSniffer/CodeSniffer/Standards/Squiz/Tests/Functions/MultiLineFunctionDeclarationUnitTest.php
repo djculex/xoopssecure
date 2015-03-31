@@ -29,7 +29,6 @@
 class Squiz_Tests_Functions_MultiLineFunctionDeclarationUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -75,5 +74,4 @@ class Squiz_Tests_Functions_MultiLineFunctionDeclarationUnitTest extends Abstrac
 
 
 }//end class
-
-?>
+;

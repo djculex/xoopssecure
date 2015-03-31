@@ -65,7 +65,6 @@ class Generic_Sniffs_CodeAnalysis_EmptyStatementSniff implements PHP_CodeSniffer
                                 T_WHILE   => false,
                                );
 
-
     /**
      * Registers the tokens that this sniff wants to listen for.
      *
@@ -124,5 +123,4 @@ class Generic_Sniffs_CodeAnalysis_EmptyStatementSniff implements PHP_CodeSniffer
 
 
 }//end class
-
-?>
+;

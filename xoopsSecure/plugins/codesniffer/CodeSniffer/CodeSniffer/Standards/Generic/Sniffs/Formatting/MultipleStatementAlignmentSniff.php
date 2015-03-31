@@ -67,7 +67,6 @@ class Generic_Sniffs_Formatting_MultipleStatementAlignmentSniff implements PHP_C
      */
     public $ignoreMultiLine = false;
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -300,5 +299,4 @@ class Generic_Sniffs_Formatting_MultipleStatementAlignmentSniff implements PHP_C
 
 
 }//end class
-
-?>
+;

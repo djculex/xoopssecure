@@ -30,7 +30,6 @@
 class Squiz_Sniffs_PHP_EmbeddedPhpSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -115,6 +114,7 @@ class Squiz_Sniffs_PHP_EmbeddedPhpSniff implements PHP_CodeSniffer_Sniff
         if ($firstContent === false) {
             $error = 'Empty embedded PHP tag found';
             $phpcsFile->addError($error, $stackPtr, 'Empty');
+
             return;
         }
 
@@ -190,6 +190,7 @@ class Squiz_Sniffs_PHP_EmbeddedPhpSniff implements PHP_CodeSniffer_Sniff
         if ($firstContent === false || $tokens[$firstContent]['code'] === T_CLOSE_TAG) {
             $error = 'Empty embedded PHP tag found';
             $phpcsFile->addError($error, $stackPtr, 'Empty');
+
             return;
         }
 
@@ -220,6 +221,7 @@ class Squiz_Sniffs_PHP_EmbeddedPhpSniff implements PHP_CodeSniffer_Sniff
         if ($semiColonCount === 0) {
             $error = 'Inline PHP statement must end with a semicolon';
             $phpcsFile->addError($error, $stackPtr, 'NoSemicolon');
+
             return;
         }
 
@@ -236,6 +238,7 @@ class Squiz_Sniffs_PHP_EmbeddedPhpSniff implements PHP_CodeSniffer_Sniff
             if ($tokens[$i]['code'] !== T_WHITESPACE) {
                 $error = 'Expected 1 space before closing PHP tag; 0 found';
                 $phpcsFile->addError($error, $stackPtr, 'NoSpaceBeforeClose');
+
                 return;
             }
 
@@ -259,5 +262,4 @@ class Squiz_Sniffs_PHP_EmbeddedPhpSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-
-?>
+;

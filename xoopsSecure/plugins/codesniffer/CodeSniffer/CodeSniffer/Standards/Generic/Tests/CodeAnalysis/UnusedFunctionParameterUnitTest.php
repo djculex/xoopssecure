@@ -30,7 +30,6 @@
 class Generic_Tests_CodeAnalysis_UnusedFunctionParameterUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -65,5 +64,4 @@ class Generic_Tests_CodeAnalysis_UnusedFunctionParameterUnitTest extends Abstrac
 
 
 }//end class
-
-?>
+;

@@ -40,7 +40,6 @@ class Squiz_Sniffs_Formatting_OperatorBracketSniff implements PHP_CodeSniffer_Sn
                                    'JS',
                                   );
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -217,6 +216,7 @@ class Squiz_Sniffs_Formatting_OperatorBracketSniff implements PHP_CodeSniffer_Sn
             // There are a set of brackets in front of it that don't include it.
             $error = 'Arithmetic operation must be bracketed';
             $phpcsFile->addError($error, $stackPtr, 'MissingBrackets');
+
             return;
         } else {
             // We are enclosed in a set of bracket, so the last thing to
@@ -249,5 +249,4 @@ class Squiz_Sniffs_Formatting_OperatorBracketSniff implements PHP_CodeSniffer_Sn
 
 
 }//end class
-
-?>
+;

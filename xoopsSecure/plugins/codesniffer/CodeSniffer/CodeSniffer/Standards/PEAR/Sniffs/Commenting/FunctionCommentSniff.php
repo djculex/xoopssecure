@@ -82,7 +82,6 @@ class PEAR_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sni
      */
     protected $currentFile = null;
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -130,9 +129,11 @@ class PEAR_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sni
         if ($code === T_COMMENT) {
             $error = 'You must use "/**" style comments for a function comment';
             $phpcsFile->addError($error, $stackPtr, 'WrongStyle');
+
             return;
         } else if ($code !== T_DOC_COMMENT) {
             $phpcsFile->addError('Missing function doc comment', $stackPtr, 'Missing');
+
             return;
         }
 
@@ -146,6 +147,7 @@ class PEAR_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sni
         $prevToken = $phpcsFile->findPrevious($ignore, ($stackPtr - 1), null, true);
         if ($prevToken !== $commentEnd) {
             $phpcsFile->addError('Missing function doc comment', $stackPtr, 'Missing');
+
             return;
         }
 
@@ -167,6 +169,7 @@ class PEAR_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sni
             // Is this the first open tag?
             if ($stackPtr === 0 || $phpcsFile->findPrevious(T_OPEN_TAG, ($prevToken - 1)) === false) {
                 $phpcsFile->addError('Missing function doc comment', $stackPtr, 'Missing');
+
                 return;
             }
         }
@@ -180,6 +183,7 @@ class PEAR_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sni
         } catch (PHP_CodeSniffer_CommentParser_ParserException $e) {
             $line = ($e->getLineWithinComment() + $commentStart);
             $phpcsFile->addError($e->getMessage(), $line, 'FailedParse');
+
             return;
         }
 
@@ -187,6 +191,7 @@ class PEAR_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sni
         if (is_null($comment) === true) {
             $error = 'Function doc comment is empty';
             $phpcsFile->addError($error, $commentStart, 'Empty');
+
             return;
         }
 
@@ -486,5 +491,4 @@ class PEAR_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sni
 
 
 }//end class
-
-?>
+;

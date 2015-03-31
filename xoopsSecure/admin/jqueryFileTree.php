@@ -19,12 +19,10 @@ require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/include/cp_header.
 include_once dirname(__FILE__) . '/admin_header.php';
 global $xoopsLogger;
 $xoopsLogger->activated = false;
-//error_reporting(E_ALL); 
+//error_reporting(E_ALL);
 
 $type = (isset($_GET['config'])) ? $_GET['config'] : 'develop';
 $_POST['dir'] = urldecode($_POST['dir']);
 $root = isset($root) ? $root : XOOPS_ROOT_PATH;
 
 xoopssecure_ignoreFileTree ($root, $dir, $type);
-
-?>

@@ -33,17 +33,18 @@ CREATE TABLE xoopsecure_ignores (
   id int(11) NOT NULL auto_increment,
   url text NOT NULL,
   linenumber int(11) NOT NULL,
-  isfile int(11) not null default "0",
-  isdir int(11) not null default "0",
+  isfile int(11) not null default 0,
+  isdir int(11) not null default 0,
   val text NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=MyISAM AUTO_INCREMENT=1;
 
-CREATE TABLE IF NOT EXISTS xoopsecure_stats (
+CREATE TABLE xoopsecure_stats (
   id int(11) NOT NULL auto_increment,
   typenr text NOT NULL,
   inittime text NOT NULL,
   issuenr int(11) NOT NULL,
   issues text NOT NULL,
-  badusers text NOT NULL
+  badusers text NOT NULL,
+  PRIMARY KEY (id)
 ) ENGINE=MyISAM AUTO_INCREMENT=1;

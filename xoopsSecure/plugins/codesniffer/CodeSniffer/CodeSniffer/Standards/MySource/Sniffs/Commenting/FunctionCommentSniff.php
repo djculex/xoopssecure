@@ -34,7 +34,6 @@ if (class_exists('Squiz_Sniffs_Commenting_FunctionCommentSniff', true) === false
 class MySource_Sniffs_Commenting_FunctionCommentSniff extends Squiz_Sniffs_Commenting_FunctionCommentSniff
 {
 
-
     /**
      * Process a list of unknown tags.
      *
@@ -130,5 +129,4 @@ class MySource_Sniffs_Commenting_FunctionCommentSniff extends Squiz_Sniffs_Comme
 
 
 }//end class
-
-?>
+;

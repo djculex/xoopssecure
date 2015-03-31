@@ -196,7 +196,6 @@ class PHP_CodeSniffer_Tokenizers_PHP
                               T_END_HEREDOC,
                              );
 
-
     /**
      * Creates an array of tokens when given some PHP code.
      *
@@ -621,5 +620,4 @@ class PHP_CodeSniffer_Tokenizers_PHP
 
 
 }//end class
-
-?>
+;

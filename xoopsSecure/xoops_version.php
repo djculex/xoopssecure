@@ -20,7 +20,7 @@
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
-	die('XOOPS root path not defined');	
+    die('XOOPS root path not defined');
 }
 
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/include/functions.php';
@@ -56,7 +56,7 @@ $modversion['min_php']='5.3';
 $modversion['min_xoops']="2.5.6";
 $modversion['min_admin']='1.1';
 $modversion['min_db']= array(
-    'mysql'     => '5.0.7', 
+    'mysql'     => '5.0.7',
     'mysqli'    => '5.0.7'
 );
 
@@ -157,8 +157,8 @@ $modversion['config'][$i]['formtype'] = 'select';
 $modversion['config'][$i]['valuetype'] = 'array';
 $modversion['config'][$i]['default'] = 'Xoops';
 $modversion['config'][$i]['options'] = array (
-                                        _MI_XOOPSSECURE_CFCHOOSE_PEAR => 'PEAR', 
-                                        _MI_XOOPSSECURE_CFCHOOSE_XOOPS => 'Xoops', 
+                                        _MI_XOOPSSECURE_CFCHOOSE_PEAR => 'PEAR',
+                                        _MI_XOOPSSECURE_CFCHOOSE_XOOPS => 'Xoops',
                                         _MI_XOOPSSECURE_CFCHOOSE_ZEND => 'Zend'
                                     );
 
@@ -169,7 +169,6 @@ $modversion['config'][$i]['description'] = ($modrw['exists'] == 1) ? '_MI_XOOPSS
 $modversion['config'][$i]['formtype'] = 'yesno';
 $modversion['config'][$i]['valuetype'] = 'int';
 $modversion['config'][$i]['default'] = '0';
-
 
 $i++;
 $modversion['config'][$i]['name'] = 'indexfiletypes';
@@ -237,7 +236,7 @@ $modversion['config'][$i]['title'] = '_MI_XOOPSSECURE_FULLSCANBADBOYSSEARCH_TITL
 $modversion['config'][$i]['description'] = '_MI_XOOPSSECURE_FULLSCANBADBOYSSEARCH_DESC';
 $modversion['config'][$i]['formtype'] = 'textarea';
 $modversion['config'][$i]['valuetype'] = 'string';
-$modversion['config'][$i]['default'] = xoopssecure_ArrayToString($obj);    
+$modversion['config'][$i]['default'] = xoopssecure_ArrayToString($obj);
 
 $i++;
 $modversion['config'][$i]['name'] = 'break2';
@@ -256,26 +255,25 @@ $modversion['config'][$i]['valuetype'] = 'array';
 $modversion['config'][$i]['default'] = 0;
 $modversion['config'][$i]['options'] = array (
                                         _MI_XOOPSSECURE_CONFIG_ALWAYS => 0,
-                                        '12'._MI_XOOPSSECURE_CONFIG_HOURS => 43200, 
-                                        '1'._MI_XOOPSSECURE_CONFIG_DAY => 86400, 
-                                        '2'._MI_XOOPSSECURE_CONFIG_DAYS => 172800, 
-                                        '3'._MI_XOOPSSECURE_CONFIG_DAYS => 259200, 
-                                        '4'._MI_XOOPSSECURE_CONFIG_DAYS => 345600, 
-                                        '5'._MI_XOOPSSECURE_CONFIG_DAYS => 432000, 
-                                        '6'._MI_XOOPSSECURE_CONFIG_DAYS => 518400, 
-                                        '7'._MI_XOOPSSECURE_CONFIG_DAYS => 604800, 
+                                        '12'._MI_XOOPSSECURE_CONFIG_HOURS => 43200,
+                                        '1'._MI_XOOPSSECURE_CONFIG_DAY => 86400,
+                                        '2'._MI_XOOPSSECURE_CONFIG_DAYS => 172800,
+                                        '3'._MI_XOOPSSECURE_CONFIG_DAYS => 259200,
+                                        '4'._MI_XOOPSSECURE_CONFIG_DAYS => 345600,
+                                        '5'._MI_XOOPSSECURE_CONFIG_DAYS => 432000,
+                                        '6'._MI_XOOPSSECURE_CONFIG_DAYS => 518400,
+                                        '7'._MI_XOOPSSECURE_CONFIG_DAYS => 604800,
                                         '2'._MI_XOOPSSECURE_CONFIG_WEEKS => 1209600,
                                         '1'._MI_XOOPSSECURE_CONFIG_MONTH => 2419200
                                     );
-									
+                                    
 $i++;
 $modversion['config'][$i]['name'] = 'break2';
 $modversion['config'][$i]['title'] = '_MI_XOOPSSECURE_BACKUP_TITLE';
 $modversion['config'][$i]['description'] = '';
 $modversion['config'][$i]['formtype'] = 'line_break';
 $modversion['config'][$i]['valuetype'] = 'textbox';
-$modversion['config'][$i]['default'] = 'head';					
-
+$modversion['config'][$i]['default'] = 'head';
 
 $i++;
 $modversion['config'][$i]['name'] = 'backuptype';
@@ -286,10 +284,10 @@ $modversion['config'][$i]['valuetype'] = 'array';
 $modversion['config'][$i]['default'] = 'Minimum';
 $modversion['config'][$i]['options'] = array (
                                         _MI_XOOPSSECURE_NONE => 'none',
-										_MI_XOOPSSECURE_MIN => 'Minimum', 
-										_MI_XOOPSSECURE_FULL => 'Full',
+                                        _MI_XOOPSSECURE_MIN => 'Minimum',
+                                        _MI_XOOPSSECURE_FULL => 'Full',
                                         _MI_XOOPSSECURE_CUSTOM => 'Custom'
-                                    );		
+                                    );
 
 $i++;
 $obj = xoopssecure_backupFilesMin ();
@@ -298,6 +296,4 @@ $modversion['config'][$i]['title'] = '_MI_XOOPSSECURE_BACKUPCUSTOMFILES_TITLE';
 $modversion['config'][$i]['description'] = '_MI_XOOPSSECURE_BACKUPCUSTOMFILES_DESC';
 $modversion['config'][$i]['formtype'] = 'textarea';
 $modversion['config'][$i]['valuetype'] = 'string';
-$modversion['config'][$i]['default'] = xoopssecure_ArrayToString($obj);  									
-
-?>
+$modversion['config'][$i]['default'] = xoopssecure_ArrayToString($obj);

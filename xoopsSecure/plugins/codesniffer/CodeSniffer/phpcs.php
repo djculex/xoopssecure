@@ -39,5 +39,3 @@ if ($numErrors === 0) {
 } else {
     exit(1);
 }
-
-?>

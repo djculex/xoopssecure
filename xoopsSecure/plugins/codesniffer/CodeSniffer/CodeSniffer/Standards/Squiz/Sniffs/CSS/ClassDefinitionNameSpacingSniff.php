@@ -35,7 +35,6 @@ class Squiz_Sniffs_CSS_ClassDefinitionNameSpacingSniff implements PHP_CodeSniffe
      */
     public $supportedTokenizers = array('CSS');
 
-
     /**
      * Returns the token types that this sniff is interested in.
      *
@@ -114,5 +113,4 @@ class Squiz_Sniffs_CSS_ClassDefinitionNameSpacingSniff implements PHP_CodeSniffe
 
 
 }//end class
-
-?>
+;

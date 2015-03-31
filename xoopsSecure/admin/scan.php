@@ -20,7 +20,6 @@
  * ****************************************************************************
  */
 
-
 require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/include/cp_header.php';
 include_once dirname(__FILE__) . '/admin_header.php';
 include_once (XOOPS_ROOT_PATH.'/class/template.php');
@@ -29,7 +28,6 @@ require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/scan.php';
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/mech.php';
 include_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/backup.php';
 
-
 $scan = new xoopsSecure_scan;
 $log  = new xoopsSecure_log;
 $sys = new xoopsSecure_mech;
@@ -37,7 +35,7 @@ $zip = new xoopsSecureZipper;
 
 global $xoopsUser, $xoopsLogger;
 $xoopsLogger->activated = false;
-//error_reporting(E_ALL); 
+//error_reporting(E_ALL);
 
 set_time_limit(999999);
 $task = intval($_GET['scantype']);
@@ -50,7 +48,7 @@ if ($task == 1) {
     $scan->scantype = $scanref;
     $info = $scan->getnewfileinfo ($url = $scanurl);
     header('Content-type: application/json');
-    echo "{\"result\":$info}";  
+    echo "{\"result\":$info}";
 }
 
 // Developer scan
@@ -76,7 +74,6 @@ if ($task == 2) {
     echo '</div>';
 }
 
-
 // full scan = 3
 if ($task == 3) {
     $scan->scantype = $scanref;
@@ -88,7 +85,7 @@ if ($task == 3) {
     }
     $info = $scan->getnewfileinfo ($url = $scanurl);
     header('Content-type: application/json');
-    echo "{\"result\":$info}";    
+    echo "{\"result\":$info}";
 }
 
 // Single file scan = 4
@@ -135,15 +132,15 @@ if ($task == 8) {
 
 // add to ignore
 if ($task == 9) {
-	$file = $_GET['file'];
-	$linenumber = $_GET['ln'];
-	$scan->Ignore($file, $linenumber);
-	header('content-type: application/json; charset=utf-8');
+    $file = $_GET['file'];
+    $linenumber = $_GET['ln'];
+    $scan->Ignore($file, $linenumber);
+    header('content-type: application/json; charset=utf-8');
 }
 
 // Empty ignore
 if ($task == 10) {
-	header('content-type: application/json; charset=utf-8');
+    header('content-type: application/json; charset=utf-8');
 }
 
 // indexfile check
@@ -173,7 +170,7 @@ if ($task == "12f") {
 if ($task == 13) {
     $log->getIssues ('file');
     $log->getIssues ('dir');
-    $xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/admin/showscan.tpl'); 
+    $xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/admin/showscan.tpl');
 }
 
 // ADD file / dir to ignore
@@ -194,7 +191,7 @@ if ($task == 16) {
     $file = $_GET['file'];
     $type = $_GET['ref'];
     $val = $_GET['val'];
-    $table = $_GET['table'];    
+    $table = $_GET['table'];
     $scan->ignoreFile ($file, $type, $val);
 }
 
@@ -207,28 +204,28 @@ if ($task == 17) {
 
 // do backup
 if ($task == 18) {
-	if ($this->backuptype != 'none') {
-		$zip->doZip ($zip->archive, $zip->dirToBackup);
-		$nl = str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$zip->archive);
-		$link  = "<a id = 'xoopssecure_bdl' href = '".$nl."'> "
-		. _AM_XOOPSSECURE_BACKUP_LINK_DESC." "
-		. $nl
-		. "</a>";
-		echo $link;
-	}
+    if ($this->backuptype != 'none') {
+        $zip->doZip ($zip->archive, $zip->dirToBackup);
+        $nl = str_replace(XOOPS_ROOT_PATH,XOOPS_URL,$zip->archive);
+        $link  = "<a id = 'xoopssecure_bdl' href = '".$nl."'> "
+        . _AM_XOOPSSECURE_BACKUP_LINK_DESC." "
+        . $nl
+        . "</a>";
+        echo $link;
+    }
 }
 
 // download the zip file
 if ($task == 19) {
-	if ($scan->autobackup = 1 OR $scanref = 18) {
-		xoopssecure_DownloadFile($zip->archive);
-	}
+    if ($scan->autobackup = 1 OR $scanref = 18) {
+        xoopssecure_DownloadFile($zip->archive);
+    }
 }
 
 //delete backupfolder from server
 if ($task == 20) {
-	if ($scan->autobackup = 1 OR $scanref = 18) {
-		//xoopssecure_deleteBackupFolder ($zip->archive);
-		xoopssecure_deleteFolder ($zip->dest);
-	}
+    if ($scan->autobackup = 1 OR $scanref = 18) {
+        //xoopssecure_deleteBackupFolder ($zip->archive);
+        xoopssecure_deleteFolder ($zip->dest);
+    }
 }

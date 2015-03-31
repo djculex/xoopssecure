@@ -33,7 +33,6 @@
 class Generic_Tests_Commenting_FixmeUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -95,5 +94,4 @@ class Generic_Tests_Commenting_FixmeUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

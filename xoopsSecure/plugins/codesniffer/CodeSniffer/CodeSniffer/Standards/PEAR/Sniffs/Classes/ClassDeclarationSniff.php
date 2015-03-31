@@ -37,7 +37,6 @@ class PEAR_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
      */
     public $indent = 4;
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -70,6 +69,7 @@ class PEAR_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
         if (isset($tokens[$stackPtr]['scope_opener']) === false) {
             $error = 'Possible parse error: %s missing opening or closing brace';
             $phpcsFile->addWarning($error, $stackPtr, 'MissingBrace', $errorData);
+
             return;
         }
 
@@ -80,6 +80,7 @@ class PEAR_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
         if ($braceLine === $classLine) {
             $error = 'Opening brace of a %s must be on the line after the definition';
             $phpcsFile->addError($error, $curlyBrace, 'OpenBraceNewLine', $errorData);
+
             return;
         } else if ($braceLine > ($classLine + 1)) {
             $error = 'Opening brace of a %s must be on the line following the %s declaration; found %s line(s)';
@@ -89,6 +90,7 @@ class PEAR_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
                       ($braceLine - $classLine - 1),
                      );
             $phpcsFile->addError($error, $curlyBrace, 'OpenBraceWrongLine', $data);
+
             return;
         }
 
@@ -121,5 +123,4 @@ class PEAR_Sniffs_Classes_ClassDeclarationSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-
-?>
+;

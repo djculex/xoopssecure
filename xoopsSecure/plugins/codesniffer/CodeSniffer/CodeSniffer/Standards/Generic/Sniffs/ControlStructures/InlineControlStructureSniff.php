@@ -47,7 +47,6 @@ class Generic_Sniffs_ControlStructures_InlineControlStructureSniff implements PH
      */
     public $error = true;
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -116,5 +115,4 @@ class Generic_Sniffs_ControlStructures_InlineControlStructureSniff implements PH
 
 
 }//end class
-
-?>
+;

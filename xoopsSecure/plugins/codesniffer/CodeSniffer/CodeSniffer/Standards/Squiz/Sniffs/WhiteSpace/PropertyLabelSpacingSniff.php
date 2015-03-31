@@ -36,7 +36,6 @@ class Squiz_Sniffs_WhiteSpace_PropertyLabelSpacingSniff implements PHP_CodeSniff
      */
     public $supportedTokenizers = array('JS');
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -81,5 +80,4 @@ class Squiz_Sniffs_WhiteSpace_PropertyLabelSpacingSniff implements PHP_CodeSniff
 
 
 }//end class
-
-?>
+;

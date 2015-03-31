@@ -54,7 +54,6 @@ class MySource_Sniffs_Channels_IncludeSystemSniff extends PHP_CodeSniffer_Standa
                         'domdocument',
                        );
 
-
     /**
      * Constructs a Squiz_Sniffs_Scope_MethodScopeSniff.
      */
@@ -306,16 +305,19 @@ class MySource_Sniffs_Channels_IncludeSystemSniff extends PHP_CodeSniffer_Standa
         if (strtolower($tokens[$stackPtr]['content']) === 'includesystem') {
             $systemName = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, ($stackPtr + 1));
             $systemName = trim($tokens[$systemName]['content'], " '");
+
             return strtolower($systemName);
         } else if (strtolower($tokens[$stackPtr]['content']) === 'includeasset') {
             $typeName = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, ($stackPtr + 1));
             $typeName = trim($tokens[$typeName]['content'], " '");
+
             return strtolower($typeName).'assettype';
         } else if (in_array($tokens[$stackPtr]['code'], PHP_CodeSniffer_Tokens::$includeTokens) === true) {
             $filePath = $phpcsFile->findNext(T_CONSTANT_ENCAPSED_STRING, ($stackPtr + 1));
             $filePath = $tokens[$filePath]['content'];
             $filePath = trim($filePath, " '");
             $filePath = basename($filePath, '.inc');
+
             return strtolower($filePath);
         }
 
@@ -325,5 +327,4 @@ class MySource_Sniffs_Channels_IncludeSystemSniff extends PHP_CodeSniffer_Standa
 
 
 }//end class
-
-?>
+;

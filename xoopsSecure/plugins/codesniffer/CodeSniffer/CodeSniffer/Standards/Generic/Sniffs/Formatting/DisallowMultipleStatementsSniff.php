@@ -28,7 +28,6 @@
 class Generic_Sniffs_Formatting_DisallowMultipleStatementsSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -77,6 +76,7 @@ class Generic_Sniffs_Formatting_DisallowMultipleStatementsSniff implements PHP_C
         if ($tokens[$prev]['line'] === $tokens[$stackPtr]['line']) {
             $error = _AM_XOOPSSECURE_CODESNIFFER_EPHPSMBLBI;
             $phpcsFile->addError($error, $stackPtr, 'SameLine');
+
             return;
         }
 
@@ -84,5 +84,4 @@ class Generic_Sniffs_Formatting_DisallowMultipleStatementsSniff implements PHP_C
 
 
 }//end class
-
-?>
+;

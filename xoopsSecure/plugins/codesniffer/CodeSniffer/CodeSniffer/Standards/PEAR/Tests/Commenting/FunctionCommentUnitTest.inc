@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Class PHP_CodeSniffer_File
+ */
 class PHP_CodeSniffer_File
 {
 
@@ -7,12 +11,12 @@ class PHP_CodeSniffer_File
      *
      * long desc here
      *
-     * @param int $stackPtr   The position in @ @unknown the stack of the token
+     * @param int $stackPtr The position in @ @unknown the stack of the token
      *                        that opened the scope
-     * @param int $detph    How many scope levels down we are.
-     * @param int    $index    The index
-     * @return
-     * @throws
+     * @param int $depth
+     * @param int $index The index
+     * @return int
+     * @internal param int $detph How many scope levels down we are.
      */
     private function _functionCall($stackPtr, $depth=1, $index)
     {
@@ -108,7 +112,7 @@ class PHP_CodeSniffer_File
 
     /**
      * no return tag
-     *
+     * @param $one
      */
     public function noReturn($one)
     {
@@ -119,11 +123,11 @@ class PHP_CodeSniffer_File
     /**
      * Param not immediate
      *
-     * @return
-     * @param   int   $threeSpaces
-     * @param int     $superfluous
-     * @param missing
-     * @param
+     *
+     * @param   int $threeSpaces
+     * @internal param int $superfluous
+     * @internal param $missing
+     * @internal param $
      */
     public function missingDescroption($threeSpaces)
     {
@@ -192,7 +196,8 @@ public function noReturnOutsideClass()
  *
  * @param int $one comment
  *
- * @return void
+ * @param $two
+ * @param $three
  * @fine  Unknown tag
  */
 public function missingTwoParamComment($one, $two, $three)
@@ -231,6 +236,9 @@ function myFunction($arg1) {}
 
 echo $blah;
 
+/**
+ * @param $arg1
+ */
 function myFunction($arg1) {}
 
 /**
@@ -243,6 +251,9 @@ function myFunction($arg1) {}
  */
 function myFunction() {}
 
+/**
+ * Class MyClass
+ */
 class MyClass() {
     /**
      * An abstract function.

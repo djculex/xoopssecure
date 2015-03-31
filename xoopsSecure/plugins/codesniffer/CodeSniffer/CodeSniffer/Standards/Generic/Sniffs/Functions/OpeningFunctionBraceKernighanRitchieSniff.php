@@ -31,7 +31,6 @@
 class Generic_Sniffs_Functions_OpeningFunctionBraceKernighanRitchieSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Registers the tokens that this sniff wants to listen for.
      *
@@ -74,6 +73,7 @@ class Generic_Sniffs_Functions_OpeningFunctionBraceKernighanRitchieSniff impleme
         if ($lineDifference > 0) {
             $error = _AM_XOOPSSECURE_CODESNIFFER_OBSBOSLAD;
             $phpcsFile->addError($error, $openingBrace, 'BraceOnNewLine');
+
             return;
         }
 
@@ -90,6 +90,7 @@ class Generic_Sniffs_Functions_OpeningFunctionBraceKernighanRitchieSniff impleme
             $error = _AM_XOOPSSECURE_CODESNIFFER_ESACBF;
             $data  = array($length);
             $phpcsFile->addError($error, $closeBracket, 'SpaceAfterBracket', $data);
+
             return;
         }
 
@@ -106,6 +107,7 @@ class Generic_Sniffs_Functions_OpeningFunctionBraceKernighanRitchieSniff impleme
             $error = _AM_XOOPSSECURE_CODESNIFFER_ESBOBBF;
             $data  = array($length);
             $phpcsFile->addError($error, $openingBrace, 'SpaceBeforeBrace', $data);
+
             return;
         }
 
@@ -113,5 +115,4 @@ class Generic_Sniffs_Functions_OpeningFunctionBraceKernighanRitchieSniff impleme
 
 
 }//end class
-
-?>
+;

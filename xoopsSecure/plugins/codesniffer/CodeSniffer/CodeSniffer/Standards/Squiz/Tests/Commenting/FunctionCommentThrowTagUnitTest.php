@@ -35,7 +35,6 @@
 class Squiz_Tests_Commenting_FunctionCommentThrowTagUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -77,5 +76,4 @@ class Squiz_Tests_Commenting_FunctionCommentThrowTagUnitTest extends AbstractSni
 
 
 }//end class
-
-?>
+;

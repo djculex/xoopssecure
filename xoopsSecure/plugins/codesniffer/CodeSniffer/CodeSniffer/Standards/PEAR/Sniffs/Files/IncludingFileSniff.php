@@ -44,7 +44,6 @@ class PEAR_Sniffs_Files_IncludingFileSniff implements PHP_CodeSniffer_Sniff
                                    T_SWITCH,
                                   );
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -133,5 +132,4 @@ class PEAR_Sniffs_Files_IncludingFileSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-
-?>
+;

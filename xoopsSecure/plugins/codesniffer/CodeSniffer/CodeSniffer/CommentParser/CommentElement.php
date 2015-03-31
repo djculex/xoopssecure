@@ -47,7 +47,6 @@ if (class_exists('PHP_CodeSniffer_CommentParser_SingleElement', true) === false)
 class PHP_CodeSniffer_CommentParser_CommentElement extends PHP_CodeSniffer_CommentParser_SingleElement
 {
 
-
     /**
      * Constructs a PHP_CodeSniffer_CommentParser_CommentElement.
      *
@@ -241,5 +240,4 @@ class PHP_CodeSniffer_CommentParser_CommentElement extends PHP_CodeSniffer_Comme
 
 
 }//end class
-
-?>
+;

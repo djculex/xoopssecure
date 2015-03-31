@@ -40,7 +40,6 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractScopeSniff', true) === false
 class Squiz_Sniffs_Classes_SelfMemberReferenceSniff extends PHP_CodeSniffer_Standards_AbstractScopeSniff
 {
 
-
     /**
      * Constructs a Squiz_Sniffs_Classes_SelfMemberReferenceSniff.
      */
@@ -70,6 +69,7 @@ class Squiz_Sniffs_Classes_SelfMemberReferenceSniff extends PHP_CodeSniffer_Stan
                 $error = 'Must use "self::" for local static member reference; found "%s::"';
                 $data  = array($tokens[$className]['content']);
                 $phpcsFile->addError($error, $className, 'IncorrectCase', $data);
+
                 return;
             }
         } else if ($tokens[$className]['code'] === T_STRING) {
@@ -81,6 +81,7 @@ class Squiz_Sniffs_Classes_SelfMemberReferenceSniff extends PHP_CodeSniffer_Stan
                 if ($phpcsFile->hasCondition($stackPtr, T_CLOSURE) === false) {
                     $error = 'Must use "self::" for local static member reference';
                     $phpcsFile->addError($error, $className, 'NotUsed');
+
                     return;
                 }
             }
@@ -104,5 +105,4 @@ class Squiz_Sniffs_Classes_SelfMemberReferenceSniff extends PHP_CodeSniffer_Stan
 
 
 }//end class
-
-?>
+;

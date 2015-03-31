@@ -44,7 +44,6 @@ class Squiz_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
                         T_COMMENT,
                        );
 
-
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -164,12 +163,14 @@ class Squiz_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
                           $errorData[0],
                          );
                 $phpcsFile->addError($error, $stackPtr, 'PublicHasUnderscore', $data);
+
                 return;
             }
         } else {
             if (substr($varName, 0, 1) !== '_') {
                 $error = 'Private member variable "%s" must contain a leading underscore';
                 $phpcsFile->addError($error, $stackPtr, 'PrivateNoUnderscore', $errorData);
+
                 return;
             }
         }
@@ -237,5 +238,4 @@ class Squiz_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSnif
 
 
 }//end class
-
-?>
+;

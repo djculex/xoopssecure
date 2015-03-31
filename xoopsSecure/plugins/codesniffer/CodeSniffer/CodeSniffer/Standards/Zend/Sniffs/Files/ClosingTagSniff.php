@@ -30,7 +30,6 @@
 class Zend_Sniffs_Files_ClosingTagSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -80,5 +79,4 @@ class Zend_Sniffs_Files_ClosingTagSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-
-?>
+;

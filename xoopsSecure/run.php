@@ -20,7 +20,6 @@
  * ****************************************************************************
  */
 
-
 include_once("../../mainfile.php");
 include_once(XOOPS_ROOT_PATH."/modules/xoopsSecure/include/functions.php");
 include_once (XOOPS_ROOT_PATH.'/class/template.php');
@@ -35,7 +34,7 @@ $sys = new xoopsSecure_mech;
 
 global $xoopsUser, $xoTheme, $xoopsTpl,$xoopsLogger, $scan;
 $xoopsLogger->activated = true;
-error_reporting(E_ALL); 
+error_reporting(E_ALL);
 
 set_time_limit(999999);
 
@@ -76,12 +75,10 @@ $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/xoopssecure_cron
 $xoTheme->addStylesheet('/modules/xoopssecure/assets/css/base/jquery.ui.all.css');
 $xoTheme->addStyleSheet('/modules/xoopssecure/assets/css/xoopsSecure.css');
 
-$xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/xoopssecure_run.tpl'); 
+$xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/xoopssecure_run.tpl');
 } else {
     echo "NOT TRUE";
 }
-
-
 
 /*
 $scan->cronscan = true;
@@ -93,6 +90,6 @@ $scan->getnewfileinfo ($url = XOOPS_ROOT_PATH);
 
 $info = $scan->getnewfileinfo ($url = $scanurl);
 header('Content-type: application/json');
-echo "{\"result\":$info}"; 
+echo "{\"result\":$info}";
 */
 include(XOOPS_ROOT_PATH."/footer.php");

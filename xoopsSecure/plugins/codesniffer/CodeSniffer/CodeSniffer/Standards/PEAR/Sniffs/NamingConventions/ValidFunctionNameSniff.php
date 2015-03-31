@@ -64,7 +64,6 @@ class PEAR_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSniff
      */
     protected $magicFunctions = array('autoload');
 
-
     /**
      * Constructs a PEAR_Sniffs_NamingConventions_ValidFunctionNameSniff.
      */
@@ -127,6 +126,7 @@ class PEAR_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSniff
         if ($isPublic === false && $methodName{0} !== '_') {
             $error = 'Private method name "%s" must be prefixed with an underscore';
             $phpcsFile->addError($error, $stackPtr, 'PrivateNoUnderscore', $errorData);
+
             return;
         }
 
@@ -138,6 +138,7 @@ class PEAR_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSniff
                       $errorData[0],
                      );
             $phpcsFile->addError($error, $stackPtr, 'PublicUnderscore', $data);
+
             return;
         }
 
@@ -220,12 +221,14 @@ class PEAR_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSniff
             if ($functionName{0} === '_') {
                 $error = 'Function name "%s" is invalid; only private methods should be prefixed with an underscore';
                 $phpcsFile->addError($error, $stackPtr, 'FunctionUnderscore', $errorData);
+
                 return;
             }
 
             if ($functionName{0} !== strtoupper($functionName{0})) {
                 $error = 'Function name "%s" is prefixed with a package name but does not begin with a capital letter';
                 $phpcsFile->addError($error, $stackPtr, 'FunctionNoCaptial', $errorData);
+
                 return;
             }
         }
@@ -234,6 +237,7 @@ class PEAR_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSniff
         if (trim($camelCapsPart) === '') {
             $error = 'Function name "%s" is not valid; name appears incomplete';
             $phpcsFile->addError($error, $stackPtr, 'FunctionInvalid', $errorData);
+
             return;
         }
 
@@ -281,5 +285,4 @@ class PEAR_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSniff
 
 
 }//end class
-
-?>
+;

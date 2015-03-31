@@ -33,7 +33,6 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === fa
 class PEAR_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
 {
 
-
     /**
      * Processes class member variables.
      *
@@ -62,6 +61,7 @@ class PEAR_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniff
             $error = 'Private member variable "%s" must be prefixed with an underscore';
             $data  = array($memberName);
             $phpcsFile->addError($error, $stackPtr, 'PrivateNoUnderscore', $data);
+
             return;
         }
 
@@ -73,6 +73,7 @@ class PEAR_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniff
                       $memberName,
                      );
             $phpcsFile->addError($error, $stackPtr, 'PublicUnderscore', $data);
+
             return;
         }
 
@@ -112,5 +113,4 @@ class PEAR_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniff
 
 
 }//end class
-
-?>
+;

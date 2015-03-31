@@ -26,7 +26,6 @@
 class Generic_Sniffs_Classes_DuplicateClassNameSniff implements PHP_CodeSniffer_MultiFileSniff
 {
 
-
     /**
      * Called once per script run to allow for processing of this sniff.
      *
@@ -93,5 +92,4 @@ class Generic_Sniffs_Classes_DuplicateClassNameSniff implements PHP_CodeSniffer_
 
 
 }//end class
-
-?>
+;

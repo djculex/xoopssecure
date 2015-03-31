@@ -31,7 +31,6 @@
 class Generic_Tests_ControlStructures_InlineControlStructureUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -89,5 +88,4 @@ class Generic_Tests_ControlStructures_InlineControlStructureUnitTest extends Abs
 
 
 }//end class
-
-?>
+;

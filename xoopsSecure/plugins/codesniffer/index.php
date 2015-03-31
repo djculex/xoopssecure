@@ -9,7 +9,7 @@
  */
 
  // Notifications
-require 'CodeSniffer/wcs_notification.php'; 
+require 'CodeSniffer/wcs_notification.php';
 if (date('Ymd') != $notification['check_date']) {
 
     $context = stream_context_create(array('http' => array('timeout' => 1)));
@@ -17,15 +17,15 @@ if (date('Ymd') != $notification['check_date']) {
 
     
     if (!empty($content)) {
-        $content_array = explode('#', $content);    
+        $content_array = explode('#', $content);
                 
         if ($content_array[0] != $notification['date']) {
             $new_notification = fopen('CodeSniffer/wcs_notification.php', "w");
             $new_content = '<?php $notification = array(\'check_date\'=>\'' . date('Ymd') . '\',\'date\'=>\'' . $content_array[0] . '\',\'status\'=>\'1\',\'link\'=>\'' . $content_array[1] . '\',\'message\'=>\'' . $content_array[2] . '\'); ?>';
             fputs($new_notification, $new_content);
-            fclose($new_notification);    
+            fclose($new_notification);
             $redirect = basename(__FILE__);
-            header("Location: " . $redirect); 
+            header("Location: " . $redirect);
             exit;
         }
     }
@@ -72,10 +72,10 @@ if ($notification['status'] == 1) {
 <?php
 if (isset($_POST['dir'])) {
     if ($_POST['dir'] == 'previous') {
-        $dir = dirname($_POST['path']);    
+        $dir = dirname($_POST['path']);
     } elseif ($_POST['dir'] == 'current') {
-        $dir = $_POST['path'];    
-    } elseif ($_POST['dir'] == 'next') {    
+        $dir = $_POST['path'];
+    } elseif ($_POST['dir'] == 'next') {
         $dir = $_POST['path'] . '/' . $_POST['dir_name'];
     }
 } else {
@@ -87,7 +87,7 @@ echo '<div class="infopath">' . str_replace('\\', '/', $dir) . '</div>';
 if (isset($_POST['filetosniff']) AND $_POST['filetosniff'] !='') {
     ?>
     <form action="<?php echo basename(__FILE__); ?>" method="post">
-    <input type="hidden" name="path" value="<?php echo $dir; ?>" />    
+    <input type="hidden" name="path" value="<?php echo $dir; ?>" />
     <input type="hidden" name="dir" value="current" />
     <input type="image" src="CodeSniffer/wcs_images/back.png" class="submit_back" />
     </form>
@@ -121,7 +121,7 @@ if ($handle = opendir($dir)) {
     if ($dir != dirname(getcwd())) {
         ?>
         <form action="<?php echo basename(__FILE__); ?>" method="post">
-        <input type="hidden" name="path" value="<?php echo $dir; ?>" />    
+        <input type="hidden" name="path" value="<?php echo $dir; ?>" />
         <input type="hidden" name="dir" value="previous" />
         <input type="image" src="CodeSniffer/wcs_images/back.png" class="submit_back" />
         </form>
@@ -143,7 +143,7 @@ if ($handle = opendir($dir)) {
                 <input type="hidden" name="dir" value="next" />
                 <input type="submit" name="dir_name" value="<?php echo $entry; ?>" class="submit_folder" />
                 </div>
-                <?php            
+                <?php
             } else {
                 
                 if (in_array(pathinfo($dir."/".$entry, PATHINFO_EXTENSION), $extensionstosniff)) {
@@ -180,7 +180,7 @@ if ($handle = opendir($dir)) {
                     } else {
                         ?>
                         <div class='entry_row_file_generic'><div class='entry_name'><?php echo $entry; ?></div><br style='clear:both;' /></div>
-                        <?php                    
+                        <?php
                     }
                 }
             }

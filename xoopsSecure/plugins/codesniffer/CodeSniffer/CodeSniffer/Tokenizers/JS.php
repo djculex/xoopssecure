@@ -230,7 +230,6 @@ class PHP_CodeSniffer_Tokenizers_JS
                                 '/**' => '*/',
                                );
 
-
     /**
      * Creates an array of tokens when given some PHP code.
      *
@@ -1120,5 +1119,4 @@ class PHP_CodeSniffer_Tokenizers_JS
 
 
 }//end class
-
-?>
+;

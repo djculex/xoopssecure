@@ -31,7 +31,6 @@
 class Generic_Tests_PHP_ForbiddenFunctionsUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -66,5 +65,4 @@ class Generic_Tests_PHP_ForbiddenFunctionsUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

@@ -29,7 +29,6 @@
 class Generic_Tests_PHP_NoSilencedErrorsUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -63,5 +62,4 @@ class Generic_Tests_PHP_NoSilencedErrorsUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

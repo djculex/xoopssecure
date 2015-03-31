@@ -30,7 +30,6 @@
 class Squiz_Sniffs_WhiteSpace_ScopeKeywordSpacingSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -40,6 +39,7 @@ class Squiz_Sniffs_WhiteSpace_ScopeKeywordSpacingSniff implements PHP_CodeSniffe
     {
         $register   = PHP_CodeSniffer_Tokens::$scopeModifiers;
         $register[] = T_STATIC;
+
         return $register;
 
     }//end register()
@@ -83,5 +83,4 @@ class Squiz_Sniffs_WhiteSpace_ScopeKeywordSpacingSniff implements PHP_CodeSniffe
 
 
 }//end class
-
-?>
+;

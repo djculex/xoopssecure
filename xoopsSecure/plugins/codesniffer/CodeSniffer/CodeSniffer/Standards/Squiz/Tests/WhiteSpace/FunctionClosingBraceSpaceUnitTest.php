@@ -31,7 +31,6 @@
 class Squiz_Tests_WhiteSpace_FunctionClosingBraceSpaceUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -86,5 +85,4 @@ class Squiz_Tests_WhiteSpace_FunctionClosingBraceSpaceUnitTest extends AbstractS
 
 
 }//end class
-
-?>
+;

@@ -67,6 +67,9 @@ $code = 'hello';
 /** Neither is this! **/
 $code = 'hello';
 
+/**
+ * Class MyClass
+ */
 class MyClass
 {
     /**

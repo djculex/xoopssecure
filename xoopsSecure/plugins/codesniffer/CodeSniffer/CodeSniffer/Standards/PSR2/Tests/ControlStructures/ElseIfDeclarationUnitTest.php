@@ -29,7 +29,6 @@
 class PSR2_Tests_ControlStructures_ElseIfDeclarationUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -64,5 +63,4 @@ class PSR2_Tests_ControlStructures_ElseIfDeclarationUnitTest extends AbstractSni
 
 
 }//end class
-
-?>
+;

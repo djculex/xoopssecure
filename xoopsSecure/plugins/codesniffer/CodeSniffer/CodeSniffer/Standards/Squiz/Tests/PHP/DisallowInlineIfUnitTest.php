@@ -31,14 +31,14 @@
 class Squiz_Tests_PHP_DisallowInlineIfUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
      * The key of the array should represent the line number and the value
      * should represent the number of errors that should occur on that line.
      *
-     * @return array(int => int)
+     * @param string $testFile
+     * @return array
      */
     public function getErrorList($testFile='DisallowInlineIfUnitTest.inc')
     {
@@ -77,5 +77,4 @@ class Squiz_Tests_PHP_DisallowInlineIfUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

@@ -40,7 +40,6 @@
 class Generic_Sniffs_CodeAnalysis_ForLoopShouldBeWhileLoopSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Registers the tokens that this sniff wants to listen for.
      *
@@ -96,5 +95,4 @@ class Generic_Sniffs_CodeAnalysis_ForLoopShouldBeWhileLoopSniff implements PHP_C
 
 
 }//end class
-
-?>
+;

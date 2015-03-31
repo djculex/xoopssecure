@@ -33,7 +33,6 @@
 interface PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Registers the tokens that this sniff wants to listen for.
      *
@@ -52,7 +51,6 @@ interface PHP_CodeSniffer_Sniff
      * @see    Tokens.php
      */
     public function register();
-
 
     /**
      * Called when one of the token types that this sniff is listening for
@@ -87,7 +85,5 @@ interface PHP_CodeSniffer_Sniff
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr);
 
-
 }//end interface
-
-?>
+;

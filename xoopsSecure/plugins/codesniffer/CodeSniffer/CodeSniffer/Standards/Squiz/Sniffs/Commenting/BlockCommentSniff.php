@@ -30,7 +30,6 @@
 class Squiz_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -110,6 +109,7 @@ class Squiz_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
             if (count($commentLines) === 1) {
                 $error = 'Single line block comment not allowed; use inline ("// text") comment instead';
                 $phpcsFile->addError($error, $stackPtr, 'SingleLine');
+
                 return;
             }
 
@@ -117,6 +117,7 @@ class Squiz_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
                 if (trim($tokens[$stackPtr]['content']) === '/*') {
                     $error = 'Empty block comment not allowed';
                     $phpcsFile->addError($error, $stackPtr, 'Empty');
+
                     return;
                 }
             }
@@ -126,6 +127,7 @@ class Squiz_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
         if ($content !== '/*' && $content !== '/**') {
             $error = 'Block comment text must start on a new line';
             $phpcsFile->addError($error, $stackPtr, 'NoNewLine');
+
             return;
         }
 
@@ -238,6 +240,4 @@ class Squiz_Sniffs_Commenting_BlockCommentSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-
-
-?>
+;

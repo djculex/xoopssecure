@@ -121,7 +121,7 @@ define("_AM_XOOPSSECURE_SECISSUE01_TITLE", "PHP: preg_replace Eval");
 define("_AM_XOOPSSECURE_SECISSUE01_DESC", "Detected preg_replace function that evaluates (executes) mathed code. This means if PHP code is passed it will be executed.<br>
     <a href = 'http://sucuri.net/malware/backdoor-phppreg_replaceeval'>Read more here</a>");
     
-define("_AM_XOOPSSECURE_SECISSUE02_TITLE", "Backdoor: PHP:C99:045");  
+define("_AM_XOOPSSECURE_SECISSUE02_TITLE", "Backdoor: PHP:C99:045");
 define("_AM_XOOPSSECURE_SECISSUE02_DESC", "Detected the 'C99? backdoor' that allows attackers to manage (and reinfect) your site remotely. It is often used as part of a compromise to maintain access to the hacked sites.<br> <a href = 'http://sucuri.net/malware/backdoor-phpc99045'>Read more here</a>");
 
 define("_AM_XOOPSSECURE_SECISSUE03_TITLE", "Backdoor: PHP:R57:01");
@@ -163,7 +163,7 @@ define("_AM_XOOPSSECURE_SECISSUE19_DESC", "Assert function name is being hidden 
 define("_AM_XOOPSSECURE_SECISSUE20_TITLE", "Is the current DIR Writable?");
 define("_AM_XOOPSSECURE_SECISSUE20_DESC", "This could be harmless, but used in some malware");
 
-define("_AM_XOOPSSECURE_SECISSUE21_TITLE", "At least two characters in hexadecimal or octal notation");   
+define("_AM_XOOPSSECURE_SECISSUE21_TITLE", "At least two characters in hexadecimal or octal notation");
 define("_AM_XOOPSSECURE_SECISSUE21_DESC", "Found at least two characters in hexadecimal or octal notation. It doesn\'t mean it is malicious, but it could be code hidding behind such notation.");
 
 define("_AM_XOOPSSECURE_SECISSUE22_TITLE", "SourceCop encoded code");
@@ -258,7 +258,6 @@ define ("_AM_XOOPSSECURE_QUICKSCAN_NOFILESINDB", "You need to complete a FULL SC
 define ("_AM_XOOPSSECURE_TITLE_MALWARE_INDEXFILES", "These folders have been found to be missing index files");
 define ("_AM_XOOPSSECURE_SCANDATEBETWEEN", "Scan completed : ");
 
-
 /* Code sniffer defines */
 define ("_AM_XOOPSSECURE_CODESNIFFER_FILEWORD", "FILE: ");
 define ("_AM_XOOPSSECURE_CODESNIFFER_FOUNDWORD", "FOUND ");
@@ -344,7 +343,7 @@ define ("_AM_XOOPSSECURE_CODESNIFFER_SUBVPROPDNM", "Subversion property '%s' = '
 define ("_AM_XOOPSSECURE_CODESNIFFER_ERROPFICNGSUBVPROP", "Error opening file; could not get Subversion properties");
 define ("_AM_XOOPSSECURE_CODESNIFFER_SPACMBUTILTNA", "Spaces must be used to indent lines; tabs are not allowed");
 define ("_AM_XOOPSSECURE_CODESNIFFER_FAILIZENDCODEAN", "Failed invoking ZendCodeAnalyzer, ");
-define ("_AM_XOOPSSECURE_CODESNIFFER_FAILIZENDCODEANEXITCODE", "exitcode was ");//[$exitCode], 
-define ("_AM_XOOPSSECURE_CODESNIFFER_FAILIZENDCODEANEXITCODERETVAL", " retval was ");//[$retval], 
+define ("_AM_XOOPSSECURE_CODESNIFFER_FAILIZENDCODEANEXITCODE", "exitcode was ");//[$exitCode],
+define ("_AM_XOOPSSECURE_CODESNIFFER_FAILIZENDCODEANEXITCODERETVAL", " retval was ");//[$retval],
 define ("_AM_XOOPSSECURE_CODESNIFFER_FAILIZENDCODEANEXITCODEOUTPUT", " output was ");//[$msg]");
 define ("_AM_XOOPSSECURE_CODESNIFFER_ACLOSTAGINPATENDFILE", "A closing tag is not permitted at the end of a PHP file");

@@ -30,7 +30,6 @@
 class Squiz_Sniffs_ControlStructures_InlineIfDeclarationSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -82,6 +81,7 @@ class Squiz_Sniffs_ControlStructures_InlineIfDeclarationSniff implements PHP_Cod
         if ($tokens[$statementEnd]['line'] !== $tokens[$stackPtr]['line']) {
             $error = 'Inline shorthand IF statement must be declared on a single line';
             $phpcsFile->addError($error, $stackPtr, 'NotSingleLine');
+
             return;
         }
 
@@ -91,6 +91,7 @@ class Squiz_Sniffs_ControlStructures_InlineIfDeclarationSniff implements PHP_Cod
         if ($tokens[$contentBefore]['code'] !== T_CLOSE_PARENTHESIS) {
             $error = 'Inline shorthand IF statement requires brackets around comparison';
             $phpcsFile->addError($error, $stackPtr, 'NoBrackets');
+
             return;
         }
 
@@ -136,6 +137,4 @@ class Squiz_Sniffs_ControlStructures_InlineIfDeclarationSniff implements PHP_Cod
 
 
 }//end class
-
-
-?>
+;

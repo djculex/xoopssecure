@@ -20,7 +20,6 @@
  * ****************************************************************************
  */
 
-
 require_once dirname(dirname(dirname(dirname(__FILE__)))) . '/include/cp_header.php';
 include_once dirname(__FILE__) . '/admin_header.php';
 require_once XOOPS_ROOT_PATH . '/class/template.php';
@@ -42,7 +41,7 @@ $sys = new xoopsSecure_mech;
 xoops_cp_header();
 global $xoopsUser, $xoTheme, $xoopsTpl,$xoopsLogger, $scan;
 $xoopsLogger->activated = true;
-//  error_reporting(E_ALL); 
+//  error_reporting(E_ALL);
 
 $adminscript  =  "var xoopssecure_url = '" . XOOPS_URL . "/modules/xoopssecure/admin/'\n";
 $adminscript .=  "var xoopssecure_anonurl = '" . XOOPS_URL . "/modules/xoopssecure/'\n";
@@ -82,7 +81,7 @@ $xoTheme->addStyleSheet('/modules/xoopssecure/assets/css/jquery-impromptu.css');
 
 $indexAdmin = new ModuleAdmin();
 
-$xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/admin/check.tpl');    
+$xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/admin/check.tpl');
     
 // echo $indexAdmin->addNavigation('check.php');
 // echo $indexAdmin->renderIndex();

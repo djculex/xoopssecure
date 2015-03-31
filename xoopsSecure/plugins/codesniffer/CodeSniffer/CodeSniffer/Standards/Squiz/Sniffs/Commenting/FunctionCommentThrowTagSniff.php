@@ -37,7 +37,6 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractScopeSniff', true) === false
 class Squiz_Sniffs_Commenting_FunctionCommentThrowTagSniff extends PHP_CodeSniffer_Standards_AbstractScopeSniff
 {
 
-
     /**
      * Constructs a Squiz_Sniffs_Commenting_FunctionCommentThrowTagSniff.
      */
@@ -96,6 +95,7 @@ class Squiz_Sniffs_Commenting_FunctionCommentThrowTagSniff extends PHP_CodeSniff
         } catch (PHP_CodeSniffer_CommentParser_ParserException $e) {
             $line = ($e->getLineWithinComment() + $commentStart);
             $phpcsFile->addError($e->getMessage(), $line, 'FailedParse');
+
             return;
         }
 
@@ -191,6 +191,7 @@ class Squiz_Sniffs_Commenting_FunctionCommentThrowTagSniff extends PHP_CodeSniff
                           $tagCount,
                          );
                 $phpcsFile->addError($error, $commentEnd, 'WrongNumber', $data);
+
                 return;
             } else {
                 // Exception type in @throws tag must be thrown in the function.
@@ -212,4 +213,4 @@ class Squiz_Sniffs_Commenting_FunctionCommentThrowTagSniff extends PHP_CodeSniff
 
 
 }//end class
-?>
+;

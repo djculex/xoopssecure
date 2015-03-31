@@ -31,7 +31,6 @@
 class Generic_Tests_Commenting_TodoUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -93,5 +92,4 @@ class Generic_Tests_Commenting_TodoUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

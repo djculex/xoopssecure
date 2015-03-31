@@ -21,7 +21,7 @@
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
-	die('XOOPS root path not defined');
+    die('XOOPS root path not defined');
 }
 
 /* strpos that takes an array of values to match against a string
@@ -36,6 +36,7 @@ function xoopssecure_strpos_arr($haystack, $needle) {
             return $pos;
         }
     }
+
     return false;
 }
 
@@ -64,6 +65,7 @@ function xoopssecure_lbc ($s) {
     $s = str_replace("\r\n", "\n", $s);
     $s = str_replace("<br>", "\n", $s);
     $s = str_replace("<br/>", "\n", $s);
+
     return $s;
 }
 
@@ -74,11 +76,13 @@ function xoopssecure_lbc ($s) {
  */
 function xoopssecure_ntobr($s) {
     $s = str_replace("\n", "<br>", $s);
+
     return $s;
 }
 
 function xoopssecure_getArrayKeys ($array) {
     $array = implode(", ",$array);
+
     return $array;
 }
 
@@ -94,7 +98,8 @@ function xoopssecure_dirSep ($filename) {
 function xoopssecure_pathinfo($path) {
     $tab = pathinfo($path);
     $tab["basenameWE"] = substr($tab["basename"],0
-    ,strlen($tab["basename"]) - (strlen($tab["extension"]) + 1) );  
+    ,strlen($tab["basename"]) - (strlen($tab["extension"]) + 1) );
+
     return $tab;
 }
 
@@ -115,7 +120,7 @@ if (in_array($val,$apachemod)) {
 /*
  * @desc get options to the preferences based on server settings. Checks
  *       if server accept mod_rewrite or not.
- * @return array $opt 
+ * @return array $opt
 */
 function xoopssecure_modversion_apachemod () {
 $opt = array();
@@ -127,6 +132,7 @@ if ($check === true) {
 } else {
     $opt['_MI_XOOPSSECURE_AUTOINDEXFILESSELECT_HTMLFILE'] = 1;
 }
+
     return $opt;
 }
 
@@ -140,6 +146,7 @@ function xoopssecure_cleanUrl($string)
     $string = str_replace('\\', '/', $string);
     $string = str_replace('//', '/', $string);
     $string = trim($string);
+
     return $string;
 }
 
@@ -160,6 +167,7 @@ function xoopssecure_removequot ($s)
         $s = str_replace("'", "", $s);
         $s = str_replace('"', "", $s);
     }
+
     return $s;
 }
 
@@ -183,6 +191,7 @@ function xoopssecure_getRelativePath($path, $from = __FILE__ )
         $base = array_fill(0, $pre_fill, '..');
     }
     $path = array_merge( $base, array_diff_assoc($path, $common) );
+
     return implode("/", $path);
 }
 
@@ -191,6 +200,7 @@ function xoopssecure_rootToUrl ($fn)
     $fn = str_replace(XOOPS_ROOT_PATH, XOOPS_URL, $fn);
     $fn = str_replace("\\", '/', $fn);
     $fn = str_replace("//", '/', $fn);
+
     return $fn;
 }
 
@@ -202,7 +212,7 @@ function xoopssecure_relToAbsUrlCheck ($url)
 }
 
 /*
- * Removes children of folder url or 
+ * Removes children of folder url or
  *
  *
  */
@@ -220,7 +230,7 @@ function xoopssecure_rmChildren ($url, $val) {
     $sql  .= " WHERE val = '".$val."'";
     $result = $xoopsDB->queryF($sql);
     $resp = false;
-    while ($r = $xoopsDB->fetchArray($result)) { 
+    while ($r = $xoopsDB->fetchArray($result)) {
         $r['urla'] = str_replace(XOOPS_ROOT_PATH, '', $r['url']);
         $r['urla'] = str_replace(XOOPS_URL, '', $r['urla']);
         $r['urla'] = str_replace("/", '\\/', $r['urla']);
@@ -229,7 +239,7 @@ function xoopssecure_rmChildren ($url, $val) {
     }
     foreach ($arr as $a) {
         $burl = dirname($a['url'])."/";
-        preg_match_all($a['urla'], $url, $matches);       
+        preg_match_all($a['urla'], $url, $matches);
         //echo $burl ." === ". $orgurl."<br>";
         if (!empty($matches[0]) || $burl === $orgurl) {
             $sql = "DELETE FROM ".$xoopsDB->prefix('xoopsecure_ignores').
@@ -259,13 +269,14 @@ function xoopssecure_isfolderonlist ($url, $val) {
     $sql .= " WHERE val = '".$val."'";
     $result = $xoopsDB->queryF($sql);
     $resp = false;
-    while ($r = $xoopsDB->fetchArray($result)) {  
-        $r['urla'] = "~".$r['url']."~";  
+    while ($r = $xoopsDB->fetchArray($result)) {
+        $r['urla'] = "~".$r['url']."~";
         preg_match_all($r['urla'], $url, $matches);
         if (!empty($matches[0])) {
             $resp = true;
         }
     }
+
     return $resp;
 }
 
@@ -277,6 +288,7 @@ function xoopssecure_isfolderonlist ($url, $val) {
 function xoopssecure_flatten(array $array) {
     $return = array();
     array_walk_recursive($array, function($a) use (&$return) { $return[] = $a; });
+
     return $return;
 }
 
@@ -294,7 +306,7 @@ function xoopssecure_flatten(array $array) {
  */
  function xoopssecure_ArrayToString ($array) {
     return (!empty($array)) ? implode("\n", $array) : '';
- } 
+ }
  
  
  /* Returns array of minimum files and folders to be used as default in config
@@ -303,14 +315,14 @@ function xoopssecure_flatten(array $array) {
  
  function xoopssecure_backupFilesMin ()
  {
-	return array (		
-		XOOPS_ROOT_PATH."/uploads/" => XOOPS_ROOT_PATH."/uploads/",
-		XOOPS_ROOT_PATH."/modules/" => XOOPS_ROOT_PATH."/modules/",
-		XOOPS_ROOT_PATH."/themes/" => XOOPS_ROOT_PATH."/themes/",
-		XOOPS_PATH."/" => XOOPS_PATH."/",
-		XOOPS_VAR_PATH."/" => XOOPS_VAR_PATH."/",
-		XOOPS_ROOT_PATH."/mainfile.php" => XOOPS_ROOT_PATH."/mainfile.php"
-	);
+    return array (
+        XOOPS_ROOT_PATH."/uploads/" => XOOPS_ROOT_PATH."/uploads/",
+        XOOPS_ROOT_PATH."/modules/" => XOOPS_ROOT_PATH."/modules/",
+        XOOPS_ROOT_PATH."/themes/" => XOOPS_ROOT_PATH."/themes/",
+        XOOPS_PATH."/" => XOOPS_PATH."/",
+        XOOPS_VAR_PATH."/" => XOOPS_VAR_PATH."/",
+        XOOPS_ROOT_PATH."/mainfile.php" => XOOPS_ROOT_PATH."/mainfile.php"
+    );
  }
  
 /*
@@ -328,9 +340,9 @@ function xoopssecure_GetModuleOption($option, $repmodule='xoopssecure')
         return $tbloptions[$option];
     }
     $retval = false;
-    if (isset($xoopsModuleConfig) 
-        && (is_object($xoopsModule) 
-        && $xoopsModule->getVar('dirname') == $repmodule 
+    if (isset($xoopsModuleConfig)
+        && (is_object($xoopsModule)
+        && $xoopsModule->getVar('dirname') == $repmodule
         && $xoopsModule->getVar('isactive'))
     )
     {
@@ -349,6 +361,7 @@ function xoopssecure_GetModuleOption($option, $repmodule='xoopssecure')
         }
     }
     $tbloptions[$option]=$retval;
+
     return $retval;
 }
 
@@ -382,6 +395,7 @@ function xoopssecure_convertToBytes($n) {
             case "M": return substr($n,0,-1) * 1024 * 1024;
             case "G": return substr($n,0,-1) * 1024 * 1024 * 1024;
     }
+
     return $n;
 }
 
@@ -405,6 +419,7 @@ $dir_array = scandir($dir);
         }
    }
  }
+
 return $count_size;
 }
 
@@ -425,9 +440,9 @@ function xoopssecure_ignoreFileTree ($root, $dir, $type)
             // All dirs
             foreach( $files as $file ) {
                 if( file_exists($root . $_POST['dir'] . $file) && $file != '.' && $file != '..' && is_dir($root . $_POST['dir'] . $file) ) {
-                    echo "<li class=\"directory collapsed\"><a href=\"#\" ref=\"dir\" rel=\"" . 
-                        htmlentities($_POST['dir'] . $file) . "/\">" . 
-                        htmlentities($file) . 
+                    echo "<li class=\"directory collapsed\"><a href=\"#\" ref=\"dir\" rel=\"" .
+                        htmlentities($_POST['dir'] . $file) . "/\">" .
+                        htmlentities($file) .
                             
                         "</a></li>";
                 }
@@ -437,15 +452,15 @@ function xoopssecure_ignoreFileTree ($root, $dir, $type)
             foreach( $files as $file ) {
                 if( file_exists($root . $_POST['dir'] . $file) && $file != '.' && $file != '..' && !is_dir($root . $_POST['dir'] . $file) ) {
                     $ext = preg_replace('/^.*\./', '', $file);
-                    echo "<li class=\"file ext_$ext\"><a href=\"#\" ref=\"file\" rel=\"" . 
-                        htmlentities($_POST['dir'] . $file) . "\">" . 
-                        htmlentities($file) . 
+                    echo "<li class=\"file ext_$ext\"><a href=\"#\" ref=\"file\" rel=\"" .
+                        htmlentities($_POST['dir'] . $file) . "\">" .
+                        htmlentities($file) .
                            
                         "</a></li>";
                 }
             }
             }
-            echo "</ul>";	
+            echo "</ul>";
         }
     }
     if ($type === 'ignorelist') {
@@ -461,21 +476,21 @@ function xoopssecure_ignoreFileTree ($root, $dir, $type)
  */
  
 function xoopssecure_DownloadFile($file) // $file = include path
-{ 
-	if(file_exists($file)) {
-		header('Content-Description: File Transfer');
-		header('Content-Type: application/zip');
-		header('Content-Disposition: attachment; filename='.basename($file));
-		header('Content-Transfer-Encoding: binary');
-		header('Expires: 0');
-		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-		header('Pragma: public');
-		header('Content-Length: ' . filesize($file));
-		//ob_clean();
-		flush();
-		readfile($file);
-		exit;
-	}
+{
+    if(file_exists($file)) {
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/zip');
+        header('Content-Disposition: attachment; filename='.basename($file));
+        header('Content-Transfer-Encoding: binary');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+        //ob_clean();
+        flush();
+        readfile($file);
+        exit;
+    }
 }
 
 /* Delete backupfolder
@@ -484,22 +499,22 @@ function xoopssecure_DownloadFile($file) // $file = include path
  */
  
 function xoopssecure_deleteBackupFolder ($file)
-{ 
-	if (file_exists($file)) {
-		unlink( $file );
-	}
+{
+    if (file_exists($file)) {
+        unlink( $file );
+    }
 }
 
 function xoopssecure_deleteFolder ($dirPath)
 {
-	foreach(
-		new RecursiveIteratorIterator(
-			new RecursiveDirectoryIterator(
-				$dirPath, FilesystemIterator::SKIP_DOTS
-			), RecursiveIteratorIterator::CHILD_FIRST
-		) as $path
-	) {
-		$path->isDir() && !$path->isLink() ? rmdir($path->getPathname()) : unlink($path->getPathname());
-	}
-	rmdir($dirPath);
+    foreach(
+        new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator(
+                $dirPath, FilesystemIterator::SKIP_DOTS
+            ), RecursiveIteratorIterator::CHILD_FIRST
+        ) as $path
+    ) {
+        $path->isDir() && !$path->isLink() ? rmdir($path->getPathname()) : unlink($path->getPathname());
+    }
+    rmdir($dirPath);
 }

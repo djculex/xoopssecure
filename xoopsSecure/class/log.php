@@ -20,7 +20,7 @@
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
-	die('XOOPS root path not defined');	
+    die('XOOPS root path not defined');
 }
 include_once (XOOPS_ROOT_PATH.'/class/template.php');
 include_once XOOPS_ROOT_PATH . '/modules/xoopsSecure/class/scan.php';
@@ -30,14 +30,20 @@ if (!isset($xoopsTpl)) {
 }
     $scan = new xoopsSecure_scan;
 
-class xoopsSecure_log {    
+/**
+ * Class xoopsSecure_log
+ */
+class xoopsSecure_log {
     var $filenameArray;
     var $userdatetype;
     var $singleFilesIgnore;
     var $DirIgnore;
     var $DbHasFiles = false;
     var $dbHasMallIssues;
-        
+
+    /**
+     *
+     */
     public function __construct(){
         global $scan;
         $this->userdatetype = xoopssecure_GetModuleOption('dateformat');
@@ -48,10 +54,13 @@ class xoopsSecure_log {
     }
 
     /*
-     * @desc 
-     * @return 
+     * @desc
+     * @return
      */
-     function getIssues ($filetype) 
+    /**
+     * @param $filetype
+     */
+    function getIssues ($filetype)
      {
         global $xoopsDB, $xoopsTpl, $xoopsTheme, $scan;
             foreach ($this->singleFilesIgnore as $r) {
@@ -70,7 +79,7 @@ class xoopsSecure_log {
                 while ($row = $xoopsDB->fetchArray($result)) {
                     $data[] = $row;
                 }
-                foreach ($data as $r) { 
+                foreach ($data as $r) {
 
                     $arr['id'] = $r['id'];
                     $arr['scantype'] = $r['scantype'];
@@ -97,15 +106,15 @@ class xoopsSecure_log {
                 }
             }
             $xoopsTpl->assign('dbhasfiles', $this->DbHasFiles);
-            $xoopsTpl->assign('dbHasMallIssues', $this->dbHasMallIssues);            
+            $xoopsTpl->assign('dbHasMallIssues', $this->dbHasMallIssues);
      }
      
      /**
      * @Get issues based on filename
-     * @param int $filename of the file to get issues
-     * @param string $type of folder to scan for. Options are 'file' or 'dir'
+     * @param  int    $filename of the file to get issues
+     * @param  string $type     of folder to scan for. Options are 'file' or 'dir'
      * @return array
-     */  
+     */
     public function Issues($filename, $type)
     {
         global $xoopsDB, $xoopsTpl;
@@ -118,12 +127,12 @@ class xoopsSecure_log {
         } else {
             $query = "SELECT * FROM ".$xoopsDB->prefix('xoopsecure_issues')
             ." WHERE filename = '".$filename
-            ."' AND filetype = 'dir' order by filename, linenumber";       
+            ."' AND filetype = 'dir' order by filename, linenumber";
         }
         $result = $xoopsDB->queryF($query);
         $count = $xoopsDB->getRowsNum($result);
         $i = 0;
-        if ($count != 0) {    
+        if ($count != 0) {
             while ($r = $xoopsDB->fetchArray($result)) {
                 $iss[$i]['issueid'] = $r['id'];
                 $iss[$i]['issuetime'] = $r['time'];
@@ -134,14 +143,19 @@ class xoopsSecure_log {
                 $iss[$i]['issuecode'] = html_entity_decode($r['issuecode']);
                 $iss[$i]['linenumber'] = $r['linenumber'];
                 $iss[$i]['issuecount'] = $count;
-                $iss[$i]['tag'] = $r['tag'];              
+                $iss[$i]['tag'] = $r['tag'];
                 $i++;
-            }   
+            }
+
             return $iss;
         }
         
     }
-    
+
+    /**
+     * @param $type
+     * @return bool|int|string
+     */
     public function getdatetime ($type)
     {
         global $xoopsDB;
@@ -153,11 +167,15 @@ class xoopsSecure_log {
             $min = date($this->userdatetype, $r['min']);
             $max = date($this->userdatetype, $r['max']);
         }
+
         return ($min != $max) ? $min." - ".$max : $min;
         
     }
-    
-     public function dbHasFiles ()
+
+    /**
+     * @return bool
+     */
+    public function dbHasFiles ()
     {
         global $xoopsDB;
         $sql = "select min(lastdate) as min from ".$xoopsDB->prefix("xoopsecure_files");
@@ -173,19 +191,22 @@ class xoopsSecure_log {
         }
         
     }
-    
+
+    /**
+     * @param $file
+     */
     public function clear ($file)
     {
         global $xoopsDB;
         $sql = "DELETE FROM ".$xoopsDB->prefix("xoopsecure_issues")." WHERE filename = '".xoopssecure_removequot ($file)."'";
         $result = $xoopsDB->queryF($sql);
     }
-	
-	/**
+    
+    /**
      * @create a dropdown select
-     * @param string $name
-     * @param array $options
-     * @param string $selected (optional)
+     * @param  string $name
+     * @param  array  $options
+     * @param  string $selected (optional)
      * @return string
      */
     function dropdown( $name, array $options, $selected=null ){
@@ -196,18 +217,23 @@ class xoopsSecure_log {
             $dropdown .= '<option value="'.$option.'"'.$select.'>'.date('d-m-Y',$option).'</option>'."<br>";
         }
         $dropdown .= '</select>'."<br>";
+
         return $dropdown;
     }
-	
-	public function getdropdates ()
+
+    /**
+     * @return mixed
+     */
+    public function getdropdates ()
     {
         global $xoopsDB;
         $sql = "Select DISTINCT(inittime) AS Date FROM ".$xoopsDB->prefix("xoopsecure_issues")." ORDER BY Date DESC" ;
         $result = $xoopsDB->queryF($sql);
-		while ($r = $xoopsDB->fetchArray($result)) {
+        while ($r = $xoopsDB->fetchArray($result)) {
             $dates = $r['Date'];
         }
-		return $dates;
+
+        return $dates;
     }
  
 }

@@ -30,7 +30,6 @@
 class Generic_Sniffs_Formatting_SpaceAfterCastSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -59,6 +58,7 @@ class Generic_Sniffs_Formatting_SpaceAfterCastSniff implements PHP_CodeSniffer_S
         if ($tokens[($stackPtr + 1)]['code'] !== T_WHITESPACE) {
             $error = _AM_XOOPSSECURE_CODESNIFFER_ACSMBFBASS;
             $phpcsFile->addError($error, $stackPtr, 'NoSpace');
+
             return;
         }
 
@@ -71,5 +71,4 @@ class Generic_Sniffs_Formatting_SpaceAfterCastSniff implements PHP_CodeSniffer_S
 
 
 }//end class
-
-?>
+;

@@ -29,7 +29,6 @@
 class MySource_Tests_Channels_UnusedSystemUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -68,5 +67,4 @@ class MySource_Tests_Channels_UnusedSystemUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

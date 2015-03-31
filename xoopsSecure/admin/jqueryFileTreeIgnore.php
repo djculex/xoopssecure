@@ -23,5 +23,3 @@ $root = isset($root) ? $root : XOOPS_ROOT_PATH;
 $dir = urldecode($_POST['dir']);
 
 xoopssecure_ignoreFileTree ($root, $dir, $type = 'ignorelist');
-
-?>

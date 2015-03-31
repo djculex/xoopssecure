@@ -72,7 +72,6 @@ abstract class PHP_CodeSniffer_Standards_AbstractPatternSniff implements PHP_Cod
      */
     private $_errorPos = array();
 
-
     /**
      * Constructs a PHP_CodeSniffer_Standards_AbstractPatternSniff.
      *
@@ -166,10 +165,10 @@ abstract class PHP_CodeSniffer_Standards_AbstractPatternSniff implements PHP_Cod
      *
      * @param array $pattern The pattern to acquire the listener for.
      *
-     * @return int The postition in the pattern that this test should register
-     *             as the listener.
+     * @return int                       The postition in the pattern that this test should register
+     *                                   as the listener.
      * @throws PHP_CodeSniffer_Exception If we could not determine a token
-     *                                         to listen for.
+     *                                   to listen for.
      */
     private function _getListenerTokenPos($pattern)
     {
@@ -732,7 +731,6 @@ abstract class PHP_CodeSniffer_Standards_AbstractPatternSniff implements PHP_Cod
      */
     protected abstract function getPatterns();
 
-
     /**
      * Registers any supplementary tokens that this test might wish to process.
      *
@@ -952,5 +950,4 @@ abstract class PHP_CodeSniffer_Standards_AbstractPatternSniff implements PHP_Cod
 
 
 }//end class
-
-?>
+;

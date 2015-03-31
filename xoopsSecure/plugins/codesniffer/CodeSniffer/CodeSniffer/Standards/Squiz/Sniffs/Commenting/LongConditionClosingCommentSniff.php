@@ -61,7 +61,6 @@ class Squiz_Sniffs_Commenting_LongConditionClosingCommentSniff implements PHP_Co
      */
     protected $lineLimit = 20;
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -179,6 +178,7 @@ class Squiz_Sniffs_Commenting_LongConditionClosingCommentSniff implements PHP_Co
                       $found,
                      );
             $phpcsFile->addError($error, $stackPtr, 'Invalid', $data);
+
             return;
         }
 
@@ -186,6 +186,4 @@ class Squiz_Sniffs_Commenting_LongConditionClosingCommentSniff implements PHP_Co
 
 
 }//end class
-
-
-?>
+;

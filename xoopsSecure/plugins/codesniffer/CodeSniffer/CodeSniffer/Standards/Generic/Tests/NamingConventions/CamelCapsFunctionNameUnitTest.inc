@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * Class My_Class
+ */
 abstract class My_Class {
 
+    /**
+     *
+     */
     public function __construct() {}
     public function My_Class() {}
     public function _My_Class() {}
@@ -33,7 +39,13 @@ function get_some_value() {}
 
 /* Test for magic functions */
 
+/**
+ * Class Magic_Test
+ */
 class Magic_Test {
+    /**
+     *
+     */
     function __construct() {}
     function __destruct() {}
     function __call() {}
@@ -71,6 +83,9 @@ function __invoke() {}
 function __myFunction() {}
 function __my_function() {}
 
+/**
+ * Class Closure_Test
+ */
 class Closure_Test {
     function test() {
         $foo = function() { echo 'foo'; };

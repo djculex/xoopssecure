@@ -29,7 +29,6 @@
 class PEAR_Tests_WhiteSpace_ObjectOperatorIndentUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -68,5 +67,4 @@ class PEAR_Tests_WhiteSpace_ObjectOperatorIndentUnitTest extends AbstractSniffUn
 
 
 }//end class
-
-?>
+;

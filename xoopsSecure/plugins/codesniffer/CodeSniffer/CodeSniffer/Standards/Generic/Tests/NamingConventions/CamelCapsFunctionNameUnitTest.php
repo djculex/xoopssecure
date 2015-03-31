@@ -29,7 +29,6 @@
 class Generic_Tests_NamingConventions_CamelCapsFunctionNameUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -93,5 +92,4 @@ class Generic_Tests_NamingConventions_CamelCapsFunctionNameUnitTest extends Abst
 
 
 }//end class
-
-?>
+;

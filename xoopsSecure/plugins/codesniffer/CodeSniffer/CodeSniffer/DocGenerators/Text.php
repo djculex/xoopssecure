@@ -34,7 +34,6 @@ if (class_exists('PHP_CodeSniffer_DocGenerators_Generator', true) === false) {
 class PHP_CodeSniffer_DocGenerators_Text extends PHP_CodeSniffer_DocGenerators_Generator
 {
 
-
     /**
      * Process the documentation for a single sniff.
      *
@@ -263,5 +262,4 @@ class PHP_CodeSniffer_DocGenerators_Text extends PHP_CodeSniffer_DocGenerators_G
 
 
 }//end class
-
-?>
+;

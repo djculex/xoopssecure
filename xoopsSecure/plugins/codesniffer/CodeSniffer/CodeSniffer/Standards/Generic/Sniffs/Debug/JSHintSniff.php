@@ -37,7 +37,6 @@ class Generic_Sniffs_Debug_JSHintSniff implements PHP_CodeSniffer_Sniff
      */
     public $supportedTokenizers = array('JS');
 
-
     /**
      * Returns the token types that this sniff is interested in.
      *
@@ -105,5 +104,4 @@ class Generic_Sniffs_Debug_JSHintSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-
-?>
+;

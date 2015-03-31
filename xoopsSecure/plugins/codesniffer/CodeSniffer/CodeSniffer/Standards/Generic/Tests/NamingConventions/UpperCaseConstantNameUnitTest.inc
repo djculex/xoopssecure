@@ -9,6 +9,10 @@ define('invalidName', true);
 define("VALID_NAME", true);
 define("invalidName", true);
 
+/**
+ * Class TestClass
+ * @package bar\foo\baz
+ */
 class TestClass extends MyClass, YourClass
 {
 
@@ -44,12 +48,22 @@ class TestClass extends MyClass, YourClass
         print 'HELLO';
     }
 
+    /**
+     * @param PHP_CodeSniffer $blah
+     */
     function myFunc(PHP_CodeSniffer &$blah) {}
+
+    /**
+     * @param PHP_CodeSniffer $blah
+     */
     function myFunc(PHP_CodeSniffer $blah) {}
 
 }
 
-interface MyInterface
+/**
+ * Interface MyInterface
+ * @package bar\foo\baz
+ */interface MyInterface
 {
 }
 
@@ -93,15 +107,28 @@ if (PHPUnit_MAIN_METHOD == 'PHP_Shell_AllTests::main') {
     PHP_Shell_AllTests::main();
 }
 
-class ConstTest {
+/**
+ * Class ConstTest
+ * @package bar\foo\baz
+ */class ConstTest {
     const TESTER = '1';
+
+    /**
+     *
+     */
     public function __construct() {
         echo constant('self::TESTER');
         echo constant('self::tester');
     }
 }
 
-class A {
+/**
+ * Class A
+ * @package bar\foo\baz
+ */class A {
+    /**
+     * @param $x
+     */
     public static function constant($x) {}
 }
 

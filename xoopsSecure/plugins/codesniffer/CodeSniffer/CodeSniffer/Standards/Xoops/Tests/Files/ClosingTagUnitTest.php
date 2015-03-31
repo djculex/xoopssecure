@@ -31,7 +31,6 @@
 class Xoops_Tests_Files_ClosingTagUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -65,5 +64,4 @@ class Xoops_Tests_Files_ClosingTagUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

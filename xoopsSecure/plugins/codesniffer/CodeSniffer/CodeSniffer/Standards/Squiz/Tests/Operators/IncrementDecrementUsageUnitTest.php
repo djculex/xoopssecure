@@ -31,7 +31,6 @@
 class Squiz_Tests_Operators_IncrementDecrementUsageUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -73,5 +72,4 @@ class Squiz_Tests_Operators_IncrementDecrementUsageUnitTest extends AbstractSnif
 
 
 }//end class
-
-?>
+;

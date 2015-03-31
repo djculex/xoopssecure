@@ -32,16 +32,15 @@
 class PHP_CodeSniffer_Reports_Csv implements PHP_CodeSniffer_Report
 {
 
-
     /**
      * Generates a csv report.
-     * 
+     *
      * @param array   $report      Prepared report.
      * @param boolean $showSources Show sources?
      * @param int     $width       Maximum allowed lne width.
      * @param boolean $toScreen    Is the report being printed to screen?
-     * 
-     * @return string 
+     *
+     * @return string
      */
     public function generate(
         $report,
@@ -74,5 +73,4 @@ class PHP_CodeSniffer_Reports_Csv implements PHP_CodeSniffer_Report
 
 
 }//end class
-
-?>
+;

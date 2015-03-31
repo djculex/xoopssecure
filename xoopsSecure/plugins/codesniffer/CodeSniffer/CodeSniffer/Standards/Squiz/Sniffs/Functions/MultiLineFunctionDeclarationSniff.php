@@ -33,7 +33,6 @@ if (class_exists('PEAR_Sniffs_Functions_FunctionDeclarationSniff', true) === fal
 class Squiz_Sniffs_Functions_MultiLineFunctionDeclarationSniff extends PEAR_Sniffs_Functions_FunctionDeclarationSniff
 {
 
-
     /**
      * Processes mutli-line declarations.
      *
@@ -100,5 +99,4 @@ class Squiz_Sniffs_Functions_MultiLineFunctionDeclarationSniff extends PEAR_Snif
 
 
 }//end class
-
-?>
+;

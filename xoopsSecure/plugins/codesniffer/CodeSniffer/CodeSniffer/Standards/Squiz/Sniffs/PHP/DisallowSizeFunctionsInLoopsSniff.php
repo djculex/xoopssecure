@@ -54,7 +54,6 @@ class Squiz_Sniffs_PHP_DisallowSizeFunctionsInLoopsSniff implements PHP_CodeSnif
                                               ),
                                     );
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -117,5 +116,4 @@ class Squiz_Sniffs_PHP_DisallowSizeFunctionsInLoopsSniff implements PHP_CodeSnif
 
 
 }//end class
-
-?>
+;

@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Class PHP_CodeSniffer_File
+ */
 class PHP_CodeSniffer_File
 {
 
@@ -7,12 +11,12 @@ class PHP_CodeSniffer_File
      *
      * long desc here
      *
-     * @param bool   $stackPtr   The position in @ @unknown the stack of the token
+     * @param bool $stackPtr The position in @ @unknown the stack of the token
      *                             that opened the scope
-     * @param int    $detph    How many scope levels down we are.
-     * @param string    $index    The index
-     * @return
-     * @throws
+     * @param int $depth
+     * @param string $index The index
+     * @return bool
+     * @internal param int $detph How many scope levels down we are.
      */
     private function _functionCall($stackPtr, $depth=1, $index)
     {
@@ -108,7 +112,7 @@ class PHP_CodeSniffer_File
 
     /**
      * no return tag.
-     *
+     * @param $one
      */
     public function noReturn($one)
     {
@@ -119,11 +123,11 @@ class PHP_CodeSniffer_File
     /**
      * Param not immediate.
      *
-     * @return
-     * @param   int   $threeSpaces
-     * @param integer $superfluous
-     * @param miss
-     * @param
+     *
+     * @param   int $threeSpaces
+     * @internal param int $superfluous
+     * @internal param $miss
+     * @internal param $
      */
     public function missingDescription($threeSpaces)
     {
@@ -134,11 +138,10 @@ class PHP_CodeSniffer_File
     /**
      * Comments not capitalised.
      *
-     * @param integer  $one    comment
-     * @param array    $two    -comment
-     * @param MyClas   $three  0comment
+     * @param integer $one comment
+     * @param array $two -comment
+     * @param MyClas|MyClass $three 0comment
      *
-     * @return void
      */
     public function oneSpaceAfterLongestVar($one, $two, MyClass $three)
     {
@@ -192,11 +195,11 @@ public function noReturnOutsideClass()
  *
  * @param integer $one comment
  *
+ * @param $two
+ * @param $three
  * @see     wrong indent
  * @see
- * @return void
  * @extra  Invalid tag
- * @throws UnknownException unknown
  */
 public function missingTwoParamComment($one, $two, $three)
 {
@@ -207,8 +210,6 @@ public function missingTwoParamComment($one, $two, $three)
 /**
  * Missing return type.
  *
- * @throws ExceptionWithNoComment
- * @return
  */
 public function missingReturnType()
 {
@@ -219,15 +220,14 @@ public function missingReturnType()
 /**
  * Case-sensitive var type check with multiple return type.
  *
- * @param String  $a1 Comment here.
- * @param BoOL    $a2 Comment here.
- * @param INT     $a3 Comment here.
- * @param aRRay   $a4 Comment here.
- * @param real    $a5 Comment here.
- * @param double  $a6 Comment here.
- * @param Myclass $a7 Comment here.
- *
- * @return int|object|double|float|array(int=>MyClass)
+ * @param String $a1 Comment here.
+ * @param BoOL $a2 Comment here.
+ * @param INT $a3 Comment here.
+ * @param aRRay $a4 Comment here.
+ * @param real $a5 Comment here.
+ * @param double $a6 Comment here.
+ * @param myclas|MyClass $a7 Comment here.
+ * @return array|float|int|object
  */
 public function caseSensitive($a1, $a2, $a3, arRay $a4, $a5, $a6, myclas $a7)
 {
@@ -238,12 +238,11 @@ public function caseSensitive($a1, $a2, $a3, arRay $a4, $a5, $a6, myclas $a7)
 /**
  * More type hint check for custom type and array.
  *
- * @param array   $a1 Comment here.
- * @param array   $a2 Comment here.
+ * @param array|MyClass $a1 Comment here.
+ * @param array $a2 Comment here.
  * @param MyClass $a3 Comment here.
  * @param MyClass $a4 Comment here.
- *
- * @return array(int => MyClass)
+ * @return array
  */
 public function typeHint(MyClass $a1, $a2, myclass $a3, $a4)
 {
@@ -272,16 +271,16 @@ public function mixedType($a1, $a2, $a3, $a4)
 /**
  * Array type.
  *
- * @param array(MyClass)         $a1 OK.
- * @param array()                $a2 Invalid type.
- * @param array(                 $a3 Typo.
- * @param array(int)             $a4 Use 'array(integer)' instead.
- * @param array(int => integer)  $a5 Use 'array(integer => integer)' instead.
+ * @param array(MyClass) $a1 OK.
+ * @param array() $a2 Invalid type.
+ * @param array $a3
+ * @param array(int) $a4 Use 'array(integer)' instead.
+ * @param array(int => integer) $a5 Use 'array(integer => integer)' instead.
  * @param array(integer => bool) $a6 Use 'array(integer => boolean)' instead.
- * @param aRRay                  $a7 Use 'array' instead.
- * @param string                 $a8 String with unknown type hint.
- *
+ * @param aRRay $a7 Use 'array' instead.
+ * @param string|unknownTypeHint $a8 String with unknown type hint.
  * @return int
+ * @internal param $array (                 $a3 Typo.
  */
 public function mixedArrayType($a1, $a2, array $a3, $a4, $a5, $a6, $a7, unknownTypeHint $a8)
 {
@@ -325,6 +324,9 @@ public function missingShortDescriptionInFunctionComment()
 }//end missingShortDescriptionInFunctionComment()
 
 
+/**
+ * Class Another_Class
+ */
 class Another_Class
 {
 
@@ -341,7 +343,6 @@ class Another_Class
     /**
      * Constructor should not include a return tag.
      *
-     * @return void
      */
     function __construct()
     {
@@ -360,7 +361,11 @@ class Another_Class
  *
  * @return void
  */
-public static function paramAlign($varrr1, $vr2, $var3)
+public static /**
+ * @param $varrr1
+ * @param $vr2
+ * @param $var3
+ */function paramAlign($varrr1, $vr2, $var3)
 {
 
 }//end paramAlign()
@@ -374,7 +379,10 @@ public static function paramAlign($varrr1, $vr2, $var3)
  *
  * @return void
  */
-public static function paint($id, array $design)
+public static /**
+ * @param $id
+ * @param array $design
+ */function paint($id, array $design)
 {
 
 }//end paint()
@@ -438,9 +446,13 @@ public function myFunction()
 
 echo $blah;
 
-function myFunction($arg1) {}
+/**
+ * @param $arg1
+ */function myFunction($arg1) {}
 
-class MyClass() {
+/**
+ * Class MyClass
+ */class MyClass() {
     /**
      * An abstract function.
      *
@@ -493,8 +505,7 @@ function test(\other\ns\item $test)
 /**
  * Comment.
  *
- * @param item $test An argument.
- *
+ * @param item|\other\ns\item $test An argument.
  * @return mixed
  */
 function test(\other\ns\item $test)
@@ -519,8 +530,7 @@ function test(\first\ns\item $test = \second\ns::CONSTANT)
 /**
  * Comment.
  *
- * @param \first\item $test An argument.
- *
+ * @param \first\item|\first\ns\item $test An argument.
  * @return mixed
  */
 function test(\first\ns\item $test = \second\ns::CONSTANT)

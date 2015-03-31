@@ -69,7 +69,6 @@ class Squiz_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
      */
     protected $currentFile = null;
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -117,9 +116,11 @@ class Squiz_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
             return;
         } else if ($tokens[$commentStart]['code'] === T_COMMENT) {
             $phpcsFile->addError('You must use "/**" style comments for a file comment', $errorToken, 'WrongStyle');
+
             return;
         } else if ($commentStart === false || $tokens[$commentStart]['code'] !== T_DOC_COMMENT) {
             $phpcsFile->addError('Missing file doc comment', $errorToken, 'Missing');
+
             return;
         }
 
@@ -143,6 +144,7 @@ class Squiz_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
                     // No blank line between the class token and the doc block.
                     // The doc block is most likely a class comment.
                     $phpcsFile->addError('Missing file doc comment', $errorToken, 'Missing');
+
                     return;
                 }
             }
@@ -180,6 +182,7 @@ class Squiz_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
         } catch (PHP_CodeSniffer_CommentParser_ParserException $e) {
             $line = ($e->getLineWithinComment() + $commentStart);
             $phpcsFile->addError($e->getMessage(), $line, 'Exception');
+
             return;
         }
 
@@ -187,6 +190,7 @@ class Squiz_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
         if (is_null($comment) === true) {
             $error = 'File doc comment is empty';
             $phpcsFile->addError($error, $commentStart, 'Empty');
+
             return;
         }
 
@@ -609,6 +613,4 @@ class Squiz_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-
-
-?>
+;

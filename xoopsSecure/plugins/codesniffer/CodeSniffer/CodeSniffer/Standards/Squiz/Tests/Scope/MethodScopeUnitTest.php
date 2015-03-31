@@ -31,7 +31,6 @@
 class Squiz_Tests_Scope_MethodScopeUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -65,5 +64,4 @@ class Squiz_Tests_Scope_MethodScopeUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

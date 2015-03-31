@@ -44,7 +44,6 @@ class Zend_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniff
                         T_COMMENT,
                        );
 
-
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -161,6 +160,7 @@ class Zend_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniff
                 $error = 'Public member variable "%s" must not contain a leading underscore';
                 $data  = array($varName);
                 $phpcsFile->addError($error, $stackPtr, 'PublicHasUnderscore', $data);
+
                 return;
             }
         } else {
@@ -172,6 +172,7 @@ class Zend_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniff
                           $varName,
                          );
                 $phpcsFile->addError($error, $stackPtr, 'PrivateNoUnderscore', $data);
+
                 return;
             }
         }
@@ -248,5 +249,4 @@ class Zend_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniff
 
 
 }//end class
-
-?>
+;

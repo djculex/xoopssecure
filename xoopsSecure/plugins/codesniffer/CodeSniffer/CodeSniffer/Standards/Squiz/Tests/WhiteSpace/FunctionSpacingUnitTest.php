@@ -31,7 +31,6 @@
 class Squiz_Tests_WhiteSpace_FunctionSpacingUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -81,5 +80,4 @@ class Squiz_Tests_WhiteSpace_FunctionSpacingUnitTest extends AbstractSniffUnitTe
 
 
 }//end class
-
-?>
+;

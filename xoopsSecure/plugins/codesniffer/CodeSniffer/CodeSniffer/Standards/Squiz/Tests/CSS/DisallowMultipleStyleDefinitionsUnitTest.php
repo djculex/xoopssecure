@@ -64,5 +64,4 @@ class Squiz_Tests_CSS_DisallowMultipleStyleDefinitionsUnitTest extends AbstractS
 
 
 }//end class
-
-?>
+;

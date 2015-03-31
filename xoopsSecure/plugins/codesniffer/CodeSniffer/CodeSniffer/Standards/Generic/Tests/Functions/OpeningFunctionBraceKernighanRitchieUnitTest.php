@@ -31,7 +31,6 @@
 class Generic_Tests_Functions_OpeningFunctionBraceKernighanRitchieUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -77,5 +76,4 @@ class Generic_Tests_Functions_OpeningFunctionBraceKernighanRitchieUnitTest exten
 
 
 }//end class
-
-?>
+;

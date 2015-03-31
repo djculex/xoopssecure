@@ -51,7 +51,6 @@ class Squiz_Sniffs_PHP_ForbiddenFunctionsSniff extends Generic_Sniffs_PHP_Forbid
                                      'create_function' => null,
                                     );
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -61,11 +60,11 @@ class Squiz_Sniffs_PHP_ForbiddenFunctionsSniff extends Generic_Sniffs_PHP_Forbid
     {
         $tokens = parent::register();
         $tokens[] = T_PRINT;
+
         return $tokens;
 
     }//end register()
 
 
 }//end class
-
-?>
+;

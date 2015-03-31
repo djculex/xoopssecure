@@ -31,7 +31,6 @@
 class Squiz_Tests_ControlStructures_InlineIfDeclarationUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -74,5 +73,4 @@ class Squiz_Tests_ControlStructures_InlineIfDeclarationUnitTest extends Abstract
 
 
 }//end class
-
-?>
+;

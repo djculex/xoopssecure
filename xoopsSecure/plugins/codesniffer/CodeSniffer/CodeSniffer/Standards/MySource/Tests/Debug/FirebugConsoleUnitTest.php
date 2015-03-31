@@ -29,7 +29,6 @@
 class MySource_Tests_Debug_FirebugConsoleUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -74,5 +73,4 @@ class MySource_Tests_Debug_FirebugConsoleUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

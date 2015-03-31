@@ -36,7 +36,6 @@ if (class_exists('PHP_CodeSniffer_DocGenerators_Generator', true) === false) {
 class PHP_CodeSniffer_DocGenerators_HTML extends PHP_CodeSniffer_DocGenerators_Generator
 {
 
-
     /**
      * Generates the documentation for a standard.
      *
@@ -288,5 +287,4 @@ class PHP_CodeSniffer_DocGenerators_HTML extends PHP_CodeSniffer_DocGenerators_G
 
 
 }//end class
-
-?>
+;

@@ -31,7 +31,6 @@
 class PEAR_Tests_Functions_ValidDefaultValueUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -70,5 +69,4 @@ class PEAR_Tests_Functions_ValidDefaultValueUnitTest extends AbstractSniffUnitTe
 
 
 }//end class
-
-?>
+;

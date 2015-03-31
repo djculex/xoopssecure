@@ -20,7 +20,7 @@
  * ****************************************************************************
  */
 
-// Defaults 
+// Defaults
 define("_MI_XOOPSSECURE_NAME","XoopSecure");
 define("_MI_XOOPSSECURE_DESC","Scan you files for malware and other security related issues");
 

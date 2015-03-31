@@ -30,7 +30,6 @@
 class Zend_Sniffs_Debug_CodeAnalyzerSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Returns the token types that this sniff is interested in.
      *
@@ -125,4 +124,4 @@ class Zend_Sniffs_Debug_CodeAnalyzerSniff implements PHP_CodeSniffer_Sniff
     }//end process()
 
 }//end class
-?>
+;

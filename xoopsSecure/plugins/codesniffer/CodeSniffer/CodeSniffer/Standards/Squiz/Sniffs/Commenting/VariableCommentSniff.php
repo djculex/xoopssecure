@@ -53,7 +53,6 @@ class Squiz_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer_Stand
      */
     protected $commentParser = null;
 
-
     /**
      * Called to process class member vars.
      *
@@ -76,15 +75,18 @@ class Squiz_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer_Stand
         $commentEnd = $phpcsFile->findPrevious($commentToken, ($stackPtr - 3));
         if ($commentEnd !== false && $tokens[$commentEnd]['code'] === T_COMMENT) {
             $phpcsFile->addError('You must use "/**" style comments for a variable comment', $stackPtr, 'WrongStyle');
+
             return;
         } else if ($commentEnd === false || $tokens[$commentEnd]['code'] !== T_DOC_COMMENT) {
             $phpcsFile->addError('Missing variable doc comment', $stackPtr, 'Missing');
+
             return;
         } else {
             // Make sure the comment we have found belongs to us.
             $commentFor = $phpcsFile->findNext(array(T_VARIABLE, T_CLASS, T_INTERFACE), ($commentEnd + 1));
             if ($commentFor !== $stackPtr) {
                 $phpcsFile->addError('Missing variable doc comment', $stackPtr, 'Missing');
+
                 return;
             }
         }
@@ -99,6 +101,7 @@ class Squiz_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer_Stand
         } catch (PHP_CodeSniffer_CommentParser_ParserException $e) {
             $line = ($e->getLineWithinComment() + $commentStart);
             $phpcsFile->addError($e->getMessage(), $line, 'ErrorParsing');
+
             return;
         }
 
@@ -106,6 +109,7 @@ class Squiz_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer_Stand
         if (is_null($comment) === true) {
             $error = 'Variable doc comment is empty';
             $phpcsFile->addError($error, $commentStart, 'Empty');
+
             return;
         }
 
@@ -236,6 +240,7 @@ class Squiz_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer_Stand
             if (count($index) > 1) {
                 $error = 'Only 1 @var tag is allowed in variable comment';
                 $this->currentFile->addError($error, $errorPos, 'DuplicateVar');
+
                 return;
             }
 
@@ -248,6 +253,7 @@ class Squiz_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer_Stand
             if (empty($content) === true) {
                 $error = 'Var type missing for @var tag in variable comment';
                 $this->currentFile->addError($error, $errorPos, 'MissingVarType');
+
                 return;
             } else {
                 $suggestedType = PHP_CodeSniffer::suggestType($content);
@@ -344,4 +350,4 @@ class Squiz_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer_Stand
 
 
 }//end class
-?>
+;

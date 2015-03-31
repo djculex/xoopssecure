@@ -29,7 +29,6 @@
 class MySource_Tests_Strings_JoinStringsUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -75,5 +74,4 @@ class MySource_Tests_Strings_JoinStringsUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

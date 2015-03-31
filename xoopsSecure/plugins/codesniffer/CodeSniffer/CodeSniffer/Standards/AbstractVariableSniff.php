@@ -60,7 +60,6 @@ abstract class PHP_CodeSniffer_Standards_AbstractVariableSniff extends PHP_CodeS
      */
     protected $currentFile = null;
 
-
     /**
      * Constructs an AbstractVariableTest.
      */
@@ -128,6 +127,7 @@ abstract class PHP_CodeSniffer_Standards_AbstractVariableSniff extends PHP_CodeS
                 if (isset($tokens[$stackPtr]['scope_closer']) === false) {
                     $error = 'Possible parse error: non-abstract method defined as abstract';
                     $phpcsFile->addWarning($error, $stackPtr);
+
                     return;
                 }
 
@@ -204,7 +204,6 @@ abstract class PHP_CodeSniffer_Standards_AbstractVariableSniff extends PHP_CodeS
         $stackPtr
     );
 
-
     /**
      * Called to process normal member vars.
      *
@@ -218,7 +217,6 @@ abstract class PHP_CodeSniffer_Standards_AbstractVariableSniff extends PHP_CodeS
         PHP_CodeSniffer_File $phpcsFile,
         $stackPtr
     );
-
 
     /**
      * Called to process variables found in duoble quoted strings or heredocs.
@@ -239,7 +237,5 @@ abstract class PHP_CodeSniffer_Standards_AbstractVariableSniff extends PHP_CodeS
         $stackPtr
     );
 
-
 }//end class
-
-?>
+;

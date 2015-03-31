@@ -39,7 +39,6 @@ class PHP_CodeSniffer_Reports_Svnblame extends PHP_CodeSniffer_Reports_VersionCo
      */
     protected $reportName = 'SVN';
 
-
     /**
      * Extract the author from a blame line.
      *
@@ -96,5 +95,4 @@ class PHP_CodeSniffer_Reports_Svnblame extends PHP_CodeSniffer_Reports_VersionCo
 
 
 }//end class
-
-?>
+;

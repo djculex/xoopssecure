@@ -62,5 +62,4 @@ class MySource_Tests_CSS_BrowserSpecificStylesUnitTest extends AbstractSniffUnit
 
 
 }//end class
-
-?>
+;

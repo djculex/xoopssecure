@@ -162,7 +162,6 @@ class PHP_CodeSniffer
                                    'string',
                                   );
 
-
     /**
      * Constructs a PHP_CodeSniffer object.
      *
@@ -2023,11 +2022,11 @@ class PHP_CodeSniffer
 
         include $configFile;
         $GLOBALS['PHP_CODESNIFFER_CONFIG_DATA'] = $phpCodeSnifferConfig;
+
         return $GLOBALS['PHP_CODESNIFFER_CONFIG_DATA'];
 
     }//end getAllConfigData()
 
 
 }//end class
-
-?>
+;

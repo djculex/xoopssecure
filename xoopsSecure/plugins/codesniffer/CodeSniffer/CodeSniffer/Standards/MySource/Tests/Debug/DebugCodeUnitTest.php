@@ -29,7 +29,6 @@
 class MySource_Tests_Debug_DebugCodeUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -64,5 +63,4 @@ class MySource_Tests_Debug_DebugCodeUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

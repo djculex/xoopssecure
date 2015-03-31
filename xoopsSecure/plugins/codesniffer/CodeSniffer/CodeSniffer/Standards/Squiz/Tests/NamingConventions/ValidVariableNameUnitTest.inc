@@ -4,6 +4,9 @@ $var_name = 'hello';
 $varname  = 'hello';
 $_varName = 'hello';
 
+/**
+ * Class MyClass
+ */
 class MyClass
 {
     $varName  = 'hello';
@@ -83,6 +86,9 @@ echo "{$_SERVER['HOSTNAME']} $var_name";
 // Need to be the last thing in this test file.
 $obj->$classVar = $prefix.'-'.$type;
 
+/**
+ * Class foo
+ */
 class foo
 {
     const bar = <<<BAZ
@@ -100,6 +106,9 @@ $123
 "$456"
 BAR;
 
+/**
+ * Class a
+ */
 class a
 {
     protected

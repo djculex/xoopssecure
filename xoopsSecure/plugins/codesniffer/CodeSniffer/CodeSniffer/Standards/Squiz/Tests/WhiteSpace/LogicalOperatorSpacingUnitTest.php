@@ -29,7 +29,6 @@
 class Squiz_Tests_WhiteSpace_LogicalOperatorSpacingUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -69,5 +68,4 @@ class Squiz_Tests_WhiteSpace_LogicalOperatorSpacingUnitTest extends AbstractSnif
 
 
 }//end class
-
-?>
+;

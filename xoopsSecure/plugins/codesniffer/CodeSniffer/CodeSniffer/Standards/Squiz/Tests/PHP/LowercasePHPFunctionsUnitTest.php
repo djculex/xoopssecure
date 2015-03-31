@@ -31,7 +31,6 @@
 class Squiz_Tests_PHP_LowercasePHPFunctionsUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -84,5 +83,4 @@ class Squiz_Tests_PHP_LowercasePHPFunctionsUnitTest extends AbstractSniffUnitTes
 
 
 }//end class
-
-?>
+;

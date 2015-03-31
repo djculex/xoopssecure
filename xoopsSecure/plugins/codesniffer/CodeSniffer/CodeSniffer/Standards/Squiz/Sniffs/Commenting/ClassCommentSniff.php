@@ -43,7 +43,6 @@ if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', true) === f
 class Squiz_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -81,9 +80,11 @@ class Squiz_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
 
         if ($commentEnd !== false && $tokens[$commentEnd]['code'] === T_COMMENT) {
             $phpcsFile->addError('You must use "/**" style comments for a class comment', $stackPtr, 'WrongStyle');
+
             return;
         } else if ($commentEnd === false || $tokens[$commentEnd]['code'] !== T_DOC_COMMENT) {
             $phpcsFile->addError('Missing class doc comment', $stackPtr, 'Missing');
+
             return;
         }
 
@@ -106,6 +107,7 @@ class Squiz_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
                             // Blank line between the class and the doc block.
                             // The doc block is most likely a file comment.
                             $phpcsFile->addError('Missing class doc comment', ($stackPtr + 1), 'Missing');
+
                             return;
                         }
                     }//end if
@@ -139,6 +141,7 @@ class Squiz_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
         } catch (PHP_CodeSniffer_CommentParser_ParserException $e) {
             $line = ($e->getLineWithinComment() + $commentStart);
             $phpcsFile->addError($e->getMessage(), $line, 'FailedParse');
+
             return;
         }
 
@@ -146,6 +149,7 @@ class Squiz_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
         if (is_null($comment) === true) {
             $error = 'Class doc comment is empty';
             $phpcsFile->addError($error, $commentStart, 'Empty');
+
             return;
         }
 
@@ -162,6 +166,7 @@ class Squiz_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
         if (trim($short) === '') {
             $error = 'Missing short description in class doc comment';
             $phpcsFile->addError($error, $commentStart, 'MissingShort');
+
             return;
         }
 
@@ -252,4 +257,4 @@ class Squiz_Sniffs_Commenting_ClassCommentSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-?>
+;

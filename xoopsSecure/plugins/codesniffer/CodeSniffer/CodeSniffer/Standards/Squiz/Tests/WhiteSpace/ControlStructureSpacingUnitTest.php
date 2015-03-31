@@ -31,7 +31,6 @@
 class Squiz_Tests_WhiteSpace_ControlStructureSpacingUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -102,5 +101,4 @@ class Squiz_Tests_WhiteSpace_ControlStructureSpacingUnitTest extends AbstractSni
 
 
 }//end class
-
-?>
+;

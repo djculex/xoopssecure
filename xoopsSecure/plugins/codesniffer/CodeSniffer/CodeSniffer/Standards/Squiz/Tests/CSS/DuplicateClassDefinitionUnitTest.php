@@ -29,7 +29,6 @@
 class Squiz_Tests_CSS_DuplicateClassDefinitionUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -64,5 +63,4 @@ class Squiz_Tests_CSS_DuplicateClassDefinitionUnitTest extends AbstractSniffUnit
 
 
 }//end class
-
-?>
+;

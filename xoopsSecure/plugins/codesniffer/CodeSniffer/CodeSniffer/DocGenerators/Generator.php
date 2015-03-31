@@ -48,7 +48,6 @@ class PHP_CodeSniffer_DocGenerators_Generator
      */
     private $_sniffs = array();
 
-
     /**
      * Constructs a PHP_CodeSniffer_DocGenerators_Generator object.
      *
@@ -193,5 +192,4 @@ class PHP_CodeSniffer_DocGenerators_Generator
 
 
 }//end class
-
-?>
+;

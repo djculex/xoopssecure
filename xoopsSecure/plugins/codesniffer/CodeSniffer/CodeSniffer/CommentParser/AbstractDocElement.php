@@ -106,7 +106,6 @@ abstract class PHP_CodeSniffer_CommentParser_AbstractDocElement implements PHP_C
      */
     protected $tag = '';
 
-
     /**
      * Constructs a Doc Element.
      *
@@ -329,7 +328,6 @@ abstract class PHP_CodeSniffer_CommentParser_AbstractDocElement implements PHP_C
      */
     abstract protected function getSubElements();
 
-
     /**
      * Called to process each sub element as sepcified in the return value
      * of getSubElements().
@@ -347,7 +345,5 @@ abstract class PHP_CodeSniffer_CommentParser_AbstractDocElement implements PHP_C
         $whitespaceBefore
     );
 
-
 }//end class
-
-?>
+;

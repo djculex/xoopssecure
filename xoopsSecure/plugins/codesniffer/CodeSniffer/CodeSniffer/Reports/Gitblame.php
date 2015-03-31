@@ -37,7 +37,6 @@ class PHP_CodeSniffer_Reports_Gitblame extends PHP_CodeSniffer_Reports_VersionCo
      */
     protected $reportName = 'GIT';
 
-
     /**
      * Extract the author from a blame line.
      *
@@ -129,5 +128,4 @@ class PHP_CodeSniffer_Reports_Gitblame extends PHP_CodeSniffer_Reports_VersionCo
 
 
 }//end class
-
-?>
+;

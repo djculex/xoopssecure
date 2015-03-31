@@ -40,7 +40,6 @@ class Squiz_Sniffs_ControlStructures_ForLoopDeclarationSniff implements PHP_Code
                                    'JS',
                                   );
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -70,6 +69,7 @@ class Squiz_Sniffs_ControlStructures_ForLoopDeclarationSniff implements PHP_Code
         if ($openingBracket === false) {
             $error = 'Possible parse error: no opening parenthesis for FOR keyword';
             $phpcsFile->addWarning($error, $stackPtr, 'NoOpenBracket');
+
             return;
         }
 
@@ -132,5 +132,4 @@ class Squiz_Sniffs_ControlStructures_ForLoopDeclarationSniff implements PHP_Code
 
 
 }//end class
-
-?>
+;

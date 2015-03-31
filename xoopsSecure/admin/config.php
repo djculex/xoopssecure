@@ -20,7 +20,6 @@
  * ****************************************************************************
  */
 
-
 include_once dirname(__FILE__) . '/admin_header.php';
 require_once XOOPS_ROOT_PATH . '/class/template.php';
 require_once XOOPS_ROOT_PATH . '/modules/xoopssecure/class/log.php';
@@ -39,7 +38,7 @@ $log = new xoopsSecure_log;
 xoops_cp_header();
 global $xoopsUser, $xoTheme, $xoopsTpl,$xoopsLogger, $scan, $xoopsLogger;
 $xoopsLogger->activated = true;
-  //error_reporting(E_ALL); 
+  //error_reporting(E_ALL);
 
 $adminscript  =  "var xoopssecure_url = '" . XOOPS_URL . "/modules/xoopssecure/admin/'\n";
 $adminscript .=  "var xoopssecure_anonurl = '" . XOOPS_URL . "/modules/xoopssecure/'\n";
@@ -66,7 +65,7 @@ $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jqueryFileTree.j
 $xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery.confirm.js');
 //$xoTheme->addScript(XOOPS_URL . '/modules/xoopssecure/assets/js/jquery.easing.1.3.js');
 $xoTheme->addStylesheet('/modules/xoopssecure/assets/css/base/jquery.ui.all.css');
-$xoTheme->addStyleSheet('modules/xoopssecure/assets/css/xoopsSecure.css');  
+$xoTheme->addStyleSheet('modules/xoopssecure/assets/css/xoopsSecure.css');
 
 $xoopsTpl->assign('singleFilesIgnore', $scan->getIgnoreArray ('ignore', 'isfile'));
 $xoopsTpl->assign('chmodDirList', $scan->getIgnoreArray ('chmod', 'isdir'));
@@ -75,8 +74,6 @@ $xoopsTpl->assign('DirIgnore', $scan->getIgnoreArray ('ignore', 'isdir'));
 /*echo"<pre>";
 print_r($scan->getIgnoreArray ('ignore', 'isfile'));
 echo"</pre>";  */
-$xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/admin/config.tpl'); 
-
-
+$xoopsTpl->display(XOOPS_ROOT_PATH .'/modules/xoopssecure/templates/admin/config.tpl');
 
 include "admin_footer.php";

@@ -3,7 +3,7 @@
  * notification_redirect.php
  *
  * PHP version 5
- * 
+ *
  * @author Laurent Abbal <laurent@abbal.com>
  * @link   http://www.webcodesniffer.net
  */
@@ -14,6 +14,5 @@ $new_content = '<?php $notification = array(\'check_date\'=>\''.date('Ymd').'\',
 fputs($new_notification, $new_content);
 fclose($new_notification);
 $redirect = $notification['link'];
-header("Location: " . $redirect); 
+header("Location: " . $redirect);
 exit;
-?>

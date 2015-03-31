@@ -1,6 +1,9 @@
 <?php
 define('OK', 1);
 
+/**
+ * Class No_Comment
+ */
 class No_Comment
 {
 
@@ -12,6 +15,9 @@ class No_Comment
 //
 //
 //
+/**
+ * Class Invalid_Comment_Style1
+ */
 class Invalid_Comment_Style1
 {
 

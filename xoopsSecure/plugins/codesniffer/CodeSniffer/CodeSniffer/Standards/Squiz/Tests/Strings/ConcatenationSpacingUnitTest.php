@@ -31,7 +31,6 @@
 class Squiz_Tests_Strings_ConcatenationSpacingUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -67,5 +66,4 @@ class Squiz_Tests_Strings_ConcatenationSpacingUnitTest extends AbstractSniffUnit
 
 
 }//end class
-
-?>
+;

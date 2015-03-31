@@ -5,6 +5,9 @@ $varname  = 'hello';
 $_varName = 'hello';
 $varname2 = 'hello';
 
+/**
+ * Class MyClass
+ */
 class MyClass
 {
     $varName  = 'hello';

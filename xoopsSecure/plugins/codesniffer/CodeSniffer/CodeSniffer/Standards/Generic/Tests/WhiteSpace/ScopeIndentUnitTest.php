@@ -31,7 +31,6 @@
 class Generic_Tests_WhiteSpace_ScopeIndentUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -88,5 +87,4 @@ class Generic_Tests_WhiteSpace_ScopeIndentUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

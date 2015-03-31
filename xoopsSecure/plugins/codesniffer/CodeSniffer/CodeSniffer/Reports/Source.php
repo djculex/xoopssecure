@@ -32,7 +32,6 @@
 class PHP_CodeSniffer_Reports_Source implements PHP_CodeSniffer_Report
 {
 
-
     /**
      * Prints the source of all errors and warnings.
      *
@@ -198,5 +197,4 @@ class PHP_CodeSniffer_Reports_Source implements PHP_CodeSniffer_Report
 
 
 }//end class
-
-?>
+;

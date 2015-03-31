@@ -63,5 +63,4 @@ class Squiz_Tests_CSS_EmptyStyleDefinitionUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

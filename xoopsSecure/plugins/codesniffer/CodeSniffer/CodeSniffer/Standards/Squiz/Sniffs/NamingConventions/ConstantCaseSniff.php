@@ -38,7 +38,6 @@ if (class_exists('Generic_Sniffs_PHP_UpperCaseConstantSniff', true) === false) {
 class Squiz_Sniffs_NamingConventions_ConstantCaseSniff extends Generic_Sniffs_PHP_LowerCaseConstantSniff
 {
 
-
     /**
      * Processes this sniff, when one of its tokens is encountered.
      *
@@ -61,5 +60,4 @@ class Squiz_Sniffs_NamingConventions_ConstantCaseSniff extends Generic_Sniffs_PH
 
 
 }//end class
-
-?>
+;

@@ -75,7 +75,6 @@ class PHP_CodeSniffer_CommentParser_ParameterElement extends PHP_CodeSniffer_Com
      */
     private $_typeWhitespace = '';
 
-
     /**
      * Constructs a PHP_CodeSniffer_CommentParser_ParameterElement.
      *
@@ -330,5 +329,4 @@ class PHP_CodeSniffer_CommentParser_ParameterElement extends PHP_CodeSniffer_Com
 
 
 }//end class
-
-?>
+;

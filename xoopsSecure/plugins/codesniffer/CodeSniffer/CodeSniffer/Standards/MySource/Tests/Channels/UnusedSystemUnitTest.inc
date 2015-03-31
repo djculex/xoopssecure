@@ -17,6 +17,10 @@ function two() {
 }
 
 Channels::includeAsset('Asset');
+
+/**
+ * Class AssetListingAssetType
+ */
 class AssetListingAssetType extends AssetAssetType
 {
     function one() {
@@ -32,15 +36,25 @@ class AssetListingAssetType extends AssetAssetType
 
 Channels::includeSystem('Log');
 Channels::includeSystem('Log4');
+
+/**
+ * Class MyLog
+ */
 class MyLog implements Dog, Log extends LogMe {}
 
 Channels::includeSystem('Log1');
-class MyLog implements Dog, Log1 extends LogMe {}
+/**
+ * Class MyLog
+ */class MyLog implements Dog, Log1 extends LogMe {}
 
-class MyLog implements Log2 {}
+/**
+ * Class MyLog
+ */class MyLog implements Log2 {}
 
 Channels::includeSystem('Log3');
-class MyLog implements Log3 {}
+/**
+ * Class MyLog
+ */class MyLog implements Log3 {}
 
 if (self::systemExists($systemName) === FALSE) {
     return $actions;
@@ -52,7 +66,9 @@ if (self::systemExists($systemName) === FALSE) {
 
 Channels::includeSystem('Widget');
 Widget::includeWidget('AbstractContainer');
-class MyOtherWidget extends BookWidgetType {}
+/**
+ * Class MyOtherWidget
+ */class MyOtherWidget extends BookWidgetType {}
 
 function myFunction()
 {

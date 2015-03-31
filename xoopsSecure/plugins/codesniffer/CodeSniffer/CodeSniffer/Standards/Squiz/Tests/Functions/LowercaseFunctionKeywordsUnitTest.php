@@ -31,7 +31,6 @@
 class Squiz_Tests_Functions_LowercaseFunctionKeywordsUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -69,5 +68,4 @@ class Squiz_Tests_Functions_LowercaseFunctionKeywordsUnitTest extends AbstractSn
 
 
 }//end class
-
-?>
+;

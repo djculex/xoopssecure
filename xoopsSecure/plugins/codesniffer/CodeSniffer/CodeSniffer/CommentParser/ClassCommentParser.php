@@ -82,7 +82,6 @@ class PHP_CodeSniffer_CommentParser_ClassCommentParser extends PHP_CodeSniffer_C
      */
     private $_authors = array();
 
-
     /**
      * Returns the allowed tags withing a class comment.
      *
@@ -141,6 +140,7 @@ class PHP_CodeSniffer_CommentParser_ClassCommentParser extends PHP_CodeSniffer_C
         );
 
         $this->_copyrights[] = $copyright;
+
         return $copyright;
 
     }//end parseCopyright()
@@ -184,6 +184,7 @@ class PHP_CodeSniffer_CommentParser_ClassCommentParser extends PHP_CodeSniffer_C
         );
 
         $this->_authors[] = $author;
+
         return $author;
 
     }//end parseAuthor()
@@ -337,5 +338,4 @@ class PHP_CodeSniffer_CommentParser_ClassCommentParser extends PHP_CodeSniffer_C
 
 
 }//end class
-
-?>
+;

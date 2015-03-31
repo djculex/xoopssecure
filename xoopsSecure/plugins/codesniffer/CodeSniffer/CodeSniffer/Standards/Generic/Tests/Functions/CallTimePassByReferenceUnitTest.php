@@ -31,7 +31,6 @@
 class Generic_Tests_Functions_CallTimePassByReferenceUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -68,5 +67,4 @@ class Generic_Tests_Functions_CallTimePassByReferenceUnitTest extends AbstractSn
 
 
 }//end class
-
-?>
+;

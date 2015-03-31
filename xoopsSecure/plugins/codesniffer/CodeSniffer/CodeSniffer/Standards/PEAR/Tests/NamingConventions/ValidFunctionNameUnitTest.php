@@ -31,7 +31,6 @@
 class PEAR_Tests_NamingConventions_ValidFunctionNameUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -172,5 +171,4 @@ class PEAR_Tests_NamingConventions_ValidFunctionNameUnitTest extends AbstractSni
 
 
 }//end class
-
-?>
+;

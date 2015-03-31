@@ -30,7 +30,6 @@
 class Squiz_Sniffs_Classes_ValidClassNameSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -63,6 +62,7 @@ class Squiz_Sniffs_Classes_ValidClassNameSniff implements PHP_CodeSniffer_Sniff
             $error = 'Possible parse error: %s missing opening or closing brace';
             $data  = array($tokens[$stackPtr]['content']);
             $phpcsFile->addWarning($error, $stackPtr, 'MissingBrace', $data);
+
             return;
         }
 
@@ -90,6 +90,4 @@ class Squiz_Sniffs_Classes_ValidClassNameSniff implements PHP_CodeSniffer_Sniff
 
 
 }//end class
-
-
-?>
+;

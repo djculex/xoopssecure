@@ -31,7 +31,6 @@
 class Squiz_Tests_NamingConventions_ValidVariableNameUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -93,5 +92,4 @@ class Squiz_Tests_NamingConventions_ValidVariableNameUnitTest extends AbstractSn
 
 
 }//end class
-
-?>
+;

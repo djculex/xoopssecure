@@ -29,7 +29,6 @@
 class MySource_Tests_PHP_ReturnFunctionValueUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -65,5 +64,4 @@ class MySource_Tests_PHP_ReturnFunctionValueUnitTest extends AbstractSniffUnitTe
 
 
 }//end class
-
-?>
+;

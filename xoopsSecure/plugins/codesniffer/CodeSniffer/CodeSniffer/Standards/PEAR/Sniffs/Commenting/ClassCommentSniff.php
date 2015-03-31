@@ -49,7 +49,6 @@ if (class_exists('PEAR_Sniffs_Commenting_FileCommentSniff', true) === false) {
 class PEAR_Sniffs_Commenting_ClassCommentSniff extends PEAR_Sniffs_Commenting_FileCommentSniff
 {
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -93,11 +92,13 @@ class PEAR_Sniffs_Commenting_ClassCommentSniff extends PEAR_Sniffs_Commenting_Fi
         if ($commentEnd !== false && $tokens[$commentEnd]['code'] === T_COMMENT) {
             $error = 'You must use "/**" style comments for a %s comment';
             $phpcsFile->addError($error, $stackPtr, 'WrongStyle', $errorData);
+
             return;
         } else if ($commentEnd === false
             || $tokens[$commentEnd]['code'] !== T_DOC_COMMENT
         ) {
             $phpcsFile->addError('Missing %s doc comment', $stackPtr, 'Missing', $errorData);
+
             return;
         }
 
@@ -128,6 +129,7 @@ class PEAR_Sniffs_Commenting_ClassCommentSniff extends PEAR_Sniffs_Commenting_Fi
                             // The doc block is most likely a file comment.
                             $error = 'Missing %s doc comment';
                             $phpcsFile->addError($error, ($stackPtr + 1), 'Missing', $errorData);
+
                             return;
                         }
                     }//end if
@@ -147,6 +149,7 @@ class PEAR_Sniffs_Commenting_ClassCommentSniff extends PEAR_Sniffs_Commenting_Fi
         } catch (PHP_CodeSniffer_CommentParser_ParserException $e) {
             $line = ($e->getLineWithinComment() + $commentStart);
             $phpcsFile->addError($e->getMessage(), $line, 'FailedParse');
+
             return;
         }
 
@@ -154,6 +157,7 @@ class PEAR_Sniffs_Commenting_ClassCommentSniff extends PEAR_Sniffs_Commenting_Fi
         if (is_null($comment) === true) {
             $error = 'Doc comment is empty for %s';
             $phpcsFile->addError($error, $commentStart, 'Empty', $errorData);
+
             return;
         }
 
@@ -229,5 +233,4 @@ class PEAR_Sniffs_Commenting_ClassCommentSniff extends PEAR_Sniffs_Commenting_Fi
 
 
 }//end class
-
-?>
+;

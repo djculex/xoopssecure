@@ -3,141 +3,156 @@
  * Zipping files for backup
  *
  * This class will zip selected files or if selected all files
- * as well as MySql backup and enable downloading. 
+ * as well as MySql backup and enable downloading.
  *
  * @copyright  2014 Culex.dk
  * @license    http://www.zend.com/license/3_0.txt   PHP License 5.6
  * @version    Release: @package_version@
  * @link       http://dev.zend.com/package/PackageName
  * @since      Class available since Release 1.0.0
- */ 
+ */
 class xoopsSecureZipper {
-	
-	var $dirToBackup;
-	var $dest;
-	var $filename;
-	var $archive;
-	var $sqlname;
-	var $backup_file_sql;
-	var $dbname;
-	
-	function __construct() 
-	{
-		$this->dirToBackup = $this->caltypeofbackup ();
-		$this->dest = XOOPS_ROOT_PATH."/uploads/backup/"; // make sure this directory exists!
-		// make project backup folder
-		if(!file_exists($this->dest)){
-			mkdir($this->dest, 0775, true);
-		}
-		
-		$this->filename = "backup_".date('d-m-Y__H_i').".zip";
-		$this->archive = $this->dest.$this->filename;	
-		$this->sqlname = XOOPS_DB_NAME;
-		$this->backup_file_sql  = XOOPS_ROOT_PATH."/uploads/backup/tmp/sql.sql";
-		if (!is_dir(dirname($this->backup_file_sql)))
-		{
-			mkdir(dirname($this->backup_file_sql), 0755, true);
-		}
-		$this->dbname = XOOPS_DB_NAME;
-	}
-	
-	public static function caltypeofbackup ()
-	{
-		$config = xoopssecure_GetModuleOption($option='backuptype', $repmodule='xoopssecure');
-		if ($config[0] == "Minimum") {
-			return array(
-				XOOPS_ROOT_PATH."/themes",
-				XOOPS_ROOT_PATH."/uploads",
-				XOOPS_ROOT_PATH."/xoops_data",
-				XOOPS_ROOT_PATH."/xoops_lib",
-				XOOPS_ROOT_PATH."/mainfile.php",
-				XOOPS_ROOT_PATH."/install/page_end.php"
-			);
-		} elseif ($config[0] == "Full") {
-			return array (
-				XOOPS_ROOT_PATH
-			);
-		} elseif ($config[0] == "Custom") {
-			return xoopssecure_StringToArray(
-				xoopssecure_GetModuleOption(
-					$option='backupcustomfiles', 
-					$repmodule='xoopssecure')
-				);
-		} else {
-			return array();
-		}
-	}
-	
-	public static function folderToZip($folder, $zipFile, $subfolder = null) {
-		if ($zipFile == null) {
-		 // no resource given, exit
-		 return false;
-		}
-		if (is_file($folder)) {
-			$zipFile->addFile($folder);
-		} elseif (is_dir($folder) && $folder != XOOPS_ROOT_PATH."/uploads/backup") {
-			$folder .= end(str_split($folder)) == "/" ? "" : "/";
-			$subfolder .= end(str_split($subfolder)) == "/" ? "" : "/";
-			$subfolder = (substr($subfolder,0,1)=='/')? substr($subfolder,1):$subfolder;
-			$handle = opendir($folder);
-				while ($f = readdir($handle)) {
-					if ($f != "." && $f != "..") {
-						if (is_file($folder . $f)) {
-							if ($subfolder != null) {
-								$zipFile->addFile($folder . $f, $subfolder . $f);
-							} else {
-								$zipFile->addFile($folder . $f);
-							}
-						} elseif (is_dir($folder . $f)) {
-							if ($subfolder != null) {
-								$zipFile->addEmptyDir($subfolder . $f);
-								xoopsSecureZipper::folderToZip($folder . $f, $zipFile, $subfolder . $f);
-							} else {
-								$zipFile->addEmptyDir($f);
-								xoopsSecureZipper::folderToZip($folder . $f, $zipFile, $f);
-							}
-						}
-					}
-				}
-		}
-	}
+    
+    var $dirToBackup;
+    var $dest;
+    var $filename;
+    var $archive;
+    var $sqlname;
+    var $backup_file_sql;
+    var $dbname;
 
+    /**
+     *
+     */
+    function __construct()
+    {
+        $this->dirToBackup = $this->caltypeofbackup ();
+        $this->dest = XOOPS_ROOT_PATH."/uploads/backup/"; // make sure this directory exists!
+        // make project backup folder
+        if(!file_exists($this->dest)){
+            mkdir($this->dest, 0775, true);
+        }
+        
+        $this->filename = "backup_".date('d-m-Y__H_i').".zip";
+        $this->archive = $this->dest.$this->filename;
+        $this->sqlname = XOOPS_DB_NAME;
+        $this->backup_file_sql  = XOOPS_ROOT_PATH."/uploads/backup/tmp/sql.sql";
+        if (!is_dir(dirname($this->backup_file_sql)))
+        {
+            mkdir(dirname($this->backup_file_sql), 0755, true);
+        }
+        $this->dbname = XOOPS_DB_NAME;
+    }
 
-	function doZip ($archive, $dirToBackup)
-	{
-		global $xoopsUser, $xoTheme, $xoopsTpl,$xoopsLogger, $scan, $backup_file_sql;
-		// create the zip
-		$z = new ziparchive();
-		$z->open($archive, ZIPARCHIVE::CREATE);
-		
-		/*Do backup of mysql
-		
-		$db = new DBBackup(array(
-			'driver' => 'mysql',
-			'host' => 'localhost',
-			'user' => XOOPS_DB_USER,
-			'password' => XOOPS_DB_PASS,
-			'database' => XOOPS_DB_NAME
-		));
-		$backup = $db->backup();
-		if(!$backup['error']){
-			// If there isn't errors, show the content
-			// The backup will be at $var['msg']
-			// You can do everything you want to. Like save in a file.
-			$fp = fopen(XOOPS_ROOT_PATH."/uploads/backup/tmp/sql.sql", 'a+');
-			fwrite($fp, $backup['msg']);
-			fclose($fp);
-			//echo nl2br($backup['msg']);
-		} else {
-			echo 'An error has ocurred.';
-		} 
-		*/
-		foreach($dirToBackup as $d){
-			self::folderToZip($d, $z, $d);
-		}
-		$z->addFile($this->backup_file_sql, "/mysqlbackup/sql.sql");
-		$z->close();
-	}
+    /**
+     * @return array
+     */
+    public static function caltypeofbackup ()
+    {
+        $config = xoopssecure_GetModuleOption($option='backuptype', $repmodule='xoopssecure');
+        if ($config[0] == "Minimum") {
+            return array(
+                XOOPS_ROOT_PATH."/themes",
+                XOOPS_ROOT_PATH."/uploads",
+                XOOPS_ROOT_PATH."/xoops_data",
+                XOOPS_ROOT_PATH."/xoops_lib",
+                XOOPS_ROOT_PATH."/mainfile.php",
+                XOOPS_ROOT_PATH."/install/page_end.php"
+            );
+        } elseif ($config[0] == "Full") {
+            return array (
+                XOOPS_ROOT_PATH
+            );
+        } elseif ($config[0] == "Custom") {
+            return xoopssecure_StringToArray(
+                xoopssecure_GetModuleOption(
+                    $option='backupcustomfiles',
+                    $repmodule='xoopssecure')
+                );
+        } else {
+            return array();
+        }
+    }
+
+    /**
+     * @param $folder
+     * @param $zipFile
+     * @param  null $subfolder
+     * @return bool
+     */
+    public static function folderToZip($folder, $zipFile, $subfolder = null) {
+        if ($zipFile == null) {
+         // no resource given, exit
+         return false;
+        }
+        if (is_file($folder)) {
+            $zipFile->addFile($folder);
+        } elseif (is_dir($folder) && $folder != XOOPS_ROOT_PATH."/uploads/backup") {
+            $folder .= end(str_split($folder)) == "/" ? "" : "/";
+            $subfolder .= end(str_split($subfolder)) == "/" ? "" : "/";
+            $subfolder = (substr($subfolder,0,1)=='/')? substr($subfolder,1):$subfolder;
+            $handle = opendir($folder);
+                while ($f = readdir($handle)) {
+                    if ($f != "." && $f != "..") {
+                        if (is_file($folder . $f)) {
+                            if ($subfolder != null) {
+                                $zipFile->addFile($folder . $f, $subfolder . $f);
+                            } else {
+                                $zipFile->addFile($folder . $f);
+                            }
+                        } elseif (is_dir($folder . $f)) {
+                            if ($subfolder != null) {
+                                $zipFile->addEmptyDir($subfolder . $f);
+                                xoopsSecureZipper::folderToZip($folder . $f, $zipFile, $subfolder . $f);
+                            } else {
+                                $zipFile->addEmptyDir($f);
+                                xoopsSecureZipper::folderToZip($folder . $f, $zipFile, $f);
+                            }
+                        }
+                    }
+                }
+        }
+    }
+
+    /**
+     * @param $archive
+     * @param $dirToBackup
+     */
+    function doZip ($archive, $dirToBackup)
+    {
+        global $xoopsUser, $xoTheme, $xoopsTpl,$xoopsLogger, $scan, $backup_file_sql;
+        // create the zip
+        $z = new ziparchive();
+        $z->open($archive, ZIPARCHIVE::CREATE);
+        
+        /*Do backup of mysql
+        
+        $db = new DBBackup(array(
+            'driver' => 'mysql',
+            'host' => 'localhost',
+            'user' => XOOPS_DB_USER,
+            'password' => XOOPS_DB_PASS,
+            'database' => XOOPS_DB_NAME
+        ));
+        $backup = $db->backup();
+        if(!$backup['error']){
+            // If there isn't errors, show the content
+            // The backup will be at $var['msg']
+            // You can do everything you want to. Like save in a file.
+            $fp = fopen(XOOPS_ROOT_PATH."/uploads/backup/tmp/sql.sql", 'a+');
+            fwrite($fp, $backup['msg']);
+            fclose($fp);
+            //echo nl2br($backup['msg']);
+        } else {
+            echo 'An error has ocurred.';
+        }
+        */
+        foreach($dirToBackup as $d){
+            self::folderToZip($d, $z, $d);
+        }
+        $z->addFile($this->backup_file_sql, "/mysqlbackup/sql.sql");
+        $z->close();
+    }
 }
 
 /**
@@ -261,6 +276,7 @@ Class DBBackup {
         if(count($this->error)>0){
             return array('error'=>true, 'msg'=>$this->error);
         }
+
         return array('error'=>false, 'msg'=>$this->final);
     }
 
@@ -290,6 +306,7 @@ Class DBBackup {
         } catch (PDOException $e) {
             $this->handler = null;
             $this->error[] = $e->getMessage();
+
             return false;
         }
     }
@@ -318,6 +335,7 @@ Class DBBackup {
         } catch (PDOException $e) {
             $this->handler = null;
             $this->error[] = $e->getMessage();
+
             return false;
         }
     }
@@ -326,16 +344,20 @@ Class DBBackup {
      *
      * Get the list of Columns
      * @uses Private use
+     * @param $tableName
+     * @return bool
      */
     private function getColumns($tableName){
         try {
             $stmt = $this->handler->query('SHOW CREATE TABLE '.$tableName);
             $q = $stmt->fetchAll();
             $q[0][1] = preg_replace("/AUTO_INCREMENT=[\w]*./", '', $q[0][1]);
+
             return $q[0][1];
         } catch (PDOException $e){
             $this->handler = null;
             $this->error[] = $e->getMessage();
+
             return false;
         }
     }
@@ -344,6 +366,8 @@ Class DBBackup {
      *
      * Get the insert data of tables
      * @uses Private use
+     * @param $tableName
+     * @return bool|string
      */
     private function getData($tableName){
         try {
@@ -356,13 +380,13 @@ Class DBBackup {
                 }
                 $data .= 'INSERT INTO '. $tableName .' VALUES (\'' . implode('\',\'', $pieces) . '\');'."\n";
             }
+
             return $data;
         } catch (PDOException $e){
             $this->handler = null;
             $this->error[] = $e->getMessage();
+
             return false;
         }
     }
-} 
-
-?>
+}

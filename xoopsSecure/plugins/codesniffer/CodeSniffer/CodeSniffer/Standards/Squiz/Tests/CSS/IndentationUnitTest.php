@@ -69,5 +69,4 @@ class Squiz_Tests_CSS_IndentationUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

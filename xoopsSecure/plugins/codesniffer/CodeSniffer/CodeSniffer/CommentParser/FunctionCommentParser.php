@@ -69,7 +69,6 @@ class PHP_CodeSniffer_CommentParser_FunctionCommentParser extends PHP_CodeSniffe
      */
     private $_throws = array();
 
-
     /**
      * Constructs a PHP_CodeSniffer_CommentParser_FunctionCommentParser.
      *
@@ -99,6 +98,7 @@ class PHP_CodeSniffer_CommentParser_FunctionCommentParser extends PHP_CodeSniffe
         );
 
         $this->_params[] = $param;
+
         return $param;
 
     }//end parseParam()
@@ -121,6 +121,7 @@ class PHP_CodeSniffer_CommentParser_FunctionCommentParser extends PHP_CodeSniffe
         );
 
         $this->_return = $return;
+
         return $return;
 
     }//end parseReturn()
@@ -143,6 +144,7 @@ class PHP_CodeSniffer_CommentParser_FunctionCommentParser extends PHP_CodeSniffe
         );
 
         $this->_throws[] = $throws;
+
         return $throws;
 
     }//end parseThrows()
@@ -208,5 +210,4 @@ class PHP_CodeSniffer_CommentParser_FunctionCommentParser extends PHP_CodeSniffe
 
 
 }//end class
-
-?>
+;

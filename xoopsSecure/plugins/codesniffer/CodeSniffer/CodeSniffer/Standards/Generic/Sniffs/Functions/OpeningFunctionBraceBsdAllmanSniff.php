@@ -31,7 +31,6 @@
 class Generic_Sniffs_Functions_OpeningFunctionBraceBsdAllmanSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Registers the tokens that this sniff wants to listen for.
      *
@@ -74,6 +73,7 @@ class Generic_Sniffs_Functions_OpeningFunctionBraceBsdAllmanSniff implements PHP
         if ($lineDifference === 0) {
             $error = _AM_XOOPSSECURE_CODESNIFFER_OBSBONL;
             $phpcsFile->addError($error, $openingBrace, 'BraceOnSameLine');
+
             return;
         }
 
@@ -81,6 +81,7 @@ class Generic_Sniffs_Functions_OpeningFunctionBraceBsdAllmanSniff implements PHP
             $error = _AM_XOOPSSECURE_CODESNIFFER_OBSBONLAD;
             $data  = array(($lineDifference - 1));
             $phpcsFile->addError($error, $openingBrace, 'BraceSpacing', $data);
+
             return;
         }
 
@@ -117,5 +118,4 @@ class Generic_Sniffs_Functions_OpeningFunctionBraceBsdAllmanSniff implements PHP
 
 
 }//end class
-
-?>
+;

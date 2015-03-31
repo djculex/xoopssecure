@@ -30,7 +30,6 @@
 class Squiz_Sniffs_Commenting_ClosingDeclarationCommentSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -83,6 +82,7 @@ class Squiz_Sniffs_Commenting_ClosingDeclarationCommentSniff implements PHP_Code
             if (isset($tokens[$stackPtr]['scope_closer']) === false) {
                 $error = 'Possible parse error: non-abstract method defined as abstract';
                 $phpcsFile->addWarning($error, $stackPtr, 'Abstract');
+
                 return;
             }
 
@@ -98,6 +98,7 @@ class Squiz_Sniffs_Commenting_ClosingDeclarationCommentSniff implements PHP_Code
             $error = 'Possible parse error: %s missing opening or closing brace';
             $data  = array($tokens[$stackPtr]['content']);
             $phpcsFile->addWarning($error, $stackPtr, 'MissingBrace', $data);
+
             return;
         }
 
@@ -111,11 +112,13 @@ class Squiz_Sniffs_Commenting_ClosingDeclarationCommentSniff implements PHP_Code
         $error = 'Expected '.$comment;
         if (isset($tokens[($closingBracket + 1)]) === false || $tokens[($closingBracket + 1)]['code'] !== T_COMMENT) {
             $phpcsFile->addError($error, $closingBracket, 'Missing');
+
             return;
         }
 
         if (rtrim($tokens[($closingBracket + 1)]['content']) !== $comment) {
             $phpcsFile->addError($error, $closingBracket, 'Incorrect');
+
             return;
         }
 
@@ -123,5 +126,4 @@ class Squiz_Sniffs_Commenting_ClosingDeclarationCommentSniff implements PHP_Code
 
 
 }//end class
-
-?>
+;

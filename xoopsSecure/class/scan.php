@@ -21,11 +21,14 @@
  */
 
 if (!defined('XOOPS_ROOT_PATH')) {
-	die('XOOPS root path not defined');	
+    die('XOOPS root path not defined');
 }
 set_time_limit(999999);
 
-class xoopsSecure_scan {    
+/**
+ * Class xoopsSecure_scan
+ */
+class xoopsSecure_scan {
     
     var $ext;
     var $urlToScan;
@@ -46,10 +49,13 @@ class xoopsSecure_scan {
     var $inittime;
     var $cronscan;
     var $cronscaninterval;
-	var $backuptype;
-	var $backupfiles;
-    
-    public function __construct(){        
+    var $backuptype;
+    var $backupfiles;
+
+    /**
+     *
+     */
+    public function __construct(){
         $this->urlToScan = xoopssecure_GetModuleOption('urltoscan');
         $this->autoindexcreate = xoopssecure_GetModuleOption('auto_indexfiles');
         $this->autochmod = xoopssecure_GetModuleOption('autofileperm');
@@ -67,8 +73,8 @@ class xoopsSecure_scan {
         $this->cronscan = false;
         $this->cronscaninterval = xoopssecure_GetModuleOption('cronschedulehours');
         $this->backuptype = xoopssecure_GetModuleOption('backuptype');
-		$this->backupfiles = xoopssecure_GetModuleOption('backupcustomfiles');
-		
+        $this->backupfiles = xoopssecure_GetModuleOption('backupcustomfiles');
+        
         /*$this->xoops_reservedfolders = array(
             XOOPS_ROOT_PATH .'/cache',
             XOOPS_ROOT_PATH .'/uploads',
@@ -94,7 +100,11 @@ class xoopsSecure_scan {
     /* Get recursive array of dirs
      * @param string $url
      * @return array
-     */    
+     */
+    /**
+     * @param $url
+     * @return array
+     */
     function getDirs ($url) {
         return $this->getArray ($url, $type = 'dir');
     }
@@ -102,11 +112,19 @@ class xoopsSecure_scan {
     /* Get fileinfo recursively as array
      * @param string $url
      * @return array
-     */    
+     */
+    /**
+     * @param $url
+     * @return array
+     */
     function getFiles ($url) {
         return $this->getArray ($url, $type = 'file');
     }
-    
+
+    /**
+     * @param $filename
+     * @return bool
+     */
     function verifyExt ($filename)
     {
         $fullext = explode ("|", 'php|php3|php4|php5|phps|html|phtml|txt|asp|htaccess|gif|js');
@@ -130,34 +148,39 @@ class xoopsSecure_scan {
      * @param string $type
      * @return array
      */
-    function getArray ($url, $type) {     
+    /**
+     * @param $url
+     * @param $type
+     * @return array
+     */
+    function getArray ($url, $type) {
         $result = array();
         $this->getExt ();
         $url = isset ($url) ? xoopssecure_cleanUrl($url) : xoopssecure_cleanUrl($this->urlToScan);
         $obj = new RecursiveIteratorIterator(
                 new RecursiveDirectoryIterator($url),
-                RecursiveIteratorIterator::SELF_FIRST);       
+                RecursiveIteratorIterator::SELF_FIRST);
         foreach ($obj as $filename) {
             if ($filename->isDir()) {
                         if (xoopssecure_in_array_r(
-                            xoopssecure_rootToUrl ($filename), 
-                            xoopssecure_rootToUrl ($this->excludeDirs), 
+                            xoopssecure_rootToUrl ($filename),
+                            xoopssecure_rootToUrl ($this->excludeDirs),
                             $strict = false
                             ) === true) {
                             continue;
                         }
-                    $result['dir']['dirname'][] = str_replace ("\\", "/", $filename->getPathname());                
+                    $result['dir']['dirname'][] = str_replace ("\\", "/", $filename->getPathname());
                     $result['dir']['dirsize'][] = $filename->getSize();
                     $result['dir']['dirdate'][] = $filename->getCtime();
                     $result['dir']['dirperm'][] = substr(decoct(fileperms($filename)),1);
-            } 
+            }
             if (true == $this->verifyExt($filename)
             && filesize($filename)/* skip empty ones */
             && !stripos($filename, 'scan.php')/* skip this file */) {
                 if ($filename->isFile()){
                         if (xoopssecure_in_array_r(
-                                xoopssecure_rootToUrl ($filename), 
-                                xoopssecure_rootToUrl ($this->excludeFiles), 
+                                xoopssecure_rootToUrl ($filename),
+                                xoopssecure_rootToUrl ($this->excludeFiles),
                                 $strict = false
                             ) === true) {
                             continue;
@@ -186,7 +209,10 @@ class xoopsSecure_scan {
      * @desc Get info about files already saved in Db else scan files on server
      * @return json $array the db values of files from last scan
      */
-     function getFileInfoFromDb () 
+    /**
+     * @return mixed|string
+     */
+    function getFileInfoFromDb ()
      {
         global $xoopsDB;
         $array = array();
@@ -197,12 +223,13 @@ class xoopsSecure_scan {
             $url = isset ($url) ? $url : $this->urlToScan;
             $array = array_merge($this->getDirs($url), $this->getFiles($url));
         } else {
-            while ($row = $xoopsDB->fetchArray($result)) { 
+            while ($row = $xoopsDB->fetchArray($result)) {
                 $array = $row;
             }
         }
         $this->backupCheck ();
-		return json_encode($array);
+
+        return json_encode($array);
      }
      
      
@@ -210,7 +237,11 @@ class xoopsSecure_scan {
      * @desc Get fresh scan from files and do backup if configured
      * @return json $array an merged json array of files on server
      */
-    function getnewfileinfo ($url) 
+    /**
+     * @param $url
+     * @return mixed|string
+     */
+    function getnewfileinfo ($url)
     {
         global $xoopsDB;
         $array = array();
@@ -218,30 +249,35 @@ class xoopsSecure_scan {
         $url = rtrim($url, '\\');
         $url = rtrim($url, '/');
         $array = array_merge($this->getDirs($url), $this->getFiles($url));
-		$this->backupCheck ();
-		return json_encode($array);
-    }     
+        $this->backupCheck ();
+
+        return json_encode($array);
+    }
     
-	/**
-	 * Checks if script should do backup
-	 *
-	 * @throws xoopsSecureZipper If settings are set
-	 * @return void
- */ 
-	function backupCheck ()
-	{
-		if ($this->backuptype != 'none') {
-			$zip = new xoopsSecureZipper;
-			$zip->doZip ($zip->archive, $zip->dirToBackup);
-		}
-	}
-	
+    /**
+     * Checks if script should do backup
+     *
+     * @throws xoopsSecureZipper If settings are set
+     * @return void
+ */
+    function backupCheck ()
+    {
+        if ($this->backuptype != 'none') {
+            $zip = new xoopsSecureZipper;
+            $zip->doZip ($zip->archive, $zip->dirToBackup);
+        }
+    }
+    
     /*
      * Scan file and return message if pattern is found in content
      * @param  string $file the full url to file on server
      * @return json $issues where empy if clean from issues or values if something is found
     */
-    function getLines ($file, $ref ) 
+    /**
+     * @param $file
+     * @param $ref
+     */
+    function getLines ($file, $ref )
     {
         global $xoopsConfig;
         $patterns = $this->getPatterns();
@@ -303,7 +339,7 @@ class xoopsSecure_scan {
                                 'issuecount'    => $total_results
                             );
                             $this->insert_content ($dbresult[$count]);
-                        } 
+                        }
                     } else {
                         foreach ($all_results as $match) {
                             $dbresult[$count] = array (
@@ -340,19 +376,24 @@ class xoopsSecure_scan {
             }
             if ($this->cronscan == false) {
                 header('Content-type: application/json');
-                echo json_encode($issues); 
+                echo json_encode($issues);
                 unset($content);
             } else {
                 $this->sendCronMail ($issues);
             }
-        }              
+        }
     }
     
     /*
      * @desc get md_5 hash of file on server and compare with last saved hash from same
      * @return json $issue empty if compared same else returning issues
      */
-    function gethashes ($file, $ref ) 
+    /**
+     * @param $file
+     * @param $ref
+     * @return array
+     */
+    function gethashes ($file, $ref )
     {
             $count = 0;
             $total_results = 0;
@@ -370,10 +411,10 @@ class xoopsSecure_scan {
             }
                 if ($this->cronscan == false) {
                 header('Content-type: application/json');
-                echo json_encode($issues); 
-                unset($content);      
+                echo json_encode($issues);
+                unset($content);
                 } else {
-                    return $issues; 
+                    return $issues;
                     unset($content);
                 }
     }
@@ -381,7 +422,11 @@ class xoopsSecure_scan {
      * @param array $data using the htmlentities sanitazion
      * @return true if exists and false if not
      */
-    function checkExistIssue ($data) 
+    /**
+     * @param $data
+     * @return bool
+     */
+    function checkExistIssue ($data)
     {
         global $xoopsDB;
             $test  = "SELECT * FROM ".$xoopsDB->prefix('xoopsecure_issues');
@@ -403,11 +448,14 @@ class xoopsSecure_scan {
      * @param array $data the set array of the issue found in file content
      * @return void
      */
-    function insert_content ($data) 
+    /**
+     * @param $data
+     */
+    function insert_content ($data)
     {
         global $xoopsDB,$xoopsLogger;
         $xoopsLogger->activated = false;
-        //error_reporting(E_ALL); 
+        //error_reporting(E_ALL);
         $sql = "INSERT INTO ".$xoopsDB->prefix('xoopsecure_issues'). "(
           scantype,
           time,
@@ -423,7 +471,7 @@ class xoopsSecure_scan {
           issuedesc,
           linenumber,
           issuecode,
-          tag) 
+          tag)
             VALUES (
                 ".$data['scantype'].",
                 ".$data['time'].",
@@ -442,7 +490,7 @@ class xoopsSecure_scan {
                 '".$data['tag']."'
             )";
         if ($this->checkExistIssue ($data) == false) {
-			$result = $xoopsDB->queryF($sql);
+            $result = $xoopsDB->queryF($sql);
         }
 
     }
@@ -458,56 +506,57 @@ class xoopsSecure_scan {
         //$sql = "DELETE FROM ".$xoopsDB->prefix('xoopsecure_issues')." WHERE scantype = ".$this->scantype;
         $result = $xoopsDB->queryF($sql);
     }
-	
-	/**
-	 * Removes issues from db when a scan previously was done (last 1 day)
-	 *
-	 * @return void
-	 */ 
-	function rmTodaysData ()
-	{
-		global $xoopsDB;
-		$tdm = strtotime('today midnight');
-		$tmm = strtotime('tomorrow midnight');
-		$sql = "DELETE FROM ".$xoopsDB->prefix("xoopsecure_stats")." WHERE 'date' BETWEEN ".$tdm." AND ".$tmm."";
+    
+    /**
+     * Removes issues from db when a scan previously was done (last 1 day)
+     *
+     * @return void
+     */
+    function rmTodaysData ()
+    {
+        global $xoopsDB;
+        $tdm = strtotime('today midnight');
+        $tmm = strtotime('tomorrow midnight');
+        $sql = "DELETE FROM ".$xoopsDB->prefix("xoopsecure_stats")." WHERE 'date' BETWEEN ".$tdm." AND ".$tmm."";
         $result = $xoopsDB->queryF($sql);
-	}
+    }
 
-	/**
-	 * check if stats from db when of a  scan previously was done (last 1 day)
-	 *
-	 * @return false or true
-	 */ 
-	function checkTodaysStats ()
-	{
-		global $xoopsDB;
-		$tdm = strtotime('today midnight');
-		$tmm = strtotime('tomorrow midnight');
-		$sql = "SELECT 'date' FROM ".$xoopsDB->prefix("xoopsecure_stats")." WHERE 'date' BETWEEN ".$tdm." AND ".$tmm."";
+    /**
+     * check if stats from db when of a  scan previously was done (last 1 day)
+     *
+     * @return false or true
+     */
+    function checkTodaysStats ()
+    {
+        global $xoopsDB;
+        $tdm = strtotime('today midnight');
+        $tmm = strtotime('tomorrow midnight');
+        $sql = "SELECT 'date' FROM ".$xoopsDB->prefix("xoopsecure_stats")." WHERE 'date' BETWEEN ".$tdm." AND ".$tmm."";
         $result = $xoopsDB->queryF($sql);
-		$count = $xoopsDB->getRowsNum($resulttest);
-		return ($count > 0) ? true : false;
-	}
-	
-	/**
-	 * Insert stats to stats
-	 * @param timestamp date of scan 
-	 * @param array issuenr issues this day
-	 * @param array badusers users with bad ip
-	 * @return void
-	 */
-	 function doStats ($inittime, $issues, $badusers)
-	 {
-		 global $xoopsDB;
-		 if ($self::checkTodaysStats () == true) {
-			 $sql = "UPDATE ".$xoopsDB->prefix('xoopsecure_stats'). " SET 'date' = {$inittime},
+        $count = $xoopsDB->getRowsNum($resulttest);
+
+        return ($count > 0) ? true : false;
+    }
+    
+    /**
+     * Insert stats to stats
+     * @param timestamp date of scan
+     * @param array issuenr issues this day
+     * @param array badusers users with bad ip
+     * @return void
+     */
+     function doStats ($inittime, $issues, $badusers)
+     {
+         global $xoopsDB;
+         if ($self::checkTodaysStats () == true) {
+             $sql = "UPDATE ".$xoopsDB->prefix('xoopsecure_stats'). " SET 'date' = {$inittime},
                 issuenr = ".count($issues).", issues = ".serialize($issues).", badusers = ".serialize($badusers)."
 				WHERE 'date' BETWEEN ".strtotime('today midnight')." AND ".strtotime('tomorrow midnight');
-		 } else {
-		 }
-	 }
-	 
-	 
+         } else {
+         }
+     }
+     
+     
     /**
      * @desc Emties table xoopssecure_files before initiating NEW full scan
      * @return void
@@ -518,25 +567,27 @@ class xoopsSecure_scan {
         $sql = "TRUNCATE TABLE ".$xoopsDB->prefix('xoopsecure_files')."";
         $result = $xoopsDB->queryF($sql);
     }
-    
+
     /**
      * Calculates the line number where pattern match was found
      *
-     * @param int $offset The offset position of found pattern match
-     * @param str $content The file content in string format
+     * @param  int $offset The offset position of found pattern match
+     * @param $file_content
      * @return int Returns line number where the subject code was found
+     * @internal param str $content The file content in string format
      */
-    function calculate_line_number($offset, $file_content) 
+    function calculate_line_number($offset, $file_content)
     {
         $file_content = htmlentities($file_content, ENT_QUOTES);
         list($first_part) = str_split($file_content, $offset); // fetches all the text before the match
         $line_nr = strlen($first_part) - strlen(str_replace("\n", "", $first_part)) + 1;
+
         return $line_nr;
     }
 
    /**
     * Saves ALL file-info to db
-    * 
+    *
     * @param string $file the url to the file in question
     * @return void
     */
@@ -544,7 +595,7 @@ class xoopsSecure_scan {
     function savefileinfo ($file)
     {
         global $xoopsDB;
-        $file = xoopssecure_removequot ($file);       
+        $file = xoopssecure_removequot ($file);
         $checkfile = "SELECT * FROM ".$xoopsDB->prefix('xoopsecure_files')." WHERE filename = '".$file."'";
         $resp = $xoopsDB->queryF($checkfile);
         $count = $xoopsDB->getRowsNum($resp);
@@ -553,7 +604,7 @@ class xoopsSecure_scan {
                 filename,
                 filesize,
                 lastdate,
-                hashvalue) 
+                hashvalue)
                     VALUES (
                         '".$file."',
                         ".filesize($file).",
@@ -566,9 +617,9 @@ class xoopsSecure_scan {
     
     /**
      * Check db hash agains file hash and inser into issues if different
-     * 
+     *
      * @param string $file the url to the file on server
-     * @param intval $ref the scan type reference number
+     * @param intval $ref  the scan type reference number
      *
      * @return json $arr containing values if difference check is true
      */
@@ -576,15 +627,15 @@ class xoopsSecure_scan {
     function hashcheck ($file, $ref)
     {
         global $xoopsDB;
-        $file = xoopssecure_removequot ($file);     
+        $file = xoopssecure_removequot ($file);
         $arr = array();
         $checkfile = "SELECT * FROM ".$xoopsDB->prefix('xoopsecure_files')." WHERE filename = '".$file."'";
         $resp = $xoopsDB->queryF($checkfile);
         $count = $xoopsDB->getRowsNum($resp);
-        while ($row = $xoopsDB->fetchArray($resp)) { 
+        while ($row = $xoopsDB->fetchArray($resp)) {
             $hash = ($row['hashvalue'] == hash_file('md5', $file)) ? true : false;
-            if ($hash == false) {                  
-                 $codestring = _AM_XOOPSSECURE_HASHCHEGEDVALUES;                    
+            if ($hash == false) {
+                 $codestring = _AM_XOOPSSECURE_HASHCHEGEDVALUES;
                  $filename = htmlentities($file, ENT_QUOTES);
                  $fileext = filetype($file);
                  $fileatime = intval(fileatime($file));
@@ -624,25 +675,26 @@ class xoopsSecure_scan {
                         $this->insert_content ($arr);
                         $result = $xoopsDB->queryF($sql);
                 } else {
-                    $sql = "UPDATE ".$xoopsDB->prefix('xoopsecure_issues'). " SET 
+                    $sql = "UPDATE ".$xoopsDB->prefix('xoopsecure_issues'). " SET
                             scantype = ".$this->scantype.", filename = '".$filename."',
                             filetype =  '".$fileext."', accessed = ".$fileatime.",
                             changed = ".$filemtime.", modified = ".$filectime.",
                             permission = ".$fileperm.", issuecat = '".$filecat."',
                             issuetype = '".$filetype."', issuedesc = '".$filedesc."',
-                            issuecode = '".$filecode."', tag = '".$filetag."' 
+                            issuecode = '".$filecode."', tag = '".$filetag."'
                             WHERE filename = '".$file."'";
                         $result = $xoopsDB->queryF($sql);
                 }
             }
+
             return $arr;
-        }    
+        }
     }
     
     /**
      * @desc Automaticly create index file index.html if index.php or index.html not exists
      * @param string $dir the full url to dir being checked
-     * Return array $issues where issue is set if index file is not found
+     *                    Return array $issues where issue is set if index file is not found
      */
     function createindexfiles($dir)
     {
@@ -653,16 +705,16 @@ class xoopsSecure_scan {
         
         if ($this->indexfiletype == 1 xor $this->indexfiletype == 2) {
             if (is_dir($url)) {
-                if (!is_writable($url)) {    
+                if (!is_writable($url)) {
                     chmod($url, 0777);
                     $this->createindexfiles($url);
                 }
-                if (!file_exists($url.'/index.html') && !file_exists($url.'/index.htm') && 
+                if (!file_exists($url.'/index.html') && !file_exists($url.'/index.htm') &&
                     !file_exists($url.'/index.php') && !file_exists($url.'/index.xhtml')) {
                     //str_replace ("\\", "/", $Path)
-                    file_put_contents( $url . '/index.html' , 
+                    file_put_contents( $url . '/index.html' ,
                         $this->contentofhtmlindex);
-                    // SAVE INFO TO DB          
+                    // SAVE INFO TO DB
                     $count = 0;
                     $total_results = 0;
                     $issuecount = 0;
@@ -689,26 +741,29 @@ class xoopsSecure_scan {
                         'linenumber'        => '',
                         'issuecode'         => '',
                         'tag'               => "security"
-                    );                           
+                    );
                     
                     (!empty($arr)) ? $this->insert_content ($arr):'';
                     header('Content-type: application/json');
-                    echo json_encode($issues); 
-                    unset($content); 
-                    chmod($url, $orgch);                    
+                    echo json_encode($issues);
+                    unset($content);
+                    chmod($url, $orgch);
                 }
             }
         }
     }
- 
+
+    /**
+     * @param $dir
+     */
     function checkMissingIndexfile($dir)
     {
         $result = array();
         $arr = array();
         $url = xoopssecure_removequot ($dir);
-        $orgch = substr(sprintf('%o', fileperms($url)), -4);    
+        $orgch = substr(sprintf('%o', fileperms($url)), -4);
         if (is_dir($url)) {
-            if (!is_writable($url)) {    
+            if (!is_writable($url)) {
                 chmod($url, 0777);
                 $this->checkMissingIndexfile($url);
             }
@@ -717,7 +772,7 @@ class xoopsSecure_scan {
                 !file_exists($url.'/.htaccess')) {
                 //str_replace ("\\", "/", $Path)
                 
-                // SAVE INFO TO DB 
+                // SAVE INFO TO DB
                 
                 $count = 0;
                 $total_results = 0;
@@ -745,19 +800,19 @@ class xoopsSecure_scan {
                     'linenumber'        => '',
                     'issuecode'         => '',
                     'tag'               => "security"
-                );                           
+                );
                 
-                if ($this->checkExistIssue ($arr) == false) { 
+                if ($this->checkExistIssue ($arr) == false) {
                     (!empty($arr)) ? $this->insert_content ($arr):'';
                     header('Content-type: application/json');
-                    echo json_encode($issues); 
+                    echo json_encode($issues);
                 } else {
                      header('Content-type: application/json');
-                    echo json_encode(array()); 
+                    echo json_encode(array());
                 }
                
-                unset($content); 
-                chmod($url, $orgch);                    
+                unset($content);
+                chmod($url, $orgch);
             }
         }
     }
@@ -765,7 +820,7 @@ class xoopsSecure_scan {
     /**
      * @desc Automaticly create file .htaccess if not existing
      * @param string $dir the full url to dir being scanned
-     * Return array $issues set if file found missing else empty
+     *                    Return array $issues set if file found missing else empty
      */
     function createHttaccess($dir)
     {
@@ -777,13 +832,13 @@ class xoopsSecure_scan {
             
             if ($this->autoindexcreate != 0 && $this->indexfiletype == 0 xor $this->indexfiletype == 2) {
                 if (is_dir($url)) {
-                    if (!is_writable($url)) {    
+                    if (!is_writable($url)) {
                         chmod($url, 0777);
                         $this->createHttaccess($url);
                     }
                     if (!file_exists($url.'/.htaccess')) {
-                        file_put_contents( $url . '/.htaccess' , 
-                            $this->contentofhtaccessindex);         
+                        file_put_contents( $url . '/.htaccess' ,
+                            $this->contentofhtaccessindex);
                         $count = 0;
                         $total_results = 0;
                         $issuecount = 0;
@@ -810,29 +865,30 @@ class xoopsSecure_scan {
                             'linenumber'        => '',
                             'issuecode'         => '',
                             'tag'               => "security"
-                        );                           
+                        );
                         
                         (!empty($arr)) ? $this->insert_content ($arr):'';
                         header('Content-type: application/json');
-                        echo json_encode($issues); 
-                        unset($content); 
-                        chmod($url, $orgch);                    
+                        echo json_encode($issues);
+                        unset($content);
+                        chmod($url, $orgch);
                     }
                 }
-            } 
+            }
         }
     }
- 
-    /**
-      Chmods files and folders with different permissions.
 
-      @param $path An either relative or absolute path to a file or directory which should be processed.
-      @param $filePerm The permissions any found files should get.
-      @param $dirPerm The permissions any found folder should get.
-      @param $ex_dir Skip standard permissions for these and set dir permission to 0777 (unix)
-      @return Returns TRUE if the path if found and FALSE if not.
-      @warning The permission levels has to be entered in octal format, which normally means adding a zero ("0") in front of the permission level.
-    */
+    /**
+     * Chmods files and folders with different permissions.
+     *
+     * @param An $path
+     * @param $ref
+     * @return Returns TRUE if the path if found and FALSE if not.
+     * @internal param The $filePerm permissions any found files should get.
+     * @internal param The $dirPerm permissions any found folder should get.
+     * @internal param Skip $ex_dir standard permissions for these and set dir permission to 0777 (unix)
+     * @warning The permission levels has to be entered in octal format, which normally means adding a zero ("0") in front of the permission level.
+     */
 
     function recursiveChmod ($path, $ref) {
         $ex_dir = $this->xoops_reservedfolders;
@@ -849,7 +905,7 @@ class xoopsSecure_scan {
         // See whether this is a file
         if (is_file($path)) {
             // Chmod the file with our given filepermissions
-            if (in_array($path, $this->xoops_reservedfolders)) {                
+            if (in_array($path, $this->xoops_reservedfolders)) {
                 $arr = array (
                     'status'            => "Issue",
                     'scantype'          => $ref,
@@ -866,7 +922,7 @@ class xoopsSecure_scan {
                     'linenumber'        => '',
                     'issuecode'         => '',
                     'tag'               => "security"
-                    );                           
+                    );
                     
                 (!empty($arr)) ? $this->insert_content ($arr):'';
                 
@@ -876,7 +932,7 @@ class xoopsSecure_scan {
                     'status'        => 'Issue',
                     'issuename'     => _AM_XOOPSSECURE_CHMODSPECIALFILE,
                     'issuecount'    => $total_results
-                ); 
+                );
             } else {
                 $arr = array (
                     'status'            => "Issue",
@@ -894,7 +950,7 @@ class xoopsSecure_scan {
                     'linenumber'        => '',
                     'issuecode'         => '',
                     'tag'               => "security"
-                    );                           
+                    );
                     
                 (!empty($arr)) ? $this->insert_content ($arr):'';
             
@@ -904,10 +960,10 @@ class xoopsSecure_scan {
                     'status'        => 'Issue',
                     'issuename'     => _AM_XOOPSSECURE_CHMODFILE,
                     'issuecount'    => $total_results
-                );  
+                );
             }
         // If this is a directory...
-        } elseif (is_dir($path)) {        
+        } elseif (is_dir($path)) {
             if (!in_array($path, $this->xoops_reservedfolders)) {
                 
                 $arr = array (
@@ -926,7 +982,7 @@ class xoopsSecure_scan {
                     'linenumber'        => '',
                     'issuecode'         => '',
                     'tag'               => "security"
-                    );                           
+                    );
                     
                 (!empty($arr)) ? $this->insert_content ($arr):'';
                 
@@ -936,7 +992,7 @@ class xoopsSecure_scan {
                     'status'        => 'Issue',
                     'issuename'     => _AM_XOOPSSECURE_CHMODDIR,
                     'issuecount'    => $total_results
-                );              
+                );
             } else {
                 
                 $arr = array (
@@ -955,7 +1011,7 @@ class xoopsSecure_scan {
                     'linenumber'        => '',
                     'issuecode'         => '',
                     'tag'               => "security"
-                    );                           
+                    );
                     
                 (!empty($arr)) ? $this->insert_content ($arr):'';
                 
@@ -965,11 +1021,11 @@ class xoopsSecure_scan {
                     'status'        => 'Issue',
                     'issuename'     => _AM_XOOPSSECURE_CHMODSPECIALDIR,
                     'issuecount'    => $total_results
-                ); 
-            }      
+                );
+            }
         }
         //header("content-type: application/json; charset=utf-8");
-        return json_encode($issues); 
+        return json_encode($issues);
     }
      
     /**
@@ -978,7 +1034,7 @@ class xoopsSecure_scan {
      *
      * @return array $patternAll the extended array of values to search for
      *
-     */    
+     */
     function getPatterns ()
     {
         /*
@@ -989,6 +1045,7 @@ class xoopsSecure_scan {
          *
          */
         $patternsAll = array_merge($this->badfuncs, $this->badboys, $this->mallwarepatterns());
+
         return $patternsAll;
     }
     
@@ -1022,6 +1079,7 @@ class xoopsSecure_scan {
             'proc_',
             'popen'
         );
+
         return $ss;
     }
     
@@ -1031,7 +1089,7 @@ class xoopsSecure_scan {
      */
      function mallwareStrings ()
      {
-        $mallwareStrings = array (        
+        $mallwareStrings = array (
             'r0nin',
             'm0rtix',
             'upl0ad',
@@ -1075,15 +1133,16 @@ class xoopsSecure_scan {
             'Adminer',
             'OOO000000',
             '$GLOBALS',
-            'findsysfolder'      
+            'findsysfolder'
         );
+
         return $mallwareStrings;
      }
     
     /**
      * @desc Array of regex patterns to look for in file content
      * @retuen array $mp
-     */  
+     */
     function mallwarepatterns ()
     {
         $mp = array(
@@ -1177,7 +1236,7 @@ class xoopsSecure_scan {
                 _AM_XOOPSSECURE_SECISSUE24_TITLE,
                 24,
                 _AM_XOOPSSECURE_SECISSUE24_DESC),
-            */    
+            */
             array("system(\s*)\(/",
                 _AM_XOOPSSECURE_SECISSUE25_TITLE,
                 25,
@@ -1200,8 +1259,12 @@ class xoopsSecure_scan {
     /*
      * @desc check server for apache module
      * $param string $val the name of apache module to look for
-     * @return array $trn the array of apache module where 
+     * @return array $trn the array of apache module where
      *  exists = true/false and value = apache module setting
+     */
+    /**
+     * @param $val
+     * @return mixed
      */
     function getApacheModules ($val)
     {
@@ -1212,7 +1275,8 @@ class xoopsSecure_scan {
         if (in_array($val,$apachemod)) {
             $rtn['exists'] = true;
             $trn['value'] = array_search($val, $apachemod);
-        } 
+        }
+
         return $trn;
     }
     
@@ -1220,6 +1284,10 @@ class xoopsSecure_scan {
      * Delete issue from db
      * @param intval id of the issue to delete
      * @return void
+     */
+    /**
+     * @param $id
+     * @param $table
      */
     function deleteById($id, $table)
     {
@@ -1233,6 +1301,10 @@ class xoopsSecure_scan {
      * @param intval id of the issue to delete
      * @return void
      */
+    /**
+     * @param $file
+     * @param $linenumber
+     */
     function Ignore($file, $linenumber)
     {
         global $xoopsDB;
@@ -1244,9 +1316,14 @@ class xoopsSecure_scan {
     
     /*
      * Inserts file or dir into ignore this table
-     * @papam string $file is the filename / url 
+     * @papam string $file is the filename / url
      * @param string $type = file or dir
      * @param string $val = ignore or chmod
+     */
+    /**
+     * @param $file
+     * @param $type
+     * @param $val
      */
     function ignoreFile ($file, $type, $val)
     {
@@ -1275,30 +1352,35 @@ class xoopsSecure_scan {
                             '".$isdir."',
                             '".$val."'
                         )";
-                    $result = $xoopsDB->queryF($sql);    
+                    $result = $xoopsDB->queryF($sql);
                 } else {
                     $err = sprintf (_AM_XOOPSSECURE_ALREADYONLIST, $file);
-                    header($_SERVER["SERVER_PROTOCOL"]." 404 {$err}"); 
+                    header($_SERVER["SERVER_PROTOCOL"]." 404 {$err}");
                 }
             } else {
                 $err = sprintf (_AM_XOOPSSECURE_DROPURLISSAMEASSTART, $file);
-                header($_SERVER["SERVER_PROTOCOL"]." 404 {$err}"); 
+                header($_SERVER["SERVER_PROTOCOL"]." 404 {$err}");
             }
         } else {
                 $err = sprintf (_AM_XOOPSSECURE_DROPURLISPARTOFOTHER, $file);
-                header($_SERVER["SERVER_PROTOCOL"]." 404 {$err}"); 
+                header($_SERVER["SERVER_PROTOCOL"]." 404 {$err}");
         }
     }
-    
+
     /**
-    * @param string $val = ignore or chmod
-    */
+     * @param $file
+     * @param $type
+     * @param  string $val = ignore or chmod
+     * @return bool
+     * @return bool
+     */
     function checkIgnoreExists ($file, $type, $val)
     {
         global $xoopsDB;
         $test = "SELECT * FROM ".$xoopsDB->prefix("xoopsecure_ignores").
                 " WHERE url = '".$file."' AND val = '".$val."'";
         $testresult = $xoopsDB->queryF($test);
+
         return ($xoopsDB->getRowsNum($testresult) > 0) ? true:false;
     }
     
@@ -1308,7 +1390,11 @@ class xoopsSecure_scan {
      * @param string $val is the definition of ignore (chmod, ignore)
      * $return array $array of items
      */
-    function getIgnores ($genus, $val) 
+    /**
+     * @param $genus
+     * @param $val
+     */
+    function getIgnores ($genus, $val)
     {
         global $xoopsDB;
         $html = "";
@@ -1323,9 +1409,9 @@ class xoopsSecure_scan {
             " WHERE isdir = '".$isdir."' AND isfile = '".$isfile."' AND".
             " val = '".$val."'";
         $result = $xoopsDB->queryF($sql);
-        while ($row = $xoopsDB->fetchArray($result)) {                
+        while ($row = $xoopsDB->fetchArray($result)) {
              $html .= '<li>
-                <a  href="#" 
+                <a  href="#"
                     id = "xoopssecure_deleteissue"
                     data-id = '.$row['id'].'
                     data-fn = '.$row['url'].'
@@ -1335,10 +1421,10 @@ class xoopsSecure_scan {
                 >
                     '.$row['url'].'
                     <img alt="'._AM_XOOPSSECURE_DELETEISSUE_DESC.'"
-                    src="../images/delete.png" 
+                    src="../images/delete.png"
                 />
                 </a>
-            </li>';    
+            </li>';
                 
                 
         }
@@ -1350,6 +1436,11 @@ class xoopsSecure_scan {
      * @param string $genus is the type of files to get (ignore, chmod, issue)
      * @param string $type ('isdir' or 'isfile')
      * @return array $data
+     */
+    /**
+     * @param $genus
+     * @param $type
+     * @return array
      */
     function getIgnoreArray ($genus, $type)
     {
@@ -1366,8 +1457,12 @@ class xoopsSecure_scan {
             return array();
         }
     }
-    
-    
+
+    /**
+     * @param $genus
+     * @param $type
+     * @return array
+     */
     function getIgnoreArrayToVar ($genus, $type)
     {
         global $xoopsDB;
@@ -1381,35 +1476,46 @@ class xoopsSecure_scan {
             return $data;
         } else {
             return array();
-        }        
+        }
     }
-    
-    function xoopssecure_fullscan_hasFiles() 
+
+    /**
+     * @return int
+     */
+    function xoopssecure_fullscan_hasFiles()
     {
         global $xoopsDB;
         $sql = "SELECT * FROM " . $xoopsDB->prefix('xoopsecure_files');
         $result = $xoopsDB->queryF($sql);
+
         return ($xoopsDB->getRowsNum($result) > 0) ? 1:0;
     }
-    
+
+    /**
+     * @return int
+     */
     function xoopssecure_dbHasMallIssues()
     {
         global $xoopsDB;
         $sql = "SELECT * FROM " . $xoopsDB->prefix('xoopsecure_issues');
         $result = $xoopsDB->queryF($sql);
+
         return ($xoopsDB->getRowsNum($result) > 0) ? 1:0;
     }
-    
+
+    /**
+     * @param $info
+     */
     function sendCronMail ($info) {
-        global $xoopsConfig, $xoopsUser;      
-		$date = date('m-d-Y H:i:s',time());
-		$mail = new XoopsMultiMailer;
-		$tpl = new XoopsTpl();
-		$message = '';
-		
+        global $xoopsConfig, $xoopsUser;
+        $date = date('m-d-Y H:i:s',time());
+        $mail = new XoopsMultiMailer;
+        $tpl = new XoopsTpl();
+        $message = '';
+        
         $from = $xoopsConfig['adminmail'];
         $to = $xoopsConfig['adminmail'];
-        	
+            
         $subject = _XOOPSSECURE_MAIL_FROM." - ".$xoopsConfig['sitename'];
 
         $time = date(xoopssecure_GetModuleOption('dateformat'),$data['time']);
@@ -1430,17 +1536,17 @@ class xoopsSecure_scan {
         $message = $tpl->fetch($lnk);
         $mail->Body = $message;
         $toMail = $xoopsConfig['adminmail'];
-		
-		$mail->IsMail();
-		$mail->IsHTML(true);
-		$mail->AddAddress($to);
-		$mail->Subject = $subject;
-		
-		
-		if(!$mail->Send())
-		{}
-		else {
-		}	
-	}
+        
+        $mail->IsMail();
+        $mail->IsHTML(true);
+        $mail->AddAddress($to);
+        $mail->Subject = $subject;
+        
+        
+        if(!$mail->Send())
+        {}
+        else {
+        }
+    }
 
 }

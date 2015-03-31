@@ -29,7 +29,6 @@
 class MySource_Tests_Objects_CreateWidgetTypeCallbackUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -76,5 +75,4 @@ class MySource_Tests_Objects_CreateWidgetTypeCallbackUnitTest extends AbstractSn
 
 
 }//end class
-
-?>
+;

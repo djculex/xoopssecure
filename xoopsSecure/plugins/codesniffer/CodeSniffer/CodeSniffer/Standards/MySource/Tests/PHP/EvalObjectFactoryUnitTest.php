@@ -29,7 +29,6 @@
 class MySource_Tests_PHP_EvalObjectFactoryUnitTest extends AbstractSniffUnitTest
 {
 
-
     /**
      * Returns the lines where errors should occur.
      *
@@ -65,5 +64,4 @@ class MySource_Tests_PHP_EvalObjectFactoryUnitTest extends AbstractSniffUnitTest
 
 
 }//end class
-
-?>
+;

@@ -30,7 +30,6 @@
 class Generic_Sniffs_NamingConventions_UpperCaseConstantNameSniff implements PHP_CodeSniffer_Sniff
 {
 
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -211,5 +210,4 @@ class Generic_Sniffs_NamingConventions_UpperCaseConstantNameSniff implements PHP
 
 
 }//end class
-
-?>
+;
