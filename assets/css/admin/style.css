@@ -1,0 +1,716 @@
+@charset "UTF-8";
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
+/**
+ * Xoops IScanner module for xoops
+ *
+ * @copyright    2021 XOOPS Project (https://xoops.org)
+ * @license      GPL 2.0 or later
+ * @package      xoopsSecure
+ * @since        1.0
+ * @min_xoops    2.5.11
+ * @author       Culex - Email:culex@culex.dk - Website:https://www.culex.dk
+ */
+
+body {
+  font-size: 12px;
+  font-family: 'Roboto',Verdana,tahoma,Helvetica,sans-serif;
+  color: #4e5159;
+}
+
+img {
+    max-width : 200px;
+}
+
+fieldset {
+    border : #ddd groove 1px !important ;
+    padding : 0 1.4em 1.4em 1.4em !important ;
+    margin : 0 0 1.5em 0 !important ;
+    box-shadow : 0 0 0 0 #000;
+}
+
+legend {
+    font-size : 1.2em !important ;
+    font-weight : bold !important ;
+    text-align : left !important ;
+    background-color : #000;
+    color : #fff;
+    padding : 3px 6px;
+    width : min-content;
+}
+
+.xoopssecure_shadow_legend {
+font-weight: bold;
+text-shadow: 3px 4px darkblue;
+color: #e2dbfd;
+max-width: 400px;
+width: max-content;
+}
+
+.contact {
+    padding : 2%;
+}
+
+#xoopssecure_scanner_healtyInstall {
+    width: fit-content;
+}
+
+#xoopssecure_scanner_nothealtyInstall {
+    width: fit-content;
+}
+
+.xoopssecure_admin_scanaction {
+    text-align : center;
+    font-size : 11px;
+    border-color : black;
+    border-style : solid;
+    border-width : 1px;
+    border-right-style : solid;
+    border-right-color : black;
+    border-right-width : 1px;
+    border-left-color : black;
+    border-left-style : solid;
+    border-left-width : 1px;
+}
+
+.xoopssecure_last_log_div {
+    text-align : center;
+    background-color : lavender;
+    padding : 1% 1%;
+    border : gray dotted 1px;
+    border-radius : 12px;
+    font-size: 12px;
+    max-width: 675px;
+}
+
+.xoopssecure_last_log_div h3 {
+    font-size : 110%;
+    font-weight : bold;
+}
+
+.xoopssecureContentResultCheckDiv {
+    border : #f2f2f2 solid 1px;
+    height : 280px;
+    border-radius : 20px;
+    background : #fff;
+}
+
+.xoopssecureContentResultCheckDiv_header {
+    background : rgb(0, 255, 123);
+    padding : 20px;
+    border-radius : 20px 20px 0 0;
+}
+
+.xoopssecureContentResultCheck {
+    margin : 0 auto;
+    width : 50px;
+    height : 50px;
+    border-radius : 100%;
+    background : #fff;
+    text-align : center;
+}
+
+.xoopssecureIssueContainer {
+    margin: auto;
+}
+
+#xoopssecure_admin_scanlog_dropdown {
+    font-size : 10px;
+    color : black;
+    font-weight : bolder;
+    border-radius : 5px;
+    text-align : center;
+}
+
+.xoopssecureContentResultCheck i {
+    vertical-align : middle;
+    line-height : 50px;
+    font-size : 30px;
+}
+
+.xoopssecureContentResultSuccess {
+    text-align : center;
+}
+
+.xoopssecureContentResultSuccess h1 {
+    font-size : 25px;
+    padding-top : 25px;
+}
+
+.xoopssecureContentResultSuccess a {
+    width : 200px;
+    height : 35px;
+    color : #fff;
+    border-radius : 30px;
+    padding : 5px 10px;
+    background : rgb(0, 0, 0);
+    transition : all 0.3s ease-in-out;
+}
+
+.xoopssecureContentResultSuccess a:hover {
+    text-decoration : none;
+    background : #000;
+}
+
+.Scanfileactionbox {
+border: black solid 1px;
+max-width: 600px;
+float: right;
+text-align: end;
+margin: -70px 0px 20px 0px;
+padding: 15px 0px;
+height: 140px;
+background-color: floralwhite;
+min-width: 550px;
+}
+
+.Scanfileactionbox button {
+    margin: 0 20px;
+    border : red solid 1px;
+}
+
+.xoopssecure_divider {
+    position : relative;
+    top : 2%;
+    text-align : center;
+}
+
+#xoopssecure_scanner_start {
+    margin : auto;
+}
+
+.xoopssecure_system_panelcontainer {
+    margin: 0 0 5% 0;
+}
+
+.xoopssecure_system_panelrow {
+position: relative;
+padding: 2px 200px;
+border: 1px black solid;
+display: inline-table;
+margin: auto auto;
+width: 100%;
+}
+
+.xoopssecure_localhostdiv {
+    background-color: burlywood;
+width: 100%;
+border: 1px solid cornsilk;
+border-radius: 10px 10px;
+margin: 0px;
+}
+.xoopssecure_localhostinner {
+    margin: 10px 33%;
+border: 1px solid black;
+background-color: bisque;
+padding: 25px;
+width: 90%;
+}
+
+.xoopssecure_system_panel-heading {
+    border-radius: 10px 10px;
+background-color: bisque;
+border: 1px solid burlywood;
+margin: 20px auto;
+padding: 25px;
+}
+
+#xoopssecure_systemIcon {
+max-height: 80px;
+display: inline-block;
+padding: 5px 5px;
+margin: 8px 0;
+cursor: pointer;
+background-color: white;
+border-radius: 10px 10px 10px 10px;
+}
+
+#xoopssecure_downloadIcon {
+max-height: 80px;
+display: inline-block;
+padding: 5px 5px;
+margin: 8px 0;
+cursor: pointer;
+background-color: white;
+border-radius: 10px 10px 10px 10px;
+}
+
+#xoopssecure_downloadIconsmall{
+max-height: 40px;
+margin: 2px 0;
+}
+
+.xoopssecure_download_iconsmallcont{
+}
+
+.xoopssecure_system_settingissuesholderheader {
+display: inline-flex;
+padding: 2px 0;
+margin: 10px 20px;
+background-color: palegreen;
+font-size: 13px;
+font-weight: bolder;
+border: 1px solid;
+border-radius: 5px;
+text-shadow: 2px 2px 9px yellowgreen;
+width: 65%;
+margin-inline: auto;
+}
+
+.xoopssecure_download_backupcol {
+}
+
+.xoopssecure_dobackup {
+}
+
+.xoopssecure_dobackup_action {
+}
+
+.xoopssecure_dobackup_action.btn.btn-primary.text-center {
+margin: 10px 10px;
+width: fit-content;
+font-size: 12px;
+}
+
+.xoopssecure_download_iconheader {
+width: 90%;
+background-color: burlywood;
+height: fit-content;
+padding: 20px 20px;
+margin: auto;
+}
+
+.xoopssecure_system_settingissuesholder{
+margin: 0 20px;
+background-color: darkgoldenrod;
+font-size: 11px;
+font-weight: normal;
+border-radius: 3px;
+width: 65%;
+position: relative;
+margin-inline: auto;
+}
+
+.xoopssecure_backup_settingissuesholder{
+font-weight: normal;
+border-radius: 3px;
+width: 80%;
+position: relative;
+margin-inline: auto;
+}
+
+.xoopssecure_system_accordionicon_php {
+top: 25px;
+position: relative;
+text-align: inherit;
+height: max-content;
+font-size: 30px;
+font-weight: bolder;
+}
+
+.xoopssecure_download_accordionicon_backups {
+top: 25px;
+position: relative;
+text-align: inherit;
+height: max-content;
+font-size: 30px;
+font-weight: bolder;
+}
+
+.xoopssecure_download_accordionicon_downloads {
+  top: 25px;
+  position: relative;
+  text-align: inherit;
+  height: max-content;
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+.xoopssecure_system_accordionicon_php.collapsed::after {
+    /* symbol for "collapsed" panels */
+    content: "\f103";
+}
+
+.xoopssecure_system_accordionicon_php::after {
+    font-family: 'FontAwesome';
+    content: "\f102";
+    float: right;
+}
+
+.xoopssecure_download_accordionicon_backups.collapsed::after {
+    /* symbol for "collapsed" panels */
+    content: "\f103";
+}
+
+.xoopssecure_download_accordionicon_backups::after {
+    font-family: 'FontAwesome';
+    content: "\f102";
+    float: right;
+}
+
+.xoopssecure_download_accordionicon_downloads.collapsed::after {
+    /* symbol for "collapsed" panels */
+    content: "\f103";
+}
+
+.xoopssecure_download_accordionicon_downloads::after {
+    font-family: 'FontAwesome';
+    content: "\f102";
+    float: right;
+}
+
+.xoopssecure_phpini_pill {
+display: inline-block;
+margin: 2% 0;
+font-size: 10px;
+font-family: Arial Black;
+font-weight: bold;
+text-shadow: 1px 2px 8px midnightblue;
+}
+
+.xoopssecure_phpini_pill:hover{
+text-decoration: none;
+text-shadow: 1px 1px 10px yellow;
+}
+
+.xoopssecure_system_settingissuesholdercol {
+}
+
+.xoopssecure_system_settingissuesdescholder {
+width: 65%;
+margin: 10px auto;
+border: 1px solid black;
+background-color: ghostwhite;
+}
+.xoopssecure_system_settingissuesdescholderrow {
+    margin: 10px auto 20px auto;
+text-align: center;
+padding: 10px 10px;
+min-width: 55%;
+max-width: 65%;
+background-color: white;
+font-size: 11px;
+width: 65%;
+}
+
+.xoopssecure_cvedetails {
+max-width: 90%;
+margin: 2px 15%;
+font-size: 11px;
+border: 1px red solid;
+padding: 10px 25px;
+display: inline-block;
+}
+
+.xoopssecure_cvedetail_row {
+font-weight: bold;
+margin: 10px 5px 0px;
+max-width: 50%;
+}
+
+.xoopssecure_cvedetail_summary {
+margin: 2px 5px 25px;
+text-align: justify;
+border: 1px gray dotted;
+float: left;
+max-width: 75%;
+}
+
+.xoopssecure_cvedetail_publishdate {
+font-size: 10px;
+font-weight: lighter;
+text-align: left;
+margin: 10px 10px 0 0;
+float: left;
+}
+
+.xoopssecure_cvedetail_url a{
+    float: right;
+margin: 10px 10px;
+}
+
+.xoopssecure_system_iconheader {
+    margin: 0 20px;
+    float: left;
+}
+
+.xoopssecure_backup_iconheader {
+    margin: 0 20px;
+    float: left;
+}
+
+.xoopssecure_systemItemInfo {
+margin: 20px auto;
+}
+
+.xoopssecure_system_collapsediv {
+}
+
+.xoopssecure_system_collapsepanelbody {
+width: 100%;
+border: 1px solid;
+margin: 2px 2px;
+padding: 10px 0;
+display: inline-grid;
+background-color:moccasin;
+}
+
+.xoopssecure_download_backuptitle {
+width: 80%;
+margin: 0px 0px;
+display: inherit;
+font-weight: bold;
+border: 1px solid;
+padding: 2px 0px;
+background-color: burlywood;
+}
+
+.xoopssecure_downloadtype {
+}
+.xoopssecure_downloadname {
+    font-size: 9px;
+    font-weight: bold;
+}
+.xoopssecure_downloaddate {
+    font-size: 12px;
+}
+.xoopssecure_downloadtext {
+font-size: 11px;
+word-wrap: break-word;
+max-width: 220px;
+}
+.xoopssecure_downloadsize {
+font-size: 14px;
+}
+
+.xoopssecure_download_backupcontent{
+width: 80%;
+margin: 10px 0px;
+display: flex;
+padding: 0px 0px;
+height: 40px;
+}
+
+.xoopssecure_backup_collapsepanelbody{
+width: 90%;
+border: 1px solid;
+margin: 2px auto;
+padding: 10px 0;
+display: flow-root;
+background-color: moccasin;
+}
+
+.xoopssecure_systemItemInfo ul {
+    list-style: none;
+display: contents;
+font-size: 12px;
+}
+.xoopssecure_systemItemInfo li {
+}
+.xoopssecure_system_collapsepanelbody ul {
+}
+
+.xoopssecure_system_collapsepanelbody li {
+}
+
+.scanner_check_box {
+    font-size : 12px;
+    margin : 5% auto;
+}
+
+.xoopssecure_fileinfobox {
+    /* margin : -10px 50px 15px 25px; */
+margin: -70px 40px 20px 40px;
+overflow-wrap: break-word;
+max-width: 40%;
+border: black solid 1px;
+padding: 10px 10px;
+position: relative;
+background-color: lightsteelblue;
+float: left;
+}
+
+#xoopssecure_scanner_eta_ps {
+    display : none;
+    float : inline-end;
+    font-size : 11px;
+    margin : -0.25% 0%;
+}
+
+#xoopssecure_scanner_eta_if {
+    display : none;
+    float : inline-end;
+    font-size : 11px;
+    margin : -0.25% 0%;
+}
+
+#xoopssecure_scanner_eta_mal {
+    display : none;
+    float : inline-end;
+    font-size : 11px;
+    margin : -0.25% 0%;
+}
+
+#xoopssecureScanDetails {
+overflow-x: auto;
+height: 200px;
+overflow-y: scroll;
+border: black solid 1px;
+width: 100%;
+margin: auto;
+}
+
+#xoopssecureScanDetails td {
+  height: 100px;
+}
+
+.xoopssecureDisPlaySourceCode {
+overflow-x: scroll;
+width: 75%;
+height: 200px;
+overflow-y: scroll;
+border: darkgray solid 2px;
+padding: 15px 5px;
+margin: auto;
+}
+
+#xo-toolbar > li > a {
+  display: block;
+  padding: 0;
+  text-align: center;
+  line-height: 32px !important;
+  padding: 10px 8px;
+  border-left: 1px solid rgba(255,255,255,0.2);
+}
+
+#xo-toolbar {
+  list-style: none;
+}
+
+#xo-nav-options {
+  text-align: right;
+}
+
+#xo-nav-options {
+  background: #175D73;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+#xo-nav-options {
+  padding: 0 0 0 15px;
+  background: #175d73;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: right;
+}
+
+#xoopssecure_logheader_deletedate {
+    max-width: 100%;
+display: block;
+position: relative;
+float: right;
+border: 1px white solid;
+background-color: red;
+color: white;
+font-size: 12px;
+font-weight: bold;
+padding: 10px 10px;
+width: fit-content;
+text-align: right;
+}
+#xoopssecure_logheader_deletedate a, button {
+    color: white;
+width: 120px;
+padding: 4px 4px;
+margin: 0 20px;
+display: inline-table;
+border: 1px ridge yellow;
+text-align: center;
+font-weight: normal;
+border-radius: 6px 6px 6px 6px;
+}
+
+.xoopssecure_inlinetdheader{
+    background-color: blueviolet;
+color: wheat;
+width: 200px;
+text-align: center;
+display: inline-block;
+margin: 5px 5px;
+border-radius: 5px 5px;
+}
+
+.tooltip {
+    position: inherit;
+    opacity: 100;
+    display: revert;
+}
+
+#xoopssecure_mallware {
+margin: auto;
+}
+
+.xoopsseucre_phpcontainer {
+}
+
+.xoopssecure_IndexFiles_fileinfobox{
+    margin: -20px 0px 10px 70px;
+    overflow-wrap: break-word;
+    max-width: 50%;
+    border: black solid 1px;
+    padding: 10px 10px 0px 15px;
+    position: relative;
+    background-color: lightsteelblue;
+    float: left;
+}
+
+.xoopssecure_IndexFiles_shadow_legend {
+    font-weight: bold;
+    text-shadow: 3px 4px darkblue;
+    color: #e2dbfd;
+    max-width: 400px;
+    width: max-content;
+}
+
+.xoopssecureIndexFilesIssueContainer {
+    font-size: 12px;
+    text-shadow: 1px 1px 2px pink;
+}
+
+.xoopssecure_fixed{
+    background-color: green;
+    height: 15px;
+    width: 15px;
+    margin: 5px 0px;
+    text-align: center;
+    padding: 1px 1px;
+    font-size: 11px;
+    border-radius: 4px 4px 4px 4px;
+    opacity: 0.8;
+    color: white;
+    text-shadow: 2px 2px 0px black;
+    border: 1px black solid;
+}
+
+.xoopssecure_notfixed{
+    background-color: red;
+    height: 15px;
+    width: 15px;
+    margin: 5px 0px;
+    text-align: center;
+    padding: 1px 1px;
+    font-size: 11px;
+    border-radius: 4px 4px 4px 4px;
+    opacity: 0.8;
+    color: white;
+    text-shadow: 2px 2px 0px black;
+    border: 1px black solid;
+}
