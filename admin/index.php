@@ -1,34 +1,44 @@
 <?php
+
+declare(strict_types=1);
+
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
+
 /**
- * ****************************************************************************
- * marquee - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard (http://www.herve-thouzard.com)
+ * Xoops XoopsSecure module for xoops
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Hervé Thouzard (http://www.herve-thouzard.com)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         marquee
- * @author 			Hervé Thouzard (http://www.herve-thouzard.com)
- *
- * Version : $Id:
- * ****************************************************************************
+ * @copyright 2021 XOOPS Project (https://xoops.org)
+ * @license   GPL 2.0 or later
+ * @package   Xoopssecure
+ * @since     1.0
+ * @min_xoops 2.5.11
+ * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
  */
 
-include_once __DIR__ . '/admin_header.php';
-global $xoTheme;
-xoops_cp_header();
+use XoopsModules\Xoopssecure\Common;
+use XoopsModules\Xoopssecure\FileH;
 
-$indexAdmin = new ModuleAdmin();
+require_once \dirname(__DIR__) . '/preloads/autoloader.php';
+require __DIR__ . '/header.php';
 
-echo $indexAdmin->addNavigation('index.php');
+// Template Index
+$templateMain = 'xoopssecure_admin_index.tpl';
 
-echo $indexAdmin->renderIndex();
-    
+$GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));
+$GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
 
-include __DIR__ . '/admin_footer.php';
+// Render Index
+$GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('index.php'));
+$GLOBALS['xoopsTpl']->assign('index', $adminObject->displayIndex());
+
+
+$GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
+require __DIR__ . '/footer.php';
