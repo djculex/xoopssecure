@@ -1,532 +1,324 @@
 <?php
+declare(strict_types=1);
+
 /**
- * ****************************************************************************
- * marquee - MODULE FOR XOOPS
- * Copyright (c) Hervé Thouzard (http://www.herve-thouzard.com)
+ * Xoops Xoopssecure module for xoops
  *
- * You may not change or alter any portion of this comment or credits
- * of supporting developers from this source code or any supporting source code
- * which is considered copyrighted (c) material of the original comment or credit authors.
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * @copyright       Hervé Thouzard (http://www.herve-thouzard.com)
- * @license         http://www.fsf.org/copyleft/gpl.html GNU public license
- * @package         marquee
- * @author 			Hervé Thouzard (http://www.herve-thouzard.com)
- *
- * Version : $Id:
- * ****************************************************************************
+ * @copyright 2021 XOOPS Project (https://xoops.org)
+ * @license   GPL 2.0 or later
+ * @package   Xoopssecure
+ * @since     1.0
+ * @min_xoops 2.5.11
+ * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
  */
 
-if (!defined('XOOPS_ROOT_PATH')) {
-    die('XOOPS root path not defined');
-}
-
-/* strpos that takes an array of values to match against a string
- * note the stupid argument order (to match strpos)
- */
-function xoopssecure_strpos_arr($haystack, $needle)
-{
-    if (!is_array($needle)) {
-        $needle = array($needle);
-    }
-    foreach ($needle as $what) {
-        if (($pos = strpos($haystack, $what)) !== false) {
-            return $pos;
-        }
-    }
-
-    return false;
-}
-
-/* Search an array for occurence of string
- * @param $needle the string to search for
- * @param $haystack the array to search within
- * @param $strict if string and occurence need to be identical else equal
- * @return True or false
- */
-function xoopssecure_in_array_r($needle, $haystack, $strict = false)
-{
-    foreach ($haystack as $item) {
-        if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && xoopssecure_in_array_r($needle, $item, $strict))) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-/*
- * @desc Replace linebreaks to \n
- * @param string $s
- * @return string $s with replaced linebreaks
- */
-function xoopssecure_lbc($s)
-{
-    $s = str_replace("\r\n", "\n", $s);
-    $s = str_replace("<br>", "\n", $s);
-    $s = str_replace("<br/>", "\n", $s);
-
-    return $s;
-}
-
-/*
- * @desc Replace linebreaks to \n
- * @param string $s
- * @return string $s with replaced linebreaks
- */
-function xoopssecure_ntobr($s)
-{
-    $s = str_replace("\n", "<br>", $s);
-
-    return $s;
-}
-
-function xoopssecure_getArrayKeys($array)
-{
-    $array = implode(", ", $array);
-
-    return $array;
-}
-
-function xoopssecure_dirSep($filename)
-{
-    return str_replace("\\", "/", $filename);
-}
-
-/*
- * Get pathinfo from url
- * @param string $path the url to do the work on
- * @return $tab
-*/
-function xoopssecure_pathinfo($path)
-{
-    $tab = pathinfo($path);
-    $tab["basenameWE"] = substr($tab["basename"], 0, strlen($tab["basename"]) - (strlen($tab["extension"]) + 1));
-
-    return $tab;
-}
-
-/*
- * @desc checks if an apachemodule is set or not
- * @param string $val the name of the desired apache mod name
- * @return TRUE if the $val is set OR FALSE if not
-*/
-function xoopssecure_apachemodule($val)
-{
-    $apachemod = apache_get_modules();
-    if (in_array($val, $apachemod)) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-/*
- * @desc get options to the preferences based on server settings. Checks
- *       if server accept mod_rewrite or not.
- * @return array $opt
-*/
-function xoopssecure_modversion_apachemod()
-{
-    $opt = array();
-    $check = xoopssecure_apachemodule('mod_rewrite');
-    if ($check === true) {
-        $opt['_MI_XOOPSSECURE_AUTOINDEXFILESSELECT_HTTACCESSFILE'] = 0;
-        $opt['_MI_XOOPSSECURE_AUTOINDEXFILESSELECT_HTMLFILE'] = 1;
-        $opt['_MI_XOOPSSECURE_AUTOINDEXFILESSELECT_BOTH'] = 2;
-    } else {
-        $opt['_MI_XOOPSSECURE_AUTOINDEXFILESSELECT_HTMLFILE'] = 1;
-    }
-
-    return $opt;
-}
-
-/*
- * @desc strip back-slashes and replace with single forwared slash
- * @param string $string the string to work over
- * @return $string the slash free string
-*/
-function xoopssecure_cleanUrl($string)
-{
-    $string = str_replace('\\', '/', $string);
-    $string = str_replace('//', '/', $string);
-    $string = trim($string);
-
-    return $string;
-}
-
-/*
- * @desc function to remove quotes from string
- * $param string $s the string to search quotes
- * @return string $s stripped of quotes
-*/
-function xoopssecure_removequot($s)
-{
-    if (is_object($s) || is_array($s)) {
-        foreach ($s as &$value) {
-            $value = xoopssecure_removequot($value);
-        }
-    } else {
-        $s = html_entity_decode($s);
-        $s = str_replace("'", "", $s);
-        $s = str_replace('"', "", $s);
-    }
-
-    return $s;
-}
-
-/*
- * Return a calculated ../ type relative path
- * @param url $path the destination url
- * @param url $from the origin url
- * @return string - the translated relative path between the two paths
+/**
+ * Get the number of stats from the sub categories of a category or sub topics of or topic
  *
-*/
-function xoopssecure_getRelativePath($path, $from = __FILE__)
-{
-    $path = xoopssecure_cleanUrl($path);
-    $from = xoopssecure_cleanUrl($from);
-    $path = explode("/", $path);
-    $from = explode("/", dirname($from.'.'));
-    $common = array_intersect_assoc($path, $from);
-
-    $base = array('.');
-    if ($pre_fill = count(array_diff_assoc($from, $common))) {
-        $base = array_fill(0, $pre_fill, '..');
-    }
-    $path = array_merge($base, array_diff_assoc($path, $common));
-
-    return implode("/", $path);
-}
-
-function xoopssecure_rootToUrl($fn)
-{
-    $fn = str_replace(XOOPS_ROOT_PATH, XOOPS_URL, $fn);
-    $fn = str_replace("\\", '/', $fn);
-    $fn = str_replace("//", '/', $fn);
-
-    return $fn;
-}
-
-function xoopssecure_relToAbsUrlCheck($url)
-{
-    return xoopssecure_cleanUrl(
-        str_replace(XOOPS_ROOT_PATH, XOOPS_URL, $url)
-    );
-}
-
-/*
- * Removes children of folder url or
- *
- *
+ * @param  $mytree
+ * @param  $stats
+ * @param  $entries
+ * @param  $cid
+ * @return int
  */
-function xoopssecure_rmChildren($url, $val)
+function xoopssecure_NumbersOfEntries($mytree, $stats, $entries, $cid)
 {
-    global $xoopsDB;
-    $url = xoopssecure_removequot($url);
-    $orgurl = $url;
-    $url = str_replace(XOOPS_ROOT_PATH, '', $url);
-    $url = str_replace(XOOPS_URL, '', $url);
-    $url = str_replace("/", '.', $url);
-    
-    $arr = array();
-    
-    $sql   = "SELECT id, url FROM ".$xoopsDB->prefix('xoopsecure_ignores');
-    $sql  .= " WHERE val = '".$val."'";
-    $result = $xoopsDB->queryF($sql);
-    $resp = false;
-    while ($r = $xoopsDB->fetchArray($result)) {
-        $r['urla'] = str_replace(XOOPS_ROOT_PATH, '', $r['url']);
-        $r['urla'] = str_replace(XOOPS_URL, '', $r['urla']);
-        $r['urla'] = str_replace("/", '\\/', $r['urla']);
-        $r['urla'] = "~".$r['urla']."~";
-        $arr[] = $r;
-    }
-    foreach ($arr as $a) {
-        $burl = dirname($a['url'])."/";
-        preg_match_all($a['urla'], $url, $matches);
-        //echo $burl ." === ". $orgurl."<br>";
-        if (!empty($matches[0]) || $burl === $orgurl) {
-            $sql = "DELETE FROM ".$xoopsDB->prefix('xoopsecure_ignores').
-                " Where id = '".$a['id']."'";
-            if (is_dir($orgurl) && dirname($orgurl) === dirname($a['url'])) {
-                $sql .= " OR url = '".$a['url']."'";
+    $count = 0;
+    if (\in_array($cid, $stats)) {
+        $child = $mytree->getAllChild($cid);
+        foreach (\array_keys($entries) as $i) {
+            if ($entries[$i]->getVar('id') == $cid) {
+                $count++;
             }
-            $sql .= " AND val = '".$val."'";
-            $result = $xoopsDB->queryF($sql);
+            foreach (\array_keys($child) as $j) {
+                if ($entries[$i]->getVar('id') == $j) {
+                    $count++;
+                }
+            }
         }
+    }
+    return $count;
+}
+
+/**
+ * Add content as meta tag to template
+ *
+ * @param  $content
+ * @return void
+ */
+function xoopssecure_MetaKeywords($content)
+{
+    global $xoopsTpl, $xoTheme;
+    $myts = MyTextSanitizer::getInstance();
+    $content = $myts->undoHtmlSpecialChars($myts->displayTarea($content));
+    if (isset($xoTheme) && \is_object($xoTheme)) {
+        $xoTheme->addMeta('meta', 'keywords', \strip_tags($content));
+    } else {    // Compatibility for old Xoops versions
+        $xoopsTpl->assign('xoops_meta_keywords', \strip_tags($content));
     }
 }
 
-/*
- * Will check if an ignore value is in the ignore list or
- * if the parent folder is.
- * @param string $url of the file to look for
- * @param string $val ('ignore' or 'chmod')
- * @return bolean $resp (true or false)
+/**
+ * Add content as meta description to template
+ *
+ * @param  $content
+ * @return void
  */
-function xoopssecure_isfolderonlist($url, $val)
+function xoopssecure_MetaDescription($content)
 {
-    global $xoopsDB;
-    
-    $arr = array();
+    global $xoopsTpl, $xoTheme;
+    $myts = MyTextSanitizer::getInstance();
+    $content = $myts->undoHtmlSpecialChars($myts->displayTarea($content));
+    if (isset($xoTheme) && \is_object($xoTheme)) {
+        $xoTheme->addMeta('meta', 'description', \strip_tags($content));
+    } else {    // Compatibility for old Xoops versions
+        $xoopsTpl->assign('xoops_meta_description', \strip_tags($content));
+    }
+}
 
-    $sql  = "SELECT url FROM ".$xoopsDB->prefix('xoopsecure_ignores');
-    $sql .= " WHERE val = '".$val."'";
-    $result = $xoopsDB->queryF($sql);
-    $resp = false;
-    while ($r = $xoopsDB->fetchArray($result)) {
-        $r['urla'] = "~".$r['url']."~";
-        preg_match_all($r['urla'], $url, $matches);
-        if (!empty($matches[0])) {
-            $resp = true;
+/**
+ * Rewrite all url
+ *
+ * @param  string $module module name
+ * @param  array  $array  array
+ * @param  string $type   type
+ * @return null|string $type    string replacement for any blank case
+ */
+function xoopssecure_RewriteUrl($module, $array, $type = 'content')
+{
+    $comment = '';
+    $helper = \XoopsModules\Xoopssecure\Helper::getInstance();
+    $statsHandler = $helper->getHandler('stats');
+    $lenght_id = $helper->getConfig('lenght_id');
+    $rewrite_url = $helper->getConfig('rewrite_url');
+
+    if (0 != $lenght_id) {
+        $id = $array['content_id'];
+        while (\strlen($id) < $lenght_id) {
+            $id = '0' . $id;
         }
+    } else {
+        $id = $array['content_id'];
     }
 
-    return $resp;
+    if (isset($array['topic_alias']) && $array['topic_alias']) {
+        $topic_name = $array['topic_alias'];
+    } else {
+        $topic_name = xoopssecure_Filter(xoops_getModuleOption('static_name', $module));
+    }
+
+    switch ($rewrite_url) {
+        case 'none':
+            if ($topic_name) {
+                 $topic_name = 'topic=' . $topic_name . '&amp;';
+            }
+            $rewrite_base = '/modules/';
+            $page = 'page=' . $array['content_alias'];
+            return \XOOPS_URL . $rewrite_base . $module . '/' . $type . '.php?' . $topic_name . 'id=' . $id . '&amp;' . $page . $comment;
+            break;
+
+        case 'rewrite':
+            if ($topic_name) {
+                $topic_name .= '/';
+            }
+            $rewrite_base = xoops_getModuleOption('rewrite_mode', $module);
+            $rewrite_ext = xoops_getModuleOption('rewrite_ext', $module);
+            $module_name = '';
+            if (xoops_getModuleOption('rewrite_name', $module)) {
+                $module_name = xoops_getModuleOption('rewrite_name', $module) . '/';
+            }
+            $page = $array['content_alias'];
+            $type .= '/';
+            $id .= '/';
+            if ('content/' === $type) {
+                $type = '';
+            }
+            if ('comment-edit/' === $type || 'comment-reply/' === $type || 'comment-delete/' === $type) {
+                return \XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
+            }
+
+            return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name  . $id . $page . $rewrite_ext;
+            break;
+
+        case 'short':
+            if ($topic_name) {
+                $topic_name .= '/';
+            }
+             $rewrite_base = xoops_getModuleOption('rewrite_mode', $module);
+             $rewrite_ext = xoops_getModuleOption('rewrite_ext', $module);
+             $module_name = '';
+            if (xoops_getModuleOption('rewrite_name', $module)) {
+                $module_name = xoops_getModuleOption('rewrite_name', $module) . '/';
+            }
+             $page = $array['content_alias'];
+             $type .= '/';
+            if ('content/' === $type) {
+                $type = '';
+            }
+            if ('comment-edit/' === $type || 'comment-reply/' === $type || 'comment-delete/' === $type) {
+                return \XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
+            }
+
+            return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $page . $rewrite_ext;
+            break;
+    }
+    return null;
 }
 
-/*
- * recursively flatten a multi level array
- * @param array $array to flatten
- * @return array $return
+/**
+ * Replace all escape, character, ... for display a correct url
+ *
+ * @param  string $url  string to transform
+ * @param  string $type string replacement for any blank case
+ * @return string $url
  */
-function xoopssecure_flatten(array $array)
+function xoopssecure_Filter($url, $type = '')
 {
-    $return = array();
-    array_walk_recursive($array, function ($a) use (&$return) { $return[] = $a; });
 
-    return $return;
+    // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
+    $helper = \XoopsModules\Xoopssecure\Helper::getInstance();
+    $statsHandler = $helper->getHandler('stats');
+    $regular_expression = $helper->getConfig('regular_expression');
+
+    $url = \strip_tags($url);
+    $url .= \preg_replace('`\[.*\]`U', '', $url);
+    $url .= \preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '-', $url);
+    $url .= \htmlentities($url, ENT_COMPAT, 'utf-8');
+    $url .= \preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', "\1", $url);
+    $url .= \preg_replace([$regular_expression, '`[-]+`'], '-', $url);
+    $url = ('' == $url) ? $type : \strtolower(\trim($url, '-'));
+    return $url;
 }
 
-/* function to explode string to array
+/**
+ * Return array of folders and subfolders in class to use in preloads/autoloader
+ *
+ * @return array $folders
+ */
+function xoopssecure_GetClassSubFolders(string $path): array
+{
+    $directories = [];
+    $items = scandir($path);
+    foreach ($items as $item) {
+        if ($item == '..' || $item == '.') {
+            continue;
+        }
+        if (is_dir($path . '/' . $item)) {
+            $directories[] = str_replace("\\", DIRECTORY_SEPARATOR, trim($item));
+        }
+    }
+    array_push($directories, '');
+    return $directories;
+}
+
+
+/**
+ * Translate constant with/without arguments
+ *
+ * Looks through defined constants for key[string] and
+ * returns parsed string using arguments if any used
+ * ---------
+ * Example
+ * 1) echo xoopssecure_TranslateString('
+         _SCAN_XOOPSSECURE_WRONFILEPERMISSION_FIXED',
+         XOOPS_VAR_PATH . '/mainfile.php', '0666', "0444", "0444", "heyhey"
+      );
+ * 2) echo xoopssecure_TranslateString('XOOPS_URL', $unustedArg=3, 'Heyhey', 1, 2, 3);
+ *
+ * result
+ * 1) C:/xampp/htdocs/xoops_test/htdocs/xoops_data/mainfile.php had file permission : 0666,
+        recommended setting is 0444. Xoopssecure has fixed permissions to.: 0444
+ * 2) http://localhost/xoops_test/htdocs
+ * ---------
+ * @author Michael Albertsen (culex@culex.dk)
+ * @param $text string constant to look for
+ * @return string $returnText
+ */
+function xoopssecure_TranslateString($text)
+{
+    $def = get_defined_constants();
+    $returnText = $def[$text];
+    $args = func_get_args();
+    // if there is arguments
+    if ($args > 0) {
+        array_shift($args);
+        return vsprintf($returnText, $args);
+    } else {
+        // return org. string
+        return $returnText;
+    }
+}
+
+/** Get a list of dirs based on path
+ *
+ * @param string $dir the path to start from
+ * @param string $needle ext of files to getAllChild
+ * @return array
+ */
+function xoopssecure_listdirs($dir, $needle = null)
+{
+    $subDir = array();
+    $directories = array_filter(glob($dir), 'is_dir');
+    $subDir = array_merge($subDir, $directories);
+    foreach ($directories as $directory) {
+        $subDir = array_merge($subDir, xoopssecure_listdirs($directory . '/*'));
+    }
+    return $subDir;
+}
+
+/** 
+ * function to explode string to array
+ *
  * @param string $string
  * @return array $array
  */
- function xoopssecure_StringToArray($string)
- {
-     return ($string != '') ? preg_split("/\r\n|\n|\r/", $string) : array();
- }
+function xoopssecure_StringToArray($string)
+{
+    return ($string != '') ? preg_split("/\r\n|\n|\r/", $string) : array();
+}
 
-/* implode array to sring
- * @param array $array
- * @return string $string
+/**
+ * Returns array of minimum files and folders to be used as default in config
+ *
+ * @return array $data containing paths
  */
- function xoopssecure_ArrayToString($array)
- {
-     return (!empty($array)) ? implode("\n", $array) : '';
- }
- 
- 
- /* Returns array of minimum files and folders to be used as default in config
-  * @return array $data containing paths
-  */
- 
- function xoopssecure_backupFilesMin()
- {
-     return array(
-        XOOPS_ROOT_PATH."/uploads/" => XOOPS_ROOT_PATH."/uploads/",
-        XOOPS_ROOT_PATH."/modules/" => XOOPS_ROOT_PATH."/modules/",
-        XOOPS_ROOT_PATH."/themes/" => XOOPS_ROOT_PATH."/themes/",
-        XOOPS_PATH."/" => XOOPS_PATH."/",
-        XOOPS_VAR_PATH."/" => XOOPS_VAR_PATH."/",
-        XOOPS_ROOT_PATH."/mainfile.php" => XOOPS_ROOT_PATH."/mainfile.php"
+function xoopssecure_backupFilesMin()
+{
+    return array(
+       XOOPS_ROOT_PATH . "/uploads/" => XOOPS_ROOT_PATH . "/uploads/",
+       XOOPS_ROOT_PATH . "/modules/" => XOOPS_ROOT_PATH . "/modules/",
+       XOOPS_ROOT_PATH . "/themes/" => XOOPS_ROOT_PATH . "/themes/",
+       XOOPS_PATH . "/" => XOOPS_PATH . "/",
+       XOOPS_VAR_PATH . "/" => XOOPS_VAR_PATH . "/",
+       XOOPS_ROOT_PATH . "/mainfile.php" => XOOPS_ROOT_PATH . "/mainfile.php"
     );
- }
- 
-/*
- * Get value from xoopsconfig
- * @param string $option where $option is the XoopsConfig issue name
- * @param string $xoopssecure the module name from XoopsConfig
- * @return bolean $retval the value parsed from database
- */
- 
-function xoopssecure_GetModuleOption($option, $repmodule='xoopssecure')
-{
-    global $xoopsModuleConfig, $xoopsModule;
-    static $tbloptions = array();
-    if (is_array($tbloptions) && array_key_exists($option, $tbloptions)) {
-        return $tbloptions[$option];
-    }
-    $retval = false;
-    if (isset($xoopsModuleConfig)
-        && (is_object($xoopsModule)
-        && $xoopsModule->getVar('dirname') == $repmodule
-        && $xoopsModule->getVar('isactive'))
-    ) {
-        if (isset($xoopsModuleConfig[$option])) {
-            $retval= $xoopsModuleConfig[$option];
-        }
-    } else {
-        $module_handler =& xoops_gethandler('module');
-        $module =& $module_handler->getByDirname($repmodule);
-        $config_handler =& xoops_gethandler('config');
-        if ($module) {
-            $moduleConfig =& $config_handler->getConfigsByCat(0, $module->getVar('mid'));
-            if (isset($moduleConfig[$option])) {
-                $retval= $moduleConfig[$option];
-            }
-        }
-    }
-    $tbloptions[$option]=$retval;
-
-    return $retval;
 }
 
-/*
- * Checks if server is a windows server
- * @return true if server is found to be a local or windows server and FALSE if not
- */
- 
-function xoopssecure_iswin()
+ /**
+  * Returns scantype based on value
+  *
+  * Translate value to corresponding string
+  *
+  * @param value is the scantype fron db log
+  * @return string
+  */
+function xoopssecure_scantypeToString($val)
 {
-    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-        return true;
-    } else {
-        return false;
+    switch ($val) {
+        case '0':
+            return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_FULL;
+        break;
+        case '1':
+            return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_PERM;
+        break;
+        case '2':
+            return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_INDX;
+        break;
+        case '3':
+            return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_MALLW;
+        break;
+        case '4':
+            return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_CODES;
+        break;
     }
-}
-
-/*
- * @desc converts intval to b, Kb, Mb or Gb
- * @param $n the initian value in Bytes
- * @return intval $n converted to desired format
- */
- 
-function xoopssecure_convertToBytes($n)
-{
-    // If n is -1 then there is no limit
-    if ($n == -1) {
-        return PHP_INT_MAX;
-    }
-    switch (substr($n, -1)) {
-            case "B": return substr($n, 0, -1);
-            case "K": return substr($n, 0, -1) * 1024;
-            case "M": return substr($n, 0, -1) * 1024 * 1024;
-            case "G": return substr($n, 0, -1) * 1024 * 1024 * 1024;
-    }
-
-    return $n;
-}
-
-/*
- * @desc Scan folders & content to get a full dir size
- * @param $string $dir the directory url to scan
- * $return intval $totalsize of all content in this path
-*/
-function xoopssecure_getDirectorySize($dir)
-{
-    $count_size = 0;
-    $count = 0;
-    $dir_array = scandir($dir);
-    foreach ($dir_array as $key=>$filename) {
-        if ($filename != ".." && $filename!=".") {
-            if (is_dir($dir."/".$filename)) {
-                continue;
-            } elseif (is_file($dir."/".$filename)) {
-                $count_size = $count_size + filesize($dir."/".$filename);
-                $count++;
-            }
-        }
-    }
-
-    return $count_size;
-}
-
-/* Get html for ignore list with drag drop selectors
- * @param string $root is the default dir of file tree
- * @param string $dir is the selected dir to work with
- * @param string type weather this is ignore list or select dir
- * @return string echoed
- */
-function xoopssecure_ignoreFileTree($root, $dir, $type)
-{
-    if (file_exists($root . $_POST['dir'])) {
-        $files = scandir($root . $_POST['dir']);
-        natcasesort($files);
-        if (count($files) > 2) { /* The 2 accounts for . and .. */
-            echo "<ul class=\"jqueryFileTree\" style=\"display: none;\">";
-            // All dirs
-            foreach ($files as $file) {
-                if (file_exists($root . $_POST['dir'] . $file) && $file != '.' && $file != '..' && is_dir($root . $_POST['dir'] . $file)) {
-                    echo "<li class=\"directory collapsed\"><a href=\"#\" ref=\"dir\" rel=\"" .
-                        htmlentities($_POST['dir'] . $file) . "/\">" .
-                        htmlentities($file) .
-                            
-                        "</a></li>";
-                }
-            }
-            if ($type != 'scanner') {
-                // All files
-            foreach ($files as $file) {
-                if (file_exists($root . $_POST['dir'] . $file) && $file != '.' && $file != '..' && !is_dir($root . $_POST['dir'] . $file)) {
-                    $ext = preg_replace('/^.*\./', '', $file);
-                    echo "<li class=\"file ext_$ext\"><a href=\"#\" ref=\"file\" rel=\"" .
-                        htmlentities($_POST['dir'] . $file) . "\">" .
-                        htmlentities($file) .
-                           
-                        "</a></li>";
-                }
-            }
-            }
-            echo "</ul>";
-        }
-    }
-    if ($type === 'ignorelist') {
-        echo '<script type="text/javascript">';
-        echo    'xoopssecure_ignoreDragDrop ();';
-        echo '</script>';
-    }
-}
-
-/* Download files setting headers correctly
- * @param string $url = url to fetch
- * @return read content of file using readfile();
- */
- 
-function xoopssecure_DownloadFile($file) // $file = include path
-{
-    if (file_exists($file)) {
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/zip');
-        header('Content-Disposition: attachment; filename='.basename($file));
-        header('Content-Transfer-Encoding: binary');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($file));
-        //ob_clean();
-        flush();
-        readfile($file);
-        exit;
-    }
-}
-
-/* Delete backupfolder
- * @param url $file is the filename
- * @return void
- */
- 
-function xoopssecure_deleteBackupFolder($file)
-{
-    if (file_exists($file)) {
-        unlink($file);
-    }
-}
-
-function xoopssecure_deleteFolder($dirPath)
-{
-    foreach (
-        new RecursiveIteratorIterator(
-            new RecursiveDirectoryIterator(
-                $dirPath, FilesystemIterator::SKIP_DOTS
-            ), RecursiveIteratorIterator::CHILD_FIRST
-        ) as $path
-    ) {
-        $path->isDir() && !$path->isLink() ? rmdir($path->getPathname()) : unlink($path->getPathname());
-    }
-    rmdir($dirPath);
 }
