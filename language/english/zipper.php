@@ -25,13 +25,3 @@ declare(strict_types=1);
  */
 
 require_once __DIR__ . '/common.php';
-
-// ---------------- Admin Index ----------------
-\define('_AM_XOOPSSECURE_STATISTICS', 'Statistics');
-
-// ---------------- Admin Others ----------------
-\define('_AM_XOOPSSECURE_ABOUT_MAKE_DONATION', 'Submit');
-\define('_AM_XOOPSSECURE_SUPPORT_FORUM', 'Support Forum');
-\define('_AM_XOOPSSECURE_DONATION_AMOUNT', 'Donation Amount');
-\define('_AM_XOOPSSECURE_MAINTAINEDBY', ' is maintained by ');
-// ---------------- End ----------------
