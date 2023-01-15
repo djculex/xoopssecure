@@ -1,46 +1,57 @@
 <?php
 
-defined("XOOPS_ROOT_PATH") or die("XOOPS root path not defined");
+declare(strict_types=1);
 
-$path = dirname(dirname(dirname(__DIR__)));
-include_once $path . '/mainfile.php';
+/*
+ You may not change or alter any portion of this comment or credits
+ of supporting developers from this source code or any supporting source code
+ which is considered copyrighted (c) material of the original comment or credit authors.
 
-$dirname         = basename(dirname(__DIR__));
-$module_handler  = xoops_gethandler('module');
-$module          = $module_handler->getByDirname($dirname);
-$pathIcon32      = $module->getInfo('icons32');
-$pathModuleAdmin = $module->getInfo('dirmoduleadmin');
-$pathLanguage    = $path . $pathModuleAdmin;
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+*/
 
-if (!file_exists($fileinc = $pathLanguage . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/' . 'main.php')) {
-    $fileinc = $pathLanguage . '/language/english/main.php';
-}
+/**
+ * Xoops XoopsSecure module for xoops
+ *
+ * @copyright 2021 XOOPS Project (https://xoops.org)
+ * @license   GPL 2.0 or later
+ * @package   Xoopssecure
+ * @since     1.0
+ * @min_xoops 2.5.11
+ * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
+ */
 
-include_once $fileinc;
+$dirname       = \basename(\dirname(__DIR__));
+$moduleHandler = \xoops_getHandler('module');
+$xoopsModule   = XoopsModule::getByDirname($dirname);
+$moduleInfo    = $moduleHandler->get($xoopsModule->getVar('mid'));
+$sysPathIcon32 = $moduleInfo->getInfo('sysicons32');
 
-$adminmenu = array();
+$adminmenu[] = [
+    'title' => \_MI_XOOPSSECURE_ADMENU1,
+    'link' => 'admin/index.php',
+    'icon' => $sysPathIcon32 . '/dashboard.png',
+];
+$adminmenu[] = [
+    'title' => \_MI_XOOPSSECURE_ADMENU2,
+    'link' => 'admin/scanhome.php',
+    'icon' => $sysPathIcon32 . '/security.png',
+];
+$adminmenu[] = [
+    'title' => \_MI_XOOPSSECURE_ADMENU3,
+    'link' => 'admin/serverhome.php',
+    'icon' => $sysPathIcon32 . '/exec.png',
+];
+$adminmenu[] = [
+    'title' => \_MI_XOOPSSECURE_ADMENU4,
+    'link' => 'admin/download.php',
+    'icon' => $sysPathIcon32 . '/download.png',
+];
 
-$i = 1;
-$adminmenu[$i]["title"] = _AM_MODULEADMIN_HOME;
-$adminmenu[$i]["link"] = 'admin/index.php';
-$adminmenu[$i]["icon"] = $pathIcon32.'/home.png';
-
-$i++;
-$adminmenu[$i]["title"] = MI_XOOPSSECURE_MENU_SCAN;
-$adminmenu[$i]["link"] = 'admin/check.php';
-$adminmenu[$i]["icon"] = $pathIcon32.'/globe.png';
-
-$i++;
-$adminmenu[$i]["title"] = MI_XOOPSSECURE_MENU_SHOWLOG;
-$adminmenu[$i]["link"] = 'admin/showlog.php';
-$adminmenu[$i]["icon"] = $pathIcon32.'/globe.png';
-
-$i++;
-$adminmenu[$i]["title"] = MI_XOOPSSECURE_MENU_CONFIG;
-$adminmenu[$i]["link"] = 'admin/config.php';
-$adminmenu[$i]["icon"] = $pathIcon32.'/globe.png';
-
-$i++;
-$adminmenu[$i]["title"] = _AM_MODULEADMIN_ABOUT;
-$adminmenu[$i]["link"] = 'admin/about.php';
-$adminmenu[$i]["icon"] = $pathIcon32.'/about.png';
+$adminmenu[] = [
+    'title' => \_MI_XOOPSSECURE_ABOUT,
+    'link' => 'admin/about.php',
+    'icon' => $sysPathIcon32 . '/about.png',
+];
