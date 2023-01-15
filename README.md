@@ -2,7 +2,7 @@
 # XoopsSecure
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE) 
 
-XoopSecure is a XOOPS module which from Admin side helps you to keep your installations clear from malware, virus and helps you to check for other security related items.
+XoopSecure is a module which from Admin side helps you to keep your installations clear from malware, virus and helps you to check for other security related items.
 
 
 
@@ -31,6 +31,15 @@ XoopSecure is a XOOPS module which from Admin side helps you to keep your instal
 
 
 
+## Minimum Requirements
+
+- Xoops 2.5.10
+- PHP 7.1
+- MySql > 7.0
+
+
+
+
 ## Installation
 
 Install as a normale Xoops Module
@@ -39,4 +48,4 @@ Install as a normale Xoops Module
   Admin -> install
   Admin -> xoopsSecure
 ```
-
+    
