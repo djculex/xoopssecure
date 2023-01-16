@@ -1,7 +1,10 @@
 <?php
 
 declare(strict_types=1);
-
+use XoopsModules\Xoopssecure;
+use XoopsModules\Xoopssecure\Helper;
+use XoopsModules\Xoopssecure\SpamScanner;
+use Xmf\Request;
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -24,9 +27,8 @@ declare(strict_types=1);
  */
 
 //
-$moduleDirName      = \basename(__DIR__);
-$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
-$helper = \XoopsModules\Xoopssecure\Helper::getInstance();
+
+//$helper       = XoopsModules\Xoopssecure\Helper::getInstance();
 
 if (!isset($GLOBALS['xoTheme']) || !$GLOBALS['xoTheme'] instanceof \xos_opal_Theme) {
     include $GLOBALS['xoops']->path('class/theme.php');
@@ -46,9 +48,11 @@ $GLOBALS['xoTheme']->addScript(
 $script = "var xoopsSecureSysUrl = '" . XOOPS_URL . "/modules/xoopssecure/admin/';" . "\n";
 $GLOBALS['xoTheme']->addScript('', '', $script);
 
-$GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.min.js'));
-$GLOBALS['xoTheme']->addScript($helper->url('assets/js/typeahead.js'));
-$GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
+$GLOBALS['xoTheme']->addScript('browse.php?Frameworks/jquery/jquery.js');
+$GLOBALS['xoTheme']->addScript(XOOPS_URL . "/modules/xoopssecure/assets/js/bootstrap.min.js");
+$GLOBALS['xoTheme']->addScript(XOOPS_URL . "/modules/xoopssecure/assets/js/bootbox.min.js");
+$GLOBALS['xoTheme']->addScript(XOOPS_URL . "/modules/xoopssecure/assets/js/typeahead.js");
+$GLOBALS['xoTheme']->addScript(XOOPS_URL . "/modules/xoopssecure/assets/js/scannerAdmin.js");
 $GLOBALS['xoTheme']->addStylesheet(
     '',
     array('type' => 'text/css'),
