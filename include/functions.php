@@ -206,6 +206,9 @@ function xoopssecure_GetClassSubFolders(string $path): array
         if (is_dir($path . '/' . $item)) {
             $directories[] = str_replace("\\", DIRECTORY_SEPARATOR, trim($item));
         }
+        if (is_file($path . '/' . $item)) {
+            $directories[] = str_replace("\\", DIRECTORY_SEPARATOR, trim($item));
+        }
     }
     array_push($directories, '');
     return $directories;
