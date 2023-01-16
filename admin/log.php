@@ -37,7 +37,7 @@ $GLOBALS['xoTheme']->addStylesheet($helper->url('assets/css/admin/style.css'));
 $GLOBALS['xoTheme']->addStylesheet($helper->url('assets/css/admin/style.css'));
 
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));
-
+$GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
 
 $adminObject = \Xmf\Module\Admin::getInstance();
@@ -78,5 +78,4 @@ $GLOBALS['xoopsTpl']->assign('resMal', $resMal);
 $GLOBALS['xoopsTpl']->assign('resIF', $resIF);
 $GLOBALS['xoopsTpl']->assign('resFP', $resFP);
 $GLOBALS['xoopsTpl']->assign('resCS', $resCS);
-$GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
 require __DIR__ . '/footer.php';

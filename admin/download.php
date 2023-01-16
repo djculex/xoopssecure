@@ -38,6 +38,7 @@ $GLOBALS['xoTheme']->addStylesheet($helper->url('assets/css/admin/style.css'));
 $GLOBALS['xoTheme']->addStylesheet($helper->url('assets/css/admin/style.css'));
 
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));
+$GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
 
 $adminObject = \Xmf\Module\Admin::getInstance();
@@ -53,5 +54,4 @@ $api = new Api();
 
 $GLOBALS['xoopsTpl']->assign('backupfiles', $fileClass->getBackupsFiles());
 $GLOBALS['xoopsTpl']->assign('downloadfiles', $api->parseObjs());
-$GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
 require __DIR__ . '/footer.php';

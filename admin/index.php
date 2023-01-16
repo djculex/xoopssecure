@@ -25,6 +25,7 @@ declare(strict_types=1);
 
 use XoopsModules\Xoopssecure\Common;
 use XoopsModules\Xoopssecure\FileH;
+use XoopsModules\Xoopssecure\SpamScanner;
 
 require_once \dirname(__DIR__) . '/preloads/autoloader.php';
 require __DIR__ . '/header.php';
@@ -33,12 +34,14 @@ require __DIR__ . '/header.php';
 $templateMain = 'xoopssecure_admin_index.tpl';
 
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));
+$GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
+
 
 // Render Index
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('index.php'));
 $GLOBALS['xoopsTpl']->assign('index', $adminObject->displayIndex());
 
 
-$GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
+
 require __DIR__ . '/footer.php';

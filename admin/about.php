@@ -26,11 +26,12 @@ declare(strict_types=1);
 require __DIR__ . '/header.php';
 $templateMain = 'xoopssecure_admin_about.tpl';
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));
+$GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
 
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('about.php'));
 $adminObject::setPaypal('culex@culex.dk');
 $GLOBALS['xoopsTpl']->assign('about', $adminObject->renderAbout(false));
-$GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
+
 $GLOBALS['xoTheme']->addStylesheet($helper->url('assets/css/bootstrap.css'));
 require __DIR__ . '/footer.php';

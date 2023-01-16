@@ -70,5 +70,6 @@ $GLOBALS['xoTheme']->addStylesheet(XOOPS_URL . '/xoops.css');
 $GLOBALS['xoTheme']->addStylesheet(XOOPS_URL . '/modules/system/themes/transition/css/style.css');
 
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));
+$GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
 require __DIR__ . '/footer.php';
