@@ -46,7 +46,7 @@ $testserver = $mech->testServer();
 $systeminfo = $mech->systemArray();
 $phpinfo = $mech->phpInfoArray();
 
-$GLOBALS['xoopsLogger']->activated = false;
+$GLOBALS['xoopsLogger']->activated = true;
 
 $GLOBALS['xoopsTpl']->assign('phpini', $testserver['phpini']);
 $GLOBALS['xoopsTpl']->assign('testserverstats', $testserver['status']);
