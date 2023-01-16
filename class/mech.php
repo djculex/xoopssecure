@@ -5,7 +5,7 @@ use XoopsModules\Xoopssecure;
 use XoopsModules\Xoopssecure\Constants;
 use XoopsModules\Xoopssecure\Db;
 
-set_time_limit(999999);
+@set_time_limit(999999);
 
 /**
  * Mechanics class
@@ -26,10 +26,7 @@ class Mech
     // Constructor
     public function __construct()
     {
-        if (null === $helper) {
-            $helper = Helper::getInstance();
-        }
-        $this->helper = $helper;
+        $this->helper = Helper::getInstance();
     }
 
     /** 
@@ -101,14 +98,14 @@ class Mech
         }
 
         // BASIC SERVER SETTINGS / NAMES
-        $resp['status']['pcname'] = $init["Environment"]["COMPUTERNAME"];
+        $resp['status']['pcname'] = (isset($init["Environment"]["COMPUTERNAME"])) ? $init["Environment"]["COMPUTERNAME"] : $_SERVER['SERVER_NAME'];
         $resp['status']['os'] = self::getOS();
-        $resp['status']['os_builtdate'] = date('d-m-Y', strtotime($init["General"]["Build Date"]));
-        $resp['status']['numberofprocessors'] = $init["Environment"]["NUMBER_OF_PROCESSORS"];
-        $resp['status']['processorarchetecture'] = $init["Environment"]["PROCESSOR_ARCHITECTURE"];
+        $resp['status']['os_builtdate'] = (isset($init["General"]["Build Date"])) ? date('d-m-Y', strtotime($init["General"]["Build Date"])) : "??-??-????";
+        $resp['status']['numberofprocessors'] = (isset($init["Environment"]["NUMBER_OF_PROCESSORS"])) ? $init["Environment"]["NUMBER_OF_PROCESSORS"] : "?";
+        $resp['status']['processorarchetecture'] = (isset($init["Environment"]["PROCESSOR_ARCHITECTURE"])) ? $init["Environment"]["PROCESSOR_ARCHITECTURE"] : "?";
         $resp['status']['serveruptime'] = self::mysqlUptimeToString($dat->serverUptime());
-        $resp['status']['serveruse'] = ($init["Apache Environment"]["HTTP_HOST"] == 'localhost') ? 'localhost' : 'live';
-        $resp['status']['serveripadress'] = $init["Apache Environment"]["SERVER_ADDR"];
+        $resp['status']['serveruse'] = (self::isLocalhost($whitelist = ['127.0.0.1', '::1']) === true ) ? 'localhost' : 'live';
+        $resp['status']['serveripadress'] = ($resp['status']['serveruse'] == 'localhost') ? $init["Apache Environment"]["SERVER_ADDR"] : $_SERVER['REMOTE_ADDR'];
 
 
         // core
@@ -313,6 +310,16 @@ class Mech
         }
         return $resp;
     }
+    
+    /**
+     * Is server localhost or live
+     * @param array $whitelist ips to look for
+     * @return bool
+    */
+    function isLocalhost($whitelist = ['127.0.0.1', '::1']) 
+    {
+        return in_array($_SERVER['REMOTE_ADDR'], $whitelist);
+    }
 
     /** 
      * Return styled link based on text and link
@@ -433,6 +440,8 @@ class Mech
         $databaseversion = $this->getServerValues('mysql_version');
         if (preg_match('|Apache\/(\d+)\.(\d+)\.(\d+)|', $_SERVER['SERVER_SOFTWARE'], $version)) {
             $apacheversionnum =  $version[1] . '.' . $version[2] . '.' . $version[3];
+        } else {
+            $apacheversionnum = null;
         }
         $resp['php']['version'] = phpversion();
         $resp['php']['type']    = "php";
@@ -906,7 +915,7 @@ class Mech
                     '2.3.1' => '1223676000',
                     '2.3.0' => '1221861600'
             );
-            $resp = date('d-m-Y', $version[$ver]);
+            $resp = date('d-m-Y', (array_key_exists($ver,$version)) ? $version[$ver] : null);
             return ($resp != '') ? $resp : null;
     }
 
@@ -961,7 +970,7 @@ class Mech
             '5.6.28' => '1449442800',
             '5.6.27' => '1443564000'
         );
-            $resp = date('d-m-Y', $version[$ver]);
+            $resp = date('d-m-Y', (array_key_exists($ver,$version)) ? $version[$ver] : null);
             return ($resp != '') ? $resp : null;
     }
 
@@ -1149,7 +1158,7 @@ class Mech
             '10.1.09' => '1448233200',
             '10.1.08' => '1445032800',
         );
-        $resp = date('d-m-Y', $version[$ver]);
+        $resp = date('d-m-Y', (array_key_exists($ver,$version)) ? $version[$ver] : null);
             return ($resp != '') ? $resp : null;
     }
 
@@ -1287,7 +1296,7 @@ class Mech
                '0.8.0' => '807832800',
                '0.6.2' => '798933600',
                );
-        $resp = date('d-m-Y', $version[$ver]);
+        $resp = date('d-m-Y', (array_key_exists($ver,$version)) ? $version[$ver] : null);
         return ($resp != '') ? $resp : null;
     }
 
