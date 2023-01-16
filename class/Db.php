@@ -207,7 +207,7 @@ class Db extends \XoopsPersistableObjectHandler
                 $arr[$i]['dirname']            = $row['dirname'];
                 $arr[$i]['shortname'] = basename($row['filename']);
                 $arr[$i]['filepermissions']    = $file->getFilePermission($row['filename']);
-                $arr[$i]['lastmod']            = date("d-m-Y H:i:s", filemtime($row['filename']));
+                $arr[$i]['lastmod']            = (is_readable($row['filename'])) ? date("d-m-Y H:i:s", filemtime($row['filename'])) : 0;
                 $arr[$i]['issues'] = $this->getIssuesByFn($row['filename'], $row['time'], $val);
                 $i++;
             }
@@ -859,6 +859,7 @@ class Db extends \XoopsPersistableObjectHandler
     {
         $sql = "Select `{$scanname}` FROM " . $this->db->prefix("xoopssecure_log");
         $result = $this->db->queryF($sql);
+        $arr = "";
         while ($row = $this->db->fetchArray($result)) {
             $arr = $row[$scanname];
         }
