@@ -1130,23 +1130,23 @@ $(document).ready(
     // Check latest scan
         function latestScan()
         {
-            $.ajax(
-                {
-                    url: xoopsSecureSysUrl + 'agent.php?type=getScanDate',
-                    dataType: 'json',
-                    async: true,
-                    success: function (data) {
-                        scanGetLatestScanTime = data;
-                    },
-                    complete: function (data) {
-                        if (scanGetLatestScanTime > 0) {
-                            $('#xoopssecureScannerFirstTime').modal('hide');
-                        } else {
-                            $('#xoopssecureScannerFirstTime').modal('show');
+                $.ajax(
+                    {
+                        url: xoopsSecureSysUrl + 'agent.php?type=getScanDate',
+                        dataType: 'json',
+                        async: true,
+                        success: function (data) {
+                            scanGetLatestScanTime = data;
+                        },
+                        complete: function (data) {
+                            if (scanGetLatestScanTime > 0) {
+                                $('#xoopssecureScannerFirstTime').modal('hide');
+                            } else {
+                                $('#xoopssecureScannerFirstTime').modal('show');
+                            }
                         }
                     }
-                }
-            );
+                );
         }
 
     //do stats
