@@ -55,7 +55,7 @@ class SpamScanner
         $this->startPathCs = $helper->getConfig('XCISDEVSTARTPATH');
         $this->omitdirs = $this->omitFolders();
         $this->omitfiles = $this->omitFiles();
-        $this->latestScanDate = ($db->getLatestTimeStamp() != '') ? $db->getLatestTimeStamp() : 1;
+        $this->latestScanDate = ($db->getLatestTimeStamp() != 0) ? $db->getLatestTimeStamp() : 0;
         $this->pattern = new Patterns();
     }
 
@@ -99,7 +99,46 @@ class SpamScanner
      */
     public function getFilesJson($dir, $pattern)
     {
-        set_time_limit(0);
+        @set_time_limit(0);
+        $files = [];
+        
+        $fh = opendir($dir);
+        $db = new db();
+        while (($file = readdir($fh)) !== false) {
+            if ($file == '.' || $file == '..') {
+                continue;
+            }
+
+            $filepath = $dir . '/' . $file;
+            $fn = str_replace('\\', '/', $filepath);
+            if (is_dir($filepath)) {
+                if (in_array($filepath, $this->omitdirs)) {
+                    continue;
+                } else {
+                    if (in_array($filepath, $this->omitfiles)) {
+                        continue;
+                    } else {
+                        $files = array_merge($files, $this->getFilesJson($filepath, $pattern));
+                    }
+                }
+            } else {
+                if (preg_match($pattern, $file)) {
+                    if ($this->latestScanDate >= filemtime($fn) && $this->latestScanDate > 0) {
+                        continue;
+                    } else {
+                        array_push($files, $filepath);
+                    }
+                }
+            }
+        }
+            closedir($fh);
+            return $files;
+        
+    }
+
+    function test($dir, $pattern)
+    {
+        @set_time_limit(0);
         $files = [];
         $fh = opendir($dir);
         $db = new db();
@@ -119,12 +158,13 @@ class SpamScanner
                     if (in_array($filepath, $this->omitfiles)) {
                         continue;
                     } else {
-                        $files = array_merge($files, $this->getFilesJson($filepath, $pattern));
+                        $files = array_merge($files, $this->test($filepath, $pattern));
                     }
                 }
             } else {
                 if (preg_match($pattern, $file)) {
-                    if ($this->latestScanDate >= filemtime($fn) and $this->latestScanDate > 0) {
+                    if ($this->latestScanDate >= filemtime($fn) && $this->latestScanDate > 0) {
+                        continue;
                     } else {
                         array_push($files, $filepath);
                     }
@@ -135,6 +175,7 @@ class SpamScanner
         return $files;
     }
 
+    
     /**
      * Get files without the folders and files not not scan for coding standard
      *
@@ -144,7 +185,7 @@ class SpamScanner
      */
     public function getFilesJsonCS($dir, $pattern)
     {
-        set_time_limit(0);
+        @set_time_limit(0);
         $files = [];
         $fh = opendir($dir);
         $db = new db();
