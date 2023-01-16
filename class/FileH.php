@@ -390,8 +390,10 @@ class FileH extends \XoopsPersistableObjectHandler
      */
     function getFilePermission($file)
     {
-        $length = strlen(decoct(fileperms($file))) - 3;
-        return substr(decoct(fileperms($file)), $length);
+        if (is_readable($file)) {
+            $length = strlen(decoct(fileperms($file))) - 3;
+            return substr(decoct(fileperms($file)), $length);
+        }
     }
 
     /** 
