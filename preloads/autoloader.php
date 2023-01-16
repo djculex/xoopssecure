@@ -17,10 +17,12 @@ spl_autoload_register(
         $dirs = xoopssecure_GetClassSubFolders(XOOPS_ROOT_PATH . '/modules/xoopssecure/class/', $results = array());
         // foreach them to include them all inc subfolders
         foreach ($dirs as $dir) {
+                
                 // project-specific namespace prefix
                 $prefix = 'XoopsModules\\' . \ucfirst(\basename(\dirname(__DIR__)));
                 // base directory for the namespace prefix
                 $baseDir = \dirname(__DIR__) . '/class/' . $dir;
+                //echo $baseDir . "<br>";
                 // does the class use the namespace prefix?
                 $len = \mb_strlen($prefix);
             if (0 !== \strncmp($prefix, $class, $len)) {
@@ -33,7 +35,7 @@ spl_autoload_register(
                 // separators with directory separators in the relative class name, append
                 // with .php
                 $file = $baseDir . \str_replace('\\', DIRECTORY_SEPARATOR, trim($relativeClass)) . '.php';
-
+                
                 // if the file exists, require it
             if (\file_exists($file)) {
                 include $file;

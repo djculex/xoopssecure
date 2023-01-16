@@ -36,5 +36,6 @@ class xoopsSecureCorePreload extends \XoopsPreloadItem
     // Adding objects, scripts, styles to all public headers
     public static function eventCoreHeaderAddmeta()
     {
+        $GLOBALS['xoTheme']->addScript('browse.php?Frameworks/jquery/jquery.js');
     }
 }
