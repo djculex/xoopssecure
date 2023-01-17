@@ -101,38 +101,39 @@ class SpamScanner
     {
         @set_time_limit(0);
         $files = [];
-        
-        $fh = opendir($dir);
-        $db = new db();
-        while (($file = readdir($fh)) !== false) {
-            if ($file == '.' || $file == '..') {
-                continue;
-            }
-
-            $filepath = $dir . '/' . $file;
-            $fn = str_replace('\\', '/', $filepath);
-            if (is_dir($filepath)) {
-                if (in_array($filepath, $this->omitdirs)) {
+        if (is_dir($dir) && is_readable($dir)) {
+            $fh = opendir($dir);
+            $db = new db();
+            while (($file = readdir($fh)) !== false) {
+                if ($file == '.' || $file == '..') {
                     continue;
-                } else {
-                    if (in_array($filepath, $this->omitfiles)) {
-                        continue;
-                    } else {
-                        $files = array_merge($files, $this->getFilesJson($filepath, $pattern));
-                    }
                 }
-            } else {
-                if (preg_match($pattern, $file)) {
-                    if ($this->latestScanDate >= filemtime($fn) && $this->latestScanDate > 0) {
+
+                $filepath = $dir . '/' . $file;
+                $fn = str_replace('\\', '/', $filepath);
+                if (is_dir($filepath) && is_readable($filepath)) {
+                    if (in_array($filepath, $this->omitdirs)) {
                         continue;
                     } else {
-                        array_push($files, $filepath);
+                        if (in_array($filepath, $this->omitfiles)) {
+                            continue;
+                        } else {
+                            $files = array_merge($files, $this->getFilesJson($filepath, $pattern));
+                        }
+                    }
+                } else {
+                    if (preg_match($pattern, $file) && is_readable($file)) {
+                        if ($this->latestScanDate >= filemtime($fn) && $this->latestScanDate > 0) {
+                            continue;
+                        } else {
+                            array_push($files, $filepath);
+                        }
                     }
                 }
             }
+                closedir($fh);
+                return $files;
         }
-            closedir($fh);
-            return $files;
         
     }
 
