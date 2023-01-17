@@ -113,6 +113,9 @@ class FileH extends \XoopsPersistableObjectHandler
     public function getBackupsFiles()
     {
         //path to directory to scan
+        if (!is_dir(XOOPS_ROOT_PATH . "/uploads/backup")) {
+            @mkdir(XOOPS_ROOT_PATH . "/uploads/backup", 0755, true);
+        }
         $directory = XOOPS_ROOT_PATH . "/uploads/backup/";
         $iterator = new \DirectoryIterator($directory);
         $eol = PHP_EOL;
