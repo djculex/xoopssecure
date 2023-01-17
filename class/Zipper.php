@@ -44,7 +44,7 @@ class Zipper extends \XoopsPersistableObjectHandler
         $this->dest = XOOPS_ROOT_PATH . "/uploads/backup/"; // make sure this directory exists!
         // make project backup folder
         if (!file_exists($this->dest)) {
-            mkdir($this->dest, 0775, true);
+            mkdir($this->dest, 0777, true);
         }
 
         $this->filename = "backup_" . date('d-m-Y__H_i') . ".zip"; // Name Zip to create
@@ -52,7 +52,7 @@ class Zipper extends \XoopsPersistableObjectHandler
         $this->sqlname = XOOPS_DB_NAME; // Name of xoops database
         $this->backup_file_sql  = XOOPS_ROOT_PATH . "/uploads/backup/tmp/sql.sql"; //Name of sql to create
         if (!is_dir(dirname($this->backup_file_sql))) {
-            mkdir(dirname($this->backup_file_sql), 0755, true);
+            mkdir(dirname($this->backup_file_sql), 0777, true);
         }
     }
 
@@ -67,10 +67,10 @@ class Zipper extends \XoopsPersistableObjectHandler
         $config = $helper->getConfig('XCISBACKUPTYPE');
         if ($config[0] == "Minimum") {
             return array(
-                XOOPS_ROOT_PATH . "/themes",
-                XOOPS_ROOT_PATH . "/uploads",
-                XOOPS_ROOT_PATH . "/xoops_data",
-                XOOPS_ROOT_PATH . "/xoops_lib",
+                XOOPS_ROOT_PATH . "/themes/",
+                XOOPS_ROOT_PATH . "/uploads/",
+                XOOPS_ROOT_PATH . "/xoops_data/",
+                XOOPS_ROOT_PATH . "/xoops_lib/",
                 XOOPS_ROOT_PATH . "/mainfile.php",
                 XOOPS_ROOT_PATH . "/install/page_end.php"
             );
@@ -107,22 +107,42 @@ class Zipper extends \XoopsPersistableObjectHandler
             $tmpsubfo = str_split($subfolder);
             $subfolder = (end($tmpsubfo) == "/") ? $subfolder . "" : $subfolder . "/";
             $subfolder = (substr($subfolder, 0, 1) == '/') ? substr($subfolder, 1) : $subfolder;
-            $handle = opendir($folder);
+            try {
+                $handle = opendir($folder);
+            }catch (Exception $e) {
+                echo 'Caught exception: ',  $e->getMessage(), "\n";
+            }
             while ($f = readdir($handle)) {
                 if ($f != "." && $f != "..") {
                     if (is_file($folder . $f)) {
                         if ($subfolder !== null) {
-                            $zipFile->addFile($folder . $f, $this->stripPathPart($subfolder) . $f);
+                            try {
+                                $zipFile->addFile($folder . $f, $this->stripPathPart($subfolder) . $f);
+                            } catch (Exception $e) {
+                                echo 'Caught exception: ',  $e->getMessage(), "\n";
+                            }
                         } else {
-                            $zipFile->addFile($folder . $this->stripPathPart($f));
+                            try {
+                                $zipFile->addFile($folder . $this->stripPathPart($f));
+                            } catch (Exception $e) {
+                                echo 'Caught exception: ',  $e->getMessage(), "\n";
+                            }
                         }
                     } elseif (is_dir($folder . $f)) {
                         if ($subfolder !== null) {
                             $zipFile->addEmptyDir($this->stripPathPart($subfolder . $f));
-                            Zipper::folderToZip($folder . $f, $zipFile, $this->stripPathPart($subfolder . $f));
+                            try {
+                                Zipper::folderToZip($folder . $f, $zipFile, $this->stripPathPart($subfolder . $f));
+                            } catch (Exception $e) {
+                                echo 'Caught exception: ',  $e->getMessage(), "\n";
+                            }
                         } else {
                             $zipFile->addEmptyDir($this->stripPathPart($f));
+                            try {
                             Zipper::folderToZip($folder . $f, $zipFile, $this->stripPathPart($f));
+                            } catch (Exception $e) {
+                                echo 'Caught exception: ',  $e->getMessage(), "\n";
+                            }
                         }
                     }
                 }
@@ -171,8 +191,9 @@ class Zipper extends \XoopsPersistableObjectHandler
         $z->addFile($this->backup_file_sql . ".sql", "mysqlbackup/" . basename($this->backup_file_sql . ".sql"));
         $z->close();
         \unlink($this->backup_file_sql . ".sql"); // Delete now zipped sql file from temp
-        header('Content-disposition: attachment; filename="' . basename($this->archive) . '.zip"');
-        header('Content-type: application/zip');
-        readfile($this->archive);
+        \rmdir(XOOPS_ROOT_PATH . '/uploads/backup/tmp'); // Delete temp folder
+        //header('Content-disposition: attachment; filename="' . basename($this->archive) . '.zip"');
+        //header('Content-type: application/zip');
+        //readfile($this->archive);
     }
 }
