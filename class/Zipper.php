@@ -67,10 +67,10 @@ class Zipper extends \XoopsPersistableObjectHandler
         $config = $helper->getConfig('XCISBACKUPTYPE');
         if ($config[0] == "Minimum") {
             return array(
-                XOOPS_ROOT_PATH . "/themes/",
-                XOOPS_ROOT_PATH . "/uploads/",
-                XOOPS_ROOT_PATH . "/xoops_data/",
-                XOOPS_ROOT_PATH . "/xoops_lib/",
+                XOOPS_ROOT_PATH . "/themes",
+                XOOPS_ROOT_PATH . "/uploads",
+                XOOPS_ROOT_PATH . "/xoops_data",
+                XOOPS_ROOT_PATH . "/xoops_lib",
                 XOOPS_ROOT_PATH . "/mainfile.php",
                 XOOPS_ROOT_PATH . "/install/page_end.php"
             );
@@ -192,8 +192,8 @@ class Zipper extends \XoopsPersistableObjectHandler
         $z->close();
         \unlink($this->backup_file_sql . ".sql"); // Delete now zipped sql file from temp
         \rmdir(XOOPS_ROOT_PATH . '/uploads/backup/tmp'); // Delete temp folder
-        //header('Content-disposition: attachment; filename="' . basename($this->archive) . '.zip"');
-        //header('Content-type: application/zip');
-        //readfile($this->archive);
+        header('Content-disposition: attachment; filename="' . basename($this->archive) . '.zip"');
+        header('Content-type: application/zip');
+        readfile($this->archive);
     }
 }
