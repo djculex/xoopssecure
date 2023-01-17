@@ -1,4 +1,16 @@
-1.3.0 [2023/01/15 18:23:00]
+1.3.2 [2023/01/17 17:23:00]
+==============================================================
+- Fixing backup paths as not all subfolders was included
+- Added a function to call automatic backup if loged in as Admin
+- Fix : Should we run cron and backup always was true
+- Fix : timestamp for last cron scan was a string while int was expected.
+- FIX : Folder for backup had wrong permissions.
+- FIX : SpamScanner Check if folders are readable.
+- FIX : After manual backup open in browser.
+ 
+
+
+1.3.1 [2023/01/15 18:23:00]
 ==============================================================
 - Additional cleaning up, renewing, moving and updating.. and
 - Adding agent to respond to ajax
@@ -31,3 +43,10 @@
 1.0.0 [2015/03/25 00:00:00]
 ==============================================================
  - Original release xoopsSecure (Culex)
+ - Rebirth of the indexscan idea but started over
+ 
+ Adoption and namechange from IndexFile
+ =============================================================
+ - first release 2009/07/09 - last updated 2010/01/18
+ - Credits Mamba, Voltan, Kris_fr, CJ, Reintjan, DonCurioso,
+    Burning & Ghia just not to forget :-)
