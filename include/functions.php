@@ -288,11 +288,12 @@ function xoopssecure_StringToArray($string)
 function xoopssecure_backupFilesMin()
 {
     return array(
-       XOOPS_ROOT_PATH . "/uploads/" => XOOPS_ROOT_PATH . "/uploads/",
-       XOOPS_ROOT_PATH . "/modules/" => XOOPS_ROOT_PATH . "/modules/",
-       XOOPS_ROOT_PATH . "/themes/" => XOOPS_ROOT_PATH . "/themes/",
-       XOOPS_PATH . "/" => XOOPS_PATH . "/",
-       XOOPS_VAR_PATH . "/" => XOOPS_VAR_PATH . "/",
+       XOOPS_ROOT_PATH . "/modules/" => XOOPS_ROOT_PATH . "/modules",
+       XOOPS_ROOT_PATH . "/uploads/" => XOOPS_ROOT_PATH . "/uploads",
+       XOOPS_ROOT_PATH . "/modules/" => XOOPS_ROOT_PATH . "/modules",
+       XOOPS_ROOT_PATH . "/themes/" => XOOPS_ROOT_PATH . "/themes",
+       XOOPS_PATH . "/" => XOOPS_PATH,
+       XOOPS_VAR_PATH . "/" => XOOPS_VAR_PATH,
        XOOPS_ROOT_PATH . "/mainfile.php" => XOOPS_ROOT_PATH . "/mainfile.php"
     );
 }
