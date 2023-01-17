@@ -817,18 +817,16 @@ class Db extends \XoopsPersistableObjectHandler
             case "cronscan":
                 return (
                 strtotime(
-                    $this->getLatestLog('cronscan') . " + " .
-                    $this->helper->getConfig('XCISCRONINTERVAL') . " HOURS"
-                ) > time()
+                    " + " . $this->helper->getConfig('XCISCRONINTERVAL') . " HOURS", $this->getLatestLog('cronscan')
+                ) < time()
             ) ? true : false;
             break;
 
             case "backup":
                 return (
                 strtotime(
-                    $this->getLatestLog('backup') . " + " .
-                    $this->helper->getConfig('XCISAUTOBACKUPINTERVAL') . " DAYS"
-                ) > time()
+                    " + " . $this->helper->getConfig('XCISAUTOBACKUPINTERVAL') . " DAYS", $this->getLatestLog('backup')
+                ) < time()
             ) ? true : false;
             break;
         }
@@ -863,6 +861,6 @@ class Db extends \XoopsPersistableObjectHandler
         while ($row = $this->db->fetchArray($result)) {
             $arr = $row[$scanname];
         }
-        return ($arr != "") ? $arr : 0;
+        return ($arr != '') ? intval($arr) : 0;
     }
 }
