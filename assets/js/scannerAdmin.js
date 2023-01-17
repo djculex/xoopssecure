@@ -47,8 +47,9 @@ $(document).ready(
         var timeBefore = 0;
 
         updateLastInfor();
-    // Check for cron scan
+    // Check for cron scan and backup
         xoopssecure_timeforcron();
+        xoopssecure_timeforbackup();
 
     // Page specific load for log.php
         if (location.pathname.indexOf('log.php') != -1) {
@@ -779,6 +780,17 @@ $(document).ready(
             $.ajax(
                 {
                     url: xoopsSecureSysUrl + 'agent.php?type=doCronScan',
+                    dataType: 'json',
+                    async: true
+                }
+            );
+        }
+    /* Time to run auto backup ? */
+        function xoopssecure_timeforbackup()
+        {
+            $.ajax(
+                {
+                    url: xoopsSecureSysUrl + 'agent.php?type=doAutoCreatezip',
                     dataType: 'json',
                     async: true
                 }
