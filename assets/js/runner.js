@@ -19,11 +19,17 @@
  */
 $(document).ready(
     function () {
-
         function xoopssecure_timeforcron(bValue)
         {
             if (bValue == true) {
-                $.getJSON(xoopsSecureSysUrl + 'agent.php?type=test?id=' + i, (data) => {});
+                $.getJSON(xoopsSecureSysUrl + 'agent.php?type=doCronScan', (data) => {});
+            }
+        }
+        
+        function xoopssecure_timeforbackup(bValue)
+        {
+            if (bValue == true) {
+                $.getJSON(xoopsSecureSysUrl + 'agent.php?type=doAutoCreatezip', (data) => {});
             }
         }
 
