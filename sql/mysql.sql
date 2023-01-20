@@ -50,13 +50,12 @@ CREATE TABLE `xoopssecure_stats` (
 #
 
 CREATE TABLE `xoopssecure_log` (
-  `id` int NOT NULL,
-  `permissionscan` text NOT NULL,
-  `indexfilesscan` text NOT NULL,
-  `fullscan` text NOT NULL,
-  `codestandardscan` text NOT NULL,
-  `cronscan` text NOT NULL,
-  `mallwarescan` text NOT NULL,
-  `backup` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL,
+  `permissionscan` text DEFAULT NULL,
+  `indexfilesscan` text DEFAULT NULL,
+  `fullscan` text DEFAULT NULL,
+  `codestandardscan` text DEFAULT NULL,
+  `cronscan` text DEFAULT NULL,
+  `mallwarescan` text DEFAULT NULL,
+  `backup` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
