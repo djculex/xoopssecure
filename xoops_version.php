@@ -29,7 +29,7 @@ use Xmf\Request;
 //
 
 //$helper       = XoopsModules\Xoopssecure\Helper::getInstance();
-
+require_once __DIR__ . '/include/functions.php';
 if (!isset($GLOBALS['xoTheme']) || !$GLOBALS['xoTheme'] instanceof \xos_opal_Theme) {
     include $GLOBALS['xoops']->path('class/theme.php');
     $GLOBALS['xoTheme'] = new \xos_opal_Theme();
