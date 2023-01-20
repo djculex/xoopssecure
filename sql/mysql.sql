@@ -1,50 +1,61 @@
-CREATE TABLE xoopsecure_files (
-  id int(8) NOT NULL auto_increment,
-  filename text NOT NULL,
-  filesize text NOT NULL,
-  lastdate text default '',
-  hashvalue text default '',
-  file_ignore int(1) NOT NULL default '0',
-  PRIMARY KEY  (id)
-) ENGINE=MyISAM AUTO_INCREMENT=1 ;
+# SQL Dump for xoops iscanner module
+# PhpMyAdmin Version: 4.0.4
+# https://www.phpmyadmin.net
+#
+# Host: localhost
+# Generated on: Fri Nov 04, 2022 to 12:31:31
+# Server version: 8.0.29
+# PHP Version: 7.4.30
 
-CREATE TABLE xoopsecure_issues (
-  id int(11) NOT NULL auto_increment,
-  scantype int(1) NOT NULL,
-  inittime TEXT NOT NULL,
+#
+# Structure table for `xoopssecure_issues`
+#
+CREATE TABLE `xoopssecure_issues` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `time` text NOT NULL,
-  filename text NOT NULL,
-  filetype text NOT NULL,
-  accessed text NOT NULL,
-  changed text NOT NULL,
-  modified text NOT NULL,
-  permission int(11) NOT NULL,
-  issuecat text NOT NULL,
-  issuetype text NOT NULL,
-  issuedesc text NOT NULL,
-  linenumber int(11) NOT NULL,
-  issuecode text NOT NULL,
-  tag text NOT NULL,
-  ignored int(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (id)
-) ENGINE=MyISAM AUTO_INCREMENT=1;
+  `scantype` text NOT NULL,
+  `value` text NOT NULL,
+  `title` text NOT NULL,
+  `filename` text NOT NULL,
+  `dirname` text NOT NULL,
+  `linenumber` text NOT NULL,
+  `desc` text NOT NULL,
+  `rating` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE xoopsecure_ignores (
-  id int(11) NOT NULL auto_increment,
-  url text NOT NULL,
-  linenumber int(11) NOT NULL,
-  isfile int(11) not null default 0,
-  isdir int(11) not null default 0,
-  val text NOT NULL,
-  PRIMARY KEY (id)
-) ENGINE=MyISAM AUTO_INCREMENT=1;
 
-CREATE TABLE xoopsecure_stats (
-  id int(11) NOT NULL auto_increment,
-  typenr text NOT NULL,
-  inittime text NOT NULL,
-  issuenr int(11) NOT NULL,
-  issues text NOT NULL,
-  badusers text NOT NULL,
-  PRIMARY KEY (id)
-) ENGINE=MyISAM AUTO_INCREMENT=1;
+#
+# Structure table for `xoopssecure_stats`
+#
+
+CREATE TABLE `xoopssecure_stats` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `type` text NOT NULL,
+  `scanstart` text NOT NULL,
+  `scanfinished` text NOT NULL,
+  `permissues` text NOT NULL,
+  `perfilestotal` text NOT NULL,
+  `indexissues` text NOT NULL,
+  `indexfilestotal` text NOT NULL,
+  `malissues` text NOT NULL,
+  `malfilestotal` text NOT NULL,
+  `csissues` text NOT NULL,
+  `csfilestotal` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# Structure table for `xoopssecure_log`
+#
+
+CREATE TABLE `xoopssecure_log` (
+  `id` int(11) NOT NULL,
+  `permissionscan` text DEFAULT NULL,
+  `indexfilesscan` text DEFAULT NULL,
+  `fullscan` text DEFAULT NULL,
+  `codestandardscan` text DEFAULT NULL,
+  `cronscan` text DEFAULT NULL,
+  `mallwarescan` text DEFAULT NULL,
+  `backup` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;

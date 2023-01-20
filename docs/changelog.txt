@@ -1,77 +1,52 @@
-v2.49 2011/12/12 Final:
-=================================
-- updated to ModuleClasses 1.1 (mamba)
-- added ColorPicker to form (mamba)
-- added update.php to increase background color size in DB
+1.3.2 [2023/01/17 17:23:00]
+==============================================================
+- Fixing backup paths as not all subfolders was included
+- Added a function to call automatic backup if loged in as Admin
+- Fix : Should we run cron and backup always was true
+- Fix : timestamp for last cron scan was a string while int was expected.
+- FIX : Folder for backup had wrong permissions.
+- FIX : SpamScanner Check if folders are readable.
+- FIX : After manual backup open in browser.
+ 
 
 
-v2.48 2011/02/23:
-=================================
-- updated GUI to XOOPS Standard  (mamba)
-
-v2.47
-=================================
-- You can use different editors (not only kiovi) 
-
-v2.46
-=================================
-- Bugs corrections
-
-v2.42
-=================================
-- I have replaced the PHP glob() function with another one (because of some hosts)
-- I have corrected a bug in the administration's menu (bad link)
-
-v2.41
-=================================
-- Two new plugins, one for article 0.95 and another one for TplLeagueStats 1 - thank you very much Defkon1 !
-
-v2.4
-=================================
-- I have added a plugin for catads
-
-v2.0 & 2.2
-=================================
-- You can use kiovi to create, in the module's admin part, kiovi to create your marquees
-- If the module detects that a web spyder is reading its content then it will replace the marquees with pure text
-- You can add blocks on-fly as following (so it means that you can create as many marquees as you want, not only 4).
-	1 Enter 'Administration Menu'=>"block admin"=>"Add new block"
-	2 In the "Add a new block":
-	2.1 Block Type: choose anyone as you prefer
-	2.2 Weight: input any valid value as you prefer
-	2.3 Visible: select any one as you prefer
-	2.4 Visible in: set any one as you prefer
-	2.5 Title: input any valid text as you prefer
-	2.6 Content:
-
-		include_once(XOOPS_ROOT_PATH . '/modules/marquee/blocks/marquee_bloc.php');
-		b_marquee_custom(1);
-
-	2.7 Content Type: MUSTBE "PHP Script"
-	2.8 Cache lifetime: choose any one as you prefer
-	2.9 Preview, Submit: press any one as you prefer, BE SURE press at least one time "submit" before leaving block admin
-
-	Explanation : the number between parenthesis, in b_marquee_custom(1), is the marquee's ID you want to display.
-	You can see this ID in the module's admin part (that's the first column in the admin's index)
-- You have the choice to use a dhtml marquee or the html marquee's tag
-- You can show the last informations from the folowing modules :
-	- Xoops comments
-	- News (1.2 or greater)
-	- Newbb & CBB
-	- Mylinks
-	- Mydownloads
-	- XoopsFaq
-	- XoopsPoll
-	- Smartclient
-	- Smartfaq
-	- Smartmedia
-	- Smartpartner
-	- Smartsection
-	- Wfdownloads 3
-	- Wfsection 1
-	- Xfsection
-	- Xoopspartners
+1.3.1 [2023/01/15 18:23:00]
+==============================================================
+- Additional cleaning up, renewing, moving and updating.. and
+- Adding agent to respond to ajax
+- Added check for automatic scans
+- Special file for Coding standard checks
+- added bootstrap and bootbox functions and styles
+- logging for scan issues and scans dates
+- Using Github api for repository updates
+- Benchmarking class for later use
+- Separating language files by class and added some new
+- Including recursively to allow keeping class files in folders
+- new and updated templates
 
 
-- You can select the number of items to display if you have selected to display a content coming from a module
-- You can select the date's format
+1.1.0 [2022/11/04 12:31:31]
+==============================================================
+ - Major update by (Culex)
+
+
+1.0.3 [2016/01/18 00:00:00]
+==============================================================
+ - Adjustments by (Mamba)
+
+
+1.0.1 [2015/06/15 00:00:00]
+==============================================================
+ - Adjustments by (Mamba)
+
+
+1.0.0 [2015/03/25 00:00:00]
+==============================================================
+ - Original release xoopsSecure (Culex)
+ - Rebirth of the indexscan idea but started over
+ 
+ Adoption and namechange from IndexFile
+ =============================================================
+ - first release 2009/07/09 - last updated 2010/01/18
+ - Credits Mamba, Voltan, Kris_fr, CJ, Reintjan, DonCurioso,
+    Burning & Ghia just not to forget :-)
