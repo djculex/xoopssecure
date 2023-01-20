@@ -254,6 +254,7 @@ class SpamScanner
                 }
             }
             if (!($content = file_get_contents($path))) {
+                //var_dump($http_response_header);
                 $error = 'Could not check ' . $path;
             } else { // do a search for fingerprints
                 foreach ($patterns->Bads as $pattern) {
