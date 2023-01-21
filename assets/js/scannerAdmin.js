@@ -84,6 +84,7 @@ $(document).ready(
                 $('#xoopssecure_indexfiles').hide();
                 $('#xoopssecure_permissions').hide();
                 $('#xoopssecure_codingstandards').hide();
+                $("#xoopssecure_errors").hide();
             }
         );
     
@@ -95,6 +96,7 @@ $(document).ready(
                 $('#xoopssecure_mallware').hide();
                 $('#xoopssecure_permissions').hide();
                 $('#xoopssecure_codingstandards').hide();
+                $("#xoopssecure_errors").hide();
             }
         );
 
@@ -106,6 +108,7 @@ $(document).ready(
                 $('#xoopssecure_mallware').hide();
                 $('#xoopssecure_indexfiles').hide();
                 $('#xoopssecure_codingstandards').hide();
+                $("#xoopssecure_errors").hide();
             }
         );
     
@@ -114,6 +117,19 @@ $(document).ready(
             function (e) {
                 e.preventDefault();
                 $("#xoopssecure_codingstandards").show();
+                $('#xoopssecure_mallware').hide();
+                $('#xoopssecure_indexfiles').hide();
+                $('#xoopssecure_permissions').hide();
+                $("#xoopssecure_errors").hide();
+            }
+        );
+    
+    // Show Errors hide other
+        $('a#xoopssecureMenuERR').click(
+            function (e) {
+                e.preventDefault();
+                $("#xoopssecure_errors").show();
+                $("#xoopssecure_codingstandards").hide();
                 $('#xoopssecure_mallware').hide();
                 $('#xoopssecure_indexfiles').hide();
                 $('#xoopssecure_permissions').hide();
@@ -1029,6 +1045,7 @@ $(document).ready(
 
         function singleFileScanMalware(fn, i)
         {
+            $('#xoopssecureScannerGettingFilesWaitModal').modal('hide');
             $.ajax(
                 {
                     url: xoopsSecureSysUrl + 'agent.php?type=singleMalwareScan&filePath=' + fn + '&counter=' + i +
