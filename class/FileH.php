@@ -369,7 +369,7 @@ class FileH extends \XoopsPersistableObjectHandler
         " */" . "\n" .
         "\n" . "\n" .
         "/**" . "\n" .
-        "  * This index.php file will show an error '104 not found' when entering this folder" . "\n" .
+        "  * This index.php file will show an error '404 not found' when entering this folder" . "\n" .
         "  * and was created : " . date('d-m-Y H:i:s', $this->timestamp) . " by a xoopsSecure scan/create." . "\n\n" .
         "  * @package      \XoopsModules\xoopssecure" . "\n" .
         "  * @copyright    The XOOPS Project (https://xoops.org)" . "\n" .
@@ -378,7 +378,8 @@ class FileH extends \XoopsPersistableObjectHandler
         "  * @link         https://github.com/XoopsModules25x/xoopssecure" . "\n" .
         "  * @since        1.0" . "\n" .
         "  */\n" . "\n" .
-        "header('HTTP/1.0 404 Not Found');";
+        "header(\$_SERVER[\"SERVER_PROTOCOL\"] . \" 404 Not Found\", true, 404);" .
+        "";
         $path = $url . DIRECTORY_SEPARATOR . 'index.php';
         file_put_contents($path, $text);
         //Set permissions back to origional
