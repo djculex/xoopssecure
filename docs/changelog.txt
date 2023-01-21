@@ -1,7 +1,14 @@
-1.3.2 [2023/01/17 17:23:00]
+1.3.3 RC3 [2023/01/21 14:30:00]
 ==============================================================
-- Fixing backup paths as not all subfolders was included
-- Added a function to call automatic backup if loged in as Admin
+- FIX : Using $_SERVER['server_protocol'] to create index files. Hardcoded http
+  version seem to lock files sometimes giving 403 error when reading file content.
+- ADD : Error logging to get server errors logged while scanning.
+
+
+1.3.2 RC2 [2023/01/17 17:23:00]
+==============================================================
+- FIX : Backup paths as not all subfolders was included
+- ADD : a function to call automatic backup if loged in as Admin
 - Fix : Should we run cron and backup always was true
 - Fix : timestamp for last cron scan was a string while int was expected.
 - FIX : Folder for backup had wrong permissions.
@@ -10,16 +17,16 @@
  
 
 
-1.3.1 [2023/01/15 18:23:00]
+1.3.1 RC2 [2023/01/15 18:23:00]
 ==============================================================
 - Additional cleaning up, renewing, moving and updating.. and
-- Adding agent to respond to ajax
-- Added check for automatic scans
-- Special file for Coding standard checks
-- added bootstrap and bootbox functions and styles
-- logging for scan issues and scans dates
-- Using Github api for repository updates
-- Benchmarking class for later use
+- ADD : agent to respond to ajax
+- ADD : check for automatic scans
+- ADD : Special file for Coding standard checks
+- ADD : Bootstrap and bootbox functions and styles
+- ADD : Logging for scan issues and scans dates
+- ADD : Using Github api for repository updates
+- ADD : Benchmarking class for later use
 - Separating language files by class and added some new
 - Including recursively to allow keeping class files in folders
 - new and updated templates
