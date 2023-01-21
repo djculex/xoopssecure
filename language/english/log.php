@@ -46,6 +46,7 @@ $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
 \define('_LOG_XOOPSSECURE_SCANTYPE_FILEPERMISSIONS', 'File Permissions');
 \define('_LOG_XOOPSSECURE_SCANTYPE_MALLWARE', 'Mallware');
 \define('_LOG_XOOPSSECURE_SCANTYPE_CODINGSTANDARDS', 'Coding standards');
+\define('_LOG_XOOPSSECURE_SCANTYPE_ERRORS', 'Errors');
 
 \define('_LOG_XOOPSSECURE_ISSUE_DATE', 'Date');
 \define('_LOG_XOOPSSECURE_ISSUE_TITLE', 'Title');
