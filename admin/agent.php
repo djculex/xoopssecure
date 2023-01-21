@@ -192,7 +192,7 @@ switch ($type) {
 
         // Do malware scan on single page.
     case 'singleMalwareScan':
-                header("Content-Type: application/json; charset=UTF-8");
+                //header("Content-Type: application/json; charset=UTF-8");
                 $p = $_GET['filePath'];
                 $spam->timestamp = $_GET['scanstart'];
         if (!$dat->filealreadyscanned($p, $spam->timestamp)) {
