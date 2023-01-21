@@ -161,6 +161,7 @@ $modversion['templates'] = [
     ['file' => 'xoopssecure_log_malware.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'xoopssecure_log_codingstandards.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'xoopssecure_log_nothinghere.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'xoopssecure_log_errors.tpl', 'description' => '', 'type' => 'admin'],
 
 ];
 // ------------------- Mysql ------------------- //
