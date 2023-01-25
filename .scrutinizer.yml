@@ -132,10 +132,8 @@ build:
         analysis:
             tests:
                 override:
-                        - php-scrutinizer-run
                         command: phpcs-run
                         use_website_config: true
                         # Add the respective Scrutinizer analysis for your language like
-                          - go-scrutinizer-run
                           - js-scrutinizer-run
                           - php-scrutinizer-run
