@@ -58,3 +58,4 @@ checks:
         no_else_return: true
         no_alert: true
         eqeqeq: true
+        
