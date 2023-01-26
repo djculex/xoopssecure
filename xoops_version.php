@@ -112,7 +112,7 @@ $modversion = [
     'release_date'        => '2015/03/25',
     'manual'              => 'link to manual file',
     'manual_file'         => \XOOPS_URL . '/modules/xoopssecure/docs/install.txt',
-    'min_php'             => '7.0',
+    'min_php'             => '8.0',
     'min_xoops'           => '2.5.10',
     'min_admin'           => '1.2',
     'min_db'              => ['mysql' => '7.0', 'mysqli' => '7.0'],
