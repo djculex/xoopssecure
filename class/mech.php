@@ -244,7 +244,7 @@ class Mech
             $resp['phpini'][$i]['name'] = "post_max_size";
             $resp['phpini'][$i]['current'] = $postmaxsize;
             $resp['phpini'][$i]['recommended'] = "< " . self::convertToBytes('8M');
-            $resp['phpini'][$i]['description'] = _AM_XOOPSSECURE_POSTMAXSIZE;
+            $resp['phpini'][$i]['description'] = _MECH_XOOPSSECURE_POSTMAXSIZE;
             $resp['phpini'][$i]['ref'] = "https://learn.microsoft.com/en-us/iis/application-frameworks/install-and-configure-php-on-iis/secure-php-with-configuration-settings";
             $resp['phpini'][$i]['errortype'] = self::errorButton("notice", $resp['phpini'][$i]['ref']);
         }
