@@ -75,10 +75,6 @@ class Db extends \XoopsPersistableObjectHandler
                 . '", "' . addslashes($rating)
                 . '")';
         }
-        if ($op == 'update') {
-        }
-        if ($op == 'delete') {
-        }
         if (!$result = $this->db->queryF($sql)) {
             return false;
         }
@@ -145,6 +141,33 @@ class Db extends \XoopsPersistableObjectHandler
                 $arr[$i]['humantime'] = date("d-m-Y H:i:s", round($row['time'] / 1000));
                 $arr[$i]['dirname'] = $row['dirname'];
                 $arr[$i]['fixed'] = ($row['value'] == '0') ? true : false;
+                $arr[$i]['description'] = stripcslashes($row['desc']);
+                $i++;
+            }
+        }
+        return $arr;
+    }
+
+    /** 
+     * Load issues from Database by timestamp
+     *
+     * @param int $start the timestamp
+     * $return array $arr with MySql return
+     */
+    public function loadErrissues($start)
+    {
+        //$this->SetGlobal();
+        $arr = array();
+        $sql = "Select * From "
+            . $this->db->prefix('xoopssecure_issues') . " where `time` = '" . addslashes($start) . "' AND scantype = 'x' GROUP BY `dirname` ORDER BY `dirname` ASC";
+        $result = $this->db->queryF($sql);
+        $numrows = $this->db->getRowsNum($result);
+        if ($numrows >= 1) {
+            $i = 0;
+            while ($row = $this->db->fetchArray($result)) {
+                $arr[$i]['humantime'] = date("d-m-Y H:i:s", round($row['time'] / 1000));
+                $arr[$i]['filename'] = $row['filename'];
+                $arr[$i]['dirname'] = $row['dirname'];
                 $arr[$i]['description'] = stripcslashes($row['desc']);
                 $i++;
             }

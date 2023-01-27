@@ -34,7 +34,7 @@ XoopSecure is a module which from Admin side helps you to keep your installation
 ## Minimum Requirements
 
 - Xoops 2.5.10
-- PHP 7.1
+- PHP 8.0
 - MySql > 7.0
 
 

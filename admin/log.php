@@ -57,6 +57,7 @@ $resMal = $dat->loadMalIssue($date);
 $resIF =  $dat->loadIFissues($date);
 $resFP =  $dat->loadFPissues($date);
 $resCS = $dat->loadCsIssue($date);
+$resERR = $dat->loadErrissues($date);
 
 // help file from admin
 $GLOBALS['xoopsTpl']->assign(
@@ -78,4 +79,5 @@ $GLOBALS['xoopsTpl']->assign('resMal', $resMal);
 $GLOBALS['xoopsTpl']->assign('resIF', $resIF);
 $GLOBALS['xoopsTpl']->assign('resFP', $resFP);
 $GLOBALS['xoopsTpl']->assign('resCS', $resCS);
+$GLOBALS['xoopsTpl']->assign('resERR', $resERR);
 require __DIR__ . '/footer.php';

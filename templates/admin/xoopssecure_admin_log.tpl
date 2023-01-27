@@ -44,6 +44,9 @@
               <li class="nav-item">
                 <a id="xoopssecureMenuDEV" class="nav-link" href=""><{$smarty.const._LOG_XOOPSSECURE_SCANTYPE_CODINGSTANDARDS}></a>
               </li>
+              <li class="nav-item">
+                <a id="xoopssecureMenuERR" class="nav-link" href=""><{$smarty.const._LOG_XOOPSSECURE_SCANTYPE_ERRORS}></a>
+              </li>
             </ul>
           </div>
         </nav>
@@ -51,6 +54,7 @@
 <{include file="db:xoopssecure_log_permissions.tpl"}>
 <{include file="db:xoopssecure_log_indexfiles.tpl"}>
 <{include file="db:xoopssecure_log_malware.tpl"}>
+<{include file="db:xoopssecure_log_errors.tpl"}>
 <{include file="db:xoopssecure_log_codingstandards.tpl"}>
 </div>
 <{else}>

@@ -29,7 +29,7 @@ use Xmf\Request;
 //
 
 //$helper       = XoopsModules\Xoopssecure\Helper::getInstance();
-
+require_once __DIR__ . '/include/functions.php';
 if (!isset($GLOBALS['xoTheme']) || !$GLOBALS['xoTheme'] instanceof \xos_opal_Theme) {
     include $GLOBALS['xoops']->path('class/theme.php');
     $GLOBALS['xoTheme'] = new \xos_opal_Theme();
@@ -112,7 +112,7 @@ $modversion = [
     'release_date'        => '2015/03/25',
     'manual'              => 'link to manual file',
     'manual_file'         => \XOOPS_URL . '/modules/xoopssecure/docs/install.txt',
-    'min_php'             => '7.0',
+    'min_php'             => '8.0',
     'min_xoops'           => '2.5.10',
     'min_admin'           => '1.2',
     'min_db'              => ['mysql' => '7.0', 'mysqli' => '7.0'],
@@ -129,8 +129,8 @@ $modversion = [
     'support_name'        => 'Support Forum',
     'module_website_url'  => 'www.xoops.org',
     'module_website_name' => 'XOOPS Project',
-    'release'             => '17/01/2023',
-    'module_status'       => 'RC 2',
+    'release'             => '21/01/2023',
+    'module_status'       => 'RC 3',
     'system_menu'         => 1,
     'hasAdmin'            => 1,
     'hasMain'             => 0,
@@ -161,6 +161,7 @@ $modversion['templates'] = [
     ['file' => 'xoopssecure_log_malware.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'xoopssecure_log_codingstandards.tpl', 'description' => '', 'type' => 'admin'],
     ['file' => 'xoopssecure_log_nothinghere.tpl', 'description' => '', 'type' => 'admin'],
+    ['file' => 'xoopssecure_log_errors.tpl', 'description' => '', 'type' => 'admin'],
 
 ];
 // ------------------- Mysql ------------------- //

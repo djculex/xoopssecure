@@ -204,7 +204,7 @@ class FileH extends \XoopsPersistableObjectHandler
      * @param string $path of file
      * return void
      */
-    function checkCs($path)
+    public function checkCs($path)
     {
         // default values
         $options['format'] = "array"; // default format
@@ -229,7 +229,7 @@ class FileH extends \XoopsPersistableObjectHandler
      * @param array $array
      * @return array $result
      */
-    function xoopssecure_SuperUnique($array)
+    public function xoopssecure_SuperUnique($array)
     {
         $result = array_map("unserialize", array_unique(array_map("serialize", $array)));
 
@@ -247,7 +247,7 @@ class FileH extends \XoopsPersistableObjectHandler
      * @param string $path the start path
      * @return array $dir_paths only unique dirs
      */
-    function listdirs($path)
+    public function listdirs($path)
     {
         global $dir_paths; //global variable where to store the result
         foreach ($path as $dir) { //loop the input
@@ -265,7 +265,7 @@ class FileH extends \XoopsPersistableObjectHandler
      *
      * @return int count
      */
-    function countDirs()
+    public function countDirs()
     {
         return count($this->listdirs(array($this->startPath)));
     }
@@ -276,7 +276,7 @@ class FileH extends \XoopsPersistableObjectHandler
      * @param string $dir the path
      * @return array with dir and bool value
      */
-    function indexFileExists($dir)
+    public function indexFileExists($dir)
     {
         $indexFileExists = 0;
         $ret = array();
@@ -303,7 +303,7 @@ class FileH extends \XoopsPersistableObjectHandler
      * @param string $scanstart the time stamp set
      * @return void
      */
-    function chkIndexFiles($checkfile, $autoFeature, $scanstart)
+    public function chkIndexFiles($checkfile, $autoFeature, $scanstart)
     {
         $dat = new Db();
         foreach ($checkfile as $d => $c) {
@@ -350,7 +350,7 @@ class FileH extends \XoopsPersistableObjectHandler
      * @param string $url where create
      * @return void
      */
-    function createIndexFile($url)
+    public function createIndexFile($url)
     {
         // Get original dir write permissions
         $orgch = substr(sprintf('%o', fileperms($url)), -4);
@@ -369,7 +369,7 @@ class FileH extends \XoopsPersistableObjectHandler
         " */" . "\n" .
         "\n" . "\n" .
         "/**" . "\n" .
-        "  * This index.php file will show an error '104 not found' when entering this folder" . "\n" .
+        "  * This index.php file will show an error '404 not found' when entering this folder" . "\n" .
         "  * and was created : " . date('d-m-Y H:i:s', $this->timestamp) . " by a xoopsSecure scan/create." . "\n\n" .
         "  * @package      \XoopsModules\xoopssecure" . "\n" .
         "  * @copyright    The XOOPS Project (https://xoops.org)" . "\n" .
@@ -378,7 +378,8 @@ class FileH extends \XoopsPersistableObjectHandler
         "  * @link         https://github.com/XoopsModules25x/xoopssecure" . "\n" .
         "  * @since        1.0" . "\n" .
         "  */\n" . "\n" .
-        "header('HTTP/1.0 404 Not Found');";
+        "header(\$_SERVER[\"SERVER_PROTOCOL\"] . \" 404 Not Found\", true, 404);" .
+        "";
         $path = $url . DIRECTORY_SEPARATOR . 'index.php';
         file_put_contents($path, $text);
         //Set permissions back to origional
@@ -391,7 +392,7 @@ class FileH extends \XoopsPersistableObjectHandler
      * @param string $file the file to get fp from
      * return decoct
      */
-    function getFilePermission($file)
+    public function getFilePermission($file)
     {
         if (is_readable($file)) {
             $length = strlen(decoct(fileperms($file))) - 3;
@@ -405,7 +406,7 @@ class FileH extends \XoopsPersistableObjectHandler
      * @param string $autocorrect
      * @return void
      */
-    function xoopsFilesPermissions($autocorrect)
+    public function xoopsFilesPermissions($autocorrect)
     {
         $dat = new Db();
         $mf = $this->getFilePermission(XOOPS_ROOT_PATH . '/mainfile.php');
@@ -531,7 +532,7 @@ class FileH extends \XoopsPersistableObjectHandler
      * @param string $folder the folder to look in
      * @return void
      */
-    function searchRegex($string, $folder)
+    public function searchRegex($string, $folder)
     {
         $dir = new RecursiveDirectoryIterator($folder);
         foreach (new RecursiveIteratorIterator($dir) as $filename => $file) {
@@ -706,7 +707,7 @@ class FileH extends \XoopsPersistableObjectHandler
      *
      * @return html $text
      */
-    static function buymecoffey()
+    public static function buymecoffey()
     {
         $text = '
 		<a href="https://www.buymeacoffee.com/culex99906" target="_blank">

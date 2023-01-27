@@ -1,18 +1,5 @@
 <?php
-
 declare(strict_types=1);
-
-namespace XoopsModules\Xoopssecure;
-
-/*
- You may not change or alter any portion of this comment or credits
- of supporting developers from this source code or any supporting source code
- which is considered copyrighted (c) material of the original comment or credit authors.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-*/
 
 /**
  * Xoops XoopsSecure module for xoops
@@ -23,7 +10,8 @@ namespace XoopsModules\Xoopssecure;
  * @since     1.0
  * @min_xoops 2.5.11
  * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
- */
+*/
+namespace XoopsModules\Xoopssecure;
 
 use XoopsModules\Xoopssecure;
 use XoopsModules\Xoopssecure\Constants;
@@ -49,17 +37,15 @@ $helper = Helper::getInstance();
 \xoops_loadLanguage('log', $moduleDirName);
 \xoops_loadLanguage('download', $moduleDirName);
 
-$type = isset($_GET['type']) ? $_GET['type'] : '';
-$dir = (isset($_GET['Dir'])) ? $_GET['Dir'] : '';
-$val = (isset($_GET['val'])) ? $_GET['val'] : '';
+$type = ($_GET['type'] != "") ? $_GET['type'] : '';
+$dir = ($_GET['Dir'] != "") ? $_GET['Dir'] : '';
+$val = ($_GET['val'] != "") ? $_GET['val'] : '';
 $t = time();
 
-$fh = new FileH;
-$dat = new Db;
-$spam = new Xoopssecure\SpamScanner;
+$fh = new FileH();
+$dat = new Db();
+$spam = new Xoopssecure\SpamScanner();
 $autobackup = intval($helper->getConfig('XCISAUTOBACKUP'));
-
-//$dat->doStats($t, $permTotal=0, $indexTotal=0, $malTotal=0, $op='save');
 
 switch ($type) {
         // Get All files to json
@@ -160,7 +146,7 @@ switch ($type) {
                 $ln = $_GET['linenumber'];
                 $source = file_get_contents($fn);
 
-                $g = new Geshi; // Initiate GeSHi class
+                $g = new Geshi(); // Initiate GeSHi class
                 $fxt = pathinfo($fn, PATHINFO_EXTENSION); // Get extension of file
                 $g->set_language(strtoupper($fxt)); // CAP LETTERS of ext.
                 $g->load_from_file($fn); // Log content of file
@@ -192,7 +178,7 @@ switch ($type) {
 
         // Do malware scan on single page.
     case 'singleMalwareScan':
-                header("Content-Type: application/json; charset=UTF-8");
+                //header("Content-Type: application/json; charset=UTF-8");
                 $p = $_GET['filePath'];
                 $spam->timestamp = $_GET['scanstart'];
         if (!$dat->filealreadyscanned($p, $spam->timestamp)) {
@@ -241,22 +227,21 @@ switch ($type) {
         //After scan set stats to be used befor next scan.
         // Also set counts of issues for stats.
     case 'DoStatsEnd':
-                $t =
-                [
-        'start'         => $_GET['starttime'],
-        'end'            => $_GET['endtime'],
-        'type'            => $_GET['scantype'],
-        'permStack'        => $_GET['ps'],
-        'permSet'        => $dat->getIssueCount($_GET['starttime'], '0'),
-        'indexStack'    => $_GET['is'],
-        'indexSet'        => $dat->getIssueCount($_GET['starttime'], '1'),
-        'malStack'        => $_GET['ms'],
-        'malSet'        => $dat->getIssueCount($_GET['starttime'], '2'),
-        'csStack'        => $_GET['cs'],
-        'csSet'            => $dat->getIssueCount($_GET['starttime'], '4'),
-                ];
-                $dat->doStats($t, $op = 'save');
-                $dat->GetLatestLogCandT();
+        $t = array(
+                'start'          => $_GET['starttime'],
+                'end'            => $_GET['endtime'],
+                'type'           => $_GET['scantype'],
+                'permStack'      => $_GET['ps'],
+                'permSet'        => $dat->getIssueCount($_GET['starttime'], '0'),
+                'indexStack'     => $_GET['is'],
+                'indexSet'       => $dat->getIssueCount($_GET['starttime'], '1'),
+                'malStack'       => $_GET['ms'],
+                'malSet'         => $dat->getIssueCount($_GET['starttime'], '2'),
+                'csStack'        => $_GET['cs'],
+                'csSet'          => $dat->getIssueCount($_GET['starttime'], '4'),
+                );
+        $dat->doStats($t, $op = 'save');
+        $dat->GetLatestLogCandT();
         break;
 
         // Use sugguestion in xoops_version for paths
@@ -274,10 +259,12 @@ switch ($type) {
                 $dtime = $_GET['dtime'];
                 $dat->deleteLogByTime($dtime);
         break;
+        
         // Do cron scan
     case 'doCronScan':
                 $fh->cronScan();
         break;
+        
         // Create backup of db and files
     case 'createzip':
         header('Content-type: application/zip');
@@ -318,6 +305,7 @@ switch ($type) {
         $fh->autoDelBackupsFiles();
         $fh->GetLatestBackupTable();
         break;
+        
     case 'test':
         $pattern = "/^.*\.(" . $spam->fileTypesToScan . ")$/i";
         $dir = $spam->startPath;
@@ -325,8 +313,7 @@ switch ($type) {
                 // ----- // -- : 31,00 seconds (16213 files) with mod check empty db
                 // ----- // -- : 38,00 seconds (63 files)      with unix - 2 days
         $f = $spam->getFilesJson($dir, $pattern);
-        print_r($f);
-    break;
+        break;
 }
 
     $GLOBALS['xoopsLogger']->activated = false;

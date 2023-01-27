@@ -254,7 +254,19 @@ class SpamScanner
                 }
             }
             if (!($content = file_get_contents($path))) {
-                $error = 'Could not check ' . $path;
+                $error = sprintf(_SCAN_XOOPSSECURE_ERROR_COULDNOTREADFILE_TITLE, $path);
+                $db->loadSave(
+                    $this->timestamp,
+                    'x',
+                    'x',
+                    sprintf(_SCAN_XOOPSSECURE_ERROR_COULDNOTREADFILE_DESC, $path),
+                    $error,
+                    $path,
+                    dirname($path),
+                    $rating = 0,
+                    $linenumber = 0,
+                    $op = 'save'
+                );
             } else { // do a search for fingerprints
                 foreach ($patterns->Bads as $pattern) {
                     if (is_array($pattern)) { // it's a pattern

@@ -166,3 +166,14 @@ define("_SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_CODES", "CS scan");
 
 \define('_SCAN_XOOPSSECURE_PAT24_TITLE', 'Hex Encoded String');
 \define('_SCAN_XOOPSSECURE_PAT24_DESC', 'Code which is hex encoded. It can be legit, but not a usual thing. Malicious users can hide their functions in hex encoded expressions.');
+
+/* ------------ Error messages ------------------ */
+\define('_SCAN_XOOPSSECURE_ERRORS_TITLE', 'Errors');
+\define('_SCAN_XOOPSSECURE_ERROR_COULDNOTREADFILE_TITLE', 'Could not read file \'%s\'');
+\define('_SCAN_XOOPSSECURE_ERROR_COULDNOTREADFILE_DESC', 
+    'The file <strong>%s</strong> could not be read. ' . 
+    '<br>Sometimes the server adds strange permissions after copying to folders.' . 
+    '<br>Try setting permissions manually.' . 
+    '<br><br>If this is not working deleting->new copy to folder sometimes help. In my experience this is often the case with empty index.php files,' .
+    '<br>Or it could be your host has locked your files OR you have an .htaccess file denying access to folders/files.'
+    );
