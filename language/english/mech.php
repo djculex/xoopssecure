@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 declare(strict_types=1);
 
@@ -49,7 +49,18 @@ require_once __DIR__ . '/common.php';
     "Maximum amount of time each script may spend parsing request data. " .
     "It's a good idea to limit this time on productions servers in order to eliminate unexpectedly long running scripts."
 );
-\define("_MECH_XOOPSSECURE_MAXMEMORYLIMIT", "To prevent poorly written scripts from consuming all of the available memory, this directive can be used to indicate a maximum amount of memory consumed by a script.");
+\define(
+    "_MECH_XOOPSSECURE_MAXMEMORYLIMIT", 
+    "To prevent poorly written scripts from consuming all of the available memory, " . 
+    "this directive can be used to indicate a maximum amount of memory consumed by a script."
+);
+\define(
+    "_MECH_XOOPSSECURE_POSTMAXSIZE", 
+    "The maximum amount of data that can be sent to the server via a POST request.<br><br>" . 
+        "This value MUST BE bigger than upload_max_filesize, since the same request " . 
+        "will contain some more information (the title of the document, an operation code…).<br><br>" . 
+        "So it's better to put a bigger value here. For example, if upload_max_filesize is 7M, then put 8M for post_max_size."
+);
 \define("_MECH_XOOPSSECURE_UPLOADMAXFILESIZE", "The maximum upload file size should be less than or equal to the maximum post size.");
 \define("_MECH_XOOPSSECURE_MAXINPUTNESTINGLEVELS", "Maximum level of nesting of objects 32 is sufficent.");
 \define("_MECH_XOOPSSECURE_DISPLAYERRORS", "The display_errors directive determines whether error messages should be sent to the browser. These messages frequently contain sensitive information about your web application environment and should always be disabled.");
