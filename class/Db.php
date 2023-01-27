@@ -75,10 +75,6 @@ class Db extends \XoopsPersistableObjectHandler
                 . '", "' . addslashes($rating)
                 . '")';
         }
-        if ($op == 'update') {
-        }
-        if ($op == 'delete') {
-        }
         if (!$result = $this->db->queryF($sql)) {
             return false;
         }
