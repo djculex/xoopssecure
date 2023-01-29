@@ -14,7 +14,7 @@ require_once \dirname(__DIR__, 3) . '/modules/xoopssecure/include/functions.php'
 spl_autoload_register(
     static function ($class): void {
         // Get recursive foldernames from class
-        $dirs = xoopssecure_GetClassSubFolders(XOOPS_ROOT_PATH . '/modules/xoopssecure/class/', $results = array());
+        $dirs = xoopssecure_GetClassSubFolders(XOOPS_ROOT_PATH . '/modules/xoopssecure/class/', $results = []);
         // foreach them to include them all inc subfolders
         foreach ($dirs as $dir) {
                 

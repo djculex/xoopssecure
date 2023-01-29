@@ -36,7 +36,7 @@ class Api
             $this->helper = Helper::getInstance();
         }
         $this->repos = ($this->helper->getConfig('XCISCHECKUPDATEDREPOS') != '') ?
-            preg_split("/\r\n|\n|\r/", $this->helper->getConfig('XCISCHECKUPDATEDREPOS')) : array();
+            preg_split("/\r\n|\n|\r/", $this->helper->getConfig('XCISCHECKUPDATEDREPOS')) : [];
     }
 
     /** connext to github xoops latest release
@@ -60,7 +60,7 @@ class Api
         if (isset($error_msg)) {
             echo $error_msg;
         }
-        return (!empty($fetch)) ? json_decode($fetch, true) : array();
+        return (!empty($fetch)) ? json_decode($fetch, true) : [];
     }
 
     /** create php array of json obj
@@ -70,7 +70,7 @@ class Api
      */
     public function parse($obj)
     {
-        $info = array();
+        $info = [];
         if (!isset($obj['message']) && !empty($obj)) {
             $info['url']        = $obj['html_url'];
             $info['version']    = self::keepOnlyNumbersEtc($obj['tag_name']);
@@ -89,7 +89,7 @@ class Api
     public function parseObjs()
     {
         $objs = $this->repos;
-        $return = array();
+        $return = [];
         if (is_array($objs)) {
             foreach ($objs as $ob) {
                 $testObj = $this->parse($this->connect($ob));

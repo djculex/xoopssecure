@@ -24,13 +24,13 @@ class MySQLBackup
      *
      * @var array
      */
-    public $db = array(
+    public $db = [
         'host'      => null,
         'port'      => null,
         'user'      => null,
         'password'  => null,
         'name'      => null,
-    );
+    ];
 
     /**
      * Database connection link
@@ -44,14 +44,14 @@ class MySQLBackup
      *
      * @var array
      */
-    public $tables = array();
+    public $tables = [];
 
     /**
      * Excluded tables list
      *
      * @var array
      */
-    public $excludedTables = array();
+    public $excludedTables = [];
 
     /**
      * Filename
@@ -93,7 +93,7 @@ class MySQLBackup
      *
      * @var array
      */
-    public $compressAvailable = array('zip', 'gz', 'gzip');
+    public $compressAvailable = ['zip', 'gz', 'gzip'];
 
     /**
      * Dump table structure ?
@@ -143,13 +143,13 @@ class MySQLBackup
      */
     public function __construct($host, $user, $password, $db, $port = 3306)
     {
-        $this->db = array(
+        $this->db = [
             'host'      => $host,
             'port'      => $port,
             'user'      => $user,
             'password'  => $password,
             'name'      => $db,
-        );
+        ];
 
         $this->filename = 'dump_' . $db . '_' . date('Ymd-H\hi');
 
@@ -165,11 +165,11 @@ class MySQLBackup
     {
         $dsn = 'mysql:host=' . $this->db['host'] . ';port=' . $this->db['port'] . ';dbname=' . $this->db['name'];
 
-        $options = array(
+        $options = [
             \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
             \PDO::ATTR_PERSISTENT         => true,
             \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION
-        );
+        ];
 
         // Create a new PDO instance
         try {

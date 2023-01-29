@@ -66,22 +66,22 @@ class Zipper extends \XoopsPersistableObjectHandler
         $helper = \XoopsModules\xoopssecure\Helper::getInstance();
         $config = $helper->getConfig('XCISBACKUPTYPE');
         if ($config[0] == "Minimum") {
-            return array(
+            return [
                 XOOPS_ROOT_PATH . "/themes",
                 XOOPS_ROOT_PATH . "/uploads",
                 XOOPS_ROOT_PATH . "/xoops_data",
                 XOOPS_ROOT_PATH . "/xoops_lib",
                 XOOPS_ROOT_PATH . "/mainfile.php",
                 XOOPS_ROOT_PATH . "/install/page_end.php"
-            );
+            ];
         } elseif ($config[0] == "Full") {
-            return array(
+            return [
                 XOOPS_ROOT_PATH
-            );
+            ];
         } elseif ($config[0] == "Custom") {
             return xoopssecure_StringToArray($helper->getConfig('XCISBACKUPCUSTOMFILES'));
         } else {
-            return array();
+            return [];
         }
     }
 

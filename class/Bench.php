@@ -39,9 +39,9 @@ class Bench extends Mech
 {
     //var $userdatetype;
     public $helper;
-    public $start = array();
-    public $end = array();
-    public $totalTime = array();
+    public $start = [];
+    public $end = [];
+    public $totalTime = [];
     
     public function __construct()
     {

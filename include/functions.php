@@ -260,7 +260,7 @@ function xoopssecure_TranslateString($text)
  */
 function xoopssecure_listdirs($dir, $needle = null)
 {
-    $subDir = array();
+    $subDir = [];
     $directories = array_filter(glob($dir), 'is_dir');
     $subDir = array_merge($subDir, $directories);
     foreach ($directories as $directory) {
@@ -277,7 +277,7 @@ function xoopssecure_listdirs($dir, $needle = null)
  */
 function xoopssecure_StringToArray($string)
 {
-    return ($string != '') ? preg_split("/\r\n|\n|\r/", $string) : array();
+    return ($string != '') ? preg_split("/\r\n|\n|\r/", $string) : [];
 }
 
 /**
@@ -287,7 +287,7 @@ function xoopssecure_StringToArray($string)
  */
 function xoopssecure_backupFilesMin()
 {
-    return array(
+    return [
        XOOPS_ROOT_PATH . "/modules/" => XOOPS_ROOT_PATH . "/modules",
        XOOPS_ROOT_PATH . "/uploads/" => XOOPS_ROOT_PATH . "/uploads",
        XOOPS_ROOT_PATH . "/modules/" => XOOPS_ROOT_PATH . "/modules",
@@ -295,7 +295,7 @@ function xoopssecure_backupFilesMin()
        XOOPS_PATH . "/" => XOOPS_PATH,
        XOOPS_VAR_PATH . "/" => XOOPS_VAR_PATH,
        XOOPS_ROOT_PATH . "/mainfile.php" => XOOPS_ROOT_PATH . "/mainfile.php"
-    );
+    ];
 }
 
  /**

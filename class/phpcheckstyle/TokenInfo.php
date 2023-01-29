@@ -68,7 +68,7 @@ class TokenInfo
      */
     public function getName()
     {
-        $tagNames = array(
+        $tagNames = [
         T_NEW_LINE             => 'T_NEW_LINE',
         T_TAB                  => 'T_TAB',
         T_SEMICOLON            => 'T_SEMICOLON',
@@ -95,7 +95,7 @@ class TokenInfo
         T_AROBAS               => 'T_AROBAS',
         T_UNKNOWN              => 'T_UNKNOWN',
         T_DOLLAR               => 'T_DOLLAR',
-        );
+        ];
 
         if (isset($tagNames[$this->id])) {
             $result = $tagNames[$this->id];
