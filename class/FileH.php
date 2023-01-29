@@ -535,7 +535,7 @@ class FileH extends \XoopsPersistableObjectHandler
      */
     public function searchRegex($string, $folder)
     {
-        $dir = new RecursiveDirectoryIterator($folder);
+        $dir = new \RecursiveDirectoryIterator($folder);
         foreach (new RecursiveIteratorIterator($dir) as $filename => $file) {
             $content = file_get_contents($file->getPathname());
             if (strpos($content, $string) !== false) {
@@ -553,7 +553,7 @@ class FileH extends \XoopsPersistableObjectHandler
     {
         if ($_SESSION["xoopssecureCoreEvents"] == 0) { // Check $_session
             global $xoopsConfig;
-            $theme = new XoTheme();
+            $theme = new \XoTheme();
             // Set javascript vars
             // initiate XoopsCache class
             $xc = new \XoopsCache();

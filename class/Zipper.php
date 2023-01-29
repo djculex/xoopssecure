@@ -109,7 +109,7 @@ class Zipper extends \XoopsPersistableObjectHandler
             $subfolder = (substr($subfolder, 0, 1) == '/') ? substr($subfolder, 1) : $subfolder;
             try {
                 $handle = opendir($folder);
-            }catch (Exception $e) {
+            }catch (\Exception $e) {
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
             }
             while ($f = readdir($handle)) {
@@ -118,13 +118,13 @@ class Zipper extends \XoopsPersistableObjectHandler
                         if ($subfolder !== null) {
                             try {
                                 $zipFile->addFile($folder . $f, $this->stripPathPart($subfolder) . $f);
-                            } catch (Exception $e) {
+                            } catch (\Exception $e) {
                                 echo 'Caught exception: ',  $e->getMessage(), "\n";
                             }
                         } else {
                             try {
                                 $zipFile->addFile($folder . $this->stripPathPart($f));
-                            } catch (Exception $e) {
+                            } catch (\Exception $e) {
                                 echo 'Caught exception: ',  $e->getMessage(), "\n";
                             }
                         }
@@ -133,14 +133,14 @@ class Zipper extends \XoopsPersistableObjectHandler
                             $zipFile->addEmptyDir($this->stripPathPart($subfolder . $f));
                             try {
                                 Zipper::folderToZip($folder . $f, $zipFile, $this->stripPathPart($subfolder . $f));
-                            } catch (Exception $e) {
+                            } catch (\Exception $e) {
                                 echo 'Caught exception: ',  $e->getMessage(), "\n";
                             }
                         } else {
                             $zipFile->addEmptyDir($this->stripPathPart($f));
                             try {
                             Zipper::folderToZip($folder . $f, $zipFile, $this->stripPathPart($f));
-                            } catch (Exception $e) {
+                            } catch (\Exception $e) {
                                 echo 'Caught exception: ',  $e->getMessage(), "\n";
                             }
                         }
