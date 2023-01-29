@@ -22,7 +22,6 @@ use XoopsModules\Xoopssecure\Patterns;
  * @version   1.1
  * @license   GNU GPL 2 (https://www.gnu.org/licenses/gpl-2.0.html)
  */
-
 class SpamScanner
 {
     public $timestamp;
@@ -46,17 +45,17 @@ class SpamScanner
             $helper = Helper::getInstance();
         }
         $this->helper = $helper;
-        $db = new db();
+        $db           = new db();
 
-        $this->timestamp = \time();
+        $this->timestamp       = \time();
         $this->fileTypesToScan = $helper->getConfig('XCISFILETYPES');
-        $this->FileStack = array();
-        $this->startPath = $helper->getConfig('XCISSTARTPATH');
-        $this->startPathCs = $helper->getConfig('XCISDEVSTARTPATH');
-        $this->omitdirs = $this->omitFolders();
-        $this->omitfiles = $this->omitFiles();
-        $this->latestScanDate = ($db->getLatestTimeStamp() != 0) ? $db->getLatestTimeStamp() : 0;
-        $this->pattern = new Patterns();
+        $this->FileStack       = [];
+        $this->startPath       = $helper->getConfig('XCISSTARTPATH');
+        $this->startPathCs     = $helper->getConfig('XCISDEVSTARTPATH');
+        $this->omitdirs        = $this->omitFolders();
+        $this->omitfiles       = $this->omitFiles();
+        $this->latestScanDate  = ($db->getLatestTimeStamp() != 0) ? $db->getLatestTimeStamp() : 0;
+        $this->pattern         = new Patterns();
     }
 
     /**
@@ -65,9 +64,9 @@ class SpamScanner
      */
     public function omitFolders()
     {
-        $dirs = $this->helper->getConfig('XCISOMITFOLDERS');
+        $dirs    = $this->helper->getConfig('XCISOMITFOLDERS');
         $folders = preg_split('/\s+/', $dirs);
-        $p = [];
+        $p       = [];
         foreach ($folders as $f) {
             $p[] = str_replace('\\', '/', XOOPS_ROOT_PATH . "/" . $f);
         }
@@ -81,9 +80,9 @@ class SpamScanner
      */
     public function omitFiles()
     {
-        $dirs = $this->helper->getConfig('XCISOMITFILES');
+        $dirs    = $this->helper->getConfig('XCISOMITFILES');
         $folders = preg_split('/\s+/', $dirs);
-        $p = [];
+        $p       = [];
         foreach ($folders as $f) {
             $p[] = str_replace('\\', '/', XOOPS_ROOT_PATH . "/" . $f);
         }
@@ -110,7 +109,7 @@ class SpamScanner
                 }
 
                 $filepath = $dir . '/' . $file;
-                $fn = str_replace('\\', '/', $filepath);
+                $fn       = str_replace('\\', '/', $filepath);
                 if (is_dir($filepath) && is_readable($filepath)) {
                     if (in_array($filepath, $this->omitdirs)) {
                         continue;
@@ -131,18 +130,17 @@ class SpamScanner
                     }
                 }
             }
-                closedir($fh);
-                return $files;
+            closedir($fh);
+            return $files;
         }
-        
     }
 
-    function test($dir, $pattern)
+    public function test($dir, $pattern)
     {
         @set_time_limit(0);
         $files = [];
-        $fh = opendir($dir);
-        $db = new db();
+        $fh    = opendir($dir);
+        $db    = new db();
 
         while (($file = readdir($fh)) !== false) {
             if ($file == '.' || $file == '..') {
@@ -150,7 +148,7 @@ class SpamScanner
             }
 
             $filepath = $dir . '/' . $file;
-            $fn = str_replace('\\', '/', $filepath);
+            $fn       = str_replace('\\', '/', $filepath);
 
             if (is_dir($filepath)) {
                 if (in_array($filepath, $this->omitdirs)) {
@@ -176,7 +174,6 @@ class SpamScanner
         return $files;
     }
 
-    
     /**
      * Get files without the folders and files not not scan for coding standard
      *
@@ -188,8 +185,8 @@ class SpamScanner
     {
         @set_time_limit(0);
         $files = [];
-        $fh = opendir($dir);
-        $db = new db();
+        $fh    = opendir($dir);
+        $db    = new db();
 
         while (($file = readdir($fh)) !== false) {
             if ($file == '.' || $file == '..') {
@@ -197,7 +194,7 @@ class SpamScanner
             }
 
             $filepath = $dir . '/' . $file;
-            $fn = str_replace('\\', '/', $filepath);
+            $fn       = str_replace('\\', '/', $filepath);
 
             if (is_dir($filepath)) {
                 if (in_array($filepath, $this->omitdirs)) {
@@ -222,18 +219,18 @@ class SpamScanner
     /**
      * Scan given file for all malware patterns'
      *
-     * @author Michael Albertsen
+     * @param string  $path     path of the scanned file
      * @author Bernard Toplak [WarpMax] <bernard@orion-web.hr>
      * @global string $fileExt  file extension list to be scanned
-     * @global array $patterns array of patterns to search for
-     * @param  string $path path of the scanned file
+     * @global array  $patterns array of patterns to search for
+     * @author Michael Albertsen
      */
     public function malwareScanFile($path)
     {
-        $count = 0;
+        $count         = 0;
         $total_results = 0;
-        $db = new db();
-        $patterns = new Patterns();
+        $db            = new db();
+        $patterns      = new Patterns();
         $db->updateLog("mallwarescan");
         if (!stripos($path, 'Patterns.php')/* skip this file */) {
             if ($malic_file_descr = array_search(pathinfo($path, PATHINFO_BASENAME), $patterns->BadFileNames)) {
@@ -274,7 +271,7 @@ class SpamScanner
                     } else { // it's a string
                         preg_match_all('#' . $pattern . '#isS', $content, $found, PREG_OFFSET_CAPTURE);
                     }
-                    $all_results = $found[0]; // remove outer array from results
+                    $all_results   = $found[0]; // remove outer array from results
                     $results_count = count($all_results); // count the number of results
                     $total_results += $results_count; // total results of all fingerprints
                     if (!empty($all_results)) {
@@ -283,10 +280,10 @@ class SpamScanner
                             $dbtdtit = sprintf(_SCAN_XOOPSSECURE_MALWARE_ARRAYCOM, $pattern[2], $pattern[1], $path, $pattern[3]);
                             foreach ($all_results as $match) {
                                 $dbtd = $dbtdtit . sprintf(
-                                    _SCAN_XOOPSSECURE_MALWARE_ARRAYCOMEXPL,
-                                    $this->calculateLineNumber($match[1], $content),
-                                    htmlentities(substr($content, $match[1], 350), ENT_QUOTES)
-                                );
+                                        _SCAN_XOOPSSECURE_MALWARE_ARRAYCOMEXPL,
+                                        $this->calculateLineNumber($match[1], $content),
+                                        htmlentities(substr($content, $match[1], 350), ENT_QUOTES)
+                                    );
                                 if ($db->issueExists($pattern[2], $this->calculateLineNumber($match[1], $content)) == false) {
                                     $db->loadSave(
                                         $this->timestamp,
@@ -306,10 +303,10 @@ class SpamScanner
                             $dbtdtit = sprintf(_SCAN_XOOPSSECURE_MALWARE_ARRAYNOCOM, $path, $pattern);
                             foreach ($all_results as $match) {
                                 $dbtd = $dbtdtit . sprintf(
-                                    _SCAN_XOOPSSECURE_MALWARE_ARRAYCOMEXPL,
-                                    $this->calculateLineNumber($match[1], $content),
-                                    htmlentities(substr($content, $match[1], 350), ENT_QUOTES)
-                                );
+                                        _SCAN_XOOPSSECURE_MALWARE_ARRAYCOMEXPL,
+                                        $this->calculateLineNumber($match[1], $content),
+                                        htmlentities(substr($content, $match[1], 350), ENT_QUOTES)
+                                    );
                                 if ($db->issueExists($pattern, $this->calculateLineNumber($match[1], $content)) == false) {
                                     $db->loadSave(
                                         $this->timestamp,
@@ -336,15 +333,15 @@ class SpamScanner
     /**
      * Calculates the line number where pattern match was found
      *
-     * @author Michael Albertsen
-     * @author Bernard Toplak [WarpMax] <bernard@orion-web.hr>
-     * @param  int $offset  The offset position of found pattern match
-     * @param  str $content The file content in string format
+     * @param int $offset  The offset position of found pattern match
+     * @param str $content The file content in string format
      * @return int Returns line number where the subject code was found
+     * @author Bernard Toplak [WarpMax] <bernard@orion-web.hr>
+     * @author Michael Albertsen
      */
     public function calculateLineNumber($offset, $file_content)
     {
-        list($first_part) = str_split($file_content, $offset); // fetches all the text before the match
+        [$first_part] = str_split($file_content, $offset); // fetches all the text before the match
         $line_nr = strlen($first_part) - strlen(str_replace("\n", "", $first_part)) + 1;
         return $line_nr;
     }
