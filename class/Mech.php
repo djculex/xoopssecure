@@ -212,7 +212,7 @@ class Mech
         if ($maxinputtime > 60) {
             $i++;
             $resp['phpini'][$i]['name'] = "max_input_time";
-            $resp['phpini'][$i]['current'] = $maxinoputtime;
+            $resp['phpini'][$i]['current'] = $maxinputtime;
             $resp['phpini'][$i]['recommended'] = "< 60";
             $resp['phpini'][$i]['description'] = _MECH_XOOPSSECURE_MAXINPUTTIME;
             $resp['phpini'][$i]['ref'] = "https://www.developer.com/design/top-php-security-tips/";
