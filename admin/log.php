@@ -62,16 +62,16 @@ $resERR = $dat->loadErrissues($date);
 // help file from admin
 $GLOBALS['xoopsTpl']->assign(
     [
-    'lang_log_CONFOMITFILE_TEXT'    => _LOG_XOOPSSECURE_CONFOMITFILE_TEXT,
-    'lang_log_CONFOMITDIRS_TEXT'    => _LOG_XOOPSSECURE_CONFOMITDIRS_TEXT,
-    'lang_log_CONFDELISSUE_TEXT'    => _LOG_XOOPSSECURE_CONFDELISSUE_TEXT,
-    'lang_log_CONFYES'                => _OK,
-    'lang_log_CONFNO'                => _CANCEL,
-    'lang_log_SCANDATEHUMAN'        => date('d-m-Y H:i:s', intval(($date / 1000))),
-    'lang_log_SCANDATEDELETE'        => intval($date),
-    'lang_log_CONFDELETELOG_TEXT'    => _LOG_XOOPSSECURE_CONDELETELOG_TEXT,
-    'lang_log_NOTHINGHERE_TITLE'    => _LOG_XOOPSSECURE_NOTHINGHERE_TITLE,
-    'lang_log_NOTHINGHERE_DESC'        => _LOG_XOOPSSECURE_NOTHINGHERE_DESC,
+        'lang_log_CONFOMITFILE_TEXT'    => _LOG_XOOPSSECURE_CONFOMITFILE_TEXT,
+        'lang_log_CONFOMITDIRS_TEXT'    => _LOG_XOOPSSECURE_CONFOMITDIRS_TEXT,
+        'lang_log_CONFDELISSUE_TEXT'    => _LOG_XOOPSSECURE_CONFDELISSUE_TEXT,
+        'lang_log_CONFYES'                => _OK,
+        'lang_log_CONFNO'                => _CANCEL,
+        'lang_log_SCANDATEHUMAN'        => date('d-m-Y H:i:s', (int)($date / 1000)),
+        'lang_log_SCANDATEDELETE'        => (int)$date,
+        'lang_log_CONFDELETELOG_TEXT'    => _LOG_XOOPSSECURE_CONDELETELOG_TEXT,
+        'lang_log_NOTHINGHERE_TITLE'    => _LOG_XOOPSSECURE_NOTHINGHERE_TITLE,
+        'lang_log_NOTHINGHERE_DESC'        => _LOG_XOOPSSECURE_NOTHINGHERE_DESC,
     ]
 );
 

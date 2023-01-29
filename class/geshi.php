@@ -1553,7 +1553,7 @@ class GeSHi
      */
     public function set_tab_width($width)
     {
-        $this->tab_width = intval($width);
+        $this->tab_width = (int)$width;
 
         //Check if it fit's the constraints:
         if ($this->tab_width < 1) {
@@ -2061,7 +2061,7 @@ class GeSHi
             }
         } else {
             //Mark the line as being highlighted specially
-            $lines = intval($lines);
+            $lines = (int)$lines;
             $this->highlight_extra_lines[$lines] = $lines;
 
             //Decide on which style to use
@@ -2115,7 +2115,7 @@ class GeSHi
      */
     public function start_line_numbers_at($number)
     {
-        $this->line_numbers_start = abs(intval($number));
+        $this->line_numbers_start = abs((int)$number);
     }
 
     /**
@@ -3945,7 +3945,7 @@ class GeSHi
                             $attributes = ' class="re' . $key . '"';
                         }
                     }
-                    $stuff_to_parse = str_replace("!REG3XP$key!", "$attributes", $stuff_to_parse);
+                    $stuff_to_parse = str_replace("!REG3XP$key!", (string)$attributes, $stuff_to_parse);
                 }
             }
         }

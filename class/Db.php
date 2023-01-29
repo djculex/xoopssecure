@@ -407,7 +407,7 @@ class Db extends \XoopsPersistableObjectHandler
      */
     public function deleteIssueByID($id)
     {
-        $sql    = "DELETE FROM " . $this->db->prefix('xoopssecure_issues') . " WHERE `id` = '" . intval($id) . "'";
+        $sql    = "DELETE FROM " . $this->db->prefix('xoopssecure_issues') . " WHERE `id` = '" . (int)$id . "'";
         $result = $this->db->queryF($sql);
         echo json_encode("OK", JSON_PRETTY_PRINT);
     }
@@ -697,7 +697,7 @@ class Db extends \XoopsPersistableObjectHandler
         $num    = $this->db->getRowsNum($result);
         if ($num > 0) {
             while ($row = $this->db->fetchArray($result)) {
-                $i = (intval($row['permissues']) + intval($row['indexissues']) + intval($row['malissues']) + intval($row['csissues']));
+                $i = ((int)$row['permissues'] + (int)$row['indexissues'] + (int)$row['malissues'] + (int)$row['csissues']);
                 echo '<div class="row">
                     <div class="col"><h3>' . _SCAN_XOOPSSECURE_INLINEISSUESFOUND . '<h3></div>
                     <div class="col"><h3>' . _SCAN_XOOPSSECURE_INLINEDATESCANNED . '</h3></div>
@@ -885,6 +885,6 @@ class Db extends \XoopsPersistableObjectHandler
         while ($row = $this->db->fetchArray($result)) {
             $arr = $row[$scanname];
         }
-        return ($arr != '') ? intval($arr) : 0;
+        return ($arr != '') ? (int)$arr : 0;
     }
 }

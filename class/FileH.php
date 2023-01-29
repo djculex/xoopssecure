@@ -47,7 +47,7 @@ class FileH extends \XoopsPersistableObjectHandler
         $this->timestamp = \time();
         $this->startPath = $helper->getConfig('XCISSTARTPATH');
         $this->FileDir = [];
-        $this->deleteBackupAfterDays = intval($helper->getConfig('XCISAUTOBACKUPDELETE'));
+        $this->deleteBackupAfterDays = (int)$helper->getConfig('XCISAUTOBACKUPDELETE');
         $this->backupFilesMaxAge = strtotime("-{$this->deleteBackupAfterDays} days", time());
         $this->timeForBackup = $this->db->setTimedEvent("backup");
         $this->timeForCron = $this->db->setTimedEvent("cronscan");
@@ -585,10 +585,10 @@ class FileH extends \XoopsPersistableObjectHandler
      */
     public function cronScan()
     {
-        if (intval($this->helper->getConfig('XCISCRONTYPE')) == 1) {
+        if ((int)$this->helper->getConfig('XCISCRONTYPE') == 1) {
             if ($this->timeForCron === true) {
                 $spam = new SpamScanner();
-                $checkinterval = intval($this->helper->getConfig('XCISCRONINTERVAL')); // 24
+                $checkinterval = (int)$this->helper->getConfig('XCISCRONINTERVAL'); // 24
                 $beforeTime = strtotime($checkinterval . " hours");
                 $ft = $this->helper->getConfig('XCISFILETYPES');
                 $allfiles = $this->get_allFilesTotal(XOOPS_ROOT_PATH);
@@ -612,7 +612,7 @@ class FileH extends \XoopsPersistableObjectHandler
     {
         $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
         \xoops_loadLanguage('mail', $moduleDirName);
-        $content = "<h2 class='filelistheader'>" . sprintf(MAIL_XOOPSSECURE_FILESCHANGED, intval($this->helper->getConfig('XCISCRONINTERVAL'))) . "</h2><br><br>";
+        $content = "<h2 class='filelistheader'>" . sprintf(MAIL_XOOPSSECURE_FILESCHANGED, (int)$this->helper->getConfig('XCISCRONINTERVAL')) . "</h2><br><br>";
         $content .= "<table align='center' class='filelisttable'>";
         $content .= "<tr><th>" . "Filepath" . "</th></tr>";
         foreach ($arr as $file) {
@@ -633,7 +633,7 @@ class FileH extends \XoopsPersistableObjectHandler
         $iter = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
         $spam = new SpamScanner();
         $files = [];
-        $checkinterval = intval($this->helper->getConfig('XCISCRONINTERVAL')); // 24
+        $checkinterval = (int)$this->helper->getConfig('XCISCRONINTERVAL'); // 24
         $beforeTime = strtotime("-" . $checkinterval . " hours");
         foreach ($iter as $file) {
             if ($file->isDir()) {
