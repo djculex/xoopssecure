@@ -1502,7 +1502,7 @@ class PHPCheckstyle
         $currentStackItem = $this->statementStack->getCurrentStackItem();
 
         // Workaround code
-        if (!is_String($currentStackItem)) {
+        if (!is_string($currentStackItem)) {
             // Test for the end of a switch bloc
             if ($currentStackItem->type === StatementItem::TYPE_SWITCH || $currentStackItem->type === StatementItem::TYPE_DEFAULT || $currentStackItem->type === StatementItem::TYPE_CASE) {
                 $this->_processSwitchStop();

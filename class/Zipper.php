@@ -171,7 +171,7 @@ class Zipper extends \XoopsPersistableObjectHandler
     {
         // create the zip
         $z = new ZipArchive();
-        $z->open($archive, ZIPARCHIVE::CREATE);
+        $z->open($archive, ZipArchive::CREATE);
 
         //Use Pdo to log on to db
         $dbc = new MySQLBackup(
