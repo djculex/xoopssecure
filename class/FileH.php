@@ -29,6 +29,7 @@ class FileH extends \XoopsPersistableObjectHandler
     public $timeForBackup;
     public $timeForCron;
     public $db;
+    public $helper;
 
     /**
      * constructor

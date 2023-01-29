@@ -19,6 +19,7 @@ use XoopsModules\Xoopssecure\Constants;
 class Db extends \XoopsPersistableObjectHandler
 {
     public $db;
+    public $helper;
 
     /**
      * constructor
