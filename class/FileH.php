@@ -216,7 +216,7 @@ class FileH extends \XoopsPersistableObjectHandler
 
         // Launch PHPCheckstyle
         if (true === is_array($path)) {
-            $sources = explode(',', $sourceDir);
+            $sources = explode(',', $path);
         } else {
             $sources = $path;
         }
