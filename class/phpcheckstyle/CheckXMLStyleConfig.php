@@ -64,7 +64,7 @@ class CheckXMLStyleConfig extends CheckStyleConfig
     {
         $fp = fopen($this->file, "r");
         if (!$fp) {
-            throw new Exception("Could not open XML input file");
+            throw new \Exception("Could not open XML input file");
         }
 
         $data = fread($fp, 4096);
