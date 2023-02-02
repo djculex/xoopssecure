@@ -39,9 +39,9 @@ class Bench extends Mech
 {
     //var $userdatetype;
     public $helper;
-    public $start = array();
-    public $end = array();
-    public $totalTime = array();
+    public $start = [];
+    public $end = [];
+    public $totalTime = [];
     
     public function __construct()
     {
@@ -74,7 +74,7 @@ class Bench extends Mech
     public function getTotal()
     {
         $i = 0;
-        for ($i = 0; $i < count($this->start); $i++) {
+        for ($i = 0, $iMax = count($this->start); $i < $iMax; $i++) {
             $this->totalTime[$i] = $this->end[$i] - $this->start[$i];
         }
     }

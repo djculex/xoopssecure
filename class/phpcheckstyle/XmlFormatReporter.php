@@ -2,7 +2,7 @@
 
 namespace XoopsModules\Xoopssecure;
 
-use DomDocument;
+use DOMDocument;
 
 /**
  * Writes the errors into an xml file.

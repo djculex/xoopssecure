@@ -37,7 +37,7 @@ if (!isset($GLOBALS['xoTheme']) || !$GLOBALS['xoTheme'] instanceof \xos_opal_The
 
 $GLOBALS['xoTheme']->addScript(
     '',
-    array('type' => 'text/javascript'),
+    ['type' => 'text/javascript'],
     "
                 if (typeof jQuery == 'undefined') {
                     var tag = '<scr' + 'ipt type=\'text/javascript\' src=\'" .
@@ -55,7 +55,7 @@ $GLOBALS['xoTheme']->addScript(XOOPS_URL . "/modules/xoopssecure/assets/js/typea
 $GLOBALS['xoTheme']->addScript(XOOPS_URL . "/modules/xoopssecure/assets/js/scannerAdmin.js");
 $GLOBALS['xoTheme']->addStylesheet(
     '',
-    array('type' => 'text/css'),
+    ['type' => 'text/css'],
     "
 	.typeahead {
         background-color: linen; 
@@ -251,12 +251,12 @@ $modversion['config'][] = [
     'description' => '_MI_XOOPSSECURE_BACKUPSELECTTYPE_DESC',
     'formtype'    => 'select',
     'valuetype'   => 'array',
-    'options'     => array(
+    'options'     => [
                         _MI_XOOPSSECURE_NONE => 'none',
                         _MI_XOOPSSECURE_MIN => 'Minimum',
                         _MI_XOOPSSECURE_FULL => 'Full',
                         _MI_XOOPSSECURE_CUSTOM => 'Custom'
-                    ),
+    ],
 ];
 
 $obj = xoopssecure_backupFilesMin();

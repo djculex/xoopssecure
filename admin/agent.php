@@ -45,7 +45,7 @@ $t = time();
 $fh = new FileH();
 $dat = new Db();
 $spam = new Xoopssecure\SpamScanner();
-$autobackup = intval($helper->getConfig('XCISAUTOBACKUP'));
+$autobackup = (int)$helper->getConfig('XCISAUTOBACKUP');
 
 switch ($type) {
         // Get All files to json
@@ -159,7 +159,7 @@ switch ($type) {
                 $g->set_link_styles(GESHI_LINK, 'color: #000060;'); // ditto
                 $g->set_link_styles(GESHI_HOVER, 'background-color: #f0f000;'); // ditto again
         if ($ln != "" || $ln != 0) {
-            $g->highlight_lines_extra(intval($ln), 'background-color:yellow'); // if line number is real make highligh yellow of this line
+            $g->highlight_lines_extra((int)$ln, 'background-color:yellow'); // if line number is real make highligh yellow of this line
         }
                 echo "<style type='text/css'>"; // Echo style start
                 echo $g->get_stylesheet(); // echo stylesheet for file ext

@@ -44,7 +44,7 @@ class Tokenizer
      *
      * @var Array
      */
-    private $newTokens = array();
+    private $newTokens = [];
 
     /**
      * Position of the index in the current file.
@@ -88,13 +88,13 @@ class Tokenizer
         * }
         */
 
-        $this->ignoreTokens = array(
+        $this->ignoreTokens = [
         T_WHITESPACE => true,
         T_TAB => true,
         T_COMMENT => true,
         T_ML_COMMENT => true,
         T_DOC_COMMENT => true
-        );
+        ];
 
         $this->reset();
     }
@@ -108,7 +108,7 @@ class Tokenizer
      */
     public function tokenize($filename)
     {
-        $this->tokens = array();
+        $this->tokens = [];
 
         // Read the file
         if (filesize($filename)) {
@@ -328,8 +328,8 @@ class Tokenizer
     public function reset()
     {
         $this->index = 0;
-        $this->tokens = array();
-        $this->newTokens = array();
+        $this->tokens = [];
+        $this->newTokens = [];
         $this->tokenNumber = 0;
         $this->lineNumber = 1;
     }
@@ -635,7 +635,7 @@ class Tokenizer
      */
     private function _getAllTokens($source)
     {
-        $newTokens = array();
+        $newTokens = [];
 
         // Ugly trick
         // Reset the error array by calling an undefined variable

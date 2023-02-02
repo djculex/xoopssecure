@@ -117,14 +117,14 @@ class Patterns
     public function badFileNames()
     {
         \xoops_loadLanguage('scanner', "xoopssecure");
-        return array(
+        return [
         _SCAN_XOOPSSECURE_BFN_01 => 'ofc_upload_image.php',
         _SCAN_XOOPSSECURE_BFN_02 => 'r57.php',
         _SCAN_XOOPSSECURE_BFN_03 => 'c99.php',
         _SCAN_XOOPSSECURE_BFN_04 => 'c100.php',
         _SCAN_XOOPSSECURE_BFN_05 => 'phpinfo.php',
         _SCAN_XOOPSSECURE_BFN_06 => 'perlinfo.php'
-        );
+        ];
     }
 
     /** 
@@ -135,173 +135,174 @@ class Patterns
     public function badPatterns()
     {
         \xoops_loadLanguage('scanner', "xoopssecure");
-        return array(
-        array(
+        return [
+            [
         'preg_replace\s*\(\s*[\"\']\s*(\W)(?-s).*\1[imsxADSUXJu\s]*e[imsxADSUXJu\s]*[\"\'].*\)', // [0] = RegEx search pattern
         _SCAN_XOOPSSECURE_PAT01_TITLE, // [1] = Name / Title
         _SCAN_XOOPSSECURE_PAT01_DESC, // [2] = description
         'http://sucuri.net/malware/backdoor-phppreg_replaceeval', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         'c999*sh_surl',
         _SCAN_XOOPSSECURE_PAT02_TITLE,
         _SCAN_XOOPSSECURE_PAT02_DESC,
         'http://sucuri.net/malware/backdoor-phpc99045', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         'preg_match\s*\(\s*\"\s*/\s*bot\s*/\s*\"',
         _SCAN_XOOPSSECURE_PAT03_TITLE,
         _SCAN_XOOPSSECURE_PAT03_DESC,
         'http://sucuri.net/malware/backdoor-phpr5701', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         'eval[\s/\*\#]*\(stripslashes[\s/\*\#]*\([\s/\*\#]*\$_(REQUEST|POST|GET)\s*\[\s*\\\s*[\'\"]\s*asc\s*\\\s*[\'\"]',
         _SCAN_XOOPSSECURE_PAT04_TITLE,
         _SCAN_XOOPSSECURE_PAT04_DESC,
         'http://sucuri.net/malware/backdoor-phpgeneric07', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         'preg_replace\s*\(\s*[\"\'\”]\s*/\s*\.\s*\*\s*/\s*e\s*[\"\'\”]\s*,\s*[\"\'\”]\s*\\x65\\x76\\x61\\x6c',
         _SCAN_XOOPSSECURE_PAT05_TITLE,
         _SCAN_XOOPSSECURE_PAT05_DESC,
         'http://sucuri.net/malware/backdoor-phpfilesman02', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         '(include|require)(_once)*\s*[\"\'][\w\W\s/\*]*php://input[\w\W\s/\*]*[\"\']',
         _SCAN_XOOPSSECURE_PAT06_TITLE,
         _SCAN_XOOPSSECURE_PAT06_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         'data:;base64',
         _SCAN_XOOPSSECURE_PAT07_TITLE,
         _SCAN_XOOPSSECURE_PAT07_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         'RewriteCond\s*%\{HTTP_REFERER\}',
         _SCAN_XOOPSSECURE_PAT08_TITLE,
         _SCAN_XOOPSSECURE_PAT08_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         'jquery.min.php',
         _SCAN_XOOPSSECURE_PAT09_TITLE,
         _SCAN_XOOPSSECURE_PAT09_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         'GIF89a.*[\r\n]*.*<\?php',
         _SCAN_XOOPSSECURE_PAT10_TITLE,
         _SCAN_XOOPSSECURE_PAT10_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         '\$ip[\w\W\s/\*]*=[\w\W\s/\*]*getenv\(["\']REMOTE_ADDR["\']\);[\w\W\s/\*]*[\r\n]\$message',
         _SCAN_XOOPSSECURE_PAT11_TITLE,
         _SCAN_XOOPSSECURE_PAT11_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         '(?:(?:base64_decode|str_rot13)[\s\/\*\w\W\(]*){2,};',
         _SCAN_XOOPSSECURE_PAT12_TITLE,
         _SCAN_XOOPSSECURE_PAT12_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         '<\s*iframe',
         _SCAN_XOOPSSECURE_PAT13_TITLE,
         _SCAN_XOOPSSECURE_PAT13_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         'strrev[\s/\*\#]*\([\s/\*\#]*[\'"]\s*tressa\s*[\'"]\s*\)',
         _SCAN_XOOPSSECURE_PAT14_TITLE,
         _SCAN_XOOPSSECURE_PAT14_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         'is_writable[\s/\*\#]*\([\s/\*\#]*getcwd',
         _SCAN_XOOPSSECURE_PAT15_TITLE,
         _SCAN_XOOPSSECURE_PAT15_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array('(?:\\\\x[0-9A-Fa-f]{1,2}|\\\\[0-7]{1,3}){2,}',
-        _SCAN_XOOPSSECURE_PAT16_TITLE,
-        _SCAN_XOOPSSECURE_PAT16_DESC,
-        '0' // Rating
-        ),
-        array(
+            ],
+            [
+                '(?:\\\\x[0-9A-Fa-f]{1,2}|\\\\[0-7]{1,3}){2,}',
+                _SCAN_XOOPSSECURE_PAT16_TITLE,
+                _SCAN_XOOPSSECURE_PAT16_DESC,
+                '0' // Rating
+            ],
+            [
         '\$_F\s*=\s*__FILE__\s*;\s*\$_X\s*=',
         _SCAN_XOOPSSECURE_PAT17_TITLE,
         _SCAN_XOOPSSECURE_PAT17_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         '(?:passthru|shell_exec|proc_|popen)[\w\W\s/\*]*\([\s/\*\#\'\"\w\W\-\_]*(?:\$_GET|\$_POST|\$_REQUEST)',
         _SCAN_XOOPSSECURE_PAT18_TITLE,
         _SCAN_XOOPSSECURE_PAT18_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         'fsockopen\s*\(\s*[ \'\"](?:localhost|127\.0\.0\.1)[ \'\"]',
         _SCAN_XOOPSSECURE_PAT19_TITLE,
         _SCAN_XOOPSSECURE_PAT19_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         'fsockopen\s*\(.*,\s*[ \'\"](?:25|587|465|475|2525)[ \'\"]',
         _SCAN_XOOPSSECURE_PAT20_TITLE,
         _SCAN_XOOPSSECURE_PAT20_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         '(?:readfile|popen)\s*\(\s*[ \'\"]*\s*(?:file|http[s]*|ftp[s]*|php|zlib|data|glob|phar|ssh2|rar|ogg|expect|\$POST|\$GET|\$REQUEST)',
         _SCAN_XOOPSSECURE_PAT21_TITLE,
         _SCAN_XOOPSSECURE_PAT21_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         'array_(?:diff_ukey|diff_uassoc|intersect_uassoc|udiff_uassoc|udiff_assoc|uintersect_assoc|uintersect_uassoc)\s*\(.*(?:\$_REQUEST|\$_POST|\$_GET).*;',
         _SCAN_XOOPSSECURE_PAT22_TITLE,
         _SCAN_XOOPSSECURE_PAT22_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         '^(((.*)(=|;)(\s*)?)|((@|\s)*))(include|require)(_once)?\s*\(?("|\')https?://',
         _SCAN_XOOPSSECURE_PAT23_TITLE,
         _SCAN_XOOPSSECURE_PAT23_DESC,
         '', // Link for more description
         '0' // Rating
-        ),
-        array(
+            ],
+            [
         '\\\\x([abcdef0-9]{2}){3,}',
         _SCAN_XOOPSSECURE_PAT24_TITLE,
         _SCAN_XOOPSSECURE_PAT24_DESC,
         '', // Link for more description
         '0' // Rating
-        )
-        );
+            ]
+        ];
     }
 }

@@ -8,7 +8,7 @@ namespace XoopsModules\Xoopssecure;
 class Reporters
 {
     // The list of registered reporters.
-    public $reporters = array();
+    public $reporters = [];
 
     /**
      * Add a reporter to the list of registered reporters.

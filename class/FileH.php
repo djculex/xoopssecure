@@ -29,6 +29,7 @@ class FileH extends \XoopsPersistableObjectHandler
     public $timeForBackup;
     public $timeForCron;
     public $db;
+    public $helper;
 
     /**
      * constructor
@@ -45,8 +46,8 @@ class FileH extends \XoopsPersistableObjectHandler
 
         $this->timestamp = \time();
         $this->startPath = $helper->getConfig('XCISSTARTPATH');
-        $this->FileDir = array();
-        $this->deleteBackupAfterDays = intval($helper->getConfig('XCISAUTOBACKUPDELETE'));
+        $this->FileDir = [];
+        $this->deleteBackupAfterDays = (int)$helper->getConfig('XCISAUTOBACKUPDELETE');
         $this->backupFilesMaxAge = strtotime("-{$this->deleteBackupAfterDays} days", time());
         $this->timeForBackup = $this->db->setTimedEvent("backup");
         $this->timeForCron = $this->db->setTimedEvent("cronscan");
@@ -90,7 +91,7 @@ class FileH extends \XoopsPersistableObjectHandler
         $directory = XOOPS_ROOT_PATH . "/uploads/backup/";
         $iterator = new \DirectoryIterator($directory);
         $eol = PHP_EOL;
-        $result = array();
+        $result = [];
         $i = 0;
         foreach ($iterator as $ff) {
             if ($ff->isDot()) {
@@ -119,7 +120,7 @@ class FileH extends \XoopsPersistableObjectHandler
         $directory = XOOPS_ROOT_PATH . "/uploads/backup/";
         $iterator = new \DirectoryIterator($directory);
         $eol = PHP_EOL;
-        $result = array();
+        $result = [];
         $i = 0;
         foreach ($iterator as $ff) {
             if ($ff->isDot()) {
@@ -210,12 +211,12 @@ class FileH extends \XoopsPersistableObjectHandler
         $options['format'] = "array"; // default format
         // Get user selection
         $configFile = XOOPS_ROOT_PATH . "/modules/xoopssecure/class/phpcheckstyle/config/xoops.cfg.xml";
-        $options['exclude'] = array();
+        $options['exclude'] = [];
         $formats = explode(',', $options['format']);
 
         // Launch PHPCheckstyle
         if (true === is_array($path)) {
-            $sources = explode(',', $sourceDir);
+            $sources = explode(',', $path);
         } else {
             $sources = $path;
         }
@@ -267,7 +268,7 @@ class FileH extends \XoopsPersistableObjectHandler
      */
     public function countDirs()
     {
-        return count($this->listdirs(array($this->startPath)));
+        return count($this->listdirs([$this->startPath]));
     }
 
     /** 
@@ -279,20 +280,20 @@ class FileH extends \XoopsPersistableObjectHandler
     public function indexFileExists($dir)
     {
         $indexFileExists = 0;
-        $ret = array();
-        $filenames = array
-        (
+        $ret = [];
+        $filenames =
+            [
         'index.html',
         'index.htm',
         'index.php',
         'index.php3'
-        );
+            ];
         foreach ($filenames as $fn) {
             if (is_file($dir . DIRECTORY_SEPARATOR . $fn)) {
                 $indexFileExists = $indexFileExists + 1;
             }
         }
-        return ($indexFileExists == 0) ? array("dir" => $dir, "code" => 1) : array("dir" => $dir, "code" => 0);
+        return ($indexFileExists == 0) ? ["dir" => $dir, "code" => 1] : ["dir" => $dir, "code" => 0];
     }
 
     /** 
@@ -534,7 +535,7 @@ class FileH extends \XoopsPersistableObjectHandler
      */
     public function searchRegex($string, $folder)
     {
-        $dir = new RecursiveDirectoryIterator($folder);
+        $dir = new \RecursiveDirectoryIterator($folder);
         foreach (new RecursiveIteratorIterator($dir) as $filename => $file) {
             $content = file_get_contents($file->getPathname());
             if (strpos($content, $string) !== false) {
@@ -552,7 +553,7 @@ class FileH extends \XoopsPersistableObjectHandler
     {
         if ($_SESSION["xoopssecureCoreEvents"] == 0) { // Check $_session
             global $xoopsConfig;
-            $theme = new XoTheme();
+            $theme = new \XoTheme();
             // Set javascript vars
             // initiate XoopsCache class
             $xc = new \XoopsCache();
@@ -571,7 +572,7 @@ class FileH extends \XoopsPersistableObjectHandler
             $script  .= "	var xoopsSecureSysUrl = '" . XOOPS_URL . "/modules/xoopssecure/admin/';" . "\n";
             $script  .= '};' . "\n";
             if ($_SESSION["xoopssecureCoreEvents"] <= 1) {
-                $theme->addScript(null, array( 'type' => 'text/javascript' ), $script, 'xoopssecureCore');
+                $theme->addScript(null, ['type' => 'text/javascript'], $script, 'xoopssecureCore');
             }
         }
     }
@@ -584,10 +585,10 @@ class FileH extends \XoopsPersistableObjectHandler
      */
     public function cronScan()
     {
-        if (intval($this->helper->getConfig('XCISCRONTYPE')) == 1) {
+        if ((int)$this->helper->getConfig('XCISCRONTYPE') == 1) {
             if ($this->timeForCron === true) {
                 $spam = new SpamScanner();
-                $checkinterval = intval($this->helper->getConfig('XCISCRONINTERVAL')); // 24
+                $checkinterval = (int)$this->helper->getConfig('XCISCRONINTERVAL'); // 24
                 $beforeTime = strtotime($checkinterval . " hours");
                 $ft = $this->helper->getConfig('XCISFILETYPES');
                 $allfiles = $this->get_allFilesTotal(XOOPS_ROOT_PATH);
@@ -611,7 +612,7 @@ class FileH extends \XoopsPersistableObjectHandler
     {
         $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
         \xoops_loadLanguage('mail', $moduleDirName);
-        $content = "<h2 class='filelistheader'>" . sprintf(MAIL_XOOPSSECURE_FILESCHANGED, intval($this->helper->getConfig('XCISCRONINTERVAL'))) . "</h2><br><br>";
+        $content = "<h2 class='filelistheader'>" . sprintf(MAIL_XOOPSSECURE_FILESCHANGED, (int)$this->helper->getConfig('XCISCRONINTERVAL')) . "</h2><br><br>";
         $content .= "<table align='center' class='filelisttable'>";
         $content .= "<tr><th>" . "Filepath" . "</th></tr>";
         foreach ($arr as $file) {
@@ -631,8 +632,8 @@ class FileH extends \XoopsPersistableObjectHandler
     {
         $iter = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
         $spam = new SpamScanner();
-        $files = array();
-        $checkinterval = intval($this->helper->getConfig('XCISCRONINTERVAL')); // 24
+        $files = [];
+        $checkinterval = (int)$this->helper->getConfig('XCISCRONINTERVAL'); // 24
         $beforeTime = strtotime("-" . $checkinterval . " hours");
         foreach ($iter as $file) {
             if ($file->isDir()) {

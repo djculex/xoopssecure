@@ -3,8 +3,8 @@
 /*************************************************************************************
  * xbasic.php
  * ----------
- * Author: José Gabriel Moya Yangüela (josemoya@gmail.com)
- * Copyright: (c) 2005 José Gabriel Moya Yangüela (http://aprenderadesaprender.6te.net)
+ * Author: Josï¿½ Gabriel Moya Yangï¿½ela (josemoya@gmail.com)
+ * Copyright: (c) 2005 Josï¿½ Gabriel Moya Yangï¿½ela (http://aprenderadesaprender.6te.net)
  * Release Version: 1.0.9.1
  * Date Started: 2005/11/23
  *

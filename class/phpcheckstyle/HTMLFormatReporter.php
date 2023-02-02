@@ -203,7 +203,7 @@ class HTMLFormatReporter extends Reporter
         // Add the check to the details
         $detail = $this->_readTemplate("detail_body");
         $values = array();
-        $values['%%message%%'] = htmlspecialchars($message);
+        $values['%%message%%'] = htmlspecialchars($message, ENT_QUOTES | ENT_HTML5);
         $values['%%check%%'] = $check;
         $values['%%line%%'] = $line;
         $values['%%level%%'] = $level;

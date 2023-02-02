@@ -66,22 +66,22 @@ class Zipper extends \XoopsPersistableObjectHandler
         $helper = \XoopsModules\xoopssecure\Helper::getInstance();
         $config = $helper->getConfig('XCISBACKUPTYPE');
         if ($config[0] == "Minimum") {
-            return array(
+            return [
                 XOOPS_ROOT_PATH . "/themes",
                 XOOPS_ROOT_PATH . "/uploads",
                 XOOPS_ROOT_PATH . "/xoops_data",
                 XOOPS_ROOT_PATH . "/xoops_lib",
                 XOOPS_ROOT_PATH . "/mainfile.php",
                 XOOPS_ROOT_PATH . "/install/page_end.php"
-            );
+            ];
         } elseif ($config[0] == "Full") {
-            return array(
+            return [
                 XOOPS_ROOT_PATH
-            );
+            ];
         } elseif ($config[0] == "Custom") {
             return xoopssecure_StringToArray($helper->getConfig('XCISBACKUPCUSTOMFILES'));
         } else {
-            return array();
+            return [];
         }
     }
 
@@ -109,7 +109,7 @@ class Zipper extends \XoopsPersistableObjectHandler
             $subfolder = (substr($subfolder, 0, 1) == '/') ? substr($subfolder, 1) : $subfolder;
             try {
                 $handle = opendir($folder);
-            }catch (Exception $e) {
+            }catch (\Exception $e) {
                 echo 'Caught exception: ',  $e->getMessage(), "\n";
             }
             while ($f = readdir($handle)) {
@@ -118,13 +118,13 @@ class Zipper extends \XoopsPersistableObjectHandler
                         if ($subfolder !== null) {
                             try {
                                 $zipFile->addFile($folder . $f, $this->stripPathPart($subfolder) . $f);
-                            } catch (Exception $e) {
+                            } catch (\Exception $e) {
                                 echo 'Caught exception: ',  $e->getMessage(), "\n";
                             }
                         } else {
                             try {
                                 $zipFile->addFile($folder . $this->stripPathPart($f));
-                            } catch (Exception $e) {
+                            } catch (\Exception $e) {
                                 echo 'Caught exception: ',  $e->getMessage(), "\n";
                             }
                         }
@@ -133,14 +133,14 @@ class Zipper extends \XoopsPersistableObjectHandler
                             $zipFile->addEmptyDir($this->stripPathPart($subfolder . $f));
                             try {
                                 Zipper::folderToZip($folder . $f, $zipFile, $this->stripPathPart($subfolder . $f));
-                            } catch (Exception $e) {
+                            } catch (\Exception $e) {
                                 echo 'Caught exception: ',  $e->getMessage(), "\n";
                             }
                         } else {
                             $zipFile->addEmptyDir($this->stripPathPart($f));
                             try {
                             Zipper::folderToZip($folder . $f, $zipFile, $this->stripPathPart($f));
-                            } catch (Exception $e) {
+                            } catch (\Exception $e) {
                                 echo 'Caught exception: ',  $e->getMessage(), "\n";
                             }
                         }
@@ -171,7 +171,7 @@ class Zipper extends \XoopsPersistableObjectHandler
     {
         // create the zip
         $z = new ZipArchive();
-        $z->open($archive, ZIPARCHIVE::CREATE);
+        $z->open($archive, ZipArchive::CREATE);
 
         //Use Pdo to log on to db
         $dbc = new MySQLBackup(

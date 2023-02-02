@@ -2,7 +2,7 @@
 
 namespace XoopsModules\Xoopssecure;
 
-use DomDocument;
+use DOMDocument;
 
 /**
  * Writes the count of lines of codes in an XML file.

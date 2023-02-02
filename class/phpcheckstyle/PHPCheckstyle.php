@@ -1502,7 +1502,7 @@ class PHPCheckstyle
         $currentStackItem = $this->statementStack->getCurrentStackItem();
 
         // Workaround code
-        if (!is_String($currentStackItem)) {
+        if (!is_string($currentStackItem)) {
             // Test for the end of a switch bloc
             if ($currentStackItem->type === StatementItem::TYPE_SWITCH || $currentStackItem->type === StatementItem::TYPE_DEFAULT || $currentStackItem->type === StatementItem::TYPE_CASE) {
                 $this->_processSwitchStop();
@@ -1686,7 +1686,7 @@ class PHPCheckstyle
         if ($this->_isActive('protectedFunctionNaming')) {
             $ret = preg_match($this->_config->getTestRegExp('protectedFunctionNaming'), $text);
             if (!$ret) {
-                $msg = $this->_getMessage(_CS_XOOPSSECURE_PROTECTED_FUNCNAME_NAMING_CS_XOOPSSECURE_, $text, $this->_config->getTestRegExp('protectedFunctionNaming'));
+                $msg = $this->_getMessage(_CS_XOOPSSECURE_PROTECTED_FUNCNAME_NAMING, $text, $this->_config->getTestRegExp('protectedFunctionNaming'));
                 $this->_writeError('protectedFunctionNaming', $msg);
             }
         }

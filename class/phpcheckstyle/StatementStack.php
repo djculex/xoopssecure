@@ -15,9 +15,7 @@ class StatementStack
      *
      * @var Array[StatementItem]
      */
-    var $statements = array();
-
-
+    var $statements = [];
     var $defaultItem;
 
     /**
@@ -25,7 +23,7 @@ class StatementStack
      *
      * @return Integer
      */
-    function count()
+    public function count()
     {
         return count($this->statements);
     }
@@ -35,7 +33,7 @@ class StatementStack
      *
      * @param StatementItem $item
      */
-    function push($item)
+    public function push($item)
     {
         array_push($this->statements, $item);
     }
@@ -45,7 +43,7 @@ class StatementStack
      *
      * @return StatementItem
      */
-    function pop()
+    public function pop()
     {
         return array_pop($this->statements);
     }
@@ -55,14 +53,14 @@ class StatementStack
      *
      * @return String
      */
-    function getStackDump()
+    public function getStackDump()
     {
-        $dump = "";
-        $stackTypes = array(
-        "FUNCTION",
-        "INTERFACE",
-        "CLASS"
-        );
+        $dump       = "";
+        $stackTypes = [
+            "FUNCTION",
+            "INTERFACE",
+            "CLASS",
+        ];
         foreach ($this->statements as $item) {
             $dump .= $item->type;
             if (in_array($item->type, $stackTypes)) {
@@ -79,7 +77,7 @@ class StatementStack
      *
      * @return StatementItem
      */
-    function getCurrentStackItem()
+    public function getCurrentStackItem()
     {
         $topItem = end($this->statements);
 
@@ -97,7 +95,7 @@ class StatementStack
      *
      * @return StatementItem
      */
-    function getParentStackItem()
+    public function getParentStackItem()
     {
         if ($this->count() > 1) {
             return $this->statements[$this->count() - 2];
@@ -113,7 +111,7 @@ class StatementStack
      *
      * @return StatementItem
      */
-    function getParentFunction()
+    public function getParentFunction()
     {
         for ($i = $this->count() - 1; $i >= 0; $i--) {
             $item = $this->statements[$i];
@@ -131,7 +129,7 @@ class StatementStack
      *
      * @return StatementItem
      */
-    function getParentClass()
+    public function getParentClass()
     {
         for ($i = $this->count() - 1; $i >= 0; $i--) {
             $item = $this->statements[$i];
@@ -146,7 +144,7 @@ class StatementStack
     /**
      * return a Singleton of a StackItem corresponding to the file level.
      */
-    function getDefaultItem()
+    public function getDefaultItem()
     {
         if ($this->defaultItem == null) {
             $this->defaultItem = new StatementItem();
