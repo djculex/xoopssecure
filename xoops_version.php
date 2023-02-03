@@ -97,7 +97,7 @@ $GLOBALS['xoTheme']->addStylesheet(
 // ------------------- Informations ------------------- //
 $modversion = [
     'name'                => \_MI_XOOPSSECURE_NAME,
-    'version'             => '1.3.2',
+    'version'             => '1.3.4',
     'description'         => \_MI_XOOPSSECURE_DESC,
     'author'              => 'Culex',
     'author_mail'         => 'culex@culex.dk',
@@ -129,7 +129,7 @@ $modversion = [
     'support_name'        => 'Support Forum',
     'module_website_url'  => 'www.xoops.org',
     'module_website_name' => 'XOOPS Project',
-    'release'             => '21/01/2023',
+    'release'             => '02/02/2023',
     'module_status'       => 'RC 3',
     'system_menu'         => 1,
     'hasAdmin'            => 1,
