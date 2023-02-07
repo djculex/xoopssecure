@@ -26,7 +26,7 @@ use XoopsModules\Xoopssecure\FileH;
  */
 
 if (isset($templateMain)) {
-    $fh = new fileH();
+    $fh = new FileH();
     $GLOBALS['xoopsTpl']->assign('buymecoffey', $fh::buymecoffey());
     $GLOBALS['xoopsTpl']->assign('maintainedby', $helper->getConfig('maintainedby'));
     $GLOBALS['xoopsTpl']->display("db:{$templateMain}");
