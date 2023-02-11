@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @since     1.0
  * @min_xoops 2.5.11
  * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
-*/
+ */
 
 require __DIR__ . '/header.php';
 $templateMain = 'xoopssecure_admin_about.tpl';
