@@ -23,13 +23,15 @@ declare(strict_types=1);
  * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
  */
 
+use Xmf\Module\Admin;
 use Xmf\Request;
+use XoopsModules\Xoopssecure\Common\ModuleFeedback;
 
 require __DIR__ . '/header.php';
 
-$adminObject = \Xmf\Module\Admin::getInstance();
+$adminObject = Admin::getInstance();
 
-$feedback = new \XoopsModules\Xoopssecure\Common\ModuleFeedback();
+$feedback = new ModuleFeedback();
 
 // It recovered the value of argument op in URL$
 $op                 = Request::getString('op', 'list');
