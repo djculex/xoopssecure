@@ -23,6 +23,7 @@ declare(strict_types=1);
  * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
  */
 
+use Xmf\Module\Admin;
 use Xmf\Request;
 use XoopsModules\Xoopssecure;
 use XoopsModules\Xoopssecure\Constants;
@@ -41,7 +42,7 @@ $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
 
-$adminObject = \Xmf\Module\Admin::getInstance();
+$adminObject = Admin::getInstance();
 
 $moduleDirName      = $GLOBALS['xoopsModule']->getVar('dirname');
 $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
