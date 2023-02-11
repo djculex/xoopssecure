@@ -8,6 +8,7 @@ use XoopsModules\Xoopssecure\Db;
 use RecursiveIteratorIterator;
 use RecursiveRegexIterator;
 use XoopsModules\Xoopssecure\Patterns;
+use function time;                  
 
 /**
  * Spam scanner class
@@ -100,7 +101,7 @@ class SpamScanner
     {
         @set_time_limit(0);
         $files = [];
-        if (is_dir($dir) && is_readable($dir)) {
+        if (is_dir($dir)) {
             $fh = opendir($dir);
             $db = new db();
             while (($file = readdir($fh)) !== false) {
@@ -110,7 +111,7 @@ class SpamScanner
 
                 $filepath = $dir . '/' . $file;
                 $fn       = str_replace('\\', '/', $filepath);
-                if (is_dir($filepath) && is_readable($filepath)) {
+                if (is_dir($filepath)) {
                     if (in_array($filepath, $this->omitdirs)) {
                         continue;
                     } else {
@@ -121,7 +122,7 @@ class SpamScanner
                         }
                     }
                 } else {
-                    if (preg_match($pattern, $file) && is_readable($file)) {
+                    if (preg_match($pattern, $file)) {
                         if ($this->latestScanDate >= filemtime($fn) && $this->latestScanDate > 0) {
                             continue;
                         } else {
@@ -341,7 +342,7 @@ class SpamScanner
      */
     public function calculateLineNumber($offset, $file_content)
     {
-        [$first_part] = str_split($file_content, $offset); // fetches all the text before the match
+        list($first_part) = str_split($file_content, $offset); // fetches all the text before the match
         $line_nr = strlen($first_part) - strlen(str_replace("\n", "", $first_part)) + 1;
         return $line_nr;
     }
