@@ -10,7 +10,8 @@ declare(strict_types=1);
  * @since     1.0
  * @min_xoops 2.5.11
  * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
-*/
+ */
+
 namespace XoopsModules\Xoopssecure;
 
 use XoopsModules\Xoopssecure;
@@ -20,6 +21,8 @@ use XoopsModules\Xoopssecure\SpamScanner;
 use XoopsModules\Xoopssecure\Db;
 use XoopsModules\Xoopssecure\GeSHi;
 use Xmf\Request;
+use function mb_strtoupper;
+use function xoops_loadLanguage;
 
 require_once dirname(__DIR__, 3) . '/mainfile.php';
 require_once XOOPS_ROOT_PATH . '/class/template.php';
@@ -38,8 +41,8 @@ $helper = Helper::getInstance();
 \xoops_loadLanguage('download', $moduleDirName);
 
 $type = ($_GET['type'] != "") ? $_GET['type'] : '';
-$dir = ($_GET['Dir'] != "") ? $_GET['Dir'] : '';
-$val = ($_GET['val'] != "") ? $_GET['val'] : '';
+$dir = isset($_GET['Dir']) ? $_GET['Dir'] : '';
+$val = isset($_GET['val']) ? $_GET['val'] : '';
 $t = time();
 
 $fh = new FileH();
@@ -244,7 +247,7 @@ switch ($type) {
         $dat->GetLatestLogCandT();
         break;
 
-        // Use sugguestion in xoops_version for paths
+    // Use sugguestion in xoops_version for paths
     case '"suggest"':
         // Initialize Recursive Iterator
         $query = $_GET['query'];
@@ -254,7 +257,7 @@ switch ($type) {
         echo json_encode($result);
         break;
 
-        // Delete logs from database by time
+    // Delete logs from database by time
     case 'xoopsSecureLogfromDbByTime':
                 $dtime = $_GET['dtime'];
                 $dat->deleteLogByTime($dtime);
@@ -262,10 +265,10 @@ switch ($type) {
         
         // Do cron scan
     case 'doCronScan':
-                $fh->cronScan();
+        $fh->cronScan();
         break;
-        
-        // Create backup of db and files
+
+    // Create backup of db and files
     case 'createzip':
         header('Content-type: application/zip');
         $zip = new Zipper();
@@ -275,7 +278,7 @@ switch ($type) {
         }
         break;
 
-        // Create backup of db and files
+    // Create backup of db and files
     case 'doAutoCreatezip':
         if ($autobackup == 1) {
             if ($fh->timeForBackup === true) {
@@ -289,7 +292,7 @@ switch ($type) {
         }
         break;
 
-        // Delete backup zip
+    // Delete backup zip
     case 'deleteZip':
         $name = $_GET['fn'];
         $link = XOOPS_ROOT_PATH . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . "backup" . DIRECTORY_SEPARATOR . $name;
@@ -300,7 +303,7 @@ switch ($type) {
         $fh->GetLatestBackupTable();
         break;
 
-        // Load backuptable
+    // Load backuptable
     case 'getZipHtml':
         $fh->autoDelBackupsFiles();
         $fh->GetLatestBackupTable();
@@ -309,11 +312,11 @@ switch ($type) {
     case 'test':
         $pattern = "/^.*\.(" . $spam->fileTypesToScan . ")$/i";
         $dir = $spam->startPath;
-                // script time : 18.29 seconds (16213 files) without db check
-                // ----- // -- : 31,00 seconds (16213 files) with mod check empty db
-                // ----- // -- : 38,00 seconds (63 files)      with unix - 2 days
+        // script time : 18.29 seconds (16213 files) without db check
+        // ----- // -- : 31,00 seconds (16213 files) with mod check empty db
+        // ----- // -- : 38,00 seconds (63 files)      with unix - 2 days
         $f = $spam->getFilesJson($dir, $pattern);
         break;
 }
 
-    $GLOBALS['xoopsLogger']->activated = false;
+$GLOBALS['xoopsLogger']->activated = false;
