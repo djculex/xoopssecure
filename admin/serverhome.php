@@ -23,6 +23,7 @@ declare(strict_types=1);
  * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
  */
 
+use Xmf\Module\Admin;
 use Xmf\Request;
 use XoopsModules\Xoopssecure;
 use XoopsModules\Xoopssecure\Constants;
@@ -34,13 +35,13 @@ use XoopsModules\Xoopssecure\Mech;
 require __DIR__ . '/header.php';
 
 
-$adminObject = \Xmf\Module\Admin::getInstance();
+$adminObject = Admin::getInstance();
 
 // It recovered the value of argument op in URL$
-$op                 = Request::getString('op', 'list');
-$moduleDirName      = $GLOBALS['xoopsModule']->getVar('dirname');
-$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
-\xoops_loadLanguage('mech', $moduleDirName);
+$op = Request::getString('op', 'list');
+$moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+xoops_loadLanguage('mech', $moduleDirName);
 $mech = new Mech();
 $testserver = $mech->testServer();
 $systeminfo = $mech->systemArray();
@@ -53,14 +54,14 @@ $GLOBALS['xoopsTpl']->assign('testserverstats', $testserver['status']);
 
 $GLOBALS['xoopsTpl']->assign(
     [
-    'pcname'                => $testserver['status']['pcname'],
-    'os'                    => $testserver['status']['os'],
-    'os_builtdate'          => $testserver['status']['os_builtdate'],
-    'numberofprocessors'    => $testserver['status']['numberofprocessors'],
-    'processorarchetecture' => $testserver['status']['processorarchetecture'],
-    'serveruptime'          => $testserver['status']['serveruptime'],
-    'serveruse'             => $testserver['status']['serveruse'],
-    'serveripadress'        => $testserver['status']['serveripadress'],
+        'pcname' => $testserver['status']['pcname'],
+        'os' => $testserver['status']['os'],
+        'os_builtdate' => $testserver['status']['os_builtdate'],
+        'numberofprocessors' => $testserver['status']['numberofprocessors'],
+        'processorarchetecture' => $testserver['status']['processorarchetecture'],
+        'serveruptime' => $testserver['status']['serveruptime'],
+        'serveruse' => $testserver['status']['serveruse'],
+        'serveripadress' => $testserver['status']['serveripadress'],
     ]
 );
 

@@ -23,6 +23,7 @@ declare(strict_types=1);
  * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
  */
 
+use Xmf\Module\Admin;
 use Xmf\Request;
 use XoopsModules\Xoopssecure;
 use XoopsModules\Xoopssecure\Constants;
@@ -39,13 +40,13 @@ $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
 
-$adminObject = \Xmf\Module\Admin::getInstance();
+$adminObject = Admin::getInstance();
 $dat = new db();
 $sys = new Mech();
 
 // It recovered the value of argument op in URL$
-$moduleDirName      = $GLOBALS['xoopsModule']->getVar('dirname');
-$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
+$moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 $templateMain = 'xoopssecure_admin_system.tpl';
 require __DIR__ . '/footer.php';

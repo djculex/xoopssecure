@@ -1,4 +1,3 @@
-
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -21,10 +20,10 @@
  */
 $(document).ready(
     function () {
-        $("button, input:button, input:submit, input:file, input:reset").css("color","inherit").button();
-        $(".check").css("color","#fff").button();
-        $(".radio").css("color","#fff").buttonset();
-        $(".toolbar").css("color","#000").buttonset();
+        $("button, input:button, input:submit, input:file, input:reset").css("color", "inherit").button();
+        $(".check").css("color", "#fff").button();
+        $(".radio").css("color", "#fff").buttonset();
+        $(".toolbar").css("color", "#000").buttonset();
     }
 );
 
@@ -67,8 +66,8 @@ if (!Function.prototype.apply) {
         return rtrn;
     }
 }
-function inArray(needle)
-{
+
+function inArray(needle) {
     for (var i = 0; i < this.length; i++) {
         if (this[i] === needle) {
             return i;
@@ -76,18 +75,18 @@ function inArray(needle)
     }
     return false;
 }
-function addClass(theClass)
-{
+
+function addClass(theClass) {
     if (this.className != '') {
         this.className += ' ' + theClass;
     } else {
         this.className = theClass;
     }
 }
-function lastChildContainingText()
-{
+
+function lastChildContainingText() {
     var testChild = this.lastChild;
-    var contentCntnr = ['p','li','dd'];
+    var contentCntnr = ['p', 'li', 'dd'];
     while (testChild.nodeType != 1) {
         testChild = testChild.previousSibling;
     }
@@ -98,4 +97,5 @@ function lastChildContainingText()
     }
     return testChild;
 }
+
 // ]]>

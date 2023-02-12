@@ -23,35 +23,35 @@ declare(strict_types=1);
  * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
  */
 
-$dirname       = \basename(\dirname(__DIR__));
-$moduleHandler = \xoops_getHandler('module');
-$xoopsModule   = XoopsModule::getByDirname($dirname);
-$moduleInfo    = $moduleHandler->get($xoopsModule->getVar('mid'));
+$dirname = basename(dirname(__DIR__));
+$moduleHandler = xoops_getHandler('module');
+$xoopsModule = XoopsModule::getByDirname($dirname);
+$moduleInfo = $moduleHandler->get($xoopsModule->getVar('mid'));
 $sysPathIcon32 = $moduleInfo->getInfo('sysicons32');
 
 $adminmenu[] = [
-    'title' => \_MI_XOOPSSECURE_ADMENU1,
+    'title' => _MI_XOOPSSECURE_ADMENU1,
     'link' => 'admin/index.php',
     'icon' => $sysPathIcon32 . '/dashboard.png',
 ];
 $adminmenu[] = [
-    'title' => \_MI_XOOPSSECURE_ADMENU2,
+    'title' => _MI_XOOPSSECURE_ADMENU2,
     'link' => 'admin/scanhome.php',
     'icon' => $sysPathIcon32 . '/security.png',
 ];
 $adminmenu[] = [
-    'title' => \_MI_XOOPSSECURE_ADMENU3,
+    'title' => _MI_XOOPSSECURE_ADMENU3,
     'link' => 'admin/serverhome.php',
     'icon' => $sysPathIcon32 . '/exec.png',
 ];
 $adminmenu[] = [
-    'title' => \_MI_XOOPSSECURE_ADMENU4,
+    'title' => _MI_XOOPSSECURE_ADMENU4,
     'link' => 'admin/download.php',
     'icon' => $sysPathIcon32 . '/download.png',
 ];
 
 $adminmenu[] = [
-    'title' => \_MI_XOOPSSECURE_ABOUT,
+    'title' => _MI_XOOPSSECURE_ABOUT,
     'link' => 'admin/about.php',
     'icon' => $sysPathIcon32 . '/about.png',
 ];

@@ -27,7 +27,7 @@ use XoopsModules\Xoopssecure\Common;
 use XoopsModules\Xoopssecure\FileH;
 use XoopsModules\Xoopssecure\SpamScanner;
 
-require_once \dirname(__DIR__) . '/preloads/autoloader.php';
+require_once dirname(__DIR__) . '/preloads/autoloader.php';
 require __DIR__ . '/header.php';
 
 // Template Index
@@ -41,7 +41,6 @@ $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
 // Render Index
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('index.php'));
 $GLOBALS['xoopsTpl']->assign('index', $adminObject->displayIndex());
-
 
 
 require __DIR__ . '/footer.php';

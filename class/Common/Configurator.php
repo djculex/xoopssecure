@@ -13,6 +13,9 @@ namespace XoopsModules\xoopssecure\Common;
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
+
+use function dirname;
+
 /**
  * Configurator Class
  * Module:  Xoopssecure
@@ -30,15 +33,15 @@ namespace XoopsModules\xoopssecure\Common;
 class Configurator
 {
     public $name;
-    public $paths           = [];
-    public $uploadFolders   = [];
-    public $copyBlankFiles  = [];
+    public $paths = [];
+    public $uploadFolders = [];
+    public $copyBlankFiles = [];
     public $copyTestFolders = [];
     public $templateFolders = [];
-    public $oldFiles        = [];
-    public $oldFolders      = [];
-    public $renameTables    = [];
-    public $moduleStats     = [];
+    public $oldFiles = [];
+    public $oldFolders = [];
+    public $renameTables = [];
+    public $moduleStats = [];
     public $modCopyright;
 
     /**
@@ -46,18 +49,18 @@ class Configurator
      */
     public function __construct()
     {
-        $config = include \dirname(__DIR__, 2) . '/config/config.php';
+        $config = include dirname(__DIR__, 2) . '/config/config.php';
 
-        $this->name            = $config->name;
-        $this->paths           = $config->paths;
-        $this->uploadFolders   = $config->uploadFolders;
-        $this->copyBlankFiles  = $config->copyBlankFiles;
+        $this->name = $config->name;
+        $this->paths = $config->paths;
+        $this->uploadFolders = $config->uploadFolders;
+        $this->copyBlankFiles = $config->copyBlankFiles;
         $this->copyTestFolders = $config->copyTestFolders;
         $this->templateFolders = $config->templateFolders;
-        $this->oldFiles        = $config->oldFiles;
-        $this->oldFolders      = $config->oldFolders;
-        $this->renameTables    = $config->renameTables;
-        $this->moduleStats     = $config->moduleStats;
-        $this->modCopyright    = $config->modCopyright;
+        $this->oldFiles = $config->oldFiles;
+        $this->oldFolders = $config->oldFolders;
+        $this->renameTables = $config->renameTables;
+        $this->moduleStats = $config->moduleStats;
+        $this->modCopyright = $config->modCopyright;
     }
 }
