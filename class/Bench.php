@@ -38,17 +38,32 @@ set_time_limit(999999);
 class Bench extends Mech
 {
     //var $userdatetype;
+    /**
+     * @var
+     */
     public $helper;
+    /**
+     * @var array
+     */
     public $start = [];
+    /**
+     * @var array
+     */
     public $end = [];
-    public $totalTime = [];
-    
+    /**
+     * @var array
+     */
+    public array $totalTime = [];
+
+    /**
+     *
+     */
     public function __construct()
     {
         //$this->userdatetype = xoopssecure_GetModuleOption('dateformat');
     }
 
-    /** 
+    /**
      * Start the clock
      *
      */
@@ -57,7 +72,7 @@ class Bench extends Mech
         $this->start[] = microtime(true);
     }
 
-    /** 
+    /**
      *Stop the clock
      *
      */
@@ -67,14 +82,14 @@ class Bench extends Mech
         self::getTotal();
     }
 
-    /** 
-     * Sumup time
+    /**
+     * Sum up time
      *
      */
     public function getTotal()
     {
         $i = 0;
-        for ($i = 0, $iMax = count($this->start); $i < $iMax; $i++) {
+        for ($iMax = count($this->start); $i < $iMax; $i++) {
             $this->totalTime[$i] = $this->end[$i] - $this->start[$i];
         }
     }

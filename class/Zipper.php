@@ -1,13 +1,18 @@
 <?php
+
 namespace XoopsModules\Xoopssecure;
 
+use Exception;
 use XoopsModules\Xoopssecure;
 use XoopsModules\Xoopssecure\Constants;
 use XoopsModules\Xoopssecure\Db;
 use RecursiveIteratorIterator;
 use XoopsModules\Xoopssecure\MySQLBackup;
+use XoopsPersistableObjectHandler;
 use ZipArchive;
 use mysqli;
+use function rmdir;
+use function unlink;
 
 /**
  * Zipping files for backup
@@ -23,24 +28,47 @@ use mysqli;
  * @version   1.1
  * @license   GNU GPL 2 (https://www.gnu.org/licenses/gpl-2.0.html)
  */
-
-class Zipper extends \XoopsPersistableObjectHandler
+class Zipper extends XoopsPersistableObjectHandler
 {
-    public $dirToBackup;
-    public $dest;
-    public $filename;
-    public $archive;
-    public $sqlname;
-    public $backup_file_sql;
+    /**
+     * @var array|string[]
+     */
+    public array $dirToBackup;
+    /**
+     * @var string
+     */
+    public string $dest;
+    /**
+     * @var string
+     */
+    public string $filename;
+    /**
+     * @var string
+     */
+    public string $archive;
+    /**
+     * @var string
+     */
+    public string $sqlname;
+    /**
+     * @var string
+     */
+    public string $backup_file_sql;
+    /**
+     * @var obj Helper
+     */
     public $helper;
 
+    /**
+     *
+     */
     public function __construct()
     {
         if (null === $this->helper) {
             $this->helper = Helper::getInstance();
         }
 
-        $this->dirToBackup = $this->caltypeofbackup(); // Get special folders to backup
+        $this->dirToBackup = $this->caltypeofbackup(); // Get special folders to back up
         $this->dest = XOOPS_ROOT_PATH . "/uploads/backup/"; // make sure this directory exists!
         // make project backup folder
         if (!file_exists($this->dest)) {
@@ -50,20 +78,20 @@ class Zipper extends \XoopsPersistableObjectHandler
         $this->filename = "backup_" . date('d-m-Y__H_i') . ".zip"; // Name Zip to create
         $this->archive = $this->dest . $this->filename; // Where it is placed
         $this->sqlname = XOOPS_DB_NAME; // Name of xoops database
-        $this->backup_file_sql  = XOOPS_ROOT_PATH . "/uploads/backup/tmp/sql.sql"; //Name of sql to create
+        $this->backup_file_sql = XOOPS_ROOT_PATH . "/uploads/backup/tmp/sql.sql"; //Name of sql to create
         if (!is_dir(dirname($this->backup_file_sql))) {
             mkdir(dirname($this->backup_file_sql), 0777, true);
         }
     }
 
-    /** 
-     * Call functions to create array of files to backup
+    /**
+     * Call functions to create array of files to back up
      *
      * @return array
      */
-    public static function caltypeofbackup()
+    public static function caltypeofbackup(): array
     {
-        $helper = \XoopsModules\xoopssecure\Helper::getInstance();
+        $helper = Helper::getInstance();
         $config = $helper->getConfig('XCISBACKUPTYPE');
         if ($config[0] == "Minimum") {
             return [
@@ -86,88 +114,13 @@ class Zipper extends \XoopsPersistableObjectHandler
     }
 
     /**
-     * Zipping folders for backup
-     *
-     * @param  $folder path of folder
-     * @param  $zipFile Name of zip
-     * @param  null $subfolder
-     * @return bool if zip is done with success return true
-     */
-    public function folderToZip($folder, $zipFile, $subfolder = null)
-    {
-        if ($zipFile === null) {
-            // no resource given, exit
-            return false;
-        }
-        if (is_file($folder)) {
-            $zipFile->addFile($folder, $this->stripPathPart($folder));
-        } elseif (is_dir($folder) && $folder != XOOPS_ROOT_PATH . "/uploads/backup") {
-            $tmpfo = str_split($folder);
-            $folder = (end($tmpfo) == "/") ? $folder . "" : $folder . "/";
-            $tmpsubfo = str_split($subfolder);
-            $subfolder = (end($tmpsubfo) == "/") ? $subfolder . "" : $subfolder . "/";
-            $subfolder = (substr($subfolder, 0, 1) == '/') ? substr($subfolder, 1) : $subfolder;
-            try {
-                $handle = opendir($folder);
-            }catch (\Exception $e) {
-                echo 'Caught exception: ',  $e->getMessage(), "\n";
-            }
-            while ($f = readdir($handle)) {
-                if ($f != "." && $f != "..") {
-                    if (is_file($folder . $f)) {
-                        if ($subfolder !== null) {
-                            try {
-                                $zipFile->addFile($folder . $f, $this->stripPathPart($subfolder) . $f);
-                            } catch (\Exception $e) {
-                                echo 'Caught exception: ',  $e->getMessage(), "\n";
-                            }
-                        } else {
-                            try {
-                                $zipFile->addFile($folder . $this->stripPathPart($f));
-                            } catch (\Exception $e) {
-                                echo 'Caught exception: ',  $e->getMessage(), "\n";
-                            }
-                        }
-                    } elseif (is_dir($folder . $f)) {
-                        if ($subfolder !== null) {
-                            $zipFile->addEmptyDir($this->stripPathPart($subfolder . $f));
-                            try {
-                                Zipper::folderToZip($folder . $f, $zipFile, $this->stripPathPart($subfolder . $f));
-                            } catch (\Exception $e) {
-                                echo 'Caught exception: ',  $e->getMessage(), "\n";
-                            }
-                        } else {
-                            $zipFile->addEmptyDir($this->stripPathPart($f));
-                            try {
-                            Zipper::folderToZip($folder . $f, $zipFile, $this->stripPathPart($f));
-                            } catch (\Exception $e) {
-                                echo 'Caught exception: ',  $e->getMessage(), "\n";
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /** 
-     * Strip rootpath from string to create shorter dir struc in zip file
-     *
-     * @param string $string The string containing the path info
-     * @return string $string shorteded by prev. param
-     */
-    public function stripPathPart($string)
-    {
-        return str_replace(XOOPS_ROOT_PATH . "/", "htdocs/", $string);
-    }
-
-    /** 
      * Create sql and copy files ready for doing zip
      *
-     * @param string $archive the name of archieve
-     * @param string $dirToBackup send paths for zip
+     * @param string $archive the name of archive
+     * @param array $dirToBackup send paths for zip
+     * @return void
      */
-    public function doZip($archive, $dirToBackup)
+    public function doZip($archive, $dirToBackup): void
     {
         // create the zip
         $z = new ZipArchive();
@@ -186,14 +139,90 @@ class Zipper extends \XoopsPersistableObjectHandler
         $dbc->dump();
 
         foreach ($dirToBackup as $d) {
-            self::folderToZip($d, $z, $d);
+            $this->folderToZip($d, $z, $d);
         }
         $z->addFile($this->backup_file_sql . ".sql", "mysqlbackup/" . basename($this->backup_file_sql . ".sql"));
         $z->close();
-        \unlink($this->backup_file_sql . ".sql"); // Delete now zipped sql file from temp
-        \rmdir(XOOPS_ROOT_PATH . '/uploads/backup/tmp'); // Delete temp folder
+        unlink($this->backup_file_sql . ".sql"); // Delete now zipped sql file from temp
+        rmdir(XOOPS_ROOT_PATH . '/uploads/backup/tmp'); // Delete temp folder
         header('Content-disposition: attachment; filename="' . basename($this->archive) . '.zip"');
         header('Content-type: application/zip');
         readfile($this->archive);
+    }
+
+    /**
+     * Zipping folders for backup
+     *
+     * @param string $folder of folder
+     * @param string $zipFile Name of zip
+     * @param null $subfolder
+     * @return void if zip is done with success return true
+     */
+    public function folderToZip($folder, $zipFile, $subfolder = null)
+    {
+        if ($zipFile === null) {
+            // no resource given, exit
+            exit;
+        }
+        if (is_file($folder)) {
+            $zipFile->addFile($folder, $this->stripPathPart($folder));
+        } elseif (is_dir($folder) && $folder != XOOPS_ROOT_PATH . "/uploads/backup") {
+            $tmpfo = str_split($folder);
+            $folder = (end($tmpfo) == "/") ? $folder . "" : $folder . "/";
+            $tmpsubfo = str_split($subfolder);
+            $subfolder = (end($tmpsubfo) == "/") ? $subfolder . "" : $subfolder . "/";
+            $subfolder = (str_starts_with($subfolder, '/')) ? substr($subfolder, 1) : $subfolder;
+            try {
+                $handle = opendir($folder);
+            } catch (Exception $e) {
+                echo 'Caught exception: ', $e->getMessage(), "\n";
+            }
+            while ($f = readdir($handle)) {
+                if ($f != "." && $f != "..") {
+                    if (is_file($folder . $f)) {
+                        if ($subfolder !== null) {
+                            try {
+                                $zipFile->addFile($folder . $f, $this->stripPathPart($subfolder) . $f);
+                            } catch (Exception $e) {
+                                echo 'Caught exception: ', $e->getMessage(), "\n";
+                            }
+                        } else {
+                            try {
+                                $zipFile->addFile($folder . $this->stripPathPart($f));
+                            } catch (Exception $e) {
+                                echo 'Caught exception: ', $e->getMessage(), "\n";
+                            }
+                        }
+                    } elseif (is_dir($folder . $f)) {
+                        if ($subfolder !== null) {
+                            $zipFile->addEmptyDir($this->stripPathPart($subfolder . $f));
+                            try {
+                                Zipper::folderToZip($folder . $f, $zipFile, $this->stripPathPart($subfolder . $f));
+                            } catch (Exception $e) {
+                                echo 'Caught exception: ', $e->getMessage(), "\n";
+                            }
+                        } else {
+                            $zipFile->addEmptyDir($this->stripPathPart($f));
+                            try {
+                                Zipper::folderToZip($folder . $f, $zipFile, $this->stripPathPart($f));
+                            } catch (Exception $e) {
+                                echo 'Caught exception: ', $e->getMessage(), "\n";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Strip root path from string to create shorter dir structure in zip file
+     *
+     * @param string $string The string containing the path info
+     * @return string $string shortened by prev. param
+     */
+    public function stripPathPart($string): string
+    {
+        return str_replace(XOOPS_ROOT_PATH . "/", "htdocs/", $string);
     }
 }

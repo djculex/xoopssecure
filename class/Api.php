@@ -13,8 +13,8 @@ use mysqli;
 /**
  * Using Api
  *
- * This class will get access from various sources for diffent info,
- * Initially use will be with github json api for updates on main script
+ * This class will get access from various sources for different info,
+ * Initially use will be with GitHub json api for updates on main script
  *
  * @author    Michael Albertsen <culex@culex.dk>
  * @since     21.11.2022
@@ -24,12 +24,30 @@ use mysqli;
  */
 class Api
 {
+    /**
+     * @var
+     */
     public $obj;
+    /**
+     * @var
+     */
     public $result;
+    /**
+     * @var
+     */
     public $url;
+    /**
+     * @var Helper
+     */
     public $helper;
-    public $repos;
+    /**
+     * @var array|false|string[]
+     */
+    public array|false $repos;
 
+    /**
+     *
+     */
     public function __construct()
     {
         if (null === $this->helper) {
@@ -39,12 +57,60 @@ class Api
             preg_split("/\r\n|\n|\r/", $this->helper->getConfig('XCISCHECKUPDATEDREPOS')) : [];
     }
 
-    /** connext to github xoops latest release
+    /** checking $this->repos if it is an array or not
      *
-     * @param $url the link for reposit
-     * @return json response
+     * @return array $return
      */
-    public function connect($url = "https://api.github.com/repos/XOOPS/XoopsCore25/releases/latest")
+    public function parseObjs(): array
+    {
+        $objs = $this->repos;
+        $return = [];
+        if (is_array($objs)) {
+            foreach ($objs as $ob) {
+                $testObj = $this->parse($this->connect($ob));
+                if (!empty($testObj)) {
+                    $return[] = $testObj;
+                }
+            }
+        }
+        return $return;
+    }
+
+    /** create php array of json obj
+     *
+     * @param string $obj
+     * @return array $info of info
+     */
+    public function parse($obj): array
+    {
+        $info = [];
+        if (!isset($obj['message']) && !empty($obj)) {
+            $info['url'] = $obj['html_url'];
+            $info['version'] = self::keepOnlyNumbersEtc($obj['tag_name']);
+            $info['name'] = $obj['name'];
+            $info['date'] = date("d-m-Y", strtotime($obj['published_at']));
+            $info['zip'] = $obj['zipball_url'];
+            $info['bodytext'] = str_replace("-", '<br/>-', $obj['body']);
+        }
+        return $info;
+    }
+
+    /** Strip a string for letters etc keeping only numbers and dots
+     *
+     * @param string $string text to be checked
+     * @return string $string with replaced values
+     */
+    public function keepOnlyNumbersEtc($string): string
+    {
+        return preg_replace('/[^0-9.]/', '', $string);
+    }
+
+    /** connect to github xoops latest release
+     *
+     * @param string $url the link for repository
+     * @return array|string json response
+     */
+    public function connect($url = "https://api.github.com/repos/XOOPS/XoopsCore25/releases/latest"): array|string
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -61,53 +127,5 @@ class Api
             echo $error_msg;
         }
         return (!empty($fetch)) ? json_decode($fetch, true) : [];
-    }
-
-    /** create php array of json obj
-     *
-     * @param json $obj
-     * @return array $info of info
-     */
-    public function parse($obj)
-    {
-        $info = [];
-        if (!isset($obj['message']) && !empty($obj)) {
-            $info['url']        = $obj['html_url'];
-            $info['version']    = self::keepOnlyNumbersEtc($obj['tag_name']);
-            $info['name']       = $obj['name'];
-            $info['date']       = date("d-m-Y", strtotime($obj['published_at']));
-            $info['zip']        = $obj['zipball_url'];
-            $info['bodytext'] = str_replace("-", '<br/>-', $obj['body']);
-        }
-        return $info;
-    }
-
-    /** checking $this->repos if it is an array or not
-     *
-     * @return array $return
-     */
-    public function parseObjs()
-    {
-        $objs = $this->repos;
-        $return = [];
-        if (is_array($objs)) {
-            foreach ($objs as $ob) {
-                $testObj = $this->parse($this->connect($ob));
-                if (!empty($testObj)) {
-                    $return[] = $testObj;
-                }
-            }
-        }
-        return $return;
-    }
-
-    /** Strip a string for letters etc keeping only numbers and dots
-     *
-     * @param $string text to be checked
-     * @return string $string with replaced values
-     */
-    public function keepOnlyNumbersEtc($string)
-    {
-        return preg_replace('/[^0-9.]/', '', $string);
     }
 }

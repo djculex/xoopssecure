@@ -2,11 +2,15 @@
 
 namespace XoopsModules\Xoopssecure;
 
+use Exception;
+use PDO;
+use PDOException;
 use XoopsModules\Xoopssecure;
 use XoopsModules\Xoopssecure\Constants;
 use XoopsModules\Xoopssecure\Db;
 use RecursiveIteratorIterator;
 use XoopsModules\Xoopssecure\Zipper;
+use ZipArchive;
 
 /**
  * MySQLBackup
@@ -24,14 +28,91 @@ class MySQLBackup
      *
      * @var array
      */
-    public $db = [
-        'host'      => null,
-        'port'      => null,
-        'user'      => null,
-        'password'  => null,
-        'name'      => null,
+    public array $db = [
+        'host' => null,
+        'port' => null,
+        'user' => null,
+        'password' => null,
+        'name' => null,
     ];
-
+    /**
+     * Tables list
+     *
+     * @var array
+     */
+    public array $tables = [];
+    /**
+     * Excluded tables list
+     *
+     * @var array
+     */
+    public array $excludedTables = [];
+    /**
+     * Filename
+     *
+     * @var string
+     */
+    public string $filename = 'dump';
+    /**
+     * Filename extension
+     *
+     * @var string
+     */
+    public string $extension = 'sql';
+    /**
+     * Is file is delete at the end ?
+     *
+     * @var boolean
+     */
+    public bool $deleteFile = false;
+    /**
+     * Is file is downloaded automatically ?
+     *
+     * @var boolean
+     */
+    public bool $downloadFile = false;
+    /**
+     * Compress file format
+     *
+     * @var null
+     */
+    public $compressFormat = null;
+    /**
+     * Available compress formats
+     *
+     * @var array
+     */
+    public array $compressAvailable = ['zip', 'gz', 'gzip'];
+    /**
+     * Dump table structure ?
+     *
+     * @var boolean
+     */
+    public bool $dumpStructure = true;
+    /**
+     * Dump table datas ?
+     *
+     * @var boolean
+     */
+    public bool $dumpDatas = true;
+    /**
+     * Add DROP TABLE IF EXISTS before CREATE TABLE ?
+     *
+     * @var boolean
+     */
+    public bool $addDropTable = true;
+    /**
+     * Add IF NOT EXISTS in CREATE TABLE statment ?
+     *
+     * @var boolean
+     */
+    public bool $addIfNotExists = true;
+    /**
+     * Add CREATE DATABASE IF NOT EXISTS ?
+     *
+     * @var boolean
+     */
+    public bool $addCreateDatabaseIfNotExists = true;
     /**
      * Database connection link
      *
@@ -40,115 +121,21 @@ class MySQLBackup
     private $dbh = null;
 
     /**
-     * Tables list
-     *
-     * @var array
-     */
-    public $tables = [];
-
-    /**
-     * Excluded tables list
-     *
-     * @var array
-     */
-    public $excludedTables = [];
-
-    /**
-     * Filename
-     *
-     * @var string
-     */
-    public $filename = 'dump';
-
-    /**
-     * Filename extension
-     *
-     * @var string
-     */
-    public $extension = 'sql';
-
-    /**
-     * Is file is delete at the end ?
-     *
-     * @var boolean
-     */
-    public $deleteFile = false;
-
-    /**
-     * Is file is downloaded automatically ?
-     *
-     * @var boolean
-     */
-    public $downloadFile = false;
-
-    /**
-     * Compress file format
-     *
-     * @var null
-     */
-    public $compressFormat = null;
-
-    /**
-     * Available compress formats
-     *
-     * @var array
-     */
-    public $compressAvailable = ['zip', 'gz', 'gzip'];
-
-    /**
-     * Dump table structure ?
-     *
-     * @var boolean
-     */
-    public $dumpStructure = true;
-
-    /**
-     * Dump table datas ?
-     *
-     * @var boolean
-     */
-    public $dumpDatas = true;
-
-    /**
-     * Add DROP TABLE IF EXISTS before CREATE TABLE ?
-     *
-     * @var boolean
-     */
-    public $addDropTable = true;
-
-    /**
-     * Add IF NOT EXISTS in CREATE TABLE statment ?
-     *
-     * @var boolean
-     */
-    public $addIfNotExists = true;
-
-    /**
-     * Add CREATE DATABASE IF NOT EXISTS ?
-     *
-     * @var boolean
-     */
-    public $addCreateDatabaseIfNotExists = true;
-
-
-
-
-    /**
      * Initialization
      *
-     * @param string $host     SQL host
-     * @param string $user     Username
+     * @param string $host SQL host
+     * @param string $user Username
      * @param string $password Password
-     * @param string $db       DB name
+     * @param string $db DB name
      */
     public function __construct($host, $user, $password, $db, $port = 3306)
     {
         $this->db = [
-            'host'      => $host,
-            'port'      => $port,
-            'user'      => $user,
-            'password'  => $password,
-            'name'      => $db,
+            'host' => $host,
+            'port' => $port,
+            'user' => $user,
+            'password' => $password,
+            'name' => $db,
         ];
 
         $this->filename = 'dump_' . $db . '_' . date('Ymd-H\hi');
@@ -161,51 +148,31 @@ class MySQLBackup
     /**
      * Database connection link
      */
-    private function databaseConnect()
+    private function databaseConnect(): void
     {
         $dsn = 'mysql:host=' . $this->db['host'] . ';port=' . $this->db['port'] . ';dbname=' . $this->db['name'];
 
         $options = [
-            \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-            \PDO::ATTR_PERSISTENT         => true,
-            \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION
+            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+            PDO::ATTR_PERSISTENT => true,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
         ];
 
         // Create a new PDO instance
         try {
-            $this->dbh = new \PDO($dsn, $this->db['user'], $this->db['password'], $options);
-        }
-        catch (\PDOException $e) {// Catch any errors
+            $this->dbh = new PDO($dsn, $this->db['user'], $this->db['password'], $options);
+        } catch (PDOException $e) {// Catch any errors
             exit($e->getMessage());
         }
     }
 
     /**
-     * Query fetcher
-     *
-     * @param  string  $q        Query
-     * @param  boolean $fetchAll fetchAll or fetch
-     * @return object  PDO
-     */
-    private function query($q, $fetchAll = true)
-    {
-        $stmt = $this->dbh->query($q);
-
-        if ($fetchAll === true) {
-            return $stmt->fetchAll();
-        } else {
-            return $stmt->fetch();
-        }
-    }
-
-
-    /**
      * Set filename (default : dump_{db name}_{yymmdd-HHhMM}.sql)
      *
-     * @param  string $name Filename
+     * @param string $name Filename
      * @return object MySQLBackup
      */
-    public function setFilename($name)
+    public function setFilename($name): object
     {
         $this->filename = $name;
 
@@ -215,10 +182,10 @@ class MySQLBackup
     /**
      * Set download file (default : false)
      *
-     * @param  bool $p Allow to download file or not
+     * @param bool $p Allow to download file or not
      * @return object MySQLBackup
      */
-    public function setDownload($p)
+    public function setDownload($p): object
     {
         $this->downloadFile = $p;
 
@@ -228,10 +195,10 @@ class MySQLBackup
     /**
      * Set compress file format (default : null - no compress)
      *
-     * @param  string $p Compress format available in $this->compressAvailable
+     * @param string $p Compress format available in $this->compressAvailable
      * @return object MySQLBackup
      */
-    public function setCompress($p)
+    public function setCompress($p): object
     {
         if (in_array($p, $this->compressAvailable)) {
             $this->compressFormat = $p;
@@ -243,24 +210,23 @@ class MySQLBackup
     /**
      * Set delete file (default : false)
      *
-     * @param  bool $p Allow to delete file or not
+     * @param bool $p Allow to delete file or not
      * @return object MySQLBackup
      */
-    public function setDelete($p)
+    public function setDelete($p): object
     {
         $this->deleteFile = $p;
 
         return $this;
     }
 
-
     /**
      * Dump the structure ? (default : true)
      *
-     * @param  bool $p Dump structure or not
+     * @param bool $p Dump structure or not
      * @return object MySQLBackup
      */
-    public function setDumpStructure($p)
+    public function setDumpStructure($p): object
     {
         $this->dumpStructure = $p;
 
@@ -270,70 +236,51 @@ class MySQLBackup
     /**
      * Dump the datas ? (default : true)
      *
-     * @param  bool $p Dump datas or not
+     * @param bool $p Dump datas or not
      * @return object MySQLBackup
      */
-    public function setDumpDatas($p)
+    public function setDumpDatas($p): object
     {
         $this->dumpDatas = $p;
 
         return $this;
     }
 
-
     /**
      * Add DROP TABLE IF EXISTS before CREATE TABLE statment (default : true)
      *
-     * @param  bool $p Add DROP TABLE IF EXISTS or not
+     * @param bool $p Add DROP TABLE IF EXISTS or not
      * @return object MySQLBackup
      */
-    public function addDropTable($p)
+    public function addDropTable($p): object
     {
         $this->addDropTable = $p;
 
         return $this;
     }
 
-
     /**
      * Add "IF NOT EXISTS" after CREATE TABLE statment (default : true)
      *
-     * @param  bool $p Add IF NOT EXISTS or not
+     * @param bool $p Add IF NOT EXISTS or not
      * @return object MySQLBackup
      */
-    public function addIfNotExists($p)
+    public function addIfNotExists($p): object
     {
         $this->addIfNotExists = $p;
 
         return $this;
     }
 
-
     /**
      * Add "CREATE DATABASE IF NOT EXISTS" (default : true)
      *
-     * @param  bool $p Add CREATE DATABASE IF NOT EXISTS or not
+     * @param bool $p Add CREATE DATABASE IF NOT EXISTS or not
      * @return object MySQLBackup
      */
-    public function addCreateDatabaseIfNotExists($p)
+    public function addCreateDatabaseIfNotExists($p): object
     {
         $this->addCreateDatabaseIfNotExists = $p;
-
-        return $this;
-    }
-
-
-    /**
-     * Add table name to dump
-     *
-     * @param  string $table Table name to dump
-     * @return object MySQLBackup
-     */
-    public function addTable($table)
-    {
-        if (!in_array($table, $this->tables)) {
-            $this->tables[] = $table;
-        }
 
         return $this;
     }
@@ -341,10 +288,10 @@ class MySQLBackup
     /**
      * Dump selected tables
      *
-     * @param  array $tables Tables to backup
+     * @param array $tables Tables to backup
      * @return object MySQLBackup
      */
-    public function addTables(array $tables)
+    public function addTables(array $tables): object
     {
         if (is_array($tables) && count($tables) > 0) {
             foreach ($tables as $t) {
@@ -356,16 +303,15 @@ class MySQLBackup
     }
 
     /**
-     * Dump all tables
+     * Add table name to dump
      *
+     * @param string $table Table name to dump
      * @return object MySQLBackup
      */
-    public function addAllTables()
+    public function addTable($table): object
     {
-        $result = $this->query('SHOW TABLES');
-
-        foreach ($result as $row) {
-            $this->addTable($row[0]);
+        if (!in_array($table, $this->tables)) {
+            $this->tables[] = $table;
         }
 
         return $this;
@@ -376,7 +322,7 @@ class MySQLBackup
      *
      * @return object MySQLBackup
      */
-    public function excludeTables(array $tables)
+    public function excludeTables(array $tables): object
     {
         if (is_array($tables) && count($tables) > 0) {
             $this->excludedTables = $tables;
@@ -385,11 +331,10 @@ class MySQLBackup
         return $this;
     }
 
-
     /**
      * Dump SQL database with selected tables
      */
-    public function dump()
+    public function dump(): void
     {
         $return = '';
 
@@ -494,30 +439,51 @@ class MySQLBackup
         }
     }
 
-
     /**
-     * Download the dump file
+     * Dump all tables
+     *
+     * @return object MySQLBackup
      */
-    private function download()
+    public function addAllTables(): object
     {
-        header('Content-disposition: attachment; filename="' . $this->filename . '.' . $this->extension . '"');
-        header('Content-type: application/octet-stream');
+        $result = $this->query('SHOW TABLES');
 
-        readfile($this->filename . '.' . $this->extension);
+        foreach ($result as $row) {
+            $this->addTable($row[0]);
+        }
+
+        return $this;
     }
 
+    /**
+     * Query fetcher
+     *
+     * @param string $q Query
+     * @param boolean $fetchAll fetchAll or fetch
+     * @return array  PDO
+     */
+    private function query($q, $fetchAll = true): array
+    {
+        $stmt = $this->dbh->query($q);
+
+        if ($fetchAll === true) {
+            return $stmt->fetchAll();
+        } else {
+            return $stmt->fetch();
+        }
+    }
 
     /**
      * Compress the file
      */
-    private function compress()
+    private function compress(): void
     {
         switch ($this->compressFormat) {
             case 'zip':
                 if (class_exists('\ZipArchive')) {
-                    $zip = new \ZipArchive();
+                    $zip = new ZipArchive();
 
-                    if ($zip->open($this->filename . '.zip', \ZipArchive::CREATE) === true) {
+                    if ($zip->open($this->filename . '.zip', ZipArchive::CREATE) === true) {
                         $zip->addFile(
                             $this->filename . '.' . $this->extension,
                             basename($this->filename) . '.' . $this->extension
@@ -531,7 +497,7 @@ class MySQLBackup
                         $this->extension = 'zip';
                     }
                 } else {
-                    throw new \Exception('\ZipArchive object does not exists');
+                    throw new Exception('\ZipArchive object does not exists');
                 }
 
                 break;
@@ -552,14 +518,24 @@ class MySQLBackup
         }
     }
 
-
     /**
      * Delete the file
      */
-    private function delete()
+    private function delete(): void
     {
         if (file_exists($this->filename . '.' . $this->extension)) {
             unlink($this->filename . '.' . $this->extension);
         }
+    }
+
+    /**
+     * Download the dump file
+     */
+    private function download(): void
+    {
+        header('Content-disposition: attachment; filename="' . $this->filename . '.' . $this->extension . '"');
+        header('Content-type: application/octet-stream');
+
+        readfile($this->filename . '.' . $this->extension);
     }
 }
