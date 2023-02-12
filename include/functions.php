@@ -12,6 +12,8 @@ declare(strict_types=1);
  * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
  */
 
+use XoopsModules\Xoopssecure\Helper;
+
 /**
  * Get the number of stats from the sub categories of a category or sub topics of or topic
  *
@@ -21,16 +23,16 @@ declare(strict_types=1);
  * @param  $cid
  * @return int
  */
-function xoopssecure_NumbersOfEntries($mytree, $stats, $entries, $cid)
+function xoopssecure_NumbersOfEntries($mytree, $stats, $entries, $cid): int
 {
     $count = 0;
-    if (\in_array($cid, $stats)) {
+    if (in_array($cid, $stats)) {
         $child = $mytree->getAllChild($cid);
-        foreach (\array_keys($entries) as $i) {
+        foreach (array_keys($entries) as $i) {
             if ($entries[$i]->getVar('id') == $cid) {
                 $count++;
             }
-            foreach (\array_keys($child) as $j) {
+            foreach (array_keys($child) as $j) {
                 if ($entries[$i]->getVar('id') == $j) {
                     $count++;
                 }
@@ -51,10 +53,10 @@ function xoopssecure_MetaKeywords($content)
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
     $content = $myts->undoHtmlSpecialChars($myts->displayTarea($content));
-    if (isset($xoTheme) && \is_object($xoTheme)) {
-        $xoTheme->addMeta('meta', 'keywords', \strip_tags($content));
+    if (isset($xoTheme) && is_object($xoTheme)) {
+        $xoTheme->addMeta('meta', 'keywords', strip_tags($content));
     } else {    // Compatibility for old Xoops versions
-        $xoopsTpl->assign('xoops_meta_keywords', \strip_tags($content));
+        $xoopsTpl->assign('xoops_meta_keywords', strip_tags($content));
     }
 }
 
@@ -69,32 +71,32 @@ function xoopssecure_MetaDescription($content)
     global $xoopsTpl, $xoTheme;
     $myts = MyTextSanitizer::getInstance();
     $content = $myts->undoHtmlSpecialChars($myts->displayTarea($content));
-    if (isset($xoTheme) && \is_object($xoTheme)) {
-        $xoTheme->addMeta('meta', 'description', \strip_tags($content));
+    if (isset($xoTheme) && is_object($xoTheme)) {
+        $xoTheme->addMeta('meta', 'description', strip_tags($content));
     } else {    // Compatibility for old Xoops versions
-        $xoopsTpl->assign('xoops_meta_description', \strip_tags($content));
+        $xoopsTpl->assign('xoops_meta_description', strip_tags($content));
     }
 }
 
 /**
  * Rewrite all url
  *
- * @param  string $module module name
- * @param  array  $array  array
- * @param  string $type   type
+ * @param string $module module name
+ * @param array $array array
+ * @param string $type type
  * @return null|string $type    string replacement for any blank case
  */
 function xoopssecure_RewriteUrl($module, $array, $type = 'content')
 {
     $comment = '';
-    $helper = \XoopsModules\Xoopssecure\Helper::getInstance();
+    $helper = Helper::getInstance();
     $statsHandler = $helper->getHandler('stats');
     $lenght_id = $helper->getConfig('lenght_id');
     $rewrite_url = $helper->getConfig('rewrite_url');
 
     if (0 != $lenght_id) {
         $id = $array['content_id'];
-        while (\strlen($id) < $lenght_id) {
+        while (strlen($id) < $lenght_id) {
             $id = '0' . $id;
         }
     } else {
@@ -110,11 +112,11 @@ function xoopssecure_RewriteUrl($module, $array, $type = 'content')
     switch ($rewrite_url) {
         case 'none':
             if ($topic_name) {
-                 $topic_name = 'topic=' . $topic_name . '&amp;';
+                $topic_name = 'topic=' . $topic_name . '&amp;';
             }
             $rewrite_base = '/modules/';
             $page = 'page=' . $array['content_alias'];
-            return \XOOPS_URL . $rewrite_base . $module . '/' . $type . '.php?' . $topic_name . 'id=' . $id . '&amp;' . $page . $comment;
+            return XOOPS_URL . $rewrite_base . $module . '/' . $type . '.php?' . $topic_name . 'id=' . $id . '&amp;' . $page . $comment;
             break;
 
         case 'rewrite':
@@ -134,32 +136,32 @@ function xoopssecure_RewriteUrl($module, $array, $type = 'content')
                 $type = '';
             }
             if ('comment-edit/' === $type || 'comment-reply/' === $type || 'comment-delete/' === $type) {
-                return \XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
+                return XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
             }
 
-            return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name  . $id . $page . $rewrite_ext;
+            return XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $id . $page . $rewrite_ext;
             break;
 
         case 'short':
             if ($topic_name) {
                 $topic_name .= '/';
             }
-             $rewrite_base = xoops_getModuleOption('rewrite_mode', $module);
-             $rewrite_ext = xoops_getModuleOption('rewrite_ext', $module);
-             $module_name = '';
+            $rewrite_base = xoops_getModuleOption('rewrite_mode', $module);
+            $rewrite_ext = xoops_getModuleOption('rewrite_ext', $module);
+            $module_name = '';
             if (xoops_getModuleOption('rewrite_name', $module)) {
                 $module_name = xoops_getModuleOption('rewrite_name', $module) . '/';
             }
-             $page = $array['content_alias'];
-             $type .= '/';
+            $page = $array['content_alias'];
+            $type .= '/';
             if ('content/' === $type) {
                 $type = '';
             }
             if ('comment-edit/' === $type || 'comment-reply/' === $type || 'comment-delete/' === $type) {
-                return \XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
+                return XOOPS_URL . $rewrite_base . $module_name . $type . $id . '/';
             }
 
-            return \XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $page . $rewrite_ext;
+            return XOOPS_URL . $rewrite_base . $module_name . $type . $topic_name . $page . $rewrite_ext;
             break;
     }
     return null;
@@ -168,25 +170,25 @@ function xoopssecure_RewriteUrl($module, $array, $type = 'content')
 /**
  * Replace all escape, character, ... for display a correct url
  *
- * @param  string $url  string to transform
- * @param  string $type string replacement for any blank case
+ * @param string $url string to transform
+ * @param string $type string replacement for any blank case
  * @return string $url
  */
 function xoopssecure_Filter($url, $type = '')
 {
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
-    $helper = \XoopsModules\Xoopssecure\Helper::getInstance();
+    $helper = Helper::getInstance();
     $statsHandler = $helper->getHandler('stats');
     $regular_expression = $helper->getConfig('regular_expression');
 
-    $url = \strip_tags($url);
-    $url .= \preg_replace('`\[.*\]`U', '', $url);
-    $url .= \preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '-', $url);
-    $url .= \htmlentities($url, ENT_COMPAT, 'utf-8');
-    $url .= \preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', "\1", $url);
-    $url .= \preg_replace([$regular_expression, '`[-]+`'], '-', $url);
-    $url = ('' == $url) ? $type : \strtolower(\trim($url, '-'));
+    $url = strip_tags($url);
+    $url .= preg_replace('`\[.*\]`U', '', $url);
+    $url .= preg_replace('`&(amp;)?#?[a-z0-9]+;`i', '-', $url);
+    $url .= htmlentities($url, ENT_COMPAT, 'utf-8');
+    $url .= preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', "\1", $url);
+    $url .= preg_replace([$regular_expression, '`[-]+`'], '-', $url);
+    $url = ('' == $url) ? $type : strtolower(trim($url, '-'));
     return $url;
 }
 
@@ -223,21 +225,21 @@ function xoopssecure_GetClassSubFolders(string $path): array
  * ---------
  * Example
  * 1) echo xoopssecure_TranslateString('
-         _SCAN_XOOPSSECURE_WRONFILEPERMISSION_FIXED',
-         XOOPS_VAR_PATH . '/mainfile.php', '0666', "0444", "0444", "heyhey"
-      );
+ * _SCAN_XOOPSSECURE_WRONFILEPERMISSION_FIXED',
+ * XOOPS_VAR_PATH . '/mainfile.php', '0666', "0444", "0444", "heyhey"
+ * );
  * 2) echo xoopssecure_TranslateString('XOOPS_URL', $unustedArg=3, 'Heyhey', 1, 2, 3);
  *
  * result
  * 1) C:/xampp/htdocs/xoops_test/htdocs/xoops_data/mainfile.php had file permission : 0666,
-        recommended setting is 0444. Xoopssecure has fixed permissions to.: 0444
+ * recommended setting is 0444. Xoopssecure has fixed permissions to.: 0444
  * 2) http://localhost/xoops_test/htdocs
  * ---------
- * @author Michael Albertsen (culex@culex.dk)
  * @param $text string constant to look for
  * @return string $returnText
+ * @author Michael Albertsen (culex@culex.dk)
  */
-function xoopssecure_TranslateString($text)
+function xoopssecure_TranslateString($text): string
 {
     $def = get_defined_constants();
     $returnText = $def[$text];
@@ -258,7 +260,7 @@ function xoopssecure_TranslateString($text)
  * @param string $needle ext of files to getAllChild
  * @return array
  */
-function xoopssecure_listdirs($dir, $needle = null)
+function xoopssecure_listdirs($dir, $needle = null): array
 {
     $subDir = [];
     $directories = array_filter(glob($dir), 'is_dir');
@@ -269,13 +271,13 @@ function xoopssecure_listdirs($dir, $needle = null)
     return $subDir;
 }
 
-/** 
+/**
  * function to explode string to array
  *
  * @param string $string
  * @return array $array
  */
-function xoopssecure_StringToArray($string)
+function xoopssecure_StringToArray($string): array
 {
     return ($string != '') ? preg_split("/\r\n|\n|\r/", $string) : [];
 }
@@ -285,44 +287,44 @@ function xoopssecure_StringToArray($string)
  *
  * @return array $data containing paths
  */
-function xoopssecure_backupFilesMin()
+function xoopssecure_backupFilesMin(): array
 {
     return [
-       XOOPS_ROOT_PATH . "/modules/" => XOOPS_ROOT_PATH . "/modules",
-       XOOPS_ROOT_PATH . "/uploads/" => XOOPS_ROOT_PATH . "/uploads",
-       XOOPS_ROOT_PATH . "/modules/" => XOOPS_ROOT_PATH . "/modules",
-       XOOPS_ROOT_PATH . "/themes/" => XOOPS_ROOT_PATH . "/themes",
-       XOOPS_PATH . "/" => XOOPS_PATH,
-       XOOPS_VAR_PATH . "/" => XOOPS_VAR_PATH,
-       XOOPS_ROOT_PATH . "/mainfile.php" => XOOPS_ROOT_PATH . "/mainfile.php"
+        XOOPS_ROOT_PATH . "/modules/" => XOOPS_ROOT_PATH . "/modules",
+        XOOPS_ROOT_PATH . "/uploads/" => XOOPS_ROOT_PATH . "/uploads",
+        XOOPS_ROOT_PATH . "/modules/" => XOOPS_ROOT_PATH . "/modules",
+        XOOPS_ROOT_PATH . "/themes/" => XOOPS_ROOT_PATH . "/themes",
+        XOOPS_PATH . "/" => XOOPS_PATH,
+        XOOPS_VAR_PATH . "/" => XOOPS_VAR_PATH,
+        XOOPS_ROOT_PATH . "/mainfile.php" => XOOPS_ROOT_PATH . "/mainfile.php"
     ];
 }
 
- /**
-  * Returns scantype based on value
-  *
-  * Translate value to corresponding string
-  *
-  * @param value is the scantype fron db log
-  * @return string
-  */
-function xoopssecure_scantypeToString($val)
+/**
+ * Returns scantype based on value
+ *
+ * Translate value to corresponding string
+ *
+ * @param value is the scantype fron db log
+ * @return string
+ */
+function xoopssecure_scantypeToString($val): string
 {
     switch ($val) {
         case '0':
             return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_FULL;
-        break;
+            break;
         case '1':
             return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_PERM;
-        break;
+            break;
         case '2':
             return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_INDX;
-        break;
+            break;
         case '3':
             return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_MALLW;
-        break;
+            break;
         case '4':
             return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_CODES;
-        break;
+            break;
     }
 }

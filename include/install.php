@@ -17,12 +17,12 @@ use XoopsModules\Xoopssecure\Common;
 
 /**
  * Install module
- * @param  \XoopsModule $module
+ * @param XoopsModule $module
  * @return bool
  */
-function xoops_module_pre_install_xoopssecure(\XoopsModule $module)
+function xoops_module_pre_install_xoopssecure(XoopsModule $module)
 {
-    include \dirname(__DIR__) . '/preloads/autoloader.php';
+    include dirname(__DIR__) . '/preloads/autoloader.php';
 
     $utility = new Xoopssecure\Utility();
 
@@ -43,15 +43,15 @@ function xoops_module_pre_install_xoopssecure(\XoopsModule $module)
 }
 
 /**
- * @param  \XoopsModule $module
+ * @param XoopsModule $module
  * @return bool
  */
-function xoops_module_install_xoopssecure(\XoopsModule $module)
+function xoops_module_install_xoopssecure(XoopsModule $module)
 {
-    include \dirname(__DIR__) . '/preloads/autoloader.php';
+    include dirname(__DIR__) . '/preloads/autoloader.php';
 
-    $helper       = Xoopssecure\Helper::getInstance();
-    $utility      = new Xoopssecure\Utility();
+    $helper = Xoopssecure\Helper::getInstance();
+    $utility = new Xoopssecure\Utility();
     $configurator = new Common\Configurator();
 
     // Load language files
@@ -60,22 +60,22 @@ function xoops_module_install_xoopssecure(\XoopsModule $module)
     $helper->loadLanguage('common');
 
     //  ---  CREATE FOLDERS ---------------
-    if ($configurator->uploadFolders && \is_array($configurator->uploadFolders)) {
-        foreach (\array_keys($configurator->uploadFolders) as $i) {
+    if ($configurator->uploadFolders && is_array($configurator->uploadFolders)) {
+        foreach (array_keys($configurator->uploadFolders) as $i) {
             $utility::createFolder($configurator->uploadFolders[$i]);
             chmod($configurator->uploadFolders[$i], 0777);
         }
     }
 
     //  ---  COPY blank.gif FILES ---------------
-    if ($configurator->copyBlankFiles && \is_array($configurator->copyBlankFiles)) {
-        $file = \dirname(__DIR__) . '/assets/images/blank.gif';
-        foreach (\array_keys($configurator->copyBlankFiles) as $i) {
+    if ($configurator->copyBlankFiles && is_array($configurator->copyBlankFiles)) {
+        $file = dirname(__DIR__) . '/assets/images/blank.gif';
+        foreach (array_keys($configurator->copyBlankFiles) as $i) {
             $dest = $configurator->copyBlankFiles[$i] . '/blank.gif';
             $utility::copyFile($file, $dest);
         }
-        $file = \dirname(__DIR__) . '/assets/images/blank.png';
-        foreach (\array_keys($configurator->copyBlankFiles) as $i) {
+        $file = dirname(__DIR__) . '/assets/images/blank.png';
+        foreach (array_keys($configurator->copyBlankFiles) as $i) {
             $dest = $configurator->copyBlankFiles[$i] . '/blank.png';
             $utility::copyFile($file, $dest);
         }

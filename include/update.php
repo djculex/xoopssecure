@@ -34,7 +34,7 @@ function xoops_module_update_xoopssecure($module, $prev_version = null)
 
     $errors = $module->getErrors();
     if (!empty($errors)) {
-        \print_r($errors);
+        print_r($errors);
     }
 
     return $ret;

@@ -14,4 +14,4 @@ Tested with xoops 2.5.7, you can not use it with earlier versions, unless becaus
 
 Now that is ahead xoops versions, and goes to 2.6.0, you should download xoops 2.5.7 and use with this latest version.
 
-Therefore recommended not to use ModuleBuilder 1.91, with previous versions, to xoops 2.5.7
+Therefore, recommended not to use ModuleBuilder 1.91 with previous versions, to xoops 2.5.7

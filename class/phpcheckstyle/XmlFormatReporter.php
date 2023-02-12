@@ -54,6 +54,17 @@ class XmlFormatReporter extends Reporter
     }
 
     /**
+     * XML header.
+     */
+    protected function initXml()
+    {
+        $this->document = new DomDocument("1.0");
+        $this->root = $this->document->createElement('checkstyle');
+        $this->root->setAttribute("version", "1.0.0");
+        $this->document->appendChild($this->root);
+    }
+
+    /**
      *
      * @see Reporter::start add the last element to the tree and save the DOM tree to the
      *      xml file
@@ -65,56 +76,28 @@ class XmlFormatReporter extends Reporter
     }
 
     /**
-     *
-     * @see Reporter::currentlyProcessing add the previous element to the tree and start a new element
-     *      for the new file
+     * Close the current element.
+     */
+    protected function endCurrentElement()
+    {
+        if ($this->currentElement) {
+            $this->root->appendChild($this->currentElement);
+        }
+    }
+
+    /**
      *
      * @param $phpFile the
      *                 file currently processed
+     * @see Reporter::currentlyProcessing add the previous element to the tree and start a new element
+     *      for the new file
+     *
      */
     public function currentlyProcessing($phpFile)
     {
         parent::currentlyProcessing($phpFile);
         $this->endCurrentElement();
         $this->startNewElement($phpFile);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @param Integer $line
-     *            the line number
-     * @param String  $check
-     *            the name of the check
-     * @param String  $message
-     *            error message
-     * @param String  $level
-     *            the severity level
-     */
-    public function writeError($line, $check, $message, $level = WARNING)
-    {
-        $errEl = $this->document->createElement("error");
-        $errEl->setAttribute("line", $line);
-        $errEl->setAttribute("column", "1");
-        $errEl->setAttribute("severity", $level);
-        $errEl->setAttribute("message", $message);
-        $errEl->setAttribute("source", $check);
-
-        if (empty($this->currentElement)) {
-            $this->startNewElement("");
-        }
-        $this->currentElement->appendChild($errEl);
-    }
-
-    /**
-     * XML header.
-     */
-    protected function initXml()
-    {
-        $this->document = new DomDocument("1.0");
-        $this->root = $this->document->createElement('checkstyle');
-        $this->root->setAttribute("version", "1.0.0");
-        $this->document->appendChild($this->root);
     }
 
     /**
@@ -134,6 +117,33 @@ class XmlFormatReporter extends Reporter
     }
 
     /**
+     * {@inheritdoc}
+     *
+     * @param Integer $line
+     *            the line number
+     * @param String $check
+     *            the name of the check
+     * @param String $message
+     *            error message
+     * @param String $level
+     *            the severity level
+     */
+    public function writeError($line, $check, $message, $level = WARNING)
+    {
+        $errEl = $this->document->createElement("error");
+        $errEl->setAttribute("line", $line);
+        $errEl->setAttribute("column", "1");
+        $errEl->setAttribute("severity", $level);
+        $errEl->setAttribute("message", $message);
+        $errEl->setAttribute("source", $check);
+
+        if (empty($this->currentElement)) {
+            $this->startNewElement("");
+        }
+        $this->currentElement->appendChild($errEl);
+    }
+
+    /**
      * Returns the document.
      *
      * @return DomDocument object
@@ -141,15 +151,5 @@ class XmlFormatReporter extends Reporter
     protected function getDocument()
     {
         return $this->document;
-    }
-
-    /**
-     * Close the current element.
-     */
-    protected function endCurrentElement()
-    {
-        if ($this->currentElement) {
-            $this->root->appendChild($this->currentElement);
-        }
     }
 }

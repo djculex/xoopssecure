@@ -10,7 +10,6 @@
 /**
  * This index.php file will show an error '104 not found' when entering this folder
  * and was created : 15-12-2022 09:12:26 by a xoopsSecure scan/create.
-
  * @package   \XoopsModules\xoopssecure
  * @copyright The XOOPS Project (https://xoops.org)
  * @copyright 2022 Culex

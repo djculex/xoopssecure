@@ -18,7 +18,7 @@ declare(strict_types=1);
  */
 function xoopssecureReturnBytes($val)
 {
-    switch (\mb_substr($val, -1)) {
+    switch (mb_substr($val, -1)) {
         case 'K':
         case 'k':
             return (int)$val * 1024;

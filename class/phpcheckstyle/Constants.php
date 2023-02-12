@@ -35,9 +35,9 @@ interface Constants
     public const TABLE_STATS = 1;
 
     // Constants for status
-    public const STATUS_NONE      = 0;
-    public const STATUS_OFFLINE   = 1;
+    public const STATUS_NONE = 0;
+    public const STATUS_OFFLINE = 1;
     public const STATUS_SUBMITTED = 2;
-    public const STATUS_APPROVED  = 3;
-    public const STATUS_BROKEN    = 4;
+    public const STATUS_APPROVED = 3;
+    public const STATUS_BROKEN = 4;
 }

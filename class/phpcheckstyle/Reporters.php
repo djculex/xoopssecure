@@ -66,7 +66,6 @@ class Reporters
      *                 of
      *                 the
      *                 error
-
      * @param String $check
      *            the name of the check
      * @param $message error

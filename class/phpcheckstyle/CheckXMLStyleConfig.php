@@ -2,6 +2,8 @@
 
 namespace XoopsModules\Xoopssecure;
 
+use Exception;
+
 /**
  * Loads the test configuration.
  *
@@ -64,7 +66,7 @@ class CheckXMLStyleConfig extends CheckStyleConfig
     {
         $fp = fopen($this->file, "r");
         if (!$fp) {
-            throw new \Exception("Could not open XML input file");
+            throw new Exception("Could not open XML input file");
         }
 
         $data = fread($fp, 4096);
@@ -85,24 +87,24 @@ class CheckXMLStyleConfig extends CheckStyleConfig
      * SAX function indicating start of an element
      * Store the TEST and PROPERTY values in an array
      *
-     * @param            Parser     $parser
+     * @param Parser $parser
      *            the parser
-     * @param            Elem       $elem
+     * @param Elem $elem
      *            name of element
-     * @param            Attributes $attrs
+     * @param Attributes $attrs
      *            list of attributes of the element
      * @SuppressWarnings cyclomaticComplexity checkUnusedFunctionParameters
      */
     private function _startElement($parser, $elem, $attrs)
     {
         switch ($elem) {
-         // Case of a configuration property
+            // Case of a configuration property
             case 'CONFIG':
                 $this->currentConfig = strtolower($attrs['NAME']);
                 $this->config[$this->currentConfig] = array();
                 break;
 
-        // Case of a configuration property item
+            // Case of a configuration property item
             case 'CONFIGITEM':
                 $this->config[$this->currentConfig][] = $attrs['VALUE'];
                 break;

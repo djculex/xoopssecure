@@ -83,20 +83,44 @@ class HTMLFormatReporter extends Reporter
     }
 
     /**
-     * Writes an HTML fragment to the output file.
      *
-     * @param $fragment string
-     *                  The HTML fragment to write.
+     * @param $phpFile the
+     *                 file currently processed
+     * @see Reporter::currentlyProcessing Process a new PHP file.
+     *
      */
-    protected function writeFragment($fragment)
+    public function currentlyProcessing($phpFile)
     {
-        $fileHandle = fopen($this->outputFile, $this->writeMode);
 
-        fwrite($fileHandle, $fragment);
-        fclose($fileHandle);
+        // Update the counters
+        $this->nbfiles++;
 
-        // appends to the file initially created with $writeMode = "w"
-        $this->writeMode = 'a';
+        // If the previous file contained errors
+        if ($this->fileErrors !== 0) {
+            // Add the previous file to the summary
+            if ($this->previousFile !== '') {
+                $fileBody = $this->_readTemplate("files_body");
+                $values = array();
+                $values['%%filepath%%'] = $this->previousFile;
+                $values['%%file_errors%%'] = $this->fileErrors;
+                $fileBody = $this->_fillTemplate($fileBody, $values);
+                $this->files .= $fileBody;
+            }
+
+            // Add the previous file to the details
+            $detailHead = $this->_readTemplate("detail_head");
+            $values = array();
+            $values['%%filepath%%'] = $this->previousFile;
+            $detailHead = $this->_fillTemplate($detailHead, $values);
+            $this->detail .= $detailHead;
+            $this->detail .= $this->fileDetail;
+            $this->detail .= $this->_readTemplate("detail_foot");
+        }
+
+        $this->previousFile = $phpFile;
+        $this->fileDetail = '';
+        $this->fileErrors = 0;
+        $this->fileInError = false;
     }
 
     /**
@@ -137,44 +161,20 @@ class HTMLFormatReporter extends Reporter
     }
 
     /**
+     * Writes an HTML fragment to the output file.
      *
-     * @see Reporter::currentlyProcessing Process a new PHP file.
-     *
-     * @param $phpFile the
-     *                 file currently processed
+     * @param $fragment string
+     *                  The HTML fragment to write.
      */
-    public function currentlyProcessing($phpFile)
+    protected function writeFragment($fragment)
     {
+        $fileHandle = fopen($this->outputFile, $this->writeMode);
 
-        // Update the counters
-        $this->nbfiles ++;
+        fwrite($fileHandle, $fragment);
+        fclose($fileHandle);
 
-        // If the previous file contained errors
-        if ($this->fileErrors !== 0) {
-            // Add the previous file to the summary
-            if ($this->previousFile !== '') {
-                $fileBody = $this->_readTemplate("files_body");
-                $values = array();
-                $values['%%filepath%%'] = $this->previousFile;
-                $values['%%file_errors%%'] = $this->fileErrors;
-                $fileBody = $this->_fillTemplate($fileBody, $values);
-                $this->files .= $fileBody;
-            }
-
-            // Add the previous file to the details
-            $detailHead = $this->_readTemplate("detail_head");
-            $values = array();
-            $values['%%filepath%%'] = $this->previousFile;
-            $detailHead = $this->_fillTemplate($detailHead, $values);
-            $this->detail .= $detailHead;
-            $this->detail .= $this->fileDetail;
-            $this->detail .= $this->_readTemplate("detail_foot");
-        }
-
-        $this->previousFile = $phpFile;
-        $this->fileDetail = '';
-        $this->fileErrors = 0;
-        $this->fileInError = false;
+        // appends to the file initially created with $writeMode = "w"
+        $this->writeMode = 'a';
     }
 
     /**
@@ -182,21 +182,21 @@ class HTMLFormatReporter extends Reporter
      *
      * @param Integer $line
      *            the line number
-     * @param String  $check
+     * @param String $check
      *            the name of the check
-     * @param String  $message
+     * @param String $message
      *            the text
-     * @param String  $level
+     * @param String $level
      *            the severity level
      */
     public function writeError($line, $check, $message, $level = WARNING)
     {
 
         // Update the counters
-        $this->nbErrors ++;
-        $this->fileErrors ++;
+        $this->nbErrors++;
+        $this->fileErrors++;
         if ($this->fileInError === false) {
-            $this->nbfilesError ++;
+            $this->nbfilesError++;
             $this->fileInError = true;
         }
 

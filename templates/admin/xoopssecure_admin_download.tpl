@@ -7,12 +7,12 @@
 
                         <{include file="db:xoopssecure_download_backups.tpl"}>
 
-                    <{if !empty($downloadfiles)}>
+                        <{if !empty($downloadfiles)}>
                         <{include file="db:xoopssecure_download_downloads.tpl"}>
-                    <{/if}>
+                        <{/if}>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>

@@ -1,10 +1,12 @@
 <?php
 
 declare(strict_types=1);
+
 use XoopsModules\Xoopssecure;
 use XoopsModules\Xoopssecure\Helper;
 use XoopsModules\Xoopssecure\SpamScanner;
 use Xmf\Request;
+
 /*
  You may not change or alter any portion of this comment or credits
  of supporting developers from this source code or any supporting source code
@@ -30,9 +32,9 @@ use Xmf\Request;
 
 //$helper       = XoopsModules\Xoopssecure\Helper::getInstance();
 require_once __DIR__ . '/include/functions.php';
-if (!isset($GLOBALS['xoTheme']) || !$GLOBALS['xoTheme'] instanceof \xos_opal_Theme) {
+if (!isset($GLOBALS['xoTheme']) || !$GLOBALS['xoTheme'] instanceof xos_opal_Theme) {
     include $GLOBALS['xoops']->path('class/theme.php');
-    $GLOBALS['xoTheme'] = new \xos_opal_Theme();
+    $GLOBALS['xoTheme'] = new xos_opal_Theme();
 }
 
 $GLOBALS['xoTheme']->addScript(
@@ -41,7 +43,7 @@ $GLOBALS['xoTheme']->addScript(
     "
                 if (typeof jQuery == 'undefined') {
                     var tag = '<scr' + 'ipt type=\'text/javascript\' src=\'" .
-                        XOOPS_URL . "/browse.php?Frameworks/jquery/jquery.js\'></scr' + 'ipt>';            	    
+    XOOPS_URL . "/browse.php?Frameworks/jquery/jquery.js\'></scr' + 'ipt>';            	    
                     document.write(tag);            	    
 	            };"
 );
@@ -94,51 +96,51 @@ $GLOBALS['xoTheme']->addStylesheet(
 	}"
 );
 
-// ------------------- Informations ------------------- //
+// ------------------- Information ------------------- //
 $modversion = [
-    'name'                => \_MI_XOOPSSECURE_NAME,
-    'version'             => '1.3.4',
-    'description'         => \_MI_XOOPSSECURE_DESC,
-    'author'              => 'Culex',
-    'author_mail'         => 'culex@culex.dk',
-    'author_website_url'  => 'https://www.culex.dk',
+    'name' => _MI_XOOPSSECURE_NAME,
+    'version' => '1.3.4',
+    'description' => _MI_XOOPSSECURE_DESC,
+    'author' => 'Culex',
+    'author_mail' => 'culex@culex.dk',
+    'author_website_url' => 'https://www.culex.dk',
     'author_website_name' => 'Culex.dk',
-    'credits'             => 'Culex, Mamba',
-    'license'             => 'GPL 2.0 or later',
-    'license_url'         => 'https://www.gnu.org/licenses/gpl-3.0.en.html',
-    'help'                => 'page=help',
-    'release_info'        => 'release_info',
-    'release_file'        => \XOOPS_URL . '/modules/xoopssecure/docs/release_info file',
-    'release_date'        => '2015/03/25',
-    'manual'              => 'link to manual file',
-    'manual_file'         => \XOOPS_URL . '/modules/xoopssecure/docs/install.txt',
-    'min_php'             => '8.0',
-    'min_xoops'           => '2.5.10',
-    'min_admin'           => '1.2',
-    'min_db'              => ['mysql' => '7.0', 'mysqli' => '7.0'],
-    'image'               => 'assets/images/xoopssecure_slogo.png',
-    'dirname'             => \basename(__DIR__),
-    'dirmoduleadmin'      => 'Frameworks/moduleclasses/moduleadmin',
-    'sysicons16'          => '../../Frameworks/moduleclasses/icons/16',
-    'sysicons32'          => '../../Frameworks/moduleclasses/icons/32',
-    'modicons16'          => 'assets/icons/16',
-    'modicons32'          => 'assets/icons/32',
-    'demo_site_url'       => 'https://xoops.org',
-    'demo_site_name'      => 'XOOPS Demo Site',
-    'support_url'         => 'https://xoops.org/modules/newbb',
-    'support_name'        => 'Support Forum',
-    'module_website_url'  => 'www.xoops.org',
+    'credits' => 'Culex, Mamba',
+    'license' => 'GPL 2.0 or later',
+    'license_url' => 'https://www.gnu.org/licenses/gpl-3.0.en.html',
+    'help' => 'page=help',
+    'release_info' => 'release_info',
+    'release_file' => XOOPS_URL . '/modules/xoopssecure/docs/release_info file',
+    'release_date' => '2015/03/25',
+    'manual' => 'link to manual file',
+    'manual_file' => XOOPS_URL . '/modules/xoopssecure/docs/install.txt',
+    'min_php' => '8.0',
+    'min_xoops' => '2.5.10',
+    'min_admin' => '1.2',
+    'min_db' => ['mysql' => '7.0', 'mysqli' => '7.0'],
+    'image' => 'assets/images/xoopssecure_slogo.png',
+    'dirname' => basename(__DIR__),
+    'dirmoduleadmin' => 'Frameworks/moduleclasses/moduleadmin',
+    'sysicons16' => '../../Frameworks/moduleclasses/icons/16',
+    'sysicons32' => '../../Frameworks/moduleclasses/icons/32',
+    'modicons16' => 'assets/icons/16',
+    'modicons32' => 'assets/icons/32',
+    'demo_site_url' => 'https://xoops.org',
+    'demo_site_name' => 'XOOPS Demo Site',
+    'support_url' => 'https://xoops.org/modules/newbb',
+    'support_name' => 'Support Forum',
+    'module_website_url' => 'www.xoops.org',
     'module_website_name' => 'XOOPS Project',
-    'release'             => '02/02/2023',
-    'module_status'       => 'RC 3',
-    'system_menu'         => 1,
-    'hasAdmin'            => 1,
-    'hasMain'             => 0,
-    'adminindex'          => 'admin/index.php',
-    'adminmenu'           => 'admin/menu.php',
-    'onInstall'           => 'include/install.php',
-    'onUninstall'         => 'include/uninstall.php',
-    'onUpdate'            => 'include/update.php',
+    'release' => '02/02/2023',
+    'module_status' => 'RC 3',
+    'system_menu' => 1,
+    'hasAdmin' => 1,
+    'hasMain' => 0,
+    'adminindex' => 'admin/index.php',
+    'adminmenu' => 'admin/menu.php',
+    'onInstall' => 'include/install.php',
+    'onUninstall' => 'include/uninstall.php',
+    'onUpdate' => 'include/update.php',
 ];
 // ------------------- Templates ------------------- //
 $modversion['templates'] = [
@@ -175,133 +177,133 @@ $modversion['tables'] = [
 // ------------------- Config ------------------- //
 // Keywords
 $modversion['config'][] = [
-    'name'        => 'XCISSTARTPATH',
-    'title'       => '\_MI_XOOPSSECURE_XCISSTARTPATH',
+    'name' => 'XCISSTARTPATH',
+    'title' => '\_MI_XOOPSSECURE_XCISSTARTPATH',
     'description' => '\_MI_XOOPSSECURE_XCISSTARTPATH_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => XOOPS_ROOT_PATH,
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => XOOPS_ROOT_PATH,
 ];
 
 $modversion['config'][] = [
-    'name'        => 'XCISDEVSTARTPATH',
-    'title'       => '\_MI_XOOPSSECURE_DEVXCISSTARTPATH',
+    'name' => 'XCISDEVSTARTPATH',
+    'title' => '\_MI_XOOPSSECURE_DEVXCISSTARTPATH',
     'description' => '\_MI_XOOPSSECURE_DEVXCISSTARTPATH_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => XOOPS_ROOT_PATH . "/modules/xoopssecure/test",
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => XOOPS_ROOT_PATH . "/modules/xoopssecure/test",
 ];
 
 $modversion['config'][] = [
-    'name'        => 'XCISFILETYPES',
-    'title'       => '\_MI_XOOPSSECURE_SCISFILETYPES',
+    'name' => 'XCISFILETYPES',
+    'title' => '\_MI_XOOPSSECURE_SCISFILETYPES',
     'description' => '\_MI_XOOPSSECURE_SCISFILETYPES_DESC',
-    'formtype'    => 'textarea',
-    'valuetype'   => 'text',
+    'formtype' => 'textarea',
+    'valuetype' => 'text',
     /*cgi|css|eot|gif|gitignore|htaccess|htm|html|ico|inc|infected|js|json|lock|md|o|php|php3|php4|php5|php6|php7|pht|phtml|pl|py|sh|shtml|so|sql|susp|suspected|svg|swf|tpl|ttf|txt|vir|
 woff|woff2|yml
 */
-    'default'     => "cgi|css|eot|gitignore|htaccess|htm|htmlinc|infected|js|json|lock|md|o|php|pht|phtml|pl|py|sh|shtml|so|sql|susp|suspected|swf|tpl|ttf|txt|vir|
+    'default' => "cgi|css|eot|gitignore|htaccess|htm|htmlinc|infected|js|json|lock|md|o|php|pht|phtml|pl|py|sh|shtml|so|sql|susp|suspected|swf|tpl|ttf|txt|vir|
 woff|woff2|yml",
 ];
 
 // Skip folders
 $modversion['config'][] = [
-    'name'        => 'XCISOMITFOLDERS',
-    'title'       => '\_MI_XOOPSSECURE_SCISSKIPFOLDERS',
+    'name' => 'XCISOMITFOLDERS',
+    'title' => '\_MI_XOOPSSECURE_SCISSKIPFOLDERS',
     'description' => '\_MI_XOOPSSECURE_SCISSKIPFOLDERS_DESC',
-    'formtype'    => 'textarea',
-    'valuetype'   => 'text',
-    'default'     => "modules\\xoopssecure\\patterns\r\nmodules\\xoopssecure\\test\r\nmodules\\xoopssecure\\geshi",
+    'formtype' => 'textarea',
+    'valuetype' => 'text',
+    'default' => "modules\\xoopssecure\\patterns\r\nmodules\\xoopssecure\\test\r\nmodules\\xoopssecure\\geshi",
 ];
 
 //Skip files
 $modversion['config'][] = [
-    'name'        => 'XCISOMITFILES',
-    'title'       => '\_MI_XOOPSSECURE_SCISSKIPFILES',
+    'name' => 'XCISOMITFILES',
+    'title' => '\_MI_XOOPSSECURE_SCISSKIPFILES',
     'description' => '\_MI_XOOPSSECURE_SCISSKIPFILES',
-    'formtype'    => 'textarea',
-    'valuetype'   => 'text',
-    'default'     => "modules\\xoopssecure\\class\\geshi.php\r\nmodules\\xoopssecure\\class\\Patterns.php",
+    'formtype' => 'textarea',
+    'valuetype' => 'text',
+    'default' => "modules\\xoopssecure\\class\\geshi.php\r\nmodules\\xoopssecure\\class\\Patterns.php",
 ];
 
 // Cron scan yes or no ?
 $modversion['config'][] = [
-    'name'        => 'XCISCRONTYPE',
-    'title'       => '_MI_XOOPSSECURE_CRONSELECTTYPE_TITLE',
+    'name' => 'XCISCRONTYPE',
+    'title' => '_MI_XOOPSSECURE_CRONSELECTTYPE_TITLE',
     'description' => '_MI_XOOPSSECURE_CRONSELECTTYPE_DESC',
-    'formtype'    => 'yesno',
-    'valuetype'   => 'int',
-    'default'     => 1,
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 1,
 ];
 
 $modversion['config'][] = [
-    'name'        => 'XCISCRONINTERVAL',
-    'title'       => '_MI_XOOPSSECURE_CRONINTERVAL_TITLE',
+    'name' => 'XCISCRONINTERVAL',
+    'title' => '_MI_XOOPSSECURE_CRONINTERVAL_TITLE',
     'description' => '_MI_XOOPSSECURE_CRONINTERVAL_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => '24',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => '24',
 ];
 
 // BACKUP
 $modversion['config'][] = [
-    'name'        => 'XCISBACKUPTYPE',
-    'title'       => '_MI_XOOPSSECURE_BACKUPSELECTTYPE_TITLE',
+    'name' => 'XCISBACKUPTYPE',
+    'title' => '_MI_XOOPSSECURE_BACKUPSELECTTYPE_TITLE',
     'description' => '_MI_XOOPSSECURE_BACKUPSELECTTYPE_DESC',
-    'formtype'    => 'select',
-    'valuetype'   => 'array',
-    'options'     => [
-                        _MI_XOOPSSECURE_NONE => 'none',
-                        _MI_XOOPSSECURE_MIN => 'Minimum',
-                        _MI_XOOPSSECURE_FULL => 'Full',
-                        _MI_XOOPSSECURE_CUSTOM => 'Custom'
+    'formtype' => 'select',
+    'valuetype' => 'array',
+    'options' => [
+        _MI_XOOPSSECURE_NONE => 'none',
+        _MI_XOOPSSECURE_MIN => 'Minimum',
+        _MI_XOOPSSECURE_FULL => 'Full',
+        _MI_XOOPSSECURE_CUSTOM => 'Custom'
     ],
 ];
 
 $obj = xoopssecure_backupFilesMin();
 $modversion['config'][] = [
-    'name'        => 'XCISBACKUPCUSTOMFILES',
-    'title'       => '_MI_XOOPSSECURE_BACKUPCUSTOMFILES_TITLE',
+    'name' => 'XCISBACKUPCUSTOMFILES',
+    'title' => '_MI_XOOPSSECURE_BACKUPCUSTOMFILES_TITLE',
     'description' => '_MI_XOOPSSECURE_BACKUPCUSTOMFILES_DESC',
-    'formtype'    => 'textarea',
-    'valuetype'   => 'string',
-    'default'     => implode("\n", $obj),
+    'formtype' => 'textarea',
+    'valuetype' => 'string',
+    'default' => implode("\n", $obj),
 ];
 
 $modversion['config'][] = [
-    'name'        => 'XCISAUTOBACKUP',
-    'title'       => '_MI_XOOPSSECURE_AUTOBACKUP_TITLE',
+    'name' => 'XCISAUTOBACKUP',
+    'title' => '_MI_XOOPSSECURE_AUTOBACKUP_TITLE',
     'description' => '_MI_XOOPSSECURE_AUTOBACKUP_DESC',
-    'formtype'    => 'yesno',
-    'valuetype'   => 'int',
-    'default'     => 1,
+    'formtype' => 'yesno',
+    'valuetype' => 'int',
+    'default' => 1,
 ];
 
 $modversion['config'][] = [
-    'name'        => 'XCISAUTOBACKUPINTERVAL',
-    'title'       => '_MI_XOOPSSECURE_AUTOBACKUPINTERVAL_TITLE',
+    'name' => 'XCISAUTOBACKUPINTERVAL',
+    'title' => '_MI_XOOPSSECURE_AUTOBACKUPINTERVAL_TITLE',
     'description' => '_MI_XOOPSSECURE_AUTOBACKUPINTERVAL_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => '7',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => '7',
 ];
 
 $modversion['config'][] = [
-    'name'        => 'XCISAUTOBACKUPDELETE',
-    'title'       => '_MI_XOOPSSECURE_AUTOBACKUPDELETE_TITLE',
+    'name' => 'XCISAUTOBACKUPDELETE',
+    'title' => '_MI_XOOPSSECURE_AUTOBACKUPDELETE_TITLE',
     'description' => '_MI_XOOPSSECURE_AUTOBACKUPDELETE_DESC',
-    'formtype'    => 'textbox',
-    'valuetype'   => 'text',
-    'default'     => '7',
+    'formtype' => 'textbox',
+    'valuetype' => 'text',
+    'default' => '7',
 ];
 
 // Check for updates
 $modversion['config'][] = [
-    'name'        => 'XCISCHECKUPDATEDREPOS',
-    'title'       => '\_MI_XOOPSSECURE_CHECKUPDATEDREPOS_TITLE',
+    'name' => 'XCISCHECKUPDATEDREPOS',
+    'title' => '\_MI_XOOPSSECURE_CHECKUPDATEDREPOS_TITLE',
     'description' => '\_MI_XOOPSSECURE_CHECKUPDATEDREPOS_DESC',
-    'formtype'    => 'textarea',
-    'valuetype'   => 'text',
-    'default'     => "https://api.github.com/repos/XOOPS/XoopsCore25/releases/latest\r\nhttps://api.github.com/repos/djculex/xoopsSecure/releases/latest",
+    'formtype' => 'textarea',
+    'valuetype' => 'text',
+    'default' => "https://api.github.com/repos/XOOPS/XoopsCore25/releases/latest\r\nhttps://api.github.com/repos/djculex/xoopsSecure/releases/latest",
 ];

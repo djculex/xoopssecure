@@ -41,6 +41,14 @@ class PlainFormatReporter extends Reporter
         $this->_ensureFileOpen();
     }
 
+    private function _ensureFileOpen()
+    {
+        if ($this->fileHandle === false) {
+            $this->fileHandle = fopen($this->outputFile, "w");
+        }
+        return $this->fileHandle;
+    }
+
     /**
      *
      * @see Reporter::stop make sure that the file is closed
@@ -50,36 +58,25 @@ class PlainFormatReporter extends Reporter
         $this->_ensureFileClosed();
     }
 
+    private function _ensureFileClosed()
+    {
+        if ($this->fileHandle) {
+            fclose($this->fileHandle);
+            $this->outputFile = false;
+        }
+    }
+
     /**
-     *
-     * @see Reporter::stop Add a new line with the new file name
      *
      * @param $phpFile the
      *                 file currently processed
+     * @see Reporter::stop Add a new line with the new file name
+     *
      */
     public function currentlyProcessing($phpFile)
     {
         parent::currentlyProcessing($phpFile);
         $this->_write("\nFile: " . $this->currentPhpFile . PHP_EOL);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @param            Integer $line
-     *            the line number
-     * @param            String  $check
-     *            the name of the check
-     * @param            String  $message
-     *            the text
-     * @param            String  $level
-     *            the severity level
-     * @SuppressWarnings checkUnusedFunctionParameters
-     */
-    public function writeError($line, $check, $message, $level = WARNING)
-    {
-        $msg = "\t" . $level . " Line:" . $line . ": " . $message . PHP_EOL;
-        $this->_write($msg);
     }
 
     private function _write($message)
@@ -89,19 +86,22 @@ class PlainFormatReporter extends Reporter
         }
     }
 
-    private function _ensureFileOpen()
+    /**
+     * {@inheritdoc}
+     *
+     * @param Integer $line
+     *            the line number
+     * @param String $check
+     *            the name of the check
+     * @param String $message
+     *            the text
+     * @param String $level
+     *            the severity level
+     * @SuppressWarnings checkUnusedFunctionParameters
+     */
+    public function writeError($line, $check, $message, $level = WARNING)
     {
-        if ($this->fileHandle === false) {
-            $this->fileHandle = fopen($this->outputFile, "w");
-        }
-        return $this->fileHandle;
-    }
-
-    private function _ensureFileClosed()
-    {
-        if ($this->fileHandle) {
-            fclose($this->fileHandle);
-            $this->outputFile = false;
-        }
+        $msg = "\t" . $level . " Line:" . $line . ": " . $message . PHP_EOL;
+        $this->_write($msg);
     }
 }

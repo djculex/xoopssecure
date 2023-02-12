@@ -18,12 +18,12 @@ declare(strict_types=1);
  * @author    XOOPS Project <www.xoops.org> <www.xoops.ir>
  */
 
-\defined('XOOPS_ROOT_PATH') || die('Restricted access.');
+defined('XOOPS_ROOT_PATH') || die('Restricted access.');
 
 /**
  * Class XoopssecureCorePreload
  */
-class xoopsSecureCorePreload extends \XoopsPreloadItem
+class xoopsSecureCorePreload extends XoopsPreloadItem
 {
     /** Include autoloader
      * @param $args

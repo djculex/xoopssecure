@@ -19,16 +19,6 @@ class StatementStack
     var $defaultItem;
 
     /**
-     * Return the size of the stack.
-     *
-     * @return Integer
-     */
-    public function count()
-    {
-        return count($this->statements);
-    }
-
-    /**
      * Add a statement to the stack.
      *
      * @param StatementItem $item
@@ -55,7 +45,7 @@ class StatementStack
      */
     public function getStackDump()
     {
-        $dump       = "";
+        $dump = "";
         $stackTypes = [
             "FUNCTION",
             "INTERFACE",
@@ -91,6 +81,17 @@ class StatementStack
     }
 
     /**
+     * return a Singleton of a StackItem corresponding to the file level.
+     */
+    public function getDefaultItem()
+    {
+        if ($this->defaultItem == null) {
+            $this->defaultItem = new StatementItem();
+        }
+        return $this->defaultItem;
+    }
+
+    /**
      * Return the parent stack item.
      *
      * @return StatementItem
@@ -104,6 +105,16 @@ class StatementStack
             // We return the default values
             return $this->getDefaultItem();
         }
+    }
+
+    /**
+     * Return the size of the stack.
+     *
+     * @return Integer
+     */
+    public function count()
+    {
+        return count($this->statements);
     }
 
     /**
@@ -139,16 +150,5 @@ class StatementStack
         }
         // In case of a empty stack, we are at the root of a PHP file (with no class or function).
         return $this->getDefaultItem();
-    }
-
-    /**
-     * return a Singleton of a StackItem corresponding to the file level.
-     */
-    public function getDefaultItem()
-    {
-        if ($this->defaultItem == null) {
-            $this->defaultItem = new StatementItem();
-        }
-        return $this->defaultItem;
     }
 }

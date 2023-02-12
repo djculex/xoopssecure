@@ -20,7 +20,7 @@ abstract class CheckStyleConfig
     /**
      * Return a true if the test exist, false otherwise.
      *
-     * @param  String $test
+     * @param String $test
      *            name of the test
      * @return Boolean true if test exists.
      */
@@ -32,7 +32,7 @@ abstract class CheckStyleConfig
     /**
      * Return a list of items associed with a test.
      *
-     * @param  String $test
+     * @param String $test
      *            name of the test
      * @return array the list of items for this test.
      */
@@ -43,22 +43,9 @@ abstract class CheckStyleConfig
     }
 
     /**
-     * Return a list of exception for a test.
-     *
-     * @param  String $test
-     *            name of the test
-     * @return array the list of exceptions for this test.
-     */
-    public function getTestExceptions($test)
-    {
-        $test = strtolower($test);
-        return isset($this->config[$test]['exception']) ? $this->config[$test]['exception'] : false;
-    }
-
-    /**
      * Return a list of items associed with a configuration.
      *
-     * @param  String $config
+     * @param String $config
      *            name of the config
      * @return array the list of items for this config.
      */
@@ -71,7 +58,7 @@ abstract class CheckStyleConfig
     /**
      * Return the level of severity of a test.
      *
-     * @param  String $test
+     * @param String $test
      *            name of the test
      * @return the level of severity.
      */
@@ -86,10 +73,10 @@ abstract class CheckStyleConfig
         }
 
         $invalidLevels = array(
-        ERROR,
-        IGNORE,
-        INFO,
-        WARNING
+            ERROR,
+            IGNORE,
+            INFO,
+            WARNING
         );
 
         if (!in_array($ret, $invalidLevels)) {
@@ -103,7 +90,7 @@ abstract class CheckStyleConfig
     /**
      * Return the regular expression linked to the test.
      *
-     * @param  String $test
+     * @param String $test
      *            name of the test
      * @return the regular expression.
      */
@@ -121,7 +108,7 @@ abstract class CheckStyleConfig
     /**
      * Return the list of deprecated method and their replacement.
      *
-     * @param  String $test
+     * @param String $test
      *            name of the test
      * @return the list of depecated values.
      */
@@ -139,7 +126,7 @@ abstract class CheckStyleConfig
     /**
      * Return the list of aliases and their replacement.
      *
-     * @param  String $test
+     * @param String $test
      *            name of the test
      * @return the list of replaced values.
      */
@@ -157,7 +144,7 @@ abstract class CheckStyleConfig
     /**
      * Return the list of replacements.
      *
-     * @param  String $test
+     * @param String $test
      *            name of the test
      * @return the list of replaced values.
      */
@@ -175,9 +162,9 @@ abstract class CheckStyleConfig
     /**
      * Return the value of a property
      *
-     * @param  String $test
+     * @param String $test
      *            name of the test
-     * @param  String $property
+     * @param String $property
      *            name of the property
      * @return the value.
      */
@@ -214,9 +201,9 @@ abstract class CheckStyleConfig
     /**
      * Indicate if a value is an exception for the test.
      *
-     * @param  String $test
+     * @param String $test
      *            name of the test
-     * @param  String $value
+     * @param String $value
      *            the value
      * @return Boolean true is the value is listed as an exception.
      */
@@ -224,5 +211,18 @@ abstract class CheckStyleConfig
     {
         $exceptions = $this->getTestExceptions($test);
         return (!empty($exceptions) && in_array($value, $exceptions));
+    }
+
+    /**
+     * Return a list of exception for a test.
+     *
+     * @param String $test
+     *            name of the test
+     * @return array the list of exceptions for this test.
+     */
+    public function getTestExceptions($test)
+    {
+        $test = strtolower($test);
+        return isset($this->config[$test]['exception']) ? $this->config[$test]['exception'] : false;
     }
 }

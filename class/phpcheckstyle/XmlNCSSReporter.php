@@ -89,6 +89,24 @@ class XmlNCSSReporter
         $this->_initXml();
     }
 
+    private function _initXml()
+    {
+        $this->document = new DomDocument("1.0");
+        $this->root = $this->document->createElement('javancss');
+        $this->document->appendChild($this->root);
+
+        $date = $this->document->createElement('date', date("Y-m-d"));
+        $this->root->appendChild($date);
+
+        $time = $this->document->createElement('time', date("G:i:s"));
+        $this->root->appendChild($time);
+
+        $this->packages = $this->document->createElement('packages');
+        $this->root->appendChild($this->packages);
+
+        $this->objects = $this->document->createElement('objects'); // added later
+    }
+
     /**
      *
      * @see Reporter::start add the last element to the tree and save the DOM tree to the
@@ -102,12 +120,12 @@ class XmlNCSSReporter
 
     /**
      *
+     * @param String $phpFile
+     *            the file currently processed
+     * @SuppressWarnings checkUnusedFunctionParameters The parameter is inherited
      * @see Reporter::currentlyProcessing add the previous element to the tree and start a new elemtn
      *      for the new file
      *
-     * @param            String $phpFile
-     *            the file currently processed
-     * @SuppressWarnings checkUnusedFunctionParameters The parameter is inherited
      */
     public function currentlyProcessing($phpFile)
     {
@@ -152,7 +170,7 @@ class XmlNCSSReporter
             // Remove the last node
             $this->packages->removeChild($this->lastPackageChild);
         } else {
-            $this->nbPackages ++;
+            $this->nbPackages++;
 
             // Reset the values
             $this->packageClasses = $classes;
@@ -363,23 +381,5 @@ class XmlNCSSReporter
         $line->appendChild($colf);
 
         return $line;
-    }
-
-    private function _initXml()
-    {
-        $this->document = new DomDocument("1.0");
-        $this->root = $this->document->createElement('javancss');
-        $this->document->appendChild($this->root);
-
-        $date = $this->document->createElement('date', date("Y-m-d"));
-        $this->root->appendChild($date);
-
-        $time = $this->document->createElement('time', date("G:i:s"));
-        $this->root->appendChild($time);
-
-        $this->packages = $this->document->createElement('packages');
-        $this->root->appendChild($this->packages);
-
-        $this->objects = $this->document->createElement('objects'); // added later
     }
 }

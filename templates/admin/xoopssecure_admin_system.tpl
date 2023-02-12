@@ -60,16 +60,16 @@
                                         <div id="cvedetail<{$i.type}>" class="collapse xoopssecure_cvedetails"
                                              aria-labelledby="cvedetail<{$i.type}>" data-parent="#accordion">
                                             <{section name=vul loop=$i.vulner}>
-                                                <div class="xoopssecure_cvedetail_row"><{$i.vulner[vul].cve_id}></div>
-                                                <div class="xoopssecure_cvedetail_summary"><{$i.vulner[vul].summary}></div>
-                                                <div class="xoopssecure_cvedetail_publishdate">
-                                                    <{$i.vulner[vul].publish_date}>
-                                                </div>
-                                                <div class="xoopssecure_cvedetail_url">
-                                                    <a href="<{$i.vulner[vul].url}>">
-                                                        <{$smarty.const._MECH_XOOPSSECURE_CLICK}>
-                                                    </a>
-                                                </div>
+                                            <div class="xoopssecure_cvedetail_row"><{$i.vulner[vul].cve_id}></div>
+                                            <div class="xoopssecure_cvedetail_summary"><{$i.vulner[vul].summary}></div>
+                                            <div class="xoopssecure_cvedetail_publishdate">
+                                                <{$i.vulner[vul].publish_date}>
+                                            </div>
+                                            <div class="xoopssecure_cvedetail_url">
+                                                <a href="<{$i.vulner[vul].url}>">
+                                                    <{$smarty.const._MECH_XOOPSSECURE_CLICK}>
+                                                </a>
+                                            </div>
                                             <{/section}>
                                         </div>
                                         <{/if}>

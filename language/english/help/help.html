@@ -1,8 +1,8 @@
-<div id="help-template" class="outer">
+<div class="outer" id="help-template">
     <h1 class="head">Help:
         <a class="ui-corner-all tooltip" href="<{$xoops_url}>/modules/xoopssecure/admin/index.php"
-           title="Back to the administration of Xoops IScanner"> XoopsSecure <img src="<{xoAdminIcons home.png}>"
-                                                                       alt="Back to the Administration of Xoops IScanner">
+           title="Back to the administration of Xoops IScanner"> XoopsSecure <img alt="Back to the Administration of Xoops IScanner"
+                                                                                  src="<{xoAdminIcons home.png}>">
         </a></h1>
     <!-- -----Help Content ---------- -->
     <h4 class="odd">Description</h4>
@@ -11,59 +11,70 @@
     </p>
     <h4 class="odd">Install/uninstall</h4>
     <p class="even">
-Install the module through Admin -> System Module -> Modules. <br><br>
-Uninstall is done the same place Admin -> System Module -> Modules. 
+        Install the module through Admin -> System Module -> Modules. <br><br>
+        Uninstall is done the same place Admin -> System Module -> Modules.
     </p>
     <h4 class="odd">Features</h4>
     <p class="even">
         XoopsSecure is a module used to check for security issues in your Xoops Installation.<br>
-        The module's actions are alle but one run from admin side of Xoops. Only a cron scan is possible to run from front-end, but only if log in is from admin.<br><br>
+        The module's actions are alle but one run from admin side of Xoops. Only a cron scan is possible to run from
+        front-end, but only if log in is from admin.<br><br>
     </p>
     <h1 class="head">What it does</h1>
-        <h5 class="odd">Scan for missing Index files</h5>
-        <p class="even">
-            Missing index files is if the server is not secured against directory browsing a way for visitors to see all the content<br>
-            of your folders. An index file giving a "no permission" or "error 404" will prevent this.<br><br> 
-            This scan will create - if you permit it - these index files where missing.
-            Check files and folders for right permissions<br>
-        </p>
-        <h5 class="odd">Check files and folders permissions</h5>
-        <p class="even">
-            Some files and folders ought to have certaing permissions set. For instance read only or writable<br>
-            This scan will check these files and folders and if configured set the right permissions<br>
-        </p>
-        <h5 class="odd">Check files and folders for malware</h5>
-        <p class="even">
-            While this modules will not identify ALL malware out there, it will look for know hacker names, malware patterns and know<br>
-            bad guys that could suddently be added to your script.<br><br>It does NOT have the ability to automaticly remove them and <br>
-            some results could be coincidences but it will give you a scan log to see what is found at least.
-        </p>
-        <h5 class="odd">Check Coding Standards</h5>
-        <p class="even">
-            This scan will go through pages in a defined folder to check for issues concerning development. It is not as effective as for instance<br>
-            phpcodesniffer, but it will find the most obvious sinners agains PSR-12 & Xoops Coding Standards.<br><br>Some indications of what maybe should be changed..some not<br>
-            Same options of deleting, ignoring etc as the other scans are possible.
-        </p>
-        <h5 class="odd">Check server settings</h5>
-        <p class="even">
-            Looking through the server config, software and frameworks<br><br>
-            If a hosted web this could be difficult to change, but in local and your own server this could be helpfull to close a few gaps<br><br>
-            This page will also display eventual issues concerning MySql, Xoops and Apache. 
-        </p>
-        <h5 class="odd">Automatic / cron scan</h5> 
-        <p class="even">
-            Here you could config automatically scanning for changes in your pages. The result will be sent admin email. If a lot of pages suddently have been modified<br>
-            and you know you havent done it... it could be a good idea to look it over.
-        </p>
-        <h5 class="odd">Back-up</h5>
-        <p class="even">
-            This feature is both manual and automatic.<br>
-            Set the automatic backup to run after every scan but max after certain amount of time to not flood the server with backup files.<br><br>
-            You can of course download and delete from the admin section.<br><br>
-            In the backup/download tab in admin of the module you can also configure wich github repos to follow. These will display under usefull downloads<br>
-            showing latest releases so you can keep following them.<br><br>
-            The github free api being used allow 60 loadings per minute. During development/testing this could result in an empty page.<br><br>Just wait a few minutes to refresh.
-        </p>
-    
+    <h5 class="odd">Scan for missing Index files</h5>
+    <p class="even">
+        Missing index files is if the server is not secured against directory browsing a way for visitors to see all the
+        content<br>
+        of your folders. An index file giving a "no permission" or "error 404" will prevent this.<br><br>
+        This scan will create - if you permit it - these index files where missing.
+        Check files and folders for right permissions<br>
+    </p>
+    <h5 class="odd">Check files and folders permissions</h5>
+    <p class="even">
+        Some files and folders ought to have certaing permissions set. For instance read only or writable<br>
+        This scan will check these files and folders and if configured set the right permissions<br>
+    </p>
+    <h5 class="odd">Check files and folders for malware</h5>
+    <p class="even">
+        While this modules will not identify ALL malware out there, it will look for know hacker names, malware patterns
+        and know<br>
+        bad guys that could suddently be added to your script.<br><br>It does NOT have the ability to automaticly remove
+        them and <br>
+        some results could be coincidences but it will give you a scan log to see what is found at least.
+    </p>
+    <h5 class="odd">Check Coding Standards</h5>
+    <p class="even">
+        This scan will go through pages in a defined folder to check for issues concerning development. It is not as
+        effective as for instance<br>
+        phpcodesniffer, but it will find the most obvious sinners agains PSR-12 & Xoops Coding Standards.<br><br>Some
+        indications of what maybe should be changed..some not<br>
+        Same options of deleting, ignoring etc as the other scans are possible.
+    </p>
+    <h5 class="odd">Check server settings</h5>
+    <p class="even">
+        Looking through the server config, software and frameworks<br><br>
+        If a hosted web this could be difficult to change, but in local and your own server this could be helpfull to
+        close a few gaps<br><br>
+        This page will also display eventual issues concerning MySql, Xoops and Apache.
+    </p>
+    <h5 class="odd">Automatic / cron scan</h5>
+    <p class="even">
+        Here you could config automatically scanning for changes in your pages. The result will be sent admin email. If
+        a lot of pages suddently have been modified<br>
+        and you know you havent done it... it could be a good idea to look it over.
+    </p>
+    <h5 class="odd">Back-up</h5>
+    <p class="even">
+        This feature is both manual and automatic.<br>
+        Set the automatic backup to run after every scan but max after certain amount of time to not flood the server
+        with backup files.<br><br>
+        You can of course download and delete from the admin section.<br><br>
+        In the backup/download tab in admin of the module you can also configure wich github repos to follow. These will
+        display under usefull downloads<br>
+        showing latest releases so you can keep following them.<br><br>
+        The github free api being used allow 60 loadings per minute. During development/testing this could result in an
+        empty page.<br><br>Just wait a few minutes to refresh.
+    </p>
+
     <!-- -----Help Content ---------- -->
 </div>

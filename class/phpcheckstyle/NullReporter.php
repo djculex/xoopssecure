@@ -10,13 +10,13 @@ class NullReporter extends Reporter
     /**
      * {@inheritdoc}
      *
-     * @param            Integer $line
+     * @param Integer $line
      *            the line number
-     * @param            String  $check
+     * @param String $check
      *            the name of the check
-     * @param            String  $message
+     * @param String $message
      *            the text to log
-     * @param            String  $level
+     * @param String $level
      *            the severity level
      * @SuppressWarnings
      */

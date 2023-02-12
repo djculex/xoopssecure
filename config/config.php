@@ -27,49 +27,49 @@ declare(strict_types=1);
  * return object
  */
 
-$moduleDirName  = \basename(\dirname(__DIR__));
-$moduleDirNameUpper  = \mb_strtoupper($moduleDirName);
+$moduleDirName = basename(dirname(__DIR__));
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
 return (object)[
-    'name'           => \mb_strtoupper($moduleDirName) . ' Module Configurator',
-    'paths'          => [
-        'dirname'    => $moduleDirName,
-        'admin'      => \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/admin',
-        'modPath'    => \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName,
-        'modUrl'     => \XOOPS_URL . '/modules/' . $moduleDirName,
-        'uploadPath' => \XOOPS_UPLOAD_PATH . '/' . $moduleDirName,
-        'uploadUrl'  => \XOOPS_UPLOAD_URL . '/' . $moduleDirName,
+    'name' => mb_strtoupper($moduleDirName) . ' Module Configurator',
+    'paths' => [
+        'dirname' => $moduleDirName,
+        'admin' => XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/admin',
+        'modPath' => XOOPS_ROOT_PATH . '/modules/' . $moduleDirName,
+        'modUrl' => XOOPS_URL . '/modules/' . $moduleDirName,
+        'uploadPath' => XOOPS_UPLOAD_PATH . '/' . $moduleDirName,
+        'uploadUrl' => XOOPS_UPLOAD_URL . '/' . $moduleDirName,
     ],
-    'uploadFolders'  => [
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName,
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/issues',
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/stats',
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images',
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/issues',
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/stats',
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/files',
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/files/issues',
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/files/stats',
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/temp',
+    'uploadFolders' => [
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName,
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/issues',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/stats',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/issues',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/stats',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/files',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/files/issues',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/files/stats',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/temp',
     ],
-    'copyBlankFiles'  => [
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images',
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/issues',
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/stats',
+    'copyBlankFiles' => [
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/issues',
+        XOOPS_UPLOAD_PATH . '/' . $moduleDirName . '/images/stats',
     ],
-    'copyTestFolders'  => [
-        [\XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/testdata/uploads',
-        \XOOPS_UPLOAD_PATH . '/' . $moduleDirName],
+    'copyTestFolders' => [
+        [XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/testdata/uploads',
+            XOOPS_UPLOAD_PATH . '/' . $moduleDirName],
     ],
-    'templateFolders'  => [
+    'templateFolders' => [
         '/templates/',
     ],
-    'oldFiles'  => [
+    'oldFiles' => [
     ],
-    'oldFolders'  => [
+    'oldFolders' => [
     ],
-    'renameTables'  => [
+    'renameTables' => [
     ],
-    'moduleStats'  => [
+    'moduleStats' => [
     ],
-    'modCopyright' => "<a href='https://xoops.org' title='XOOPS Project' target='_blank'><img src='" . \XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . "/assets/images/logo/logoModule.png' alt='XOOPS Project'></a>",
+    'modCopyright' => "<a href='https://xoops.org' title='XOOPS Project' target='_blank'><img src='" . XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . "/assets/images/logo/logoModule.png' alt='XOOPS Project'></a>",
 ];

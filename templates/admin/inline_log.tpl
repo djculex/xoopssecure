@@ -1,7 +1,8 @@
 <div class="row justify-content-md-center">
     <{foreach item=arr from=$result}>
     <style type="text/css">
-        <{$arr.css}>
+        <
+        {$arr.css} >
     </style>
     <div class="col-md-8">
         <fieldset class="border p-2" style="margin: 3% 0px;">

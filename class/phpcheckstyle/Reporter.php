@@ -81,7 +81,6 @@ abstract class Reporter
      *                 of
      *                 the
      *                 error
-
      * @param String $check
      *            the name of the check
      * @param $message error
@@ -91,7 +90,6 @@ abstract class Reporter
      *                 expression
      *                 (if
      *                 applicable)
-
      * @param $level   the
      *                 severity
      *                 level

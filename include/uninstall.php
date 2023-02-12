@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 /**
  * Xoops XoopsSecure module for xoops
  *
@@ -16,11 +17,11 @@ use XoopsModules\Xoopssecure;
 /**
  * Prepares system prior to attempting to uninstall module
  *
- * @param \XoopsModule $module {@link XoopsModule}
+ * @param XoopsModule $module {@link XoopsModule}
  *
  * @return bool true if ready to uninstall, false if not
  */
-function xoops_module_pre_uninstall_xoopssecure(\XoopsModule $module)
+function xoops_module_pre_uninstall_xoopssecure(XoopsModule $module)
 {
     // Do some synchronization
     return true;
@@ -29,14 +30,14 @@ function xoops_module_pre_uninstall_xoopssecure(\XoopsModule $module)
 /**
  * Performs tasks required during uninstallation of the module
  *
- * @param \XoopsModule $module {@link XoopsModule}
+ * @param XoopsModule $module {@link XoopsModule}
  *
  * @return bool true if uninstallation successful, false if not
  */
-function xoops_module_uninstall_xoopssecure(\XoopsModule $module)
+function xoops_module_uninstall_xoopssecure(XoopsModule $module)
 {
-    $moduleDirName      = \basename(\dirname(__DIR__));
-    $moduleDirNameUpper = \mb_strtoupper($moduleDirName);
+    $moduleDirName = basename(dirname(__DIR__));
+    $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
     $helper = Xoopssecure\Helper::getInstance();
 
@@ -47,7 +48,7 @@ function xoops_module_uninstall_xoopssecure(\XoopsModule $module)
     // Rename uploads folder to BAK and add date to name
     //------------------------------------------------------------------
     $uploadDirectory = $GLOBALS['xoops']->path("uploads/$moduleDirName");
-    $dirInfo = new \SplFileInfo($uploadDirectory);
+    $dirInfo = new SplFileInfo($uploadDirectory);
     if ($dirInfo->isDir()) {
         // The directory exists so rename it
         $date = date('Y-m-d');

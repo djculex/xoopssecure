@@ -22,21 +22,21 @@ class ArrayReporter extends Reporter
      *
      * @param Integer $line
      *            the line number
-     * @param String  $check
+     * @param String $check
      *            the name of the check
-     * @param String  $message
+     * @param String $message
      *            the text to log
-     * @param String  $level
+     * @param String $level
      *            the severity level
      */
     public function writeError($line, $check, $message, $level = WARNING)
     {
         // echo $this->currentPhpFile . " " . $level . " Line:" . $line . " - " . $message . "\n";
         $this->outputFile[$this->currentPhpFile][$line][] = array(
-        "level"   => $level,
-        "line"    => $line,
-        "message" => $message,
-        "check"   => $check,
+            "level" => $level,
+            "line" => $line,
+            "message" => $message,
+            "check" => $check,
         );
     }
 }

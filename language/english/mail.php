@@ -23,8 +23,8 @@ declare(strict_types=1);
  * @ignore Language defines
  */
 
-$moduleDirName      = \basename(\dirname(__DIR__, 2));
-$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
+$moduleDirName = basename(dirname(__DIR__, 2));
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 define("MAIL_XOOPSSECURE_MAIL_SENDERNAME", "XoopSecure");
 define("MAIL_XOOPSSECURE_MAIL_FROM", "XoopSecure cron scan");
