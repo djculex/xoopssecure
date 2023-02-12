@@ -55,13 +55,13 @@ $language_data = array(
     'LANG_NAME' => 'Racket',
     'COMMENT_SINGLE' => array(
         1 => ';',
-        ),
+    ),
     'COMMENT_MULTI' => array(
         '#|' => '|#',
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"',
-        ),
+    ),
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         1 => array(
@@ -495,7 +495,7 @@ $language_data = array(
             'write-bytes-avail/enable-break', 'write-char', 'write-special',
             'write-special-avail*', 'write-special-evt', 'write-string',
             'zero?',
-            ),
+        ),
 
         2 => array(
             '#%app', '#%datum', '#%expression', '#%module-begin', '#%plain-app',
@@ -554,7 +554,7 @@ $language_data = array(
             'unsyntax', 'unsyntax-splicing', 'when', 'with-continuation-mark',
             'with-handlers', 'with-handlers*', 'with-input-from-file',
             'with-output-to-file', 'with-syntax', 'λ',
-            ),
+        ),
 
         3 => array(
             '&gt;/c', '&lt;/c', 'append*', 'append-map', 'argmax', 'argmin',
@@ -703,7 +703,7 @@ $language_data = array(
             'with-input-from-bytes', 'with-input-from-string',
             'with-output-to-bytes', 'with-output-to-string', 'would-be-future',
             'writable&lt;%&gt;', 'xor',
-            ),
+        ),
         4 => array(
             '&gt;=/c', '&lt;=/c', '-&gt;*m', '-&gt;d', '-&gt;dm', '-&gt;i', '-&gt;m',
             '=/c', 'absent', 'abstract', 'add-between', 'and/c', 'any',
@@ -787,8 +787,8 @@ $language_data = array(
             'vector-immutableof', 'vector/c', 'vectorof', 'with-contract',
             'with-method', 'write-to-file', '~.a', '~.s', '~.v', '~a', '~e',
             '~r', '~s', '~v',
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         0 => array(
             '&gt;', '&gt;=', '&lt;', '&lt;=', '*', '+', '-', '-&gt;', '-&gt;*', '...', '/',
@@ -796,15 +796,15 @@ $language_data = array(
             '#false', '#t', '#T', '#true', '#lang', '#reader', '.', '\'', '#`',
             '#,@', '#,', '#\'', '`', '@', ',', '#%', '#$', '#&', '#~', '#rx',
             '#px', '#<<', '#;', '#hash', '#',
-            ),
         ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
         4 => false,
-        ),
+    ),
     'NUMBERS' => array(
         1 => '(((#x#e)|(#e#x)|(#x#i)|(#i#x)|(#x))((((((((((((-)|(\+)))?((((' .
             '(([0-9])+)?(\.)?(([0-9a-fA-F])+(#)*)))|(((([0-9a-fA-F])+(#)*)' .
@@ -887,78 +887,74 @@ $language_data = array(
             '9])+(#)*)(\.)?(#)*))|(((([0-9])+(#)*)\\/(([0-9])+(#)*))))((((' .
             '[sl])|([def]))((((-)|(\+)))?([0-9])+)))?)))|((((-)|(\+))(((in' .
             'f\.)|(nan\.))[0f])))))|(((((-)|(\+)))?([0-9])+))))',
-            ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: blue;',
             2 => 'color: rgb(34, 34, 139);',
             3 => 'color: blue;',
             4 => 'color: rgb(34, 34, 139);',
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: rgb(194, 116, 31);',
             'MULTI' => 'color: rgb(194, 116, 31);',
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => '',
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: rgb(132, 60,36);',
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: rgb(34, 139, 34);',
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: rgb(34, 139, 34);',
             1 => 'color: rgb(34, 139, 34);',
             2 => 'color: rgb(34, 139, 34);',
             3 => 'color: rgb(34, 139, 34);',
             4 => 'color: rgb(34, 139, 34);',
-            ),
+        ),
         'METHODS' => array(
             0 => 'color: #202020;',
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: rgb(132, 60,36);',
-            ),
+        ),
         'REGEXPS' => array(
             1 => 'color: rgb(34, 139, 34);',
             2 => 'color: rgb(132, 60,36);',
             3 => 'color: rgb(34, 139, 34);',
-            ),
-        'SCRIPT' => array(
-            ),
         ),
+        'SCRIPT' => array(),
+    ),
     'URLS' => array(
         1 => 'http://docs.racket-lang.org/reference/',
         2 => 'http://docs.racket-lang.org/reference/',
         3 => 'http://docs.racket-lang.org/reference/',
         4 => 'http://docs.racket-lang.org/reference/',
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
         1 => '#\\\\(nul|null|backspace|tab|newline|linefeed|vtab|page|retur' .
             'n|space|rubout|([0-7]{1,3})|(u[[:xdigit:]]{1,4})|(U[[:xdigit:' .
             ']]{1,6})|[a-z])',
         2 => '#:[^[:space:]()[\\]{}",\']+',
         3 => '\'((\\\\ )|([^[:space:]()[\\]{}",\']))+',
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             'DISALLOWED_BEFORE' => '[[:space:]()[\\]{}",\']',
-            ),
+        ),
         'ENABLE_FLAGS' => array(
             'SYMBOLS' => GESHI_MAYBE,
             'BRACKETS' => GESHI_MAYBE,
             'REGEXPS' => GESHI_MAYBE,
             'ESCAPE_CHAR' => GESHI_MAYBE,
-            )
         )
+    )
 );

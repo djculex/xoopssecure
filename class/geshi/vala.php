@@ -35,7 +35,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Vala',
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -58,87 +58,82 @@ $language_data = array (
             'requires', 'return', 'set', 'static', 'switch', 'this', 'throw',
             'throws', 'true', 'try', 'using', 'value', 'var', 'virtual',
             'volatile', 'void', 'yield', 'yields', 'while'
-            ),
+        ),
         2 => array(
             '#elif', '#endif', '#else', '#if'
-            ),
+        ),
         3 => array(
             'is', 'new', 'owned', 'sizeof', 'typeof', 'unchecked', 'unowned', 'weak'
-            ),
+        ),
         4 => array(
             'bool', 'char', 'class', 'delegate', 'double', 'enum',
             'errordomain', 'float', 'int', 'int8', 'int16', 'int32', 'int64',
             'interface', 'long', 'short', 'signal', 'size_t', 'ssize_t',
             'string', 'struct', 'uchar', 'uint', 'uint8', 'uint16', 'uint32',
             'ulong', 'unichar', 'ushort'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '+', '-', '*', '?', '=', '/', '%', '&', '>', '<', '^', '!', ':', ';',
         '(', ')', '{', '}', '[', ']', '|'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
         2 => true,
         3 => true,
         4 => true,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #0600FF;',
             2 => 'color: #FF8000; font-weight: bold;',
             3 => 'color: #008000;',
             4 => 'color: #FF0000;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #008080; font-style: italic;',
             3 => 'color: #008080;',
             'MULTI' => 'color: #008080; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #008080; font-weight: bold;',
             'HARD' => 'color: #008080; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #000000;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #666666;',
             'HARD' => 'color: #666666;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #FF0000;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #0000FF;',
             2 => 'color: #0000FF;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #008000;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(

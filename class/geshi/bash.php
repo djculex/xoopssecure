@@ -52,7 +52,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Bash',
     // Bash DOES have single line comments with # markers. But bash also has
     // the  $# variable, so comments need special handling (see sf.net
@@ -69,7 +69,7 @@ $language_data = array (
         // Single-Line Shell usage: Hide the prompt at the beginning
         /* 4 => "/\A(?!#!)\s*(?>[\w:@\\/\\-\\._~]*[$#]\s?)?(?=[^\n]+\n?\Z)|^(?!#!)(\w+@)?[\w\\-\\.]+(:~?)[\w\\/\\-\\._]*?[$#]\s?/ms" */
         4 => "/\A(?!#!)(?:(?>[\w:@\\/\\-\\._~]*)[$#]\s?)(?=(?>[^\n]+)\n?\Z)|^(?!#!)(?:\w+@)?(?>[\w\\-\\.]+)(?>:~?[\w\\/\\-\\._]*?)?[$#]\s?/sm"
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
     'HARDQUOTE' => array("'", "'"),
@@ -86,13 +86,13 @@ $language_data = array (
         4 => "/\\$\\([^\\n\\)]*?\\)/i",
         // `...`
         5 => "/`[^`]*`/"
-        ),
+    ),
     'KEYWORDS' => array(
         // Control flow keywords and super-important builtins
         1 => array(
             'case', 'do', 'done', 'elif', 'else', 'esac', 'fi', 'for', 'function',
             'if', 'in', 'select', 'set', 'then', 'time', 'until', 'while'
-            ),
+        ),
         // Common Unix commands
         2 => array(
             'aclocal', 'aconnect', 'apachectl', 'apache2ctl', 'aplay', 'apm',
@@ -168,10 +168,10 @@ $language_data = array (
 
             'ed', 'egrep', 'env', 'expr',
 
-            'false', 'fbset', 'fdisk', 'ffmpeg', 'fgconsole','fgrep', 'file',
+            'false', 'fbset', 'fdisk', 'ffmpeg', 'fgconsole', 'fgrep', 'file',
             'find', 'flex', 'flex++', 'fmt', 'free', 'ftp', 'funzip', 'fuser',
 
-            'g++', 'gawk', 'gc','gcc', 'gdb', 'gdisk', 'getent', 'getkeycodes',
+            'g++', 'gawk', 'gc', 'gcc', 'gdb', 'gdisk', 'getent', 'getkeycodes',
             'getopt', 'gettext', 'gettextize', 'gimp', 'gimp-remote',
             'gimptool', 'gmake', 'gocr', 'grep', 'groups', 'gs', 'gunzip',
             'gzexe', 'gzip',
@@ -267,7 +267,7 @@ $language_data = array (
 
             'jar', 'java', 'javac', 'join',
 
-            'kbd_mode','kbdrate', 'kdialog', 'kfile', 'killall',
+            'kbd_mode', 'kbdrate', 'kdialog', 'kfile', 'killall',
 
             'lame', 'last', 'lastb', 'ld', 'ld86', 'ldd', 'less', 'lex', 'link',
             'ln', 'loadkeys', 'loadunimap', 'locate', 'lockfile', 'login',
@@ -366,7 +366,7 @@ $language_data = array (
             'zcat', 'zcmp', 'zdiff', 'zdump', 'zegrep', 'zfgrep', 'zforce',
             'zgrep', 'zip', 'zipgrep', 'zipinfo', 'zless', 'zmore', 'znew',
             'zsh', 'zsoelim'
-            ),
+        ),
         // Builtin commands
         3 => array(
             'alias', 'bg', 'bind', 'break', 'builtin', 'caller', 'cd', 'command',
@@ -377,30 +377,30 @@ $language_data = array (
             'readarray', 'readonly', 'return', 'shift', 'shopt', 'source',
             'suspend', 'test', 'times', 'trap', 'type', 'typeset', 'ulimit',
             'umask', 'unalias', 'unset', 'wait'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '[', ']', '!', '@', '%', '&', '*', '|', '/', '<', '>', ';;', '`'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
         2 => true,
         3 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #000000; font-weight: bold;',
             2 => 'color: #c20cb9; font-weight: bold;',
             3 => 'color: #7a0874; font-weight: bold;'
-            ),
+        ),
         'COMMENTS' => array(
             0 => 'color: #666666; font-style: italic;',
             1 => 'color: #800000;',
             2 => 'color: #cc0000; font-style: italic;',
             3 => 'color: #000000; font-weight: bold;',
             4 => 'color: #666666;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             1 => 'color: #000099; font-weight: bold;',
             2 => 'color: #007800;',
@@ -408,40 +408,37 @@ $language_data = array (
             4 => 'color: #007800;',
             5 => 'color: #780078;',
             'HARD' => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #7a0874; font-weight: bold;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;',
             'HARD' => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #000000;'
-            ),
-        'METHODS' => array(
-            ),
+        ),
+        'METHODS' => array(),
         'SYMBOLS' => array(
             0 => 'color: #000000; font-weight: bold;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #007800;',
             1 => 'color: #007800;',
             2 => 'color: #007800;',
             4 => 'color: #007800;',
             5 => 'color: #660033;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
         //Variables (will be handled by comment_regexps)
         0 => "\\$\\{[a-zA-Z_][a-zA-Z0-9_]*?\\}",
@@ -453,12 +450,10 @@ $language_data = array (
         4 => "\\$[*#\$\\-\\?!\d]",
         //Parameters of commands
         5 => "(?<=\s)--?[0-9a-zA-Z\-]+(?=[\s=]|<(?:SEMI|PIPE)>|$)"
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
         'COMMENTS' => array(
@@ -466,10 +461,10 @@ $language_data = array (
         ),
         'KEYWORDS' => array(
             'DISALLOWED_BEFORE' => "(?<![\.\-a-zA-Z0-9_\$\#:])",
-            'DISALLOWED_AFTER' =>  "(?![\.\-a-zA-Z0-9_%=\\/:])",
+            'DISALLOWED_AFTER' => "(?![\.\-a-zA-Z0-9_%=\\/:])",
             2 => array(
                 'SPACE_AS_WHITESPACE' => false
-                )
             )
         )
+    )
 );

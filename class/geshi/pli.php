@@ -149,45 +149,45 @@ $language_data = array(
             'vs', 'vsam', 'wait', 'wchar', 'wcharval', 'weekday', 'when',
             'whigh', 'while', 'widechar', 'wlow', 'write', 'xmlchar', 'y4date',
             'y4julian', 'y4year', 'zdiv', 'zerodivide'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         1 => array(
             '+', '-', '*', '/', '=', '<', '>', '&', '^', '|', ':', '(', ')', ';', ','
-            )
-        ),
+        )
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #b1b100;'
-            ),
+        ),
         'COMMENTS' => array(
             'MULTI' => 'color: #666666; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #009900;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #0000ff;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;',
-            ),
+        ),
         'METHODS' => array(
             0 => 'color: #004000;'
-            ),
+        ),
         'SYMBOLS' => array(
             1 => 'color: #339933;'
-            ),
+        ),
         'REGEXPS' => array(),
         'SCRIPT' => array()
-        ),
+    ),
     'URLS' => array(1 => ''),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(1 => '.'),

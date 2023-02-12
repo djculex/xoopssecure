@@ -48,13 +48,13 @@ $language_data = array(
     'KEYWORDS' => array(
         1 => array(
             'define'
-            ),
+        ),
         2 => array(
             'command', 'contact', 'contactgroup', 'host', 'hostdependency',
             'hostescalation', 'hostextinfo', 'hostgroup', 'service',
             'servicedependency', 'serviceescalation',
             'serviceextinfo', 'servicegroup', 'timeperiod'
-            ),
+        ),
         3 => array(
             'active_checks_enabled', 'passive_checks_enabled', 'alias',
             'display_name', 'host_name', 'address', 'hostgroups', 'parents',
@@ -86,57 +86,57 @@ $language_data = array(
             'notification_failure_criteria', 'dependency_period',
             'first_notification', 'last_notification', 'escalation_period',
             'escalation_options'
-            ),
+        ),
         4 => array(
             'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday',
             'sunday', 'january', 'february', 'march', 'april', 'may', 'june',
             'july', 'august', 'september', 'october', 'november', 'december',
             'day'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         0 => array(
             '{', '}', ',', '+'
-            )
-        ),
+        )
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
         4 => false,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'font-weight:bold;color:#FFDCA8;',
             2 => 'font-weight:bold;color #FFA858;',
             3 => 'font-weight:bold;color:#00C0C0;',
             4 => 'font-weight:bold;color:#C0C0FF;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'font-weight:bold;color:#000000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => ''
-            ),
+        ),
         'COMMENTS' => array(
             0 => 'color: #AAAAAA; font-style: italic;',
             1 => 'color: #AAAAAA; font-style: italic;',
             2 => 'color: #AAAAAA; font-style: italic;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #009900;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #660066;',
             'HARD' => 'color: #660066;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #006600;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'font-weight:bold;color:#808080;',
             1 => 'font-weight:bold;color:#000080;',
@@ -144,15 +144,15 @@ $language_data = array(
             3 => 'font-weight:bold;color:#808000;',
             4 => 'font-weight:bold;color:blue;',
             5 => 'font-weight:bold;color:#C0FFC0;',
-            ),
+        ),
         'SCRIPT' => array(
             0 => '',
-            )
-        ),
+        )
+    ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
         1 => '\\'
-        ),
+    ),
     'REGEXPS' => array(
         // Custom macros
         0 => array(
@@ -161,7 +161,7 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => '',
-            ),
+        ),
         // Custom macro definitions
         1 => array(
             GESHI_SEARCH => '(\A|\s)(_[a-zA-Z_]+)',
@@ -169,7 +169,7 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\\1',
             GESHI_AFTER => '',
-            ),
+        ),
         // $USERxx$
         2 => array(
             GESHI_SEARCH => '(\$USER[0-9]+\$)',
@@ -177,7 +177,7 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => '',
-            ),
+        ),
         // $ARGxx$
         3 => array(
             GESHI_SEARCH => '(\$ARG[1-9]\$)',
@@ -185,7 +185,7 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => '',
-            ),
+        ),
         // register 0
         4 => array(
             GESHI_SEARCH => '(\bregister[\\x20\\t]+[01])',
@@ -193,7 +193,7 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => '',
-            ),
+        ),
         // use
         5 => array(
             GESHI_SEARCH => '(use[\\x20\\t]+[^\\x20\\t]+)([\\x20\\t]*[$;#])',
@@ -201,23 +201,23 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\\1',
             GESHI_AFTER => '',
-            ),
         ),
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => false
-        ),
+    ),
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
             'NUMBERS' => GESHI_NEVER
-            )
         )
+    )
 );

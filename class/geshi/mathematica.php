@@ -4795,7 +4795,7 @@ $language_data = array(
         1 => array(
             '@', '//', '/@', '@@', '@@@', '#', '&', //functions
             '=', ':=', '+=', '-=', '*=', '/=', //assignments
-            '^', '+' ,'-', '/', '*', '>', '<', '%', //math
+            '^', '+', '-', '/', '*', '>', '<', '%', //math
             '||', '&&', //logic
             '/.', '/;', '->', ':>' //rules
         ),
@@ -5005,8 +5005,7 @@ $language_data = array(
         'STRINGS' => array(
             1 => 'color: #666666; font-style: italic;',
         ),
-        'NUMBERS' => array(
-        ),
+        'NUMBERS' => array(),
         'METHODS' => array(),
         'SYMBOLS' => array(
             1 => 'color: #133CAC; font-weight: bold;',

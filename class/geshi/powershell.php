@@ -46,7 +46,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'PowerShell',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array('<#' => '#>'),
@@ -81,7 +81,7 @@ $language_data = array (
             'Stop-Transcript', 'Suspend-Service', 'Tee-Object', 'Test-Path', 'Trace-Command',
             'Update-FormatData', 'Update-TypeData', 'Where-Object', 'Write-Debug', 'Write-Error',
             'Write-Host', 'Write-Output', 'Write-Progress', 'Write-Verbose', 'Write-Warning'
-            ),
+        ),
         2 => array(
             // Aliases
             'ac', 'asnp', 'clc', 'cli', 'clp', 'clv', 'cpi', 'cpp', 'cvpa', 'diff', 'epal', 'epcsv', 'fc',
@@ -92,12 +92,12 @@ $language_data = array (
             'tee', 'write', 'cat', 'cd', 'clear', 'cp', 'h', 'history', 'kill', 'lp', 'ls',
             'mount', 'mv', 'popd', 'ps', 'pushd', 'pwd', 'r', 'rm', 'rmdir', 'echo', 'cls', 'chdir',
             'copy', 'del', 'dir', 'erase', 'move', 'rd', 'ren', 'set', 'type'
-            ),
+        ),
         3 => array(
             // Reserved words
             'break', 'continue', 'do', 'for', 'foreach', 'while', 'if', 'switch', 'until', 'where',
             'function', 'filter', 'else', 'elseif', 'in', 'return', 'param', 'throw', 'trap'
-            ),
+        ),
         4 => array(
             // Operators
             '-eq', '-ne', '-gt', '-ge', '-lt', '-le', '-ieq', '-ine', '-igt', '-ige', '-ilt', '-ile',
@@ -106,7 +106,7 @@ $language_data = array (
             '-contains', '-notcontains', '-icontains', '-inotcontains', '-ccontains', '-cnotcontains',
             '-isnot', '-is', '-as', '-replace', '-ireplace', '-creplace', '-and', '-or', '-band', '-bor',
             '-not', '-bnot', '-f', '-casesensitive', '-exact', '-file', '-regex', '-wildcard'
-            ),
+        ),
         5 => array(
             // Options
             '-Year', '-Wrap', '-Word', '-Width', '-WhatIf', '-Wait', '-View', '-Verbose', '-Verb',
@@ -139,22 +139,22 @@ $language_data = array (
             '-Body', '-BinaryPathName', '-Begin', '-BackgroundColor', '-Average', '-AutoSize', '-Audit',
             '-AsString', '-AsSecureString', '-AsPlainText', '-As', '-ArgumentList', '-AppendPath', '-Append',
             '-Adjust', '-Activity', '-AclObject'
-            ),
-        6 => array(
-            '_','args','DebugPreference','Error','ErrorActionPreference',
-            'foreach','Home','Host','Input','LASTEXITCODE','MaximumAliasCount',
-            'MaximumDriveCount','MaximumFunctionCount','MaximumHistoryCount',
-            'MaximumVariableCount','OFS','PsHome',
-            'ReportErrorShowExceptionClass','ReportErrorShowInnerException',
-            'ReportErrorShowSource','ReportErrorShowStackTrace',
-            'ShouldProcessPreference','ShouldProcessReturnPreference',
-            'StackTrace','VerbosePreference','WarningPreference','PWD'
-            )
         ),
+        6 => array(
+            '_', 'args', 'DebugPreference', 'Error', 'ErrorActionPreference',
+            'foreach', 'Home', 'Host', 'Input', 'LASTEXITCODE', 'MaximumAliasCount',
+            'MaximumDriveCount', 'MaximumFunctionCount', 'MaximumHistoryCount',
+            'MaximumVariableCount', 'OFS', 'PsHome',
+            'ReportErrorShowExceptionClass', 'ReportErrorShowInnerException',
+            'ReportErrorShowSource', 'ReportErrorShowStackTrace',
+            'ShouldProcessPreference', 'ShouldProcessReturnPreference',
+            'StackTrace', 'VerbosePreference', 'WarningPreference', 'PWD'
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '[', ']', '{', '}', '=', '<', '>', '@', '|', '&', ',', '?',
         '+=', '-=', '*=', '/=', '%=', '*', '/', '%', '!', '+', '-', '++', '--'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
@@ -163,7 +163,7 @@ $language_data = array (
         4 => false,
         5 => false,
         6 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #008080; font-weight: bold;',
@@ -172,39 +172,38 @@ $language_data = array (
             4 => 'color: #FF0000;',
             5 => 'color: #008080; font-style: italic;',
             6 => 'color: #000080;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #008000;',
             'MULTI' => 'color: #008000;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #008080; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #000000;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #800000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #804000;'
-            ),
+        ),
         'METHODS' => array(
             0 => 'color: pink;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: pink;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #800080;',
             3 => 'color: #008080;',
             4 => 'color: #008080;',
             5 => 'color: #800000;',
             6 => 'color: #000080;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -212,10 +211,9 @@ $language_data = array (
         4 => '',
         5 => '',
         6 => 'about:blank',
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
         // special after pipe
         3 => array(
@@ -224,7 +222,7 @@ $language_data = array (
             GESHI_MODIFIERS => 'si',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => '\3'
-            ),
+        ),
         // Classes
         4 => array(
             GESHI_SEARCH => '(\[)(System\.Reflection\.Assembly|System\.Net\.CredentialCache|Microsoft\.SharePoint\.SPFileLevel|Microsoft\.SharePoint\.Publishing\.PublishingWeb|Microsoft\.SharePoint\.Publishing|Microsoft\.SharePoint\.SPWeb)(\])',
@@ -232,16 +230,16 @@ $language_data = array (
             GESHI_MODIFIERS => 'i',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => '\3'
-            ),
+        ),
         // Members
         // There's about a hundred million of these, add the ones you need as you need them
-        5 => array (
+        5 => array(
             GESHI_SEARCH => '(::)(ReflectionOnlyLoadFrom|ReflectionOnlyLoad|ReferenceEquals|LoadWithPartialName|LoadFrom|LoadFile|Load|GetExecutingAssembly|GetEntryAssembly|GetCallingAssembly|GetAssembly|Equals|DefaultNetworkCredentials|DefaultCredentials|CreateQualifiedName|Checkout|Draft|Published|IsPublishingWeb)',
             GESHI_REPLACE => '\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => ''
-            ),
+        ),
         // Special variables
         6 => array(
             GESHI_SEARCH => '(\$)(\$[_\^]?|\?)(?!\w)',
@@ -249,27 +247,25 @@ $language_data = array (
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
-            ),
+        ),
         // variables
         //BenBE: Please note that changes here and in Keyword group 6 have to be synchronized in order to work properly.
         //This Regexp must only match, if keyword group 6 doesn't. If this assumption fails
         //Highlighting of the keywords will be incomplete or incorrect!
         0 => "(?<!\\\$|>)[\\\$](\w+)(?=[^|\w])",
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             4 => array(
                 'DISALLOWED_AFTER' => '(?![a-zA-Z])',
                 'DISALLOWED_BEFORE' => ''
-                ),
+            ),
             6 => array(
                 'DISALLOWED_BEFORE' => '(?<!\$>)\$'
-                )
             )
         )
+    )
 );

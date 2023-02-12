@@ -39,7 +39,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'ActionScript',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -50,12 +50,12 @@ $language_data = array (
         1 => array(
             '#include', 'for', 'foreach', 'each', 'if', 'elseif', 'else', 'while', 'do', 'dowhile',
             'endwhile', 'endif', 'switch', 'case', 'endswitch', 'return', 'break', 'continue', 'in'
-            ),
+        ),
         2 => array(
             'null', 'false', 'true', 'var',
             'default', 'function', 'class',
             'new', '_global'
-            ),
+        ),
         3 => array(
             '#endinitclip', '#initclip', '__proto__', '_accProps', '_alpha', '_currentframe',
             '_droptarget', '_focusrect', '_framesloaded', '_height', '_highquality', '_lockroot',
@@ -133,62 +133,59 @@ $language_data = array (
             'UP', 'updateAfterEvent', 'updateProperties', 'url', 'useCodePage', 'useEchoSuppression', 'useHandCursor',
             'UTC', 'valueOf', 'variable', 'version', 'Video', 'visible', 'void', 'watch', 'width',
             'with', 'wordwrap', 'XML', 'xmlDecl', 'XMLNode', 'XMLSocket'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '[', ']', '{', '}', '!', '@', '%', '&', '*', '|', '/', '<', '>'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #b1b100;',
             2 => 'color: #000000; font-weight: bold;',
             3 => 'color: #0066CC;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
             2 => 'color: #808080; font-style: italic;',
             'MULTI' => 'color: #808080; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #006600;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array()

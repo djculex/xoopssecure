@@ -108,7 +108,7 @@ if (!function_exists('geshi_langfile_algol68_vars')) {
         $sign_ = "(?:-\s*|\+\s*|)"; // n.b. sign is followed by white space #
 
         $_int = $sign_ . $_dec;
-        $il =          $_int;                      // +_9           #
+        $il = $_int;                      // +_9           #
 
         //$GESHI_NUMBER_INT_BASIC='(?:(?<![0-9a-z_\.%])|(?<=\.\.))(?<![\d\.]e[+\-])([1-9]\d*?|0)(?![0-9a-z]|\.(?:[eE][+\-]?)?\d)';
 
@@ -120,7 +120,7 @@ if (!function_exists('geshi_langfile_algol68_vars')) {
         $_decimal = "[.]" . $_ . $_dec;
 
         // Add permitted permutations of various parts #
-        $rl =        $_int . $_ . $_decimal . $_ . $_exp; // +_9_._9_e_+_9 #
+        $rl = $_int . $_ . $_decimal . $_ . $_exp; // +_9_._9_e_+_9 #
         $rl = $rl . "|" . $_int . $_ . "[.]" . $_ . $_exp;     // +_9_.___e_+_9 #
         $rl = $rl . "|" . $_int . $_ . $_exp;              // +_9_____e_+_9 #
         $rl = $rl . "|" . $sign_ . $_decimal . $_ . $_exp;   // +___._9_e_+_9 #
@@ -158,12 +158,12 @@ $language_data = array(
         '¢' => '¢',
         '£' => '£',
         '#' => '#',
-        ),
+    ),
     'COMMENT_REGEXP' => array(
         1 => '/\bCO((?:MMENT)?)\b.*?\bCO\\1\b/i',
         2 => '/\bPR((?:AGMAT)?)\b.*?\bPR\\1\b/i',
         3 => '/\bQUOTE\b.*?\bQUOTE\b/i'
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '"',
@@ -173,7 +173,9 @@ $language_data = array(
 // Extensions
         1 => array('KEEP', 'FINISH', 'USE', 'SYSPROCS', 'IOSTATE', 'USING', 'ENVIRON', 'PROGRAM', 'CONTEXT'),
 // 2 => array('CASE', 'IN', 'OUSE', 'IN', 'OUT', 'ESAC', '(', '|', '|:', ')', 'FOR', 'FROM', 'TO', 'BY', 'WHILE', 'DO', 'OD', 'IF', 'THEN', 'ELIF', 'THEN', 'ELSE', 'FI', 'PAR', 'BEGIN', 'EXIT', 'END', 'GO', 'GOTO', 'FORALL', 'UPTO', 'DOWNTO', 'FOREACH', 'ASSERT'), #
-        2 => array('CASE', 'IN', 'OUSE', /* 'IN',*/ 'OUT', 'ESAC', 'PAR', 'BEGIN', 'EXIT', 'END', 'GO TO', 'GOTO', 'FOR', 'FROM', 'TO', 'BY', 'WHILE', 'DO', 'OD', 'IF', 'THEN', 'ELIF', /* 'THEN',*/ 'ELSE', 'FI' ),
+        2 => array('CASE', 'IN', 'OUSE', /* 'IN',*/
+            'OUT', 'ESAC', 'PAR', 'BEGIN', 'EXIT', 'END', 'GO TO', 'GOTO', 'FOR', 'FROM', 'TO', 'BY', 'WHILE', 'DO', 'OD', 'IF', 'THEN', 'ELIF', /* 'THEN',*/
+            'ELSE', 'FI'),
         3 => array('BITS', 'BOOL', 'BYTES', 'CHAR', 'COMPL', 'INT', 'REAL', 'SEMA', 'STRING', 'VOID'),
         4 => array('MODE', 'OP', 'PRIO', 'PROC', 'FLEX', 'HEAP', 'LOC', 'REF', 'LONG', 'SHORT', 'EITHER'),
 // Extensions or deprecated keywords
@@ -183,7 +185,8 @@ $language_data = array(
 // '(', '|', '|:', ')',  #
 // 7 => array('OF', 'AT', '@', 'IS', ':=:', 'ISNT', ':/=:', ':≠:', 'CTB', 'CT', '::', 'CTAB', '::=', 'TRUE', 'FALSE', 'EMPTY', 'NIL', '○', 'SKIP', '~'),
         7 => array('AT', 'IS', 'ISNT', 'TRUE', 'FALSE', 'EMPTY', 'NIL', 'SKIP'),
-        8 => array('NOT', 'UP', 'DOWN', 'LWB', 'UPB', /* '-',*/ 'ABS', 'ARG', 'BIN', 'ENTIER', 'LENG', 'LEVEL', 'ODD', 'REPR', 'ROUND', 'SHORTEN', 'CONJ', 'SIGN'),
+        8 => array('NOT', 'UP', 'DOWN', 'LWB', 'UPB', /* '-',*/
+            'ABS', 'ARG', 'BIN', 'ENTIER', 'LENG', 'LEVEL', 'ODD', 'REPR', 'ROUND', 'SHORTEN', 'CONJ', 'SIGN'),
 // OPERATORS ordered roughtly by PRIORITY #
 // 9 => array('¬', '↑', '↓', '⌊', '⌈', '~', '⎩', '⎧'),
 // 10 => array('+*', 'I', '+×', '⊥', '!', '⏨'),
@@ -202,7 +205,8 @@ $language_data = array(
         17 => array('MINUSAB', 'PLUSAB', 'TIMESAB', 'DIVAB', 'OVERAB', 'MODAB', 'PLUSTO'),
 // 18 => array('-:=', '+:=', '*:=', '/:=', '%:=', '%*:=', '+=:', '×:=', '÷:=', '÷×:=', '÷*:=', '%×:=', '÷::=', 'MINUS', 'PLUS', 'DIV', 'MOD', 'PRUS'),
 // Extensions or deprecated keywords
-        18 => array('MINUS', 'PLUS', 'DIV', /* 'MOD',*/ 'PRUS', 'IS NOT'),
+        18 => array('MINUS', 'PLUS', 'DIV', /* 'MOD',*/
+            'PRUS', 'IS NOT'),
 // Extensions or deprecated keywords
         19 => array('THEF', 'ANDF', 'ORF', 'ANDTH', 'OREL', 'ANDTHEN', 'ORELSE'),
 // Built in procedures - from standard prelude #
@@ -216,9 +220,11 @@ $language_data = array(
         27 => array('utc time', 'utctime', 'local time', 'localtime', 'argc', 'argv', 'get env', 'getenv', 'reset errno', 'reseterrno', 'errno', 'strerror'),
         28 => array('sinh', 'long sinh', 'longsinh', 'long long sinh', 'longlongsinh', 'arc sinh', 'arcsinh', 'long arc sinh', 'longarcsinh', 'long long arc sinh', 'longlongarcsinh', 'cosh', 'long cosh', 'longcosh', 'long long cosh', 'longlongcosh', 'arc cosh', 'arccosh', 'long arc cosh', 'longarccosh', 'long long arc cosh', 'longlongarccosh', 'tanh', 'long tanh', 'longtanh', 'long long tanh', 'longlongtanh', 'arc tanh', 'arctanh', 'long arc tanh', 'longarctanh', 'long long arc tanh', 'longlongarctanh', 'arc tan2', 'arctan2', 'long arc tan2', 'longarctan2', 'long long arc tan2', 'longlongarctan2'),
         29 => array('complex sqrt', 'complexsqrt', 'long complex sqrt', 'longcomplexsqrt', 'long long complex sqrt', 'longlongcomplexsqrt', 'complex exp', 'complexexp', 'long complex exp', 'longcomplexexp', 'long long complex exp', 'longlongcomplexexp', 'complex ln', 'complexln', 'long complex ln', 'longcomplexln', 'long long complex ln', 'longlongcomplexln', 'complex sin', 'complexsin', 'long complex sin', 'longcomplexsin', 'long long complex sin', 'longlongcomplexsin', 'complex arc sin', 'complexarcsin', 'long complex arc sin', 'longcomplexarcsin', 'long long complex arc sin', 'longlongcomplexarcsin', 'complex cos', 'complexcos', 'long complex cos', 'longcomplexcos', 'long long complex cos', 'longlongcomplexcos', 'complex arc cos', 'complexarccos', 'long complex arc cos', 'longcomplexarccos', 'long long complex arc cos', 'longlongcomplexarccos', 'complex tan', 'complextan', 'long complex tan', 'longcomplextan', 'long long complex tan', 'longlongcomplextan', 'complex arc tan', 'complexarctan', 'long complex arc tan', 'longcomplexarctan', 'long long complex arc tan', 'longlongcomplexarctan', 'complex sinh', 'complexsinh', 'complex arc sinh', 'complexarcsinh', 'complex cosh', 'complexcosh', 'complex arc cosh', 'complexarccosh', 'complex tanh', 'complextanh', 'complex arc tanh', 'complexarctanh')
-        ),
+    ),
     'SYMBOLS' => array(
-        1 => array( /* reverse length sorted... */ '÷×:=', '%×:=', ':≠:', '÷*:=', '÷::=', '%*:=', ':/=:', '×:=', '÷:=', '÷×', '%:=', '%×', '*:=', '+:=', '+=:', '+×', '-:=', '/:=', '::=', ':=:', '÷*', '÷:', '↑', '↓', '∧', '∨', '≠', '≤', '≥', '⊥', '⌈', '⌊', '⎧', '⎩', /* '⏨', */ '□', '○', '%*', '**', '+*', '/=', '::', '/\\', '\\/', '<=', '>=', '|:', '~=', '¬', '×', '÷', '!', '%', '&', '(', ')', '*', '+', ',', '-', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '{', '|', '}', '~')
+        1 => array( /* reverse length sorted... */
+            '÷×:=', '%×:=', ':≠:', '÷*:=', '÷::=', '%*:=', ':/=:', '×:=', '÷:=', '÷×', '%:=', '%×', '*:=', '+:=', '+=:', '+×', '-:=', '/:=', '::=', ':=:', '÷*', '÷:', '↑', '↓', '∧', '∨', '≠', '≤', '≥', '⊥', '⌈', '⌊', '⎧', '⎩', /* '⏨', */
+            '□', '○', '%*', '**', '+*', '/=', '::', '/\\', '\\/', '<=', '>=', '|:', '~=', '¬', '×', '÷', '!', '%', '&', '(', ')', '*', '+', ',', '-', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '{', '|', '}', '~')
     ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -251,49 +257,52 @@ $language_data = array(
         27 => true,
         28 => true,
         29 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => $a68['NONSTD'], 2 => $a68['BOLD'], 3 => $a68['BOLD'], 4 => $a68['BOLD'],
             5 => $a68['NONSTD'], 6 => $a68['BOLD'], 7 => $a68['BOLD'], 8 => $a68['BOLD'],
-            /* 9 => $a68['BOLD'],*/ 10 => $a68['BOLD'], 11 => $a68['BOLD'], 12 => $a68['BOLD'],
-            /* 13 => $a68['BOLD'],*/ 14 => $a68['BOLD'], 15 => $a68['BOLD'], 16 => $a68['BOLD'], 17 => $a68['BOLD'],
+            /* 9 => $a68['BOLD'],*/
+            10 => $a68['BOLD'], 11 => $a68['BOLD'], 12 => $a68['BOLD'],
+            /* 13 => $a68['BOLD'],*/
+            14 => $a68['BOLD'], 15 => $a68['BOLD'], 16 => $a68['BOLD'], 17 => $a68['BOLD'],
             18 => $a68['NONSTD'], 19 => $a68['NONSTD'],
             20 => $a68['ITALIC'], 21 => $a68['ITALIC'], 22 => $a68['ITALIC'], 23 => $a68['ITALIC'],
             24 => $a68['ITALIC'], 25 => $a68['ITALIC'], 26 => $a68['ITALIC'], 27 => $a68['ITALIC'],
             28 => $a68['ITALIC'], 29 => $a68['ITALIC']
-            ),
+        ),
         'COMMENTS' => array(
             1 => $a68['COMMENT'], 2 => $a68['COMMENT'], 3 => $a68['COMMENT'], /* 4 => $a68['COMMENT'],
-            5 => $a68['COMMENT'],*/ 'MULTI' => $a68['COMMENT']
-            ),
+            5 => $a68['COMMENT'],*/
+            'MULTI' => $a68['COMMENT']
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #009900;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #0000ff;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;',
-            ),
+        ),
         'METHODS' => array(
             0 => 'color: #004000;',
             1 => 'color: #004000;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #339933;',
             1 => 'color: #339933;'
-            ),
-        'REGEXPS' => array(
-            0  => 'color: #cc66cc;',   // BITS #
-            1  => 'color: #cc66cc;',   // REAL #
-            /* 2  => 'color: #cc66cc;',   # INT # */
-            ),
-        'SCRIPT' => array()
         ),
+        'REGEXPS' => array(
+            0 => 'color: #cc66cc;',   // BITS #
+            1 => 'color: #cc66cc;',   // REAL #
+            /* 2  => 'color: #cc66cc;',   # INT # */
+        ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -324,12 +333,12 @@ $language_data = array(
         27 => '',
         28 => '',
         29 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         0 => '→',
         1 => 'OF'
-        ),
+    ),
     'REGEXPS' => array(
         0 => $a68['BITS'],
         1 => $a68['REAL']

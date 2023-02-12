@@ -54,14 +54,14 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'ActionScript 3',
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
     'COMMENT_REGEXP' => array(
         //Regular expressions
         2 => "/(?<=[\\s^])(s|tr|y)\\/(?!\s)(?:\\\\.|(?!\n)[^\\/\\\\])+(?<!\s)\\/(?!\s)(?:\\\\.|(?!\n)[^\\/\\\\])*(?<!\s)\\/[msixpogcde]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])(m|q[qrwx]?)?\\/(?!\s)(?:\\\\.|(?!\n)[^\\/\\\\])+(?<!\s)\\/[msixpogc]*(?=[\\s$\\.\\,\\;\\)])/iU",
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
@@ -73,23 +73,23 @@ $language_data = array (
             'import', 'if', 'get', 'for', 'false', 'else', 'each', 'do',
             'delete', 'default', 'continue', 'catch', 'case', 'break', 'as',
             'extends', 'override'
-            ),
+        ),
         2 => array(
             'var'
-            ),
+        ),
         3 => array(
             'function'
-            ),
+        ),
         4 => array(
             'class', 'package'
-            ),
+        ),
         6 => array(
             'flash.xml', 'flash.utils', 'flash.ui', 'flash.text',
             'flash.system', 'flash.profiler', 'flash.printing', 'flash.net',
             'flash.media', 'flash.geom', 'flash.filters', 'flash.external',
             'flash.events', 'flash.errors', 'flash.display',
             'flash.accessibility'
-            ),
+        ),
         7 => array(
             'zoom', 'year', 'y', 'xmlDecl', 'x', 'writeUnsignedInt',
             'writeUTFBytes', 'writeUTF', 'writeShort', 'writeObject',
@@ -291,7 +291,7 @@ $language_data = array (
             'addEventListener', 'addChildAt', 'addChild', 'addCallback', 'add',
             'activityLevel', 'activity', 'active', 'activating', 'activate',
             'actionScriptVersion', 'acos', 'accessibilityProperties', 'abs'
-            ),
+        ),
         8 => array(
             'WRAP', 'VERTICAL', 'VARIABLES',
             'UTC', 'UPLOAD_COMPLETE_DATA', 'UP', 'UNLOAD', 'UNKNOWN',
@@ -341,7 +341,7 @@ $language_data = array (
             'AMF0', 'ALWAYS', 'ALPHANUMERIC_HALF', 'ALPHANUMERIC_FULL', 'ALPHA',
             'ADVANCED', 'ADDED_TO_STAGE', 'ADDED', 'ADD', 'ACTIVITY',
             'ACTIONSCRIPT3', 'ACTIONSCRIPT2'
-            ),
+        ),
         //FIX: Must be last in order to avoid conflicts with keywords present
         //in other keyword groups, that might get highlighted as part of the URL.
         //I know this is not a proper work-around, but should do just fine.
@@ -392,11 +392,11 @@ $language_data = array (
             'ArgumentError', 'ApplicationDomain', 'AntiAliasType',
             'ActivityEvent', 'ActionScriptVersion', 'AccessibilityProperties',
             'Accessibility', 'AVM1Movie'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '[', ']', '{', '}', '!', '%', '&', '*', '|', '/', '<', '>', '^', '-', '+', '~', '?', ':', ';', '.', ','
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
@@ -407,7 +407,7 @@ $language_data = array (
         6 => true,
         7 => true,
         8 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #0033ff; font-weight: bold;',
@@ -418,35 +418,33 @@ $language_data = array (
             6 => 'color: #004993;',
             7 => 'color: #004993;',
             8 => 'color: #004993;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #009900; font-style: italic;',
             2 => 'color: #009966; font-style: italic;',
             'MULTI' => 'color: #3f5fbf;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => ''
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #000000;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #990000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #000000; font-weight:bold;'
-            ),
+        ),
         'METHODS' => array(
             0 => 'color: #000000;',
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #000066; font-weight: bold;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -456,15 +454,14 @@ $language_data = array (
         6 => '',
         7 => '',
         8 => ''
-        ),
+    ),
     'OOLANG' => false,//Save some time as OO identifiers aren't used
     'OBJECT_SPLITTERS' => array(
         // commented out because it's not very relevant for AS, as all properties, methods and constants are dot-accessed.
         // I believe it's preferable to have package highlighting for example, which is not possible with this enabled.
         // 0 => '.'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array()

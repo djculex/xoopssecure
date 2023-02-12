@@ -38,7 +38,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'PostScript',
     'COMMENT_SINGLE' => array(0 => '%'),
     'COMMENT_MULTI' => array(), //array('/*' => '*/'),
@@ -49,16 +49,15 @@ $language_data = array (
         2 => "/<(?!<)[0-9a-f\s]*>/si",
         // ASCII-85 Strings
         3 => "/<~.*~>/si",
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',
-    'ESCAPE_REGEXP' => array(
-        ),
+    'ESCAPE_REGEXP' => array(),
     'NUMBERS' => array(
         0 => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_NONSCI | GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
         1 => "\d+#[0-9a-zA-Z]+"
-        ),
+    ),
     'KEYWORDS' => array(
         1 => array(
             'countexecstack', 'def', 'dup', 'exch', 'exec', 'execstack', 'exit',
@@ -69,10 +68,10 @@ $language_data = array (
             'sin', 'sqrt', 'srand', 'sub', 'truncate',
 
             'and', 'bitshift', 'eq', 'ge', 'gt', 'le', 'lt', 'ne', 'not', 'or', 'xor',
-            ),
+        ),
         2 => array(
             'false', 'null', 'true', 'version'
-            ),
+        ),
         3 => array(
             'quit', 'start', 'stop', 'stopped',
 
@@ -131,47 +130,47 @@ $language_data = array (
             'stackoverflow', 'stackunderflow', 'syntaxerror', 'timeout',
             'typecheck', 'undefined', 'undefinedfilename', 'undefinedresult',
             'unmatchedmark', 'unregistered', 'VMerror'
-            ),
+        ),
         4 => array(
             'array', 'dict', 'mark', 'matrix', 'string'
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         0 => array('==', '=', '/', '//'),
         1 => array('[', ']'),
         2 => array('{', '}'),
         3 => array('<<', '>>')
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
         2 => true,
         3 => true,
         4 => true,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #000066; font-weight: bold;',
             2 => 'color: #0000ff; font-weight: bold;',
             3 => 'color: #000000; font-weight: bold;',
             4 => 'color: #993333; font-weight: bold;'
-            ),
+        ),
         'COMMENTS' => array(
             0 => 'color: #333333; font-style: italic;',
             1 => 'color: #339933;',
             2 => 'color: #006600;',
             3 => 'color: #666666;',
             'MULTI' => 'color: #808080; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             'HARD' => ''
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #009900;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #0000dd;',
             GESHI_NUMBER_BIN_PREFIX_0B => 'color: #208080;',
@@ -181,37 +180,32 @@ $language_data = array (
             GESHI_NUMBER_FLT_SCI_ZERO => 'color:#800080;',
             GESHI_NUMBER_FLT_NONSCI_F => 'color:#800080;',
             GESHI_NUMBER_FLT_NONSCI => 'color:#800080;'
-            ),
-        'METHODS' => array(
-            ),
+        ),
+        'METHODS' => array(),
         'SYMBOLS' => array(
             0 => 'color: #339933;',
             1 => 'color: #009900;',
             2 => 'color: #009900;',
             3 => 'color: #009900;'
-            ),
+        ),
         'REGEXPS' => array(
             1 => 'color: #006600;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
         1 => "#(?<=\\x2F)[\\w-]+#"
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4
 );

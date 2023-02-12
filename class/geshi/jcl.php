@@ -38,7 +38,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'JCL',
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array(),
@@ -46,7 +46,7 @@ $language_data = array (
         // Comments identified using REGEX
         // Comments start with //* but should not be followed by % (TWS) or + (some JES3 stmts)
         3 => "\/\/\*[^%](.*?)(\n)"
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_UPPER,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',
@@ -55,87 +55,88 @@ $language_data = array (
             'COMMAND', 'CNTL', 'DD', 'ENDCNTL', 'EXEC', 'IF', 'THEN', 'ELSE',
             'ENDIF', 'JCLLIB', 'JOB', 'OUTPUT', 'PEND',
             'PROC', 'SET', 'XMIT'
-            ),
-        2 => array (
-            'PGM','CLASS','NOTIFY','MSGCLASS','DSN','KEYLEN','LABEL','LIKE',
-            'RECFM','LRECL','DCB','DSORG','BLKSIZE','SPACE','STORCLAS',
-            'DUMMY','DYNAM','AVGREC','BURST','DISP','UNIT','VOLUME',
-            'MSGLEVEL','REGION'
-            ),
+        ),
+        2 => array(
+            'PGM', 'CLASS', 'NOTIFY', 'MSGCLASS', 'DSN', 'KEYLEN', 'LABEL', 'LIKE',
+            'RECFM', 'LRECL', 'DCB', 'DSORG', 'BLKSIZE', 'SPACE', 'STORCLAS',
+            'DUMMY', 'DYNAM', 'AVGREC', 'BURST', 'DISP', 'UNIT', 'VOLUME',
+            'MSGLEVEL', 'REGION'
+        ),
         // Keywords set 3: DFSORT, ICETOOL
-        3 => array (
-            'ALTSEQ','DEBUG','END','INCLUDE','INREC','MERGE','MODS','OMIT',
-            'OPTION','OUTFIL','OUTREC','RECORD','SORT','SUM',
-            'COPY','COUNT','DEFAULTS','DISPLAY','MODE','OCCUR','RANGE',
-            'SELECT','STATS','UNIQUE','VERIFY'
-            ),
+        3 => array(
+            'ALTSEQ', 'DEBUG', 'END', 'INCLUDE', 'INREC', 'MERGE', 'MODS', 'OMIT',
+            'OPTION', 'OUTFIL', 'OUTREC', 'RECORD', 'SORT', 'SUM',
+            'COPY', 'COUNT', 'DEFAULTS', 'DISPLAY', 'MODE', 'OCCUR', 'RANGE',
+            'SELECT', 'STATS', 'UNIQUE', 'VERIFY'
+        ),
         // Keywords set 4: IDCAMS
-        4 => array (
-            'ALTER','BLDINDEX','CNVTCAT','DEFINE','ALIAS','ALTERNATEINDEX',
-            'CLUSTER','GENERATIONDATAGROUP','GDG','NONVSAM','PAGESPACE','PATH',
-            /* 'SPACE',*/'USERCATALOG','DELETE','EXAMINE','EXPORT','DISCONNECT',
-            'EXPORTRA','IMPORT','CONNECT','IMPORTRA','LISTCAT','LISTCRA',
-            'PRINT','REPRO','RESETCAT'//,'VERIFY'
-            )
-        ),
+        4 => array(
+            'ALTER', 'BLDINDEX', 'CNVTCAT', 'DEFINE', 'ALIAS', 'ALTERNATEINDEX',
+            'CLUSTER', 'GENERATIONDATAGROUP', 'GDG', 'NONVSAM', 'PAGESPACE', 'PATH',
+            /* 'SPACE',*/
+            'USERCATALOG', 'DELETE', 'EXAMINE', 'EXPORT', 'DISCONNECT',
+            'EXPORTRA', 'IMPORT', 'CONNECT', 'IMPORTRA', 'LISTCAT', 'LISTCRA',
+            'PRINT', 'REPRO', 'RESETCAT'//,'VERIFY'
+        )
+    ),
     'SYMBOLS' => array(
-        '(',')','=',',','>','<'
-        ),
+        '(', ')', '=', ',', '>', '<'
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
         4 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #FF0000;',
             2 => 'color: #21A502;',
             3 => 'color: #FF00FF;',
             4 => 'color: #876C00;'
-            ),
+        ),
         'COMMENTS' => array(
             0 => 'color: #0000FF;',
             //1 => 'color: #0000FF;',
             //2 => 'color: #0000FF;',
             3 => 'color: #0000FF;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => ''
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #FF7400;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #66CC66;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #336633;'
-            ),
+        ),
         'METHODS' => array(
             1 => '',
             2 => ''
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #FF7400;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #6B1F6B;',
             1 => 'color: #6B1F6B;',
             2 => 'color: #6B1F6B;'
-            ),
+        ),
         'SCRIPT' => array(
             0 => ''
-            )
-        ),
+        )
+    ),
     'URLS' => array(
         1 => '',
         // JCL book at IBM Bookshelf is http://publibz.boulder.ibm.com/cgi-bin/bookmgr_OS390/handheld/Connected/BOOKS/IEA2B680/CONTENTS?SHELF=&DT=20080604022956#3.1
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
@@ -147,9 +148,8 @@ $language_data = array (
         0 => '&amp;&amp;[a-zA-Z]{1,8}[0-9]{0,}',
         1 => '&amp;[a-zA-Z]{1,8}[0-9]{0,}',
         2 => '&amp;|\?|%[a-zA-Z]{1,8}[0-9]{0,}'
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array()
 );

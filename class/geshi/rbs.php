@@ -39,9 +39,9 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'RBScript',
-    'COMMENT_SINGLE' => array( 1 => '//', 2 => "'" ),
+    'COMMENT_SINGLE' => array(1 => '//', 2 => "'"),
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
         3 => '/REM\s.*$/im',
@@ -50,7 +50,7 @@ $language_data = array (
         6 => '/&h[a-f0-9]+/i',
         7 => '/&c[a-f0-9]+/i',
         8 => '/&u[a-f0-9]+/i',
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '',
@@ -58,11 +58,11 @@ $language_data = array (
         1 => array(
             'Int8', 'Int16', 'Int32', 'Int64', 'Uint8', 'Uint16', 'Uint32', 'Uint64', 'Byte', 'Integer',
             'Single', 'Double', 'Boolean', 'String', 'Color', 'Object', 'Variant'
-            ),
+        ),
         2 => array(
             'Private', 'Public', 'Protected',
             'Sub', 'Function', 'Delegate', 'Exception',
-            ),
+        ),
         3 => array(
             'IsA',
             'And', 'Or', 'Not', 'Xor',
@@ -72,7 +72,7 @@ $language_data = array (
             'Do', 'Loop', 'Until',
             'While', 'Wend',
             'Continue', 'Exit', 'Goto', 'End',
-            ),
+        ),
         4 => array(
             'Const', 'Static',
             'Dim', 'As', 'Redim',
@@ -80,10 +80,10 @@ $language_data = array (
             'ByRef', 'ByVal', 'Assigns', 'ParamArray',
             'Mod',
             'Raise',
-            ),
+        ),
         5 => array(
             'False', 'True', 'Nil'
-            ),
+        ),
         6 => array(
             'Abs',
             'Acos',
@@ -143,11 +143,11 @@ $language_data = array (
             'UBound',
             'Uppercase',
             'Val',
-            ),
         ),
+    ),
     'SYMBOLS' => array(
-            '+', '-', '*', '/', '\\', '^', '<', '>', '=', '<>', '&'
-        ),
+        '+', '-', '*', '/', '\\', '^', '<', '>', '=', '<>', '&'
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
@@ -156,7 +156,7 @@ $language_data = array (
         4 => false,
         5 => false,
         6 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #F660AB; font-weight: bold;',
@@ -165,7 +165,7 @@ $language_data = array (
             4 => 'color: #151B8D; font-weight: bold;',
             5 => 'color: #00C2FF; font-weight: bold;',
             6 => 'color: #3EA99F; font-weight: bold;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #008000;',
             2 => 'color: #008000;',
@@ -176,26 +176,20 @@ $language_data = array (
             6 => 'color: #800000;',
             7 => 'color: #800000;',
             8 => 'color: #800000;',
-            ),
-        'BRACKETS' => array(
-            ),
+        ),
+        'BRACKETS' => array(),
         'STRINGS' => array(
             0 => 'color: #800000;'
-            ),
-        'NUMBERS' => array(
-            ),
-        'METHODS' => array(
-            ),
-        'SYMBOLS' => array(
-            ),
+        ),
+        'NUMBERS' => array(),
+        'METHODS' => array(),
+        'SYMBOLS' => array(),
         'ESCAPE_CHAR' => array(
             0 => 'color: #800000; font-weight: bold;'
-            ),
-        'SCRIPT' => array(
-            ),
-        'REGEXPS' => array(
-            )
         ),
+        'SCRIPT' => array(),
+        'REGEXPS' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -203,22 +197,18 @@ $language_data = array (
         4 => '',
         5 => '',
         6 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
-    'REGEXPS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
             'BRACKETS' => GESHI_NEVER,
             'SYMBOLS' => GESHI_NEVER,
             'NUMBERS' => GESHI_NEVER
-            )
         )
+    )
 );

@@ -36,7 +36,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'mIRC Scripting',
     'COMMENT_SINGLE' => array(1 => ';'),
     'COMMENT_MULTI' => array(),
@@ -46,69 +46,67 @@ $language_data = array (
     'KEYWORDS' => array(
         1 => array(
             'alias', 'menu', 'dialog',
-            ),
+        ),
         2 => array(
             'if', 'elseif', 'else', 'while', 'return', 'goto', 'var'
-            ),
-        3 => array(
-            'action','ajinvite','amsg','ame','anick','aop','auser',
-            'avoice','auto','autojoin','away','background','ban','beep',
-            'channel','clear','clearall','clipboard','close','closemsg','color',
-            'copy','creq','ctcp','ctcpreply','ctcps','dcc','dde','ddeserver',
-            'debug','describe','disable','disconnect','dlevel','dll','dns',
-            'dqwindow','ebeeps','echo','editbox','emailaddr','enable','events',
-            'exit','filter','findtext','finger','flash','flood','flush',
-            'flushini','font','fsend','fserve','fullname','ghide','gload',
-            'gmove','gopts','gplay','gpoint','gqreq','groups','gshow','gsize',
-            'gstop','gtalk','gunload','guser','help','hop','ignore','invite',
-            'join','kick','linesep','links','list','load','loadbuf','localinfo',
-            'log','me','mdi','mkdir','mnick','mode','msg','names','nick','noop',
-            'notice','notify','omsg','onotice','part','partall','pdcc',
-            'perform','ping','play','pop','protect','pvoice','qmsg','qme',
-            'query','queryrn','quit','raw','remini','remote','remove','rename',
-            'enwin','resetidle','rlevel','rmdir','run','ruser','save','savebuf',
-            'saveini','say','server','showmirc','sline','sound','speak','splay',
-            'sreq','strip','time',
-            //'timer[N/name]', //Handled as a regular expression below ...
-            'timers','timestamp','titlebar','tnick','tokenize','topic','ulist',
-            'unload','updatenl','url','uwho','window','winhelp','write',
-            'writeini','who','whois','whowas'
-            )
         ),
+        3 => array(
+            'action', 'ajinvite', 'amsg', 'ame', 'anick', 'aop', 'auser',
+            'avoice', 'auto', 'autojoin', 'away', 'background', 'ban', 'beep',
+            'channel', 'clear', 'clearall', 'clipboard', 'close', 'closemsg', 'color',
+            'copy', 'creq', 'ctcp', 'ctcpreply', 'ctcps', 'dcc', 'dde', 'ddeserver',
+            'debug', 'describe', 'disable', 'disconnect', 'dlevel', 'dll', 'dns',
+            'dqwindow', 'ebeeps', 'echo', 'editbox', 'emailaddr', 'enable', 'events',
+            'exit', 'filter', 'findtext', 'finger', 'flash', 'flood', 'flush',
+            'flushini', 'font', 'fsend', 'fserve', 'fullname', 'ghide', 'gload',
+            'gmove', 'gopts', 'gplay', 'gpoint', 'gqreq', 'groups', 'gshow', 'gsize',
+            'gstop', 'gtalk', 'gunload', 'guser', 'help', 'hop', 'ignore', 'invite',
+            'join', 'kick', 'linesep', 'links', 'list', 'load', 'loadbuf', 'localinfo',
+            'log', 'me', 'mdi', 'mkdir', 'mnick', 'mode', 'msg', 'names', 'nick', 'noop',
+            'notice', 'notify', 'omsg', 'onotice', 'part', 'partall', 'pdcc',
+            'perform', 'ping', 'play', 'pop', 'protect', 'pvoice', 'qmsg', 'qme',
+            'query', 'queryrn', 'quit', 'raw', 'remini', 'remote', 'remove', 'rename',
+            'enwin', 'resetidle', 'rlevel', 'rmdir', 'run', 'ruser', 'save', 'savebuf',
+            'saveini', 'say', 'server', 'showmirc', 'sline', 'sound', 'speak', 'splay',
+            'sreq', 'strip', 'time',
+            //'timer[N/name]', //Handled as a regular expression below ...
+            'timers', 'timestamp', 'titlebar', 'tnick', 'tokenize', 'topic', 'ulist',
+            'unload', 'updatenl', 'url', 'uwho', 'window', 'winhelp', 'write',
+            'writeini', 'who', 'whois', 'whowas'
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '{', '}', '[', ']', '/'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #994444;',
             2 => 'color: #000000; font-weight: bold;',
             3 => 'color: #990000; font-weight: bold;',
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
-            ),
-        'ESCAPE_CHAR' => array(
-            ),
+        ),
+        'ESCAPE_CHAR' => array(),
         'BRACKETS' => array(
             0 => 'color: #FF0000;',
-            ),
-        'STRINGS' => array(
-            ),
+        ),
+        'STRINGS' => array(),
         'NUMBERS' => array(
             0 => '',
-            ),
+        ),
         'METHODS' => array(
             0 => 'color: #008000;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #FF0000;',
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #000099;',
             1 => 'color: #990000;',
@@ -118,15 +116,14 @@ $language_data = array (
             5 => 'color: #000099;',
             6 => 'color: #990000; font-weight: bold;',
             7 => 'color: #990000; font-weight: bold;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => 'http://en.wikichip.org/wiki/mirc/commands/{FNAMEL}'
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array('.'),
     'REGEXPS' => array(
@@ -152,16 +149,14 @@ $language_data = array (
         6 => '(?<!>|:|\/)\/timer(?!s\b)[0-9a-zA-Z_]+',
         // /...
         7 => '(?<!>|:|\/|\w)\/[a-zA-Z][a-zA-Z0-9]*(?!>)'
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
             'NUMBERS' => GESHI_NEVER
-            ),
+        ),
         'KEYWORDS' => array(
             'DISALLOWED_BEFORE' => '(?<![\w\$\|\#;<^&])'
         )

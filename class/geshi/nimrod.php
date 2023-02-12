@@ -38,7 +38,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Nimrod',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
@@ -79,11 +79,11 @@ $language_data = array (
             'when', 'while', 'with', 'without',
             'xor',
             'yield'
-            ),
+        ),
 
         2 => array(
             'true', 'false'
-            ),
+        ),
 
         3 => array(
             /* system module */
@@ -120,7 +120,7 @@ $language_data = array (
             'unlikely', 'unsafeNew', 'write', 'writeBuffer', 'writeBytes',
             'writeChars', 'writeFile', 'writeln', 'writeStackTrace', 'ze',
             'ze64', 'zeroMem'
-            ),
+        ),
 
         4 => array(
             'auto', 'pointer', 'ptr', 'void', 'any', 'expr', 'stmt', 'typedesc',
@@ -130,8 +130,8 @@ $language_data = array (
             'cstring', 'cint', 'clong', 'culong', 'cchar', 'cschar', 'cshort',
             'csize', 'clonglong', 'cfloat', 'cdouble', 'clongdouble', 'cuchar',
             'cushort', 'cuint', 'culonglong', 'cstringArray'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '*', '/', '%', '\\',
         '+', '-', '~', '|',
@@ -139,63 +139,58 @@ $language_data = array (
         '..',
         '=', '<', '>', '!',
         '@', '?'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
         4 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #ff7700;font-weight:bold;',    // Reserved
             2 => 'color: #008000;',                     // Built-ins + self
             3 => 'color: #dc143c;',                     // Standard lib
             4 => 'color: #0000cd;'                      // Special methods
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
             'MULTI' => 'color: #808080; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: black;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #483d8b;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #ff4500;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: black;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

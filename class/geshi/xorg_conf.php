@@ -34,7 +34,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Xorg configuration',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
@@ -45,7 +45,7 @@ $language_data = array (
         // sections
         1 => array(
             'Section', 'EndSection', 'SubSection', 'EndSubSection'
-            ),
+        ),
         2 => array(
             // see http://www.x.org/archive/X11R6.9.0/doc/html/xorg.conf.5.html
             'BiosBase', 'Black', 'Boardname', 'BusID', 'ChipID', 'ChipRev',
@@ -58,65 +58,54 @@ $language_data = array (
             'Screen', 'TextClockFreq', 'UseModes', 'VendorName',
             'VertRefresh', 'VideoAdaptor', 'VideoRam',
             'ViewPort', 'Virtual', 'Visual', 'Weight', 'White'
-            ),
+        ),
         3 => array(
             // some sub-keywords
             // screen position
             'Above', 'Absolute', 'Below', 'LeftOf', 'Relative', 'RightOf',
             // modes
             'DotClock', 'Flags', 'HSkew', 'HTimings', 'VScan', 'VTimings'
-            ),
         ),
-    'REGEXPS' => array(
-        ),
-    'SYMBOLS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
+    'SYMBOLS' => array(),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #b1b100;',
             2 => 'color: #990000;',
             3 => 'color: #550000;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #adadad; font-style: italic;',
-            ),
-        'ESCAPE_CHAR' => array(
-            ),
-        'BRACKETS' => array(
-            ),
+        ),
+        'ESCAPE_CHAR' => array(),
+        'BRACKETS' => array(),
         'STRINGS' => array(
             0 => 'color: #0000ff;',
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'
-            ),
-        'METHODS' => array(
-            ),
-        'SYMBOLS' => array(
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'METHODS' => array(),
+        'SYMBOLS' => array(),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4
 );

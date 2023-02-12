@@ -37,7 +37,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'glSlang',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -46,7 +46,7 @@ $language_data = array (
         1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m',
         //Multiline-continued preprocessor define
         2 => '/#(?:\\\\\\\\|\\\\\\n|.)*$/m'
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
@@ -55,13 +55,13 @@ $language_data = array (
             'if', 'else', 'for', 'while', 'do', 'break', 'continue', 'asm',
             'switch', 'case', 'default', 'return', 'discard',
             'namespace', 'using', 'sizeof', 'cast'
-            ),
+        ),
         2 => array(
             'const', 'uniform', 'attribute', 'centroid', 'varying', 'invariant',
             'in', 'out', 'inout', 'input', 'output', 'typedef', 'volatile',
             'public', 'static', 'extern', 'external', 'packed',
             'inline', 'noinline', 'noperspective', 'flat'
-            ),
+        ),
         3 => array(
             'void', 'bool', 'int', 'long', 'short', 'float', 'half', 'fixed',
             'unsigned', 'lowp', 'mediump', 'highp', 'precision',
@@ -73,10 +73,10 @@ $language_data = array (
             'sampler1D', 'sampler2D', 'sampler3D', 'samplerCube',
             'sampler1DShadow', 'sampler2DShadow',
             'struct', 'class', 'union', 'enum', 'interface', 'template'
-            ),
+        ),
         4 => array(
             'this', 'false', 'true'
-            ),
+        ),
         5 => array(
             'radians', 'degrees', 'sin', 'cos', 'tan', 'asin', 'acos', 'atan',
             'pow', 'exp2', 'log2', 'sqrt', 'inversesqrt', 'abs', 'sign', 'ceil',
@@ -91,7 +91,7 @@ $language_data = array (
             'shadow1D', 'shadow1DProj', 'shadow1DLod', 'shadow1DProjLod',
             'shadow2D', 'shadow2DProj', 'shadow2DLod', 'shadow2DProjLod',
             'noise1', 'noise2', 'noise3', 'noise4'
-            ),
+        ),
         6 => array(
             'gl_Position', 'gl_PointSize', 'gl_ClipVertex', 'gl_FragColor',
             'gl_FragData', 'gl_FragDepth', 'gl_FragCoord', 'gl_FrontFacing',
@@ -121,12 +121,12 @@ $language_data = array (
             'gl_EyePlaneS', 'gl_EyePlaneT', 'gl_EyePlaneR', 'gl_EyePlaneQ',
             'gl_FrontColor', 'gl_BackColor', 'gl_FrontSecondaryColor',
             'gl_BackSecondaryColor', 'gl_FogFragCoord', 'gl_PointCoord'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^',
         '&', '?', ':', '.', '|', ';', ',', '<', '>'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
@@ -135,7 +135,7 @@ $language_data = array (
         4 => true,
         5 => true,
         6 => true,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #000000; font-weight: bold;',
@@ -144,35 +144,33 @@ $language_data = array (
             4 => 'color: #333399; font-weight: bold;',
             5 => 'color: #993333; font-weight: bold;',
             6 => 'color: #551111;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
             2 => 'color: #009900;',
             'MULTI' => 'color: #666666; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #000066;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #0000ff;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #006600;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #000066;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -180,18 +178,15 @@ $language_data = array (
         4 => '',
         5 => '',
         6 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
         'OOLANG' => array(

@@ -34,93 +34,93 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  * ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Falcon',
-    'COMMENT_SINGLE' => array( 1 => '//' ),
-    'COMMENT_MULTI' => array( '/*' => '*/' ),
+    'COMMENT_SINGLE' => array(1 => '//'),
+    'COMMENT_MULTI' => array('/*' => '*/'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array( "'", '"' ),
+    'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         1 => array(
-            'break','case','catch','class','const','continue','def','default',
-            'dropping','elif','else','end','enum','for','forfirst','forlast',
-            'formiddle','from','function','global','if','init','innerfunc',
-            'launch','loop','object','raise','return','select','state','static',
-            'switch','try','while'
+            'break', 'case', 'catch', 'class', 'const', 'continue', 'def', 'default',
+            'dropping', 'elif', 'else', 'end', 'enum', 'for', 'forfirst', 'forlast',
+            'formiddle', 'from', 'function', 'global', 'if', 'init', 'innerfunc',
+            'launch', 'loop', 'object', 'raise', 'return', 'select', 'state', 'static',
+            'switch', 'try', 'while'
         ),
         2 => array(
-            'false','nil','true',
+            'false', 'nil', 'true',
         ),
         3 => array(
-            'and','as','eq','fself','in','not','notin','or','provides','self','to'
+            'and', 'as', 'eq', 'fself', 'in', 'not', 'notin', 'or', 'provides', 'self', 'to'
         ),
         4 => array(
-            'directive','export','import','load','macro'
+            'directive', 'export', 'import', 'load', 'macro'
         ),
         5 => array(
-            'ArrayType','BooleanType','ClassMethodType','ClassType','DictionaryType',
-            'FunctionType','MemBufType','MethodType','NilType','NumericType','ObjectType',
-            'RangeType','StringType','LBindType'
+            'ArrayType', 'BooleanType', 'ClassMethodType', 'ClassType', 'DictionaryType',
+            'FunctionType', 'MemBufType', 'MethodType', 'NilType', 'NumericType', 'ObjectType',
+            'RangeType', 'StringType', 'LBindType'
         ),
         6 => array(
-            "CurrentTime","IOStream","InputStream","MemBufFromPtr","OutputStream",
-            "PageDict","ParseRFC2822","abs","acos","all",
-            "allp","any","anyp","argd","argv",
-            "arrayAdd","arrayBuffer","arrayCompact","arrayDel","arrayDelAll",
-            "arrayFill","arrayFind","arrayHead","arrayIns","arrayMerge",
-            "arrayNM","arrayRemove","arrayResize","arrayScan","arraySort",
-            "arrayTail","asin","assert","atan","atan2",
-            "attributes","baseClass","beginCritical","bless","brigade",
-            "broadcast","cascade","ceil","choice","chr",
-            "className","clone","combinations","compare","consume",
-            "cos","deg2rad","deoob","derivedFrom","describe",
-            "deserialize","dictBack","dictBest","dictClear","dictFill",
-            "dictFind","dictFront","dictGet","dictKeys","dictMerge",
-            "dictRemove","dictSet","dictValues","dirChange","dirCurrent",
-            "dirMake","dirMakeLink","dirReadLink","dirRemove","dolist",
-            "endCritical","epoch","eval","exit","exp",
-            "factorial","fileChgroup","fileChmod","fileChown","fileCopy",
-            "fileExt","fileMove","fileName","fileNameMerge","filePath",
-            "fileRemove","fileType","fileUnit","filter","fint",
-            "firstOf","floop","floor","fract","getAssert",
-            "getEnviron","getProperty","getSlot","getSystemEncoding","getenv",
-            "iff","include","input","inspect","int",
-            "isBound","isCallable","isoob","lbind","len",
-            "let","lit","log","map","max",
-            "metaclass","min","numeric","oob","ord",
-            "paramCount","paramIsRef","paramSet","parameter","passvp",
-            "permutations","pow","print","printl","properties",
-            "rad2deg","random","randomChoice","randomDice","randomGrab",
-            "randomPick","randomSeed","randomWalk","readURI","reduce",
-            "retract","round","seconds","serialize","set",
-            "setProperty","setenv","sin","sleep","stdErr",
-            "stdErrRaw","stdIn","stdInRaw","stdOut","stdOutRaw",
-            "strBack","strBackFind","strBackTrim","strBuffer","strCmpIgnoreCase",
-            "strEndsWith","strEscape","strEsq","strFill","strFind",
-            "strFromMemBuf","strFront","strFrontTrim","strLower","strMerge",
-            "strReplace","strReplicate","strSplit","strSplitTrimmed","strStartsWith",
-            "strToMemBuf","strTrim","strUnescape","strUnesq","strUpper",
-            "strWildcardMatch","subscribe","systemErrorDescription","tan","times",
-            "toString","transcodeFrom","transcodeTo","typeOf","unsetenv",
-            "unsubscribe","valof","vmFalconPath","vmIsMain","vmModuleName",
-            "vmModuleVersionInfo","vmSearchPath","vmSystemType","vmVersionInfo","vmVersionName",
-            "writeURI","xmap","yield","yieldOut"
+            "CurrentTime", "IOStream", "InputStream", "MemBufFromPtr", "OutputStream",
+            "PageDict", "ParseRFC2822", "abs", "acos", "all",
+            "allp", "any", "anyp", "argd", "argv",
+            "arrayAdd", "arrayBuffer", "arrayCompact", "arrayDel", "arrayDelAll",
+            "arrayFill", "arrayFind", "arrayHead", "arrayIns", "arrayMerge",
+            "arrayNM", "arrayRemove", "arrayResize", "arrayScan", "arraySort",
+            "arrayTail", "asin", "assert", "atan", "atan2",
+            "attributes", "baseClass", "beginCritical", "bless", "brigade",
+            "broadcast", "cascade", "ceil", "choice", "chr",
+            "className", "clone", "combinations", "compare", "consume",
+            "cos", "deg2rad", "deoob", "derivedFrom", "describe",
+            "deserialize", "dictBack", "dictBest", "dictClear", "dictFill",
+            "dictFind", "dictFront", "dictGet", "dictKeys", "dictMerge",
+            "dictRemove", "dictSet", "dictValues", "dirChange", "dirCurrent",
+            "dirMake", "dirMakeLink", "dirReadLink", "dirRemove", "dolist",
+            "endCritical", "epoch", "eval", "exit", "exp",
+            "factorial", "fileChgroup", "fileChmod", "fileChown", "fileCopy",
+            "fileExt", "fileMove", "fileName", "fileNameMerge", "filePath",
+            "fileRemove", "fileType", "fileUnit", "filter", "fint",
+            "firstOf", "floop", "floor", "fract", "getAssert",
+            "getEnviron", "getProperty", "getSlot", "getSystemEncoding", "getenv",
+            "iff", "include", "input", "inspect", "int",
+            "isBound", "isCallable", "isoob", "lbind", "len",
+            "let", "lit", "log", "map", "max",
+            "metaclass", "min", "numeric", "oob", "ord",
+            "paramCount", "paramIsRef", "paramSet", "parameter", "passvp",
+            "permutations", "pow", "print", "printl", "properties",
+            "rad2deg", "random", "randomChoice", "randomDice", "randomGrab",
+            "randomPick", "randomSeed", "randomWalk", "readURI", "reduce",
+            "retract", "round", "seconds", "serialize", "set",
+            "setProperty", "setenv", "sin", "sleep", "stdErr",
+            "stdErrRaw", "stdIn", "stdInRaw", "stdOut", "stdOutRaw",
+            "strBack", "strBackFind", "strBackTrim", "strBuffer", "strCmpIgnoreCase",
+            "strEndsWith", "strEscape", "strEsq", "strFill", "strFind",
+            "strFromMemBuf", "strFront", "strFrontTrim", "strLower", "strMerge",
+            "strReplace", "strReplicate", "strSplit", "strSplitTrimmed", "strStartsWith",
+            "strToMemBuf", "strTrim", "strUnescape", "strUnesq", "strUpper",
+            "strWildcardMatch", "subscribe", "systemErrorDescription", "tan", "times",
+            "toString", "transcodeFrom", "transcodeTo", "typeOf", "unsetenv",
+            "unsubscribe", "valof", "vmFalconPath", "vmIsMain", "vmModuleName",
+            "vmModuleVersionInfo", "vmSearchPath", "vmSystemType", "vmVersionInfo", "vmVersionName",
+            "writeURI", "xmap", "yield", "yieldOut"
         ),
         7 => array(
-            "AccessError","Array","BOM","Base64","Class",
-            "ClassMethod","CloneError","CmdlineParser","CodeError","Continuation",
-            "Dictionary","Directory","Error","FileStat","Format",
-            "Function","GarbagePointer","GenericError","Integer","InterruptedError",
-            "IoError","Iterator","LateBinding","List","MathError",
-            "MemoryBuffer","MessageError","Method","Numeric","Object",
-            "ParamError","ParseError","Path","Range","Semaphore",
-            "Sequence","Set","Stream","String","StringStream",
-            "SyntaxError","Table","TableError","TimeStamp","TimeZone",
-            "Tokenizer","TypeError","URI","VMSlot"
+            "AccessError", "Array", "BOM", "Base64", "Class",
+            "ClassMethod", "CloneError", "CmdlineParser", "CodeError", "Continuation",
+            "Dictionary", "Directory", "Error", "FileStat", "Format",
+            "Function", "GarbagePointer", "GenericError", "Integer", "InterruptedError",
+            "IoError", "Iterator", "LateBinding", "List", "MathError",
+            "MemoryBuffer", "MessageError", "Method", "Numeric", "Object",
+            "ParamError", "ParseError", "Path", "Range", "Semaphore",
+            "Sequence", "Set", "Stream", "String", "StringStream",
+            "SyntaxError", "Table", "TableError", "TimeStamp", "TimeZone",
+            "Tokenizer", "TypeError", "URI", "VMSlot"
         ),
         8 => array(
-            "args","scriptName","scriptPath"
+            "args", "scriptName", "scriptPath"
         ),
         9 => array(
             "GC"
@@ -150,8 +150,8 @@ $language_data = array (
         9 => true
     ),
     'SYMBOLS' => array(
-        '(',')','$','%','&','/','{','[',']','=','}','?','+','-','#','*','@',
-        '<','>','|',',',':',';','\\','^'
+        '(', ')', '$', '%', '&', '/', '{', '[', ']', '=', '}', '?', '+', '-', '#', '*', '@',
+        '<', '>', '|', ',', ':', ';', '\\', '^'
     ),
     'REGEXPS' => array(
         0 => array(
@@ -165,7 +165,7 @@ $language_data = array (
     ),
     'STRICT_MODE_APPLIES' => GESHI_MAYBE,
     'SCRIPT_DELIMITERS' => array(
-        0 => array( '<?' => '?>' )
+        0 => array('<?' => '?>')
     ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => true

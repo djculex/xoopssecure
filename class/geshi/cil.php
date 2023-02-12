@@ -37,7 +37,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'CIL',
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'COMMENT_SINGLE' => array('//'),
@@ -52,7 +52,7 @@ $language_data = array (
             '.localized', '.locale', '.line', '.language', '.import', '.imagebase', '.hash', '.get', '.fire', '.file', '.field',
             '.export', '.event', '.entrypoint', '.emitbyte', '.data', '.custom', '.culture', '.ctor', '.corflags', '.class',
             '.cctor', '.assembly', '.addon'
-            ),
+        ),
         2 => array(//Attributes
             'wrapper', 'with', 'winapi', 'virtual', 'vector', 'vararg', 'value', 'userdefined', 'unused', 'unmanagedexp',
             'unmanaged', 'unicode', 'to', 'tls', 'thiscall', 'synchronized', 'struct', 'strict', 'storage', 'stdcall',
@@ -68,20 +68,20 @@ $language_data = array (
             'error', 'enum', 'endmac', 'deny', 'demand', 'default', 'custom', 'compilercontrolled', 'clsid', 'class', 'cil',
             'cf', 'cdecl', 'catch', 'beforefieldinit', 'autochar', 'auto', 'at', 'assert', 'assembly', 'as', 'any', 'ansi',
             'alignment', 'algorithm', 'abstract'
-            ),
+        ),
         3 => array(//Types
             'wchar', 'void', 'variant', 'unsigned', 'valuetype', 'typedref', 'tbstr', 'sysstring', 'syschar', 'string',
             'streamed_object', 'stream', 'stored_object', 'safearray', 'objectref', 'object', 'nullref', 'method', 'lpwstr',
             'lpvoid', 'lptstr', 'lpstruct', 'lpstr', 'iunknown', 'int64', 'int32', 'int16', 'int8', 'int', 'idispatch',
             'hresult', 'float64', 'float32', 'float', 'decimal', 'date', 'currency', 'char', 'carray', 'byvalstr',
             'bytearray', 'boxed', 'bool', 'blob_object', 'blob', 'array'
-            ),
+        ),
         4 => array(//Prefix
             'volatile', 'unaligned', 'tail', 'readonly', 'no', 'constrained'
-            ),
+        ),
         5 => array(//Suffix
             'un', 'u8', 'u4', 'u2', 'u1', 'u', 's', 'ref', 'r8', 'r4', 'm1', 'i8', 'i4', 'i2', 'i1', 'i'// , '.8', '.7', '.6', '.5', '.4', '.3', '.2', '.1', '.0'
-            ),
+        ),
         6 => array(//Base
             'xor', 'switch', 'sub', 'stloc',
             'stind', 'starg',
@@ -93,26 +93,26 @@ $language_data = array (
             'call', 'brzero', 'brtrue', 'brnull', 'brinst',
             'brfalse', 'break', 'br', 'bne', 'blt', 'ble', 'bgt', 'bge', 'beq', 'arglist',
             'and', 'add'
-            ),
+        ),
         7 => array(//Object
             'unbox.any', 'unbox', 'throw', 'stsfld', 'stobj', 'stfld', 'stelem', 'sizeof', 'rethrow', 'refanyval', 'refanytype', 'newobj',
             'newarr', 'mkrefany', 'ldvirtftn', 'ldtoken', 'ldstr', 'ldsflda', 'ldsfld', 'ldobj', 'ldlen', 'ldflda', 'ldfld',
             'ldelema', 'ldelem', 'isinst', 'initobj', 'cpobj', 'castclass',
             'callvirt', 'callmostderived', 'box'
-            ),
+        ),
         8 => array(//Other
             'prefixref', 'prefix7', 'prefix6', 'prefix5', 'prefix4', 'prefix3', 'prefix2', 'prefix1', 'prefix0'
-            ),
+        ),
         9 => array(//Literal
             'true', 'null', 'false'
-            ),
+        ),
         10 => array(//Comment-like
             '#line', '^THE_END^'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '[', ']', '{', '}', '!', '!!'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
@@ -125,7 +125,7 @@ $language_data = array (
         8 => true,
         9 => true,
         10 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color:maroon;font-weight:bold;',
@@ -138,34 +138,33 @@ $language_data = array (
             8 => 'color:blue;',
             9 => 'color:00008B',
             10 => 'color:gray'
-            ),
+        ),
         'COMMENTS' => array(
             0 => 'color:gray;font-style:italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #008000; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #006400;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #008000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #00008B;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #000033;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #006400;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color:blue;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -177,18 +176,16 @@ $language_data = array (
         8 => '',
         9 => '',
         10 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '::'
-        ),
+    ),
     'REGEXPS' => array(
         0 => '(?<=ldc\\.i4\\.)[0-8]|(?<=(?:ldarg|ldloc|stloc)\\.)[0-3]' // Pickup the opcodes that end with integers
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4
 );

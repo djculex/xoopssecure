@@ -31,7 +31,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Haxe',
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -40,7 +40,7 @@ $language_data = array (
         2 => '/(?:(?<=import[\\n\\s])|(?<=using[\\n\\s])|(?<=package[\\n\\s]))[\\n\\s]*([a-zA-Z0-9_]+\\.)*([a-zA-Z0-9_]+|\*)(?=[\n\s;])/i',
         // Haxe comments
         3 => '#/\*\*(?![\*\/]).*\*/#sU',
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
@@ -48,33 +48,42 @@ $language_data = array (
         1 => array(
             //http://haxe.org/ref/keywords
             'break', 'callback', 'case', 'cast', 'catch', 'class', 'continue', 'default', 'do', 'dynamic',
-            'else', 'enum', 'extends', 'extern', /*'false',*/ 'for', 'function', 'here', 'if',
-            'implements', 'import', 'in', 'inline', 'interface', 'never', 'new', /*'null',*/ 'override',
+            'else', 'enum', 'extends', 'extern', /*'false',*/
+            'for', 'function', 'here', 'if',
+            'implements', 'import', 'in', 'inline', 'interface', 'never', 'new', /*'null',*/
+            'override',
             'package', 'private', 'public', 'return', 'static', 'super', 'switch', 'this', 'throw',
-            'trace', /*'true',*/ 'try', 'typedef', 'untyped', 'using', 'var', 'while',
+            'trace', /*'true',*/
+            'try', 'typedef', 'untyped', 'using', 'var', 'while',
             'macro', '$type',
-            ),
+        ),
         2 => array(
             //primitive values
             'null', 'false', 'true',
-            ),
+        ),
         3 => array(
             //global types
-            'Array', 'ArrayAccess', /*'Bool',*/ 'Class', 'Date', 'DateTools', 'Dynamic',
-            'EReg', 'Enum', 'EnumValue', /*'Float',*/ 'Hash', /*'Int',*/ 'IntHash', 'IntIter',
+            'Array', 'ArrayAccess', /*'Bool',*/
+            'Class', 'Date', 'DateTools', 'Dynamic',
+            'EReg', 'Enum', 'EnumValue', /*'Float',*/
+            'Hash', /*'Int',*/
+            'IntHash', 'IntIter',
             'Iterable', 'Iterator', 'Lambda', 'List', 'Math', 'Null', 'Reflect', 'Std',
-            /*'String',*/ 'StringBuf', 'StringTools', 'Sys', 'Type', /*'UInt',*/ 'ValueType',
-            /*'Void',*/ 'Xml', 'XmlType',
-            ),
+            /*'String',*/
+            'StringBuf', 'StringTools', 'Sys', 'Type', /*'UInt',*/
+            'ValueType',
+            /*'Void',*/
+            'Xml', 'XmlType',
+        ),
         4 => array(
             //primitive types
             'Void', 'Bool', 'Int', 'Float', 'UInt', 'String',
-            ),
+        ),
         5 => array(
             //compiler switches
             "#if", "#elseif", "#else", "#end", "#error",
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         //http://haxe.org/manual/operators
         '++', '--',
@@ -90,7 +99,7 @@ $language_data = array (
         '?', ':',
         '=', '+=', '-=', '/=', '*=', '<<=', '>>=', '>>>=', '|=', '&=', '^=',
         '(', ')', '[', ']', '{', '}', ';',
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
@@ -98,7 +107,7 @@ $language_data = array (
         3 => true,
         4 => true,
         5 => true,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #6699cc; font-weight: bold;',
@@ -106,53 +115,48 @@ $language_data = array (
             3 => 'color: #03F; ',
             4 => 'color: #000033; font-weight: bold;',
             5 => 'color: #330000; font-weight: bold;',
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
             2 => 'color: #006699;',
             3 => 'color: #008000; font-style: italic; font-weight: bold;',
             'MULTI' => 'color: #666666; font-style: italic;',
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;',
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #000000;',
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #FF0000;',
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;',
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #006633;',
             2 => 'color: #006633;',
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #339933;',
-            ),
-        'SCRIPT' => array(
-            ),
-        'REGEXPS' => array(
-            )
         ),
+        'SCRIPT' => array(),
+        'REGEXPS' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => '',
         5 => '',
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.',
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
 );

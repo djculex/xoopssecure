@@ -47,21 +47,21 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Objective-C',
     'COMMENT_SINGLE' => array(
         //Compiler directives
         1 => '#',
         //Single line C-Comments
         2 => '//'
-        ),
+    ),
     'COMMENT_MULTI' => array('/*' => '*/'),
     'COMMENT_REGEXP' => array(
         //Multiline Continuation for single-line comment
         2 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m',
         //Pseudo-Highlighting of the @-sign before strings
         3 => "/@(?=\")/"
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"', "'"),
     'ESCAPE_CHAR' => '\\',
@@ -75,7 +75,7 @@ $language_data = array (
             '@protected', '@property', '@private', '@interface',
             '@implementation', '@finally', '@end', '@encode', '@defs', '@class',
             '@catch'
-            ),
+        ),
         // Macros and constants
         2 => array(
             'YES', 'USHRT_MAX', 'ULONG_MAX', 'UINT_MAX', 'UCHAR_MAX', 'true',
@@ -93,7 +93,7 @@ $language_data = array (
             'DBL_MAX_EXP', 'DBL_MAX', 'DBL_MANT_DIG', 'DBL_EPSILON', 'DBL_DIG',
             'CLOCKS_PER_SEC', 'CHAR_MIN', 'CHAR_MAX', 'CHAR_BIT', 'BUFSIZ',
             'break'
-            ),
+        ),
         // C standard library functions
         3 => array(
             'vsprintf', 'vprintf', 'vfprintf', 'va_start', 'va_end', 'va_arg',
@@ -118,7 +118,7 @@ $language_data = array (
             'clearerr', 'ceil', 'calloc', 'bsearch', 'atol', 'atoi', 'atof',
             'atexit', 'atan2', 'atan', 'assert', 'asin', 'asctime', 'acos',
             'abs', 'abort'
-            ),
+        ),
         // Data types (C, Objective-C, Cocoa)
         4 => array(
             'volatile', 'void', 'va_list', 'unsigned', 'union', 'typedef', 'tm',
@@ -128,7 +128,7 @@ $language_data = array (
             'ldiv_t', 'jmp_buf', 'int', 'IMP', 'id', 'fpos_t', 'float', 'FILE',
             'extern', 'double', 'div_t', 'const', 'clock_t', 'Class', 'char',
             'BOOL', 'auto'
-            ),
+        ),
         // Foundation classes
         5 => array(
             'NSXMLParser', 'NSXMLNode', 'NSXMLElement', 'NSXMLDTDNode',
@@ -184,7 +184,7 @@ $language_data = array (
             'NSAutoreleasePool', 'NSAttributedString', 'NSAssertionHandler',
             'NSArray', 'NSArchiver', 'NSAppleScript', 'NSAppleEventManager',
             'NSAppleEventDescriptor', 'NSAffineTransform'
-            ),
+        ),
         // Foundation protocols
         6 => array(
             'NSURLProtocolClient', 'NSURLHandleClient', 'NSURLClient',
@@ -195,7 +195,7 @@ $language_data = array (
             'NSFastEnumeration', 'NSErrorRecoveryAttempting',
             'NSDecimalNumberBehaviors', 'NSCopying', 'NSComparisonMethods',
             'NSCoding'
-            ),
+        ),
         // AppKit classes
         7 => array(
             'NSWorkspace', 'NSWindowController', 'NSWindow', 'NSViewController',
@@ -244,7 +244,7 @@ $language_data = array (
             'NSBitmapImageRep', 'NSBezierPath', 'NSATSTypesetter',
             'NSArrayController', 'NSApplication', 'NSAnimationContext',
             'NSAnimation', 'NSAlert', 'NSActionCell'
-            ),
+        ),
         // AppKit protocols
         8 => array(
             'NSWindowScripting', 'NSValidatedUserInterfaceItem',
@@ -262,7 +262,7 @@ $language_data = array (
             'NSComboBoxDataSource', 'NSComboBoxCellDataSource',
             'NSColorPickingDefault', 'NSColorPickingCustom', 'NSChangeSpelling',
             'NSAnimatablePropertyContainer', 'NSAccessibility'
-            ),
+        ),
         // CoreData classes
         9 => array(
             'NSRelationshipDescription', 'NSPropertyMapping',
@@ -274,11 +274,11 @@ $language_data = array (
             'NSFetchedPropertyDescription', 'NSEntityMigrationPolicy',
             'NSEntityMapping', 'NSEntityDescription', 'NSAttributeDescription',
             'NSAtomicStoreCacheNode', 'NSAtomicStore'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => true,
         1 => true,
@@ -290,7 +290,7 @@ $language_data = array (
         7 => true,
         8 => true,
         9 => true
-        ),
+    ),
     // Define the colors for the groups listed above
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -303,35 +303,32 @@ $language_data = array (
             7 => 'color: #400080;', // AppKit classes
             8 => 'color: #2a6f76;', // AppKit protocols
             9 => 'color: #400080;' // CoreData classes
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #6e371a;', // Preprocessor directives
             2 => 'color: #11740a; font-style: italic;', // Normal C single-line comments
             3 => 'color: #bf1d1a;', // Q-sign in front of Strings
             'MULTI' => 'color: #11740a; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #2400d9;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #002200;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #bf1d1a;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #2400d9;'
-            ),
-        'METHODS' => array(
-            ),
+        ),
+        'METHODS' => array(),
         'SYMBOLS' => array(
             0 => 'color: #002200;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -342,15 +339,11 @@ $language_data = array (
         7 => 'http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/{FNAME}_Class/',
         8 => 'http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Protocols/{FNAME}_Protocol/',
         9 => 'http://developer.apple.com/documentation/Cocoa/Reference/CoreDataFramework/Classes/{FNAME}_Class/'
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
-    'REGEXPS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

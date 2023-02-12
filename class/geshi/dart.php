@@ -56,7 +56,7 @@ $language_data = array(
         //Hexadecimal Char Specs
         3 => "#\\\\u[\da-fA-F]{4}#",
         4 => "#\\\\u\\{[\da-fA-F]*\\}#"
-        ),
+    ),
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE |
         GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
@@ -71,11 +71,11 @@ $language_data = array(
             'new', 'null', 'operator', 'part', 'return', 'set', 'static',
             'super', 'switch', 'this', 'throw', 'true', 'try', 'typedef', 'var',
             'while', 'with'
-            ),
+        ),
         2 => array(
             'double', 'bool', 'int', 'num', 'void'
-            ),
         ),
+    ),
 
     'SYMBOLS' => array(
         0 => array('(', ')', '{', '}', '[', ']'),
@@ -85,23 +85,23 @@ $language_data = array(
         4 => array('?', ':'),
         5 => array('..'),
         6 => array(';', ',')
-        ),
+    ),
 
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
         2 => true,
-        ),
+    ),
 
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'font-weight: bold;',
             2 => 'color: #445588; font-weight: bold;'
-            ),
+        ),
         'COMMENTS' => array(
             0 => 'color: #999988; font-style: italic;',
             'MULTI' => 'color: #999988; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;',
             1 => 'color: #000099; font-weight: bold;',
@@ -110,10 +110,10 @@ $language_data = array(
             4 => 'color: #660099; font-weight: bold;',
             5 => 'color: #006699; font-weight: bold;',
             'HARD' => ''
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #d14;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #009999;',
             GESHI_NUMBER_HEX_PREFIX => 'color: #208080;',
@@ -121,11 +121,11 @@ $language_data = array(
             GESHI_NUMBER_FLT_SCI_ZERO => 'color:#800080;',
             GESHI_NUMBER_FLT_NONSCI_F => 'color:#800080;',
             GESHI_NUMBER_FLT_NONSCI => 'color:#800080;'
-            ),
+        ),
         'BRACKETS' => array(''),
         'METHODS' => array(
             1 => 'color: #006633;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'font-weight: bold;',
             1 => 'font-weight: bold;',
@@ -134,26 +134,21 @@ $language_data = array(
             4 => 'font-weight: bold;',
             5 => 'font-weight: bold;',
             6 => 'font-weight: bold;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4
 );

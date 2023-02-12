@@ -34,7 +34,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Gnuplot',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
@@ -60,7 +60,7 @@ $language_data = array (
             'save', 'set', 'shell', 'show',
             'splot', 'system', 'test', 'unset',
             'update'
-            ),
+        ),
         2 => array(
             // set commands as returned by `help set`
             'angles', 'arrow', 'autoscale', 'bars',
@@ -124,7 +124,7 @@ $language_data = array (
             'noytics', 'noyzeroaxis', 'nozdata', 'nozdtics',
             'nozero', 'nozeroaxis', 'nozlabel', 'nozmtics',
             'nozrange', 'noztics', 'nozzeroaxis',
-            ),
+        ),
         3 => array(
             // predefined variables
             'pi', 'NaN', 'GNUTERM',
@@ -133,7 +133,7 @@ $language_data = array (
             'GPVAL_VERSION', 'GPVAL_PATcHLEVEL', 'GPVAL_COMPILE_OPTIONS',
             'MOUSE_KEY', 'MOUSE_X', 'MOUSE_X2', 'MOUSE_Y', 'MOUSE_Y2',
             'MOUSE_BUTTON', 'MOUSE_SHIFT', 'MOUSE_ALT', 'MOUSE_CTRL'
-            ),
+        ),
         4 => array(
             // predefined functions `help functions`
             'abs', 'acos', 'acosh', 'arg',
@@ -152,7 +152,7 @@ $language_data = array (
             'tm_hour', 'tm_mday', 'tm_min', 'tm_mon',
             'tm_sec', 'tm_wday', 'tm_yday', 'tm_year',
             'valid', 'word', 'words',
-            ),
+        ),
         5 => array(
             // mixed arguments
             // there is no sane way to get these ones easily...
@@ -212,19 +212,19 @@ $language_data = array (
             'svg', 'tandy-60dpi', 'tek40xx', 'tek410x',
             'texdraw', 'tgif', 'tkcanvas', 'tpic',
             'vttek', 'x11', 'xlib',
-            )
-        ),
+        )
+    ),
     'REGEXPS' => array(
         //Variable assignment
         0 => "(?<![?;>\w])([a-zA-Z_][a-zA-Z0-9_]*)\s*=",
         //Numbers with unit
         1 => "(?<=^|\s)([0-9]*\.?[0-9]+\s*cm)"
-        ),
+    ),
     'SYMBOLS' => array(
         '-', '+', '~', '!', '$',
         '*', '/', '%', '=', '<', '>', '&',
         '^', '|', '.', 'eq', 'ne', '?:', ':', '`', ','
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
@@ -232,7 +232,7 @@ $language_data = array (
         3 => true,
         4 => true,
         5 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #b1b100;',
@@ -240,53 +240,48 @@ $language_data = array (
             3 => 'color: #550000;',
             4 => 'color: #7a0874;',
             5 => 'color: #448888;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #adadad; font-style: italic;',
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight:bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #000099; font-weight:bold;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #0000ff;',
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'
-            ),
-        'METHODS' => array(
-            ),
+        ),
+        'METHODS' => array(),
         'SYMBOLS' => array(
             0 => 'color: #000; font-weight: bold;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #007800;',
             1 => 'color: #cc66cc;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => 'http://www.google.com/search?q=%22set+{FNAME}%22+site%3Ahttp%3A%2F%2Fwww.gnuplot.info%2Fdocs%2F&amp;btnI=lucky',
         3 => '',
         4 => '',
         5 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             4 => array(
-                'DISALLOWED_AFTER' =>  "(?![\.\-a-zA-Z0-9_%])"
+                'DISALLOWED_AFTER' => "(?![\.\-a-zA-Z0-9_%])"
             )
         )
     ),

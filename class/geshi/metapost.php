@@ -31,15 +31,14 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'MetaPost',
     'COMMENT_SINGLE' => array(1 => '%'),
     'COMMENT_MULTI' => array(
         'verbatim' => 'etex', //TeX and LaTeX preambule
         'btex' => 'etex' //TeX invocation
     ),
-    'COMMENT_REGEXP' => array(
-    ),
+    'COMMENT_REGEXP' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '',
@@ -314,15 +313,15 @@ $language_data = array (
     ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1  => 'color: #472;', //type
-            2  => 'color: #35A;font-weight: bold;', //file construction
-            3  => 'color: #A53;', //structure
-            4  => 'color: #35A;', //operations return pair
-            5  => 'color: #35A;', //operations return path or picture or pen
-            6  => 'color: #35A;', //operations return string
-            7  => 'color: #35A;', //operations return numeric
-            8  => 'color: #35A;', //operations return boolean
-            9  => 'color: #35A;', //operations return color
+            1 => 'color: #472;', //type
+            2 => 'color: #35A;font-weight: bold;', //file construction
+            3 => 'color: #A53;', //structure
+            4 => 'color: #35A;', //operations return pair
+            5 => 'color: #35A;', //operations return path or picture or pen
+            6 => 'color: #35A;', //operations return string
+            7 => 'color: #35A;', //operations return numeric
+            8 => 'color: #35A;', //operations return boolean
+            9 => 'color: #35A;', //operations return color
             10 => 'color: #35A;', //operations return transform
             11 => 'color: #35A;', //constructors
             12 => 'color: #35A;', //labels
@@ -358,8 +357,7 @@ $language_data = array (
         'SYMBOLS' => array(
             0 => 'color: #000;'
         ),
-        'REGEXPS' => array(
-        ),
+        'REGEXPS' => array(),
         'SCRIPT' => array(
             0 => ''
         )
@@ -387,13 +385,9 @@ $language_data = array (
         20 => ''
     ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-    ),
-    'REGEXPS' => array(
-    ),
+    'OBJECT_SPLITTERS' => array(),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-    ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-    )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

@@ -33,7 +33,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'POVRAY',
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -82,7 +82,7 @@ $language_data = array (
             'append', 'aperture', 'angle', 'ambient_light', 'ambient', 'always_sample', 'altitude', 'alpha',
             'all_intersections', 'all', 'agate_turb', 'agate', 'adc_bailout', 'adaptive', 'accuracy', 'absorption',
             'aa_threshold', 'aa_level', 'reflection'
-            ),
+        ),
         2 => array(
             'abs', 'acos', 'acosh', 'asc', 'asin', 'asinh', 'atan', 'atanh',
             'atan2', 'ceil', 'cos', 'cosh', 'defined', 'degrees', 'dimensions', 'dimension_size',
@@ -90,12 +90,12 @@ $language_data = array (
             'min', 'mod', 'pov', 'radians', 'rand', 'seed', 'select', 'sin',
             'sinh', 'sqrt', 'strcmp', 'strlen', 'tan', 'tanh', 'val', 'vdot',
             'vlenght',
-            ),
-        3 => array (
+        ),
+        3 => array(
             'x', 'y', 'z', 't', 'u', 'v', 'red', 'blue',
             'green', 'filter', 'transmit', 'gray', 'e',
-            ),
-        4 => array (
+        ),
+        4 => array(
             'camera', 'background', 'fog', 'sky_sphere', 'rainbow', 'global_settings', 'radiosity', 'photon',
             'object', 'blob', 'sphere', 'cylinder', 'box', 'cone', 'height_field', 'julia_fractal',
             'lathe', 'prism', 'sphere_sweep', 'superellipsoid', 'sor', 'text', 'torus', 'bicubic_patch',
@@ -105,94 +105,92 @@ $language_data = array (
             'union', 'intersection', 'difference', 'merge', 'light_source', 'looks_like', 'light_group', 'clipped_by',
             'bounded_by', 'interior', 'material', 'interior_texture', 'normal', 'finish', 'color_map', 'pigment_map',
             'image_map', 'bump_map', 'slope_map', 'normal_map', 'irid', 'photons',
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '[', ']', '{', '}', '!',
         '@', '%', '&', '*', '|', '/', '<',
         '>', '+', '-', '.', '=', '<=', '>=',
         '!=',
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
         4 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #a63123;',
             2 => 'color: #2312bc;',
             3 => 'color: #cc1122; font-weight: bold;',
             4 => 'color: #116688; font-weight: bold;',
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
-    //            2 => 'color: #808080; font-style: italic;',
+            //            2 => 'color: #808080; font-style: italic;',
             'MULTI' => 'color: #808080; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66aa;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #006600;',
             2 => 'color: #006600;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #6666cc; font-weight: bold;',
             1 => 'color: #66cc66; font-weight: bold;',
             2 => 'color: #66cc66; font-weight: bold;'
-            ),
+        ),
         'SCRIPT' => array(
             0 => '',
             1 => '',
             2 => '',
             3 => ''
-            )
-        ),
+        )
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
         // normal hash lines
         0 => '\#(?!(include|declare|local|fopen|fclose|read|write|default|version|if|else|end|ifdef|ifndef|switch|case|range|break|while|debug|error|warning|macro) )[[:word:]]*',
         // syntax functions hash thingis
         1 => "\#(include|declare|local|fopen|fclose|read|write|default|version|if|else|end|ifdef|ifndef|switch|case|range|break|while|debug|error|warning|macro)",
         2 => array(
-            GESHI_SEARCH  => "([a-zA-Z]+)(\n)(.*)(\n)(\\1;?)",
+            GESHI_SEARCH => "([a-zA-Z]+)(\n)(.*)(\n)(\\1;?)",
             GESHI_REPLACE => '\3',
             GESHI_BEFORE => '\1\2',
             GESHI_AFTER => '\4\5',
             GESHI_MODIFIERS => 'siU'
-            )
-        ),
+        )
+    ),
     'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-    'SCRIPT_DELIMITERS' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => true,
         1 => true,
         2 => true,
         3 => true
-        ),
+    ),
     'TAB_WIDTH' => 4
 );

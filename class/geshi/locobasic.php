@@ -36,7 +36,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Locomotive Basic',
     'COMMENT_SINGLE' => array(1 => "'", 2 => 'REM'),
     'COMMENT_MULTI' => array(),
@@ -60,7 +60,7 @@ $language_data = array (
             "SYMBOL", "TAB", "TAG", "TAGOFF", "TEST", "TESTR", "TIME", "TO",
             "THEN", "TRON", "TROFF", "USING", "WAIT", "WEND", "WHILE", "WIDTH",
             "WINDOW", "WRITE", "XOR", "ZONE"
-            ),
+        ),
         2 => array(
             "ABS", "ASC", "ATN", "BIN", "CHR", "CINT", "COPYCHR", "COS",
             "CREAL", "DEC", "FIX", "FRE", "EXP", "HEX", "INKEY", "INP", "INSTR",
@@ -68,61 +68,56 @@ $language_data = array (
             "MIN", "MOD", "OUT", "PI", "POS", "RIGHT", "RND", "ROUND", "SGN",
             "SIN", "SPACE", "SQR", "STR", "STRING", "TAN", "UNT", "UPPER",
             "VAL", "VPOS", "XPOS", "YPOS"
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #000088; font-weight: bold;',
             2 => 'color: #AA00AA; font-weight: bold;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #808080;',
             2 => 'color: #808080;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #ff0000;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #008800;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #0044ff;'
-            ),
+        ),
         'METHODS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099;'
-            ),
-        'SCRIPT' => array(
-            ),
-        'REGEXPS' => array(
-            )
         ),
+        'SCRIPT' => array(),
+        'REGEXPS' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

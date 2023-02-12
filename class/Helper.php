@@ -4,6 +4,16 @@ declare(strict_types=1);
 
 namespace XoopsModules\Xoopssecure;
 
+use RuntimeException;
+use XoopsDatabaseFactory;
+use XoopsMySQLDatabase;
+use XoopsObjectHandler;
+use XoopsPersistableObjectHandler;
+use function basename;
+use function class_exists;
+use function dirname;
+use function ucfirst;
+
 /**
  * Helper class
  *
@@ -19,6 +29,9 @@ namespace XoopsModules\Xoopssecure;
  */
 class Helper extends \Xmf\Module\Helper
 {
+    /**
+     * @var bool
+     */
     public $debug;
 
     /**
@@ -26,30 +39,15 @@ class Helper extends \Xmf\Module\Helper
      */
     public function __construct($debug = false)
     {
-        $this->debug   = $debug;
-        $moduleDirName = \basename(\dirname(__DIR__));
+        $this->debug = $debug;
+        $moduleDirName = basename(dirname(__DIR__));
         parent::__construct($moduleDirName);
-    }
-
-    /**
-     * @param bool $debug
-     *
-     * @return \XoopsModules\Xoopssecure\Helper
-     */
-    public static function getInstance($debug = false)
-    {
-        static $instance;
-        if (null === $instance) {
-            $instance = new static($debug);
-        }
-
-        return $instance;
     }
 
     /**
      * @return string
      */
-    public function getDirname()
+    public function getDirname(): string
     {
         return $this->dirname;
     }
@@ -59,20 +57,35 @@ class Helper extends \Xmf\Module\Helper
      *
      * @param string $name name of handler to load
      *
-     * @return bool|\XoopsObjectHandler|\XoopsPersistableObjectHandler
+     * @return bool|XoopsObjectHandler|XoopsPersistableObjectHandler
      */
     public function getHandler($name)
     {
-        $class = __NAMESPACE__ . '\\' . \ucfirst($name) . 'Handler';
-        if (!\class_exists($class)) {
-            throw new \RuntimeException("Class '$class' not found");
+        $class = __NAMESPACE__ . '\\' . ucfirst($name) . 'Handler';
+        if (!class_exists($class)) {
+            throw new RuntimeException("Class '$class' not found");
         }
-        /** @var \XoopsMySQLDatabase $db */
-        $db     = \XoopsDatabaseFactory::getDatabaseConnection();
+        /** @var XoopsMySQLDatabase $db */
+        $db = XoopsDatabaseFactory::getDatabaseConnection();
         $helper = self::getInstance();
-        $ret    = new $class($db, $helper);
+        $ret = new $class($db, $helper);
         $this->addLog("Getting handler '{$name}'");
 
         return $ret;
+    }
+
+    /**
+     * @param bool $debug
+     *
+     * @return Helper
+     */
+    public static function getInstance($debug = false)
+    {
+        static $instance;
+        if (null === $instance) {
+            $instance = new static($debug);
+        }
+
+        return $instance;
     }
 }

@@ -12,7 +12,24 @@ namespace XoopsModules\xoopssecure\Common;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+use SqlUtility;
 use XoopsModules\xoopssecure\Common;
+use XoopsObject;
+use function array_filter;
+use function array_values;
+use function count;
+use function explode;
+use function file_exists;
+use function mb_strtolower;
+use function preg_split;
+use function stripos;
+use function strpos;
+use function substr;
+use function trim;
+use function xoops_error;
+use function xoops_getHandler;
+use const XOOPS_DB_TYPE;
+use const XOOPS_ROOT_PATH;
 
 /**
  * Class to compare current DB table structure with sql/mysql.sql
@@ -23,35 +40,30 @@ use XoopsModules\xoopssecure\Common;
  * @license   GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @link      https://xoops.org
  */
-
-class TableChecker extends \XoopsObject
+class TableChecker extends XoopsObject
 {
+public const CHECKTYPE_REPORT = 0;
+public const CHECKTYPE_UPDATE = 1;
+public const CHECKTYPE_UPDATE_REPORT = 2;
     /**
      * @var mixed
      */
     private $after = null;
-
-    /**
+        /**
      * @var mixed
      */
-    private $mydirname = null;
-
-    /**
+    private $mydirname = null; //report only
+        /**
      * @var mixed
      */
-    private $result = [];
-
-    /**
+    private $result = []; //update only
+        /**
      * @var mixed
      */
-    private $checktype = null;
-    public const CHECKTYPE_REPORT = 0; //report only
-    public const CHECKTYPE_UPDATE = 1; //update only
-    public const CHECKTYPE_UPDATE_REPORT = 2; //update and report
-
+    private $checktype = null; //update and report
 
     /**
-     * @param \XoopsModules\xoopssecure\Common\TableChecker|null
+     * @param TableChecker|null
      */
     public function __construct($mydirname, $checktype = 0)
     {
@@ -68,13 +80,13 @@ class TableChecker extends \XoopsObject
 
         $tabledefs = $this->readSQLFile();
 
-        $this->result[] = 'Tables found in sql:' . \count($tabledefs);
+        $this->result[] = 'Tables found in sql:' . count($tabledefs);
 
         foreach ($tabledefs as $tabledef) {
             //echo '<br>' . $tabledef['name'];
             //check whether table exist or not
-            $table   = $tabledef['name'];
-            $check   = $GLOBALS['xoopsDB']->queryF("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='$table'");
+            $table = $tabledef['name'];
+            $check = $GLOBALS['xoopsDB']->queryF("SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME='$table'");
             $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
             if ($numRows) {
                 //table exist
@@ -87,7 +99,7 @@ class TableChecker extends \XoopsObject
                     if ($this->result = $GLOBALS['xoopsDB']->queryF($sql)) {
                         $this->result[] = 'Table created:' . $table;
                     } else {
-                        \xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
+                        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
                         $this->result[] = 'Error creating table:' . $table;
                     }
                 } else {
@@ -108,26 +120,26 @@ class TableChecker extends \XoopsObject
     {
         $tabledefs = [];
 
-        $moduleHandler = \xoops_getHandler('module');
+        $moduleHandler = xoops_getHandler('module');
         $module = $moduleHandler->getByDirname($this->mydirname);
         $module->loadInfoAsVar($this->mydirname);
         $sqlfile = $module->getInfo('sqlfile');
-        $sql_file_path = \XOOPS_ROOT_PATH . '/modules/' . $this->mydirname . '/' . $sqlfile[\XOOPS_DB_TYPE];
+        $sql_file_path = XOOPS_ROOT_PATH . '/modules/' . $this->mydirname . '/' . $sqlfile[XOOPS_DB_TYPE];
 
-        if (\file_exists($sql_file_path)) {
-            include_once \XOOPS_ROOT_PATH . '/class/database/sqlutility.php';
-            $sqlutil = new \SqlUtility();
+        if (file_exists($sql_file_path)) {
+            include_once XOOPS_ROOT_PATH . '/class/database/sqlutility.php';
+            $sqlutil = new SqlUtility();
             $pieces = [];
-            $sql_query = \trim(file_get_contents($sql_file_path));
+            $sql_query = trim(file_get_contents($sql_file_path));
             $sqlutil->splitMySqlFile($pieces, $sql_query);
 
             $countTable = 0;
             foreach ($pieces as $piece) {
                 $singleSql = $sqlutil->prefixQuery($piece, $GLOBALS['xoopsDB']->prefix());
-                $lines = \preg_split('/\r\n|\n|\r/', $piece);
+                $lines = preg_split('/\r\n|\n|\r/', $piece);
                 //var_dump($lines);
                 $needle1 = 'create table';
-                if ($needle1 == \mb_strtolower($singleSql[1])) {
+                if ($needle1 == mb_strtolower($singleSql[1])) {
                     $countLine = 0;
                     $tabledefs[$countTable]['sql'] = $singleSql[0];
                     $tabledefs[$countTable]['name'] = $GLOBALS['xoopsDB']->prefix() . '_' . $singleSql[4];
@@ -137,14 +149,14 @@ class TableChecker extends \XoopsObject
                             $needle2 = 'primary key';
                             $needle3 = 'unique key';
                             $needle4 = 'key';
-                            if (0 === \stripos(\trim($line), $needle2)) {
+                            if (0 === stripos(trim($line), $needle2)) {
                                 $tabledefs[$countTable][$needle2] = $line;
-                            } elseif (0 === \stripos(\trim($line), $needle3)) {
+                            } elseif (0 === stripos(trim($line), $needle3)) {
                                 $tabledefs[$countTable][$needle3] = $line;
-                            } elseif (0 === \stripos(\trim($line), $needle4)) {
+                            } elseif (0 === stripos(trim($line), $needle4)) {
                                 $tabledefs[$countTable][$needle4] = $line;
                             } else {
-                                if (\strpos($line, '`') > 0) {
+                                if (strpos($line, '`') > 0) {
                                     $tabledefs[$countTable]['fields'][] = $this->extractField($line);
                                 }
                             }
@@ -162,45 +174,33 @@ class TableChecker extends \XoopsObject
         return $tabledefs;
     }
 
-
-    private function extractKey($line)
-    {
-        //todo: split string into single keys
-        $needle = '(';
-        $key_text = \substr($line, \strpos($line, $needle, 0) + 1);
-        $needle = ')';
-        $key_text = \substr($key_text, 0, \strpos($key_text, $needle, 0));
-
-        return $key_text;
-    }
-
     private function extractField($line)
     {
         //todo
         $counter = 0;
-        $clean = mb_substr(\trim($line), 0, -1);
-        $params = \array_values(\array_filter(\explode(' ', $clean)));
+        $clean = mb_substr(trim($line), 0, -1);
+        $params = array_values(array_filter(explode(' ', $clean)));
         $field['sql'] = $clean;
-        $field['name'] = \trim($params[$counter], '`');
+        $field['name'] = trim($params[$counter], '`');
         $counter++;
         $field['type'] = $params[$counter];
         $counter++;
-        if ('unsigned' == \mb_strtolower($params[$counter])) {
+        if ('unsigned' == mb_strtolower($params[$counter])) {
             $field['unsigned'] = $params[$counter];
             $counter++;
         }
-        if ('not' == \mb_strtolower($params[$counter]) && 'null' == \mb_strtolower($params[$counter + 1])) {
+        if ('not' == mb_strtolower($params[$counter]) && 'null' == mb_strtolower($params[$counter + 1])) {
             $field['null'] = $params[$counter] . ' ' . $params[$counter + 1];
             $counter = $counter + 2;
         }
-        if (\count($params) > $counter) {
-            if ('auto_increment' == \mb_strtolower($params[$counter])) {
+        if (count($params) > $counter) {
+            if ('auto_increment' == mb_strtolower($params[$counter])) {
                 $field['auto_increment'] = $params[$counter];
                 $counter++;
             }
         }
-        if (\count($params) > $counter) {
-            if ('default' == \mb_strtolower($params[$counter])) {
+        if (count($params) > $counter) {
+            if ('default' == mb_strtolower($params[$counter])) {
                 $field['default'] = $params[$counter] . ' ' . $params[$counter + 1];
                 $counter = $counter + 2;
             }
@@ -218,8 +218,8 @@ class TableChecker extends \XoopsObject
         foreach ($fields as $field) {
             //check whether column exist or not
             $fieldname = $field['name'];
-            $check     = $GLOBALS['xoopsDB']->queryF("SHOW COLUMNS FROM `$table` LIKE '$fieldname'");
-            $numRows   = $GLOBALS['xoopsDB']->getRowsNum($check);
+            $check = $GLOBALS['xoopsDB']->queryF("SHOW COLUMNS FROM `$table` LIKE '$fieldname'");
+            $numRows = $GLOBALS['xoopsDB']->getRowsNum($check);
             if ($numRows) {
                 //field exist
                 $this->checkField($table, $field);
@@ -228,12 +228,12 @@ class TableChecker extends \XoopsObject
                     // create new field
                     $sql = "ALTER TABLE `$table` ADD " . $field['sql'];
                     if ('' !== (string)$field['after']) {
-                        $sql .=  ' AFTER `' . $field['after'] . '`;';
+                        $sql .= ' AFTER `' . $field['after'] . '`;';
                     }
                     if ($result = $GLOBALS['xoopsDB']->queryF($sql)) {
                         $this->result[] = 'Field added:' . $fieldname;
                     } else {
-                        \xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
+                        xoops_error($GLOBALS['xoopsDB']->error() . '<br>' . $sql);
                         $this->result[] = "Error when adding '$fieldname' to table '$table'.";
                     }
                 } else {
@@ -251,5 +251,16 @@ class TableChecker extends \XoopsObject
         $this->result[] = 'Field exist:' . $field['name'] . ' - no changes';
 
         return true;
+    }
+
+    private function extractKey($line)
+    {
+        //todo: split string into single keys
+        $needle = '(';
+        $key_text = substr($line, strpos($line, $needle, 0) + 1);
+        $needle = ')';
+        $key_text = substr($key_text, 0, strpos($key_text, $needle, 0));
+
+        return $key_text;
     }
 }

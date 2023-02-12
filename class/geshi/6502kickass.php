@@ -37,7 +37,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'MOS 6502 (6510) Kick Assembler format',
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -57,16 +57,16 @@ $language_data = array (
             'sbc', 'sbc2', 'sec', 'sed', 'sei', 'shx', 'shy', 'slo',
             'sre', 'sta', 'stx', 'sty', 'tas', 'tax', 'tay', 'tsx',
             'txa', 'txs', 'tya', 'xaa',
-            ),
+        ),
         /* DTV additional Opcodes. */
         2 => array(
             'bra', 'sac', 'sir'
-            ),
+        ),
         /* Index Registers, yes the 6502 has other registers by they are only
         * accessable by specific opcodes. */
         3 => array(
             'x', 'y'
-            ),
+        ),
         /* Directives. */
         4 => array(
             '.pc', '.pseudopc', 'virtual', '.align', '.byte', '.word', '.text', '.fill',
@@ -74,7 +74,7 @@ $language_data = array (
             '.error', '.var', '.eval', '.const', '.eval const', '.enum', '.label', '.define', '.struct',
             'if', '.for', '.macro', '.function', '.return', '.pseudocommand', '.namespace', '.filenamespace',
             '.assert', '.asserterror',
-            ),
+        ),
         /* Kick Assembler 3.13 Functions/Operators. */
         5 => array(
             'size', 'charAt', 'substring', 'asNumber', 'asBoolean', 'toIntString', 'toBinaryString', 'toOctalString',
@@ -91,7 +91,7 @@ $language_data = array (
             'getX', 'getY', 'getZ',                                             // Vector functions.
             'RotationMatrix', 'ScaleMatrix', 'MoveMatrix', 'PerspectiveMatrix', // Matrix functions.
 
-            ),
+        ),
 
         /* Kick Assembler 3.13 Math Functions. */
         6 => array(
@@ -99,7 +99,7 @@ $language_data = array (
             'exp', 'expm1', 'floor', 'hypot', 'IEEEremainder', 'log', 'log10',
             'log1p', 'max', 'min', 'pow', 'mod', 'random', 'round', 'signum',
             'sin', 'sinh', 'sqrt', 'tan', 'tanh', 'toDegrees', 'toRadians',
-            ),
+        ),
 
         /* Kick Assembler 3.13 Objects/Data Types. */
         7 => array(
@@ -107,26 +107,26 @@ $language_data = array (
             'Hashtable',     // Hashtable() Object.
             'Vector',        // Vector() Object.
             'Matrix',        // Matrix() Object.
-            ),
+        ),
 
         /* Kick Assembler 3.13 Constants. */
         8 => array(
             'PI', 'E',                                                         // Math Constants.
-            'AT_ABSOLUTE' , 'AT_ABSOLUTEX' , 'AT_ABSOLUTEY' , 'AT_IMMEDIATE',  // Pseudo Commands Constants.
-            'AT_INDIRECT' , 'AT_IZEROPAGEX' , 'AT_IZEROPAGEY' , 'AT_NONE',
+            'AT_ABSOLUTE', 'AT_ABSOLUTEX', 'AT_ABSOLUTEY', 'AT_IMMEDIATE',  // Pseudo Commands Constants.
+            'AT_INDIRECT', 'AT_IZEROPAGEX', 'AT_IZEROPAGEY', 'AT_NONE',
             'BLACK', 'WHITE', 'RED', 'CYAN', 'PURPLE', 'GREEN', 'BLUE',        // Colour Constants.
             'YELLOW', 'ORANGE', 'BROWN', 'LIGHT_RED', 'DARK_GRAY', 'GRAY',
             'LIGHT_GREEN', 'LIGHT_BLUE', 'LIGHT_GRAY',
             'C64FILE',                                                         // Template Tag names.
-            'BF_C64FILE', 'BF_BITMAP_SINGLECOLOR', 'BF_KOALA' , 'BF_FLI',      // Binary format constant
-            ),
-
+            'BF_C64FILE', 'BF_BITMAP_SINGLECOLOR', 'BF_KOALA', 'BF_FLI',      // Binary format constant
         ),
+
+    ),
     'SYMBOLS' => array(
 //        '[', ']', '(', ')', '{', '}',    // These are already defined by GeSHi as BRACKETS.
         '-', '+', '-', '*', '/', '>', '<', '<<', '>>', '&', '|', '^', '=', '==',
         '!=', '>=', '<=', '!', '&&', '||', '#',
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
@@ -137,7 +137,7 @@ $language_data = array (
         6 => true,
         7 => true,
         8 => true,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #00f; font-weight:bold;',
@@ -148,39 +148,37 @@ $language_data = array (
             6 => 'color: #f08; font-weight:bold;',
             7 => 'color: #a04; font-weight:bold; font-style: italic;',
             8 => 'color: #f08; font-weight:bold;',
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #999; font-style: italic;',
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #009; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #000;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #080;'
-            ),
+        ),
         'NUMBERS' => array(
-            GESHI_NUMBER_INT_BASIC          => 'color: #f00;',
-            GESHI_NUMBER_HEX_PREFIX_DOLLAR  => 'color: #f00;',
+            GESHI_NUMBER_INT_BASIC => 'color: #f00;',
+            GESHI_NUMBER_HEX_PREFIX_DOLLAR => 'color: #f00;',
             GESHI_NUMBER_BIN_PREFIX_PERCENT => 'color: #f00;',
-            GESHI_NUMBER_FLT_NONSCI         => 'color: #f00;',
-            ),
-        'METHODS' => array(
-            ),
+            GESHI_NUMBER_FLT_NONSCI => 'color: #f00;',
+        ),
+        'METHODS' => array(),
         'SYMBOLS' => array(
             0 => 'color: #080;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #933;',
             1 => 'color: #933;',
             2 => 'color: #933;',
             3 => 'color: #00f; font-weight:bold;',
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -190,16 +188,15 @@ $language_data = array (
         6 => '',
         7 => '',
         8 => '',
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC |
         GESHI_NUMBER_FLT_NONSCI |
         GESHI_NUMBER_HEX_PREFIX_DOLLAR |
         GESHI_NUMBER_BIN_PREFIX_PERCENT,
-        // AMCE Octal format not support and gets picked up as Decimal unfortunately.
+    // AMCE Octal format not support and gets picked up as Decimal unfortunately.
     'REGEXPS' => array(
         //Labels end with a collon.
         0 => '[!]{0,1}[_a-zA-Z][_a-zA-Z0-9]*\:',
@@ -213,27 +210,25 @@ $language_data = array (
         // So I thought it better and easier to maintain as a regular expression.
         // NOTE: The order of the Address Modes must be maintained or it wont work properly (eg. place ZP first and find out!)
         3 => '[A-Z]{3}[2]?_(?:IMM|IND|IZPX|IZPY|ZPX|ZPY|ABSX|ABSY|REL|ABS|ZP)',
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 8,
     'PARSER_CONTROL' => array(
-        'NUMBERS'  => array(
+        'NUMBERS' => array(
             'PRECHECK_RX' => '/[\da-fA-F\.\$\%]/'
-            ),
-        'KEYWORDS' => array(
-            5 => array (
-                'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\;>|^&'\"])"
-                ),
-            6 => array (
-                'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\;>|^&'\"])"
-                ),
-            8 => array (
-                'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\;>|^&'\"])"
-                )
-            )
         ),
+        'KEYWORDS' => array(
+            5 => array(
+                'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\;>|^&'\"])"
+            ),
+            6 => array(
+                'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\;>|^&'\"])"
+            ),
+            8 => array(
+                'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\;>|^&'\"])"
+            )
+        )
+    ),
 );

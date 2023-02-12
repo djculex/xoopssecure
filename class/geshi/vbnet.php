@@ -37,7 +37,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'vb.net',
     'COMMENT_SINGLE' => array(1 => "'"),
     'COMMENT_MULTI' => array(),
@@ -58,28 +58,28 @@ $language_data = array (
             'Narrowing', 'New', 'Next', 'Not', 'Nothing', 'NotInheritable', 'NotOverridable', 'Of', 'On',
             'Operator', 'Option', 'Optional', 'Or', 'OrElse', 'Out', 'Overloads', 'Overridable', 'Overrides',
             'ParamArray', 'Partial', 'Private', 'Property', 'Protected', 'Public', 'RaiseEvent', 'ReadOnly', 'ReDim',
-            'REM', 'RemoveHandler', 'Resume', 'Return', 'Select','Set', 'Shadows', 'Shared', 'Static', 'Step',
+            'REM', 'RemoveHandler', 'Resume', 'Return', 'Select', 'Set', 'Shadows', 'Shared', 'Static', 'Step',
             'Stop', 'Structure', 'Sub', 'SyncLock', 'Then', 'Throw', 'To', 'True', 'Try', 'TryCast', 'TypeOf',
             'Using', 'Wend', 'When', 'While', 'Widening', 'With', 'WithEvents', 'WriteOnly', 'Xor'
-            ),
+        ),
         //Data Types
         2 => array(
             'Boolean', 'Byte', 'Date', 'Decimal', 'Double', 'Integer', 'Long', 'Object',
             'SByte', 'Short', 'Single', 'String', 'UInteger', 'ULong', 'UShort'
-            ),
+        ),
         //Compiler Directives
         3 => array(
             '#Const', '#Else', '#ElseIf', '#End', '#If'
-            ),
+        ),
         //Constants
         4 => array(
-            'CBool', 'CByte', 'CChar', 'CChr', 'CDate', 'CDbl', 'CDec','CInt', 'CLng', 'CLng8', 'CObj', 'CSByte', 'CShort',
+            'CBool', 'CByte', 'CChar', 'CChr', 'CDate', 'CDbl', 'CDec', 'CInt', 'CLng', 'CLng8', 'CObj', 'CSByte', 'CShort',
             'CSng', 'CStr', 'CType', 'CUInt', 'CULng', 'CUShort'
-            ),
+        ),
         //Linq
         5 => array(
-            'By','From','Group','Where'
-            ),
+            'By', 'From', 'Group', 'Where'
+        ),
         //Built-in functions
         7 => array(
             'ABS', 'ARRAY', 'ASC', 'ASCB', 'ASCW', 'CALLBYNAME', 'CHOOSE', 'CHR', 'CHR$', 'CHRB', 'CHRB$', 'CHRW',
@@ -100,12 +100,12 @@ $language_data = array (
             'STRCOMP', 'STRCONV', 'STRING$', 'STRREVERSE', 'SYD', 'TAB', 'TAN', 'TIMEOFDAY',
             'TIMER', 'TIMESERIAL', 'TIMEVALUE', 'TODAY', 'TRIM', 'TRIM$', 'TYPENAME', 'UBOUND',
             'UCASE', 'UCASE$', 'VAL', 'WEEKDAY', 'WEEKDAYNAME', 'YEAR'
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         '+', '-', '*', '?', '=', '/', '%', '&', '>', '<', '^', '!',
         '(', ')', '{', '}', '.'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
@@ -114,7 +114,7 @@ $language_data = array (
         4 => false,
         5 => false,
         7 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #0000FF; font-weight: bold;',  //Keywords
@@ -123,34 +123,32 @@ $language_data = array (
             4 => 'color: #cd6a5a;',                     //Constants
             5 => 'color: #cd6a5a; font-weight: bold;',  //LinQ
             7 => 'color: #000066;',                     //Built-in functions
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #008000; font-style: italic;',
             'MULTI' => 'color: #008000; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #008080; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #000000;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #a52a2a; back-color: #fffacd;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #a52a2a; back-color: #fffacd;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #000000;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #000000;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -158,23 +156,20 @@ $language_data = array (
         4 => '',
         5 => '',
         7 => 'http://www.google.com/search?q={FNAMEU}+site:msdn.microsoft.com'
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             7 => array(
                 'DISALLOWED_AFTER' => '(?!\w)(?=\s*\()'
-                )
             )
         )
+    )
 );

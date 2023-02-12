@@ -49,7 +49,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Delphi',
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array('(*' => '*)', '{' => '}'),
@@ -74,10 +74,10 @@ $language_data = array (
             'Then', 'ThreadVar', 'To', 'Try', 'Type', 'Unit', 'Until', 'Uses', 'Var',
             'Virtual', 'While', 'With', 'Write', 'Xor', 'assembler', 'far',
             'near', 'pascal', 'cdecl', 'safecall', 'stdcall', 'varargs'
-            ),
+        ),
         2 => array(
             'false', 'self', 'true',
-            ),
+        ),
         3 => array(
             'Abs', 'AcquireExceptionObject', 'Addr', 'AnsiToUtf8', 'Append', 'ArcTan',
             'Assert', 'AssignFile', 'Assigned', 'BeginThread', 'BlockRead',
@@ -201,7 +201,7 @@ $language_data = array (
             'SimpleRoundTo', 'SinCos', 'Sinh', 'StdDev', 'Sum', 'SumInt',
             'SumOfSquares', 'SumsAndSquares', 'Tan', 'Tanh', 'TotalVariance',
             'Variance'
-            ),
+        ),
         4 => array(
             'AnsiChar', 'AnsiString', 'Bool', 'Boolean', 'Byte', 'ByteBool', 'Cardinal', 'Char',
             'Comp', 'Currency', 'DWORD', 'Double', 'Extended', 'Int64', 'Integer', 'IUnknown',
@@ -212,88 +212,85 @@ $language_data = array (
             'PWordArray', 'PWordBool', 'PWideChar', 'PWideString', 'Real', 'Real48', 'ShortInt', 'ShortString',
             'Single', 'SmallInt', 'String', 'TClass', 'TDate', 'TDateTime', 'TextFile', 'THandle',
             'TObject', 'TTime', 'Variant', 'WideChar', 'WideString', 'Word', 'WordBool'
-            ),
         ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
         4 => false,
-        ),
+    ),
     'SYMBOLS' => array(
         0 => array('(', ')', '[', ']'),
         1 => array('.', ',', ':', ';'),
         2 => array('@', '^'),
         3 => array('=', '+', '-', '*', '/')
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #000000; font-weight: bold;',
             2 => 'color: #000000; font-weight: bold;',
             3 => 'color: #000066;',
             4 => 'color: #000066; font-weight: bold;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
             2 => 'color: #008000; font-style: italic;',
             'MULTI' => 'color: #808080; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #ff0000; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #000066;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #0000ff;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #006600;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #0000cc;',
             1 => 'color: #ff0000;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #000066;',
             1 => 'color: #000066;',
             2 => 'color: #000066;',
             3 => 'color: #000066;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
+    ),
     'REGEXPS' => array(
         //Hex numbers
         0 => '(?<!\#)\$[0-9a-fA-F]+(?!\w)',
         //Characters
         1 => '\#(?:\$[0-9a-fA-F]{1,4}|\d{1,5})'
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 2,
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             3 => array(
                 'DISALLOWED_AFTER' => '(?=\s*[(;])'
-                )
             )
         )
+    )
 );

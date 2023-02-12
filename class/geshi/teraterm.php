@@ -50,7 +50,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Tera Term Macro',
     'COMMENT_SINGLE' => array(1 => ';'),
     'COMMENT_MULTI' => array(),
@@ -221,7 +221,7 @@ $language_data = array (
             'YmodemSend',
             'ZmodemRecv',
             'ZmodemSend'
-            ),
+        ),
         /* System Variables */
         2 => array(
             'groupmatchstr1',
@@ -246,7 +246,7 @@ $language_data = array (
             'param9',
             'result',
             'timeout'
-            ),
+        ),
         /* LogMeTT Key Words */
         3 => array(
             '$[1]',
@@ -281,70 +281,68 @@ $language_data = array (
             'not',
             'or',
             'xor'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '[', ']', '{', '}',
         '+', '-', '*', '/', '%',
         '!', '&', '|', '^',
         '<', '>', '=',
         '?', ':', ';',
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
         4 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #000080; font-weight: bold!important;',
             2 => 'color: #808000; font-weight: bold;',  // System Variables
             3 => 'color: #ff0000; font-weight: bold;',  // LogMeTT Key Words
             4 => 'color: #ff00ff; font-weight: bold;'   // Keyword Symbols
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #008000; font-style: italic;',
-            ),
+        ),
         'ESCAPE_CHAR' => array(),
         'BRACKETS' => array(
             0 => 'color: #ff00ff; font-weight: bold;'
         ),
         'STRINGS' => array(
             0 => 'color: #800080;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #008080;'
-            ),
-        'SCRIPT' => array(
-            ),
-        'METHODS' => array(
-            ),
+        ),
+        'SCRIPT' => array(),
+        'METHODS' => array(),
         'SYMBOLS' => array(
             0 => 'color: #ff00ff; font-weight: bold;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #0000ff; font-weight: bold;'
-            )
-        ),
+        )
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
-        0 => array (
+        0 => array(
             GESHI_SEARCH => '(\:[_a-zA-Z][_a-zA-Z0-9]+)',
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
-            )
-        ),
+        )
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array(),

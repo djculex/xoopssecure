@@ -31,14 +31,14 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Haskell',
-    'COMMENT_SINGLE' => array( 1 => '--'),
+    'COMMENT_SINGLE' => array(1 => '--'),
     'COMMENT_MULTI' => array('{-' => '-}'),
     'COMMENT_REGEXP' => array(
         2 => "/-->/",
         3 => "/{-(?:(?R)|.)-}/s", //Nested Comments
-        ),
+    ),
     'CASE_KEYWORDS' => 0,
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '\\',
@@ -51,11 +51,11 @@ $language_data = array (
             'else', 'import', 'infix', 'infixl', 'infixr',
             'instance', 'let', 'in', 'module', 'newtype',
             'qualified', 'type', 'where'
-            ),
+        ),
         /* define names of main libraries, so we can link to it */
         2 => array(
             'Foreign', 'Numeric', 'Prelude'
-            ),
+        ),
         /* just link to Prelude functions, cause it's the default opened library when starting Haskell */
         3 => array(
             'not', 'otherwise', 'maybe',
@@ -80,9 +80,9 @@ $language_data = array (
             'lcm', 'fromIntegral', 'realToFrac',
             'return', 'fail', 'fmap',
             'mapM', 'mapM_', 'sequence', 'sequence_',
-            'id', 'const','flip',
+            'id', 'const', 'flip',
             'until', 'asTypeOf', 'error', 'undefined',
-            'seq','map','filter', 'head',
+            'seq', 'map', 'filter', 'head',
             'last', 'tail', 'init', 'null', 'length',
             'reverse', 'foldl', 'foldl1', 'foldr',
             'foldr1', 'and', 'or', 'any', 'all', 'sum',
@@ -100,17 +100,17 @@ $language_data = array (
             'print', 'getChar', 'getLine', 'getContents',
             'interact', 'readFile', 'writeFile', 'appendFile',
             'readIO', 'readLn', 'ioError', 'userError', 'catch'
-            ),
+        ),
         /* Prelude types */
-        4 => array (
+        4 => array(
             'Bool', 'Maybe', 'Either', 'Ordering',
             'Char', 'String',
             'Int', 'Integer', 'Float', 'Double', 'Rational', 'Word',
             'ShowS', 'ReadS',
             'IO', 'IOError', 'IOException'
-            ),
+        ),
         /* Prelude classes */
-        5 => array (
+        5 => array(
             'Ord', 'Eq', 'Enum', 'Bounded',
             'Num', 'Real', 'Integral', 'Fractional',
             'Floating', 'RealFrac', 'RealFloat',
@@ -118,13 +118,13 @@ $language_data = array (
             'Monad', 'Applicative', 'Functor',
             'Foldable', 'Traversable',
             'Show', 'Read'
-            )
-        ),
+        )
+    ),
     /* Most symbol combinations can be valid Haskell operators */
     'SYMBOLS' => array(
         '!', '@', '#', '$', '%', '&', '*', '-', '+', '=',
         '^', '~', '|', '\\', '>', '<', ':', '?', '/'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true, /* Haskell is a case sensitive language */
@@ -132,7 +132,7 @@ $language_data = array (
         3 => true,
         4 => true,
         5 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #06c; font-weight: bold;', /* nice blue */
@@ -140,36 +140,34 @@ $language_data = array (
             3 => 'font-weight: bold;', /* make the preduled functions bold */
             4 => 'color: #cccc00; font-weight: bold;', /* give types a different bg */
             5 => 'color: maroon; font-weight: bold;' /* similarly for classes */
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #5d478b; font-style: italic;',
             2 => 'color: #339933; font-weight: bold;',
             3 => 'color: #5d478b; font-style: italic;', /* light purple */
             'MULTI' => 'color: #5d478b; font-style: italic;' /* light purple */
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'background-color: #3cb371; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: green;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #3cb371;' /* nice green */
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: red;' /* pink */
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #060;' /* dark green */
-            ),
-        'REGEXPS' => array(
-            ),
+        ),
+        'REGEXPS' => array(),
         'SYMBOLS' => array(
             0 => 'color: #339933; font-weight: bold;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         /* some of keywords are Prelude functions */
         1 => '',
@@ -181,15 +179,11 @@ $language_data = array (
         4 => 'http://hackage.haskell.org/package/base/docs/Prelude.html#t:{FNAME}',
         /* link to Prelude exceptions */
         5 => 'http://hackage.haskell.org/package/base/docs/Prelude.html#t:{FNAME}'
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
-    'REGEXPS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

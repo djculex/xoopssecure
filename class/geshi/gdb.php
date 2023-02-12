@@ -37,7 +37,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'GDB',
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array(),
@@ -48,41 +48,36 @@ $language_data = array (
         0 => array(
             'Application',
             'signal',
-            ),
+        ),
         1 => array(
             'Segmentation fault',
             '[KCrash Handler]',
-            ),
         ),
+    ),
     'NUMBERS' => false,
-    'SYMBOLS' => array(
-        ),
+    'SYMBOLS' => array(),
     'CASE_SENSITIVE' => array(
         0 => true,
         1 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             0 => 'font-weight:bold;',
             1 => 'font-weight:bold; color: #ff0000;'
-            ),
-        'COMMENTS' => array(
-            ),
+        ),
+        'COMMENTS' => array(),
         'ESCAPE_CHAR' => array(
             0 => ''
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'font-weight:bold;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #933;'
-            ),
-        'NUMBERS' => array(
-            ),
-        'METHODS' => array(
-            ),
-        'SYMBOLS' => array(
-            ),
+        ),
+        'NUMBERS' => array(),
+        'METHODS' => array(),
+        'SYMBOLS' => array(),
         'REGEXPS' => array(
             0 => 'color: #000066; font-weight:bold;',
             1 => 'color: #006600;',
@@ -94,17 +89,15 @@ $language_data = array (
             7 => 'color: #FF0000; font-weight:bold;',
             8 => 'color: #006E26;',
             9 => 'color: #555;',
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         0 => '',
         1 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
         //[Current Thread...], [KCrash Handler] etc.
         0 => array(
@@ -113,7 +106,7 @@ $language_data = array (
             GESHI_MODIFIERS => 'm',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
-            ),
+        ),
         //stack number
         1 => array(
             GESHI_SEARCH => '^#\d+',
@@ -121,7 +114,7 @@ $language_data = array (
             GESHI_MODIFIERS => 'm',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
-            ),
+        ),
         //Thread X (Thread...)
         2 => array(
             GESHI_SEARCH => '^Thread \d.+$',
@@ -129,7 +122,7 @@ $language_data = array (
             GESHI_MODIFIERS => 'm',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
-            ),
+        ),
         //Files with linenumbers
         3 => array(
             GESHI_SEARCH => '(at\s+)(.+)(:\d+\s*)$',
@@ -137,7 +130,7 @@ $language_data = array (
             GESHI_MODIFIERS => 'm',
             GESHI_BEFORE => '\\1',
             GESHI_AFTER => '\\3'
-            ),
+        ),
         //Libs without linenumbers
         4 => array(
             GESHI_SEARCH => '(from\s+)(.+)(\s*)$',
@@ -145,7 +138,7 @@ $language_data = array (
             GESHI_MODIFIERS => 'm',
             GESHI_BEFORE => '\\1',
             GESHI_AFTER => '\\3'
-            ),
+        ),
         //Line numbers
         5 => array(
             GESHI_SEARCH => '(:)(\d+)(\s*)$',
@@ -153,7 +146,7 @@ $language_data = array (
             GESHI_MODIFIERS => 'm',
             GESHI_BEFORE => '\\1',
             GESHI_AFTER => '\\3'
-            ),
+        ),
         //Location
         6 => array(
             GESHI_SEARCH => '(\s+)(in\s+)?([^ 0-9][^ ]*)([ \n]+\()',
@@ -161,7 +154,7 @@ $language_data = array (
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\\1\\2',
             GESHI_AFTER => '\\4'
-            ),
+        ),
         // interesting parts: abort, qFatal, assertions, null ptrs, ...
         7 => array(
             GESHI_SEARCH => '\b((?:\*__GI_)?(?:__assert_fail|abort)|qFatal|0x0)\b([^\.]|$)',
@@ -169,7 +162,7 @@ $language_data = array (
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => '\\2'
-            ),
+        ),
         // Namespace / Classes
         8 => array(
             GESHI_SEARCH => '\b(\w+)(::)',
@@ -177,18 +170,16 @@ $language_data = array (
             GESHI_MODIFIERS => 'U',
             GESHI_BEFORE => '',
             GESHI_AFTER => '\\2'
-            ),
+        ),
         // make ptr adresses and <value optimized out> uninteresting
         9 => '\b(?:0x[a-f0-9]{2,}|value\s+optimized\s+out)\b'
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
             'NUMBERS' => false
-            )
         )
+    )
 );

@@ -59,7 +59,7 @@ $language_data = array(
             'return',
             'state',
             'while',
-            ),
+        ),
         2 => array( // manifest constants
             'ACTIVE',
             'AGENT',
@@ -705,7 +705,7 @@ $language_data = array(
             'WANDER_PAUSE_AT_WAYPOINTS',
             'ZERO_ROTATION',
             'ZERO_VECTOR',
-            ),
+        ),
         3 => array( // handlers
             'at_rot_target',
             'at_target',
@@ -743,7 +743,7 @@ $language_data = array(
             'touch_end',
             'touch_start',
             'transaction_result',
-            ),
+        ),
         4 => array( // data types
             'float',
             'integer',
@@ -753,7 +753,7 @@ $language_data = array(
             'rotation',
             'string',
             'vector',
-            ),
+        ),
         5 => array( // library
             'default',
             'llAbs',
@@ -1155,7 +1155,7 @@ $language_data = array(
             'llWind',
             'llXorBase64',
             'print',
-            ),
+        ),
         6 => array( // deprecated
             'ATTACH_LPEC',
             'ATTACH_RPEC',
@@ -1180,7 +1180,7 @@ $language_data = array(
             'llSoundPreload',
             'llXorBase64Strings',
             'llXorBase64StringsCorrect',
-            ),
+        ),
         7 => array( // unimplemented
             'event',
             'llCollisionSprite',
@@ -1191,13 +1191,13 @@ $language_data = array(
             'llSetPrimURL',
             'llStopPointAt',
             'llTakeCamera',
-            ),
+        ),
         8 => array( // God mode
             'llGodLikeRezObject',
             'llSetInventoryPermMask',
             'llSetObjectPermMask',
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         '{', '}', '(', ')', '[', ']',
         '=', '+', '-', '*', '/',
@@ -1205,7 +1205,7 @@ $language_data = array(
         '!', '%', '&', '|', '&&', '||',
         '==', '!=', '<', '>', '<=', '>=',
         '~', '<<', '>>', '^', ':',
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => true,
         1 => true,
@@ -1216,7 +1216,7 @@ $language_data = array(
         6 => true,
         7 => true,
         8 => true,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #0000ff;',
@@ -1227,33 +1227,30 @@ $language_data = array(
             6 => 'color: #8b0000; background-color: #ffff00;',
             7 => 'color: #8b0000; background-color: #fa8072;',
             8 => 'color: #000000; background-color: #ba55d3;',
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #ff7f50; font-style: italic;',
             'MULTI' => 'color: #ff7f50; font-style: italic;',
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #000000;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #006400;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #000000;'
-            ),
-        'METHODS' => array(
-            ),
+        ),
+        'METHODS' => array(),
         'SYMBOLS' => array(
             0 => 'color: #000000;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -1263,14 +1260,11 @@ $language_data = array(
         6 => 'http://wiki.secondlife.com/wiki/{FNAME}',
         7 => 'http://wiki.secondlife.com/wiki/{FNAME}',
         8 => 'http://wiki.secondlife.com/wiki/{FNAME}',
-        ),
+    ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(),
-    'REGEXPS' => array(
-        ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

@@ -1,11 +1,19 @@
 <?php
+
 namespace XoopsModules\Xoopssecure;
 
+use DirectoryIterator;
+use RecursiveDirectoryIterator;
+use XoopsCache;
 use XoopsModules\Xoopssecure;
 use XoopsModules\Xoopssecure\Constants;
 use XoopsModules\Xoopssecure\Db;
 use RecursiveIteratorIterator;
 use XoopsMailer;
+use XoopsPersistableObjectHandler;
+use XoTheme;
+use function time;
+use function xoops_loadLanguage;
 
 /**
  * File handling class for XoopsSecure
@@ -19,17 +27,44 @@ use XoopsMailer;
  * @version   1.1
  * @license   GNU GPL 2 (https://www.gnu.org/licenses/gpl-2.0.html)
  */
-class FileH extends \XoopsPersistableObjectHandler
+class FileH extends XoopsPersistableObjectHandler
 {
-    public $timestamp;
-    public $FileDir;
-    public $startPath;
-    public $deleteBackupAfterDays;
-    public $backupFilesMaxAge;
-    public $timeForBackup;
-    public $timeForCron;
+    /**
+     * @var int
+     */
+    public int $timestamp;
+    /**
+     * @var array
+     */
+    public array $FileDir;
+    /**
+     * @var array|mixed
+     */
+    public mixed $startPath;
+    /**
+     * @var int
+     */
+    public int $deleteBackupAfterDays;
+    /**
+     * @var false|int
+     */
+    public int|false $backupFilesMaxAge;
+    /**
+     * @var bool|string
+     */
+    public string|bool $timeForBackup;
+    /**
+     * @var bool|string
+     */
+    public string|bool $timeForCron;
+    /**
+     * @var \XoopsModules\Xoopssecure\Db
+     */
     public $db;
-    public $helper;
+    /**
+     * @var Helper|null
+     */
+    public ?Helper $helper;
 
     /**
      * constructor
@@ -42,9 +77,9 @@ class FileH extends \XoopsPersistableObjectHandler
             $helper = Helper::getInstance();
         }
         $this->helper = $helper;
-        $this->db = new db();
+        $this->db = new Db();
 
-        $this->timestamp = \time();
+        $this->timestamp = time();
         $this->startPath = $helper->getConfig('XCISSTARTPATH');
         $this->FileDir = [];
         $this->deleteBackupAfterDays = (int)$helper->getConfig('XCISAUTOBACKUPDELETE');
@@ -53,21 +88,37 @@ class FileH extends \XoopsPersistableObjectHandler
         $this->timeForCron = $this->db->setTimedEvent("cronscan");
     }
 
-    /** 
-      * Get all files from startpath to array
-      *
-      * @return array $arr of file paths
-      */
-    public function GetAllFiles()
+    /**
+     * Create text for the buy me a coffee link
+     *
+     * @return string $text
+     */
+    public static function buymecoffey(): string
+    {
+        $text = '
+		<a href="https://www.buymeacoffee.com/culex99906" target="_blank">
+			<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
+            alt="Buy Me A Coffee" 
+            style="height: 40px !important;width: 175px !important;" >
+		</a>';
+        return $text;
+    }
+
+    /**
+     * Get all files from start path to array
+     *
+     * @return array $arr of file paths
+     */
+    public function GetAllFiles(): array
     {
         set_time_limit(0);
         $db = new db();
         $arr = [];
-        $iterator = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator(
+        $iterator = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator(
                 $this->startPath
             ),
-            \RecursiveIteratorIterator::CHILD_FIRST
+            RecursiveIteratorIterator::CHILD_FIRST
         );
 
         foreach ($iterator as $file) {
@@ -80,16 +131,16 @@ class FileH extends \XoopsPersistableObjectHandler
         return $arr;
     }
 
-    /** 
-     * Get all zip files with unixdates
+    /**
+     * Get all zip files with unix dates
      *
      * @return void
      */
-    public function autoDelBackupsFiles()
+    public function autoDelBackupsFiles(): void
     {
         //path to directory to scan
         $directory = XOOPS_ROOT_PATH . "/uploads/backup/";
-        $iterator = new \DirectoryIterator($directory);
+        $iterator = new DirectoryIterator($directory);
         $eol = PHP_EOL;
         $result = [];
         $i = 0;
@@ -106,44 +157,10 @@ class FileH extends \XoopsPersistableObjectHandler
         }
     }
 
-    /** 
-     * Get all zip files with unixdates
-     *
-     * @return array $result    Array containing filename and time
-     */
-    public function getBackupsFiles()
-    {
-        //path to directory to scan
-        if (!is_dir(XOOPS_ROOT_PATH . "/uploads/backup")) {
-            @mkdir(XOOPS_ROOT_PATH . "/uploads/backup", 0755, true);
-        }
-        $directory = XOOPS_ROOT_PATH . "/uploads/backup/";
-        $iterator = new \DirectoryIterator($directory);
-        $eol = PHP_EOL;
-        $result = [];
-        $i = 0;
-        foreach ($iterator as $ff) {
-            if ($ff->isDot()) {
-                continue;
-            }
-            if ($ff->isFile() && $ff->getExtension() == "zip") {
-                if ($ff->getMTime() < $this->backupFilesMaxAge) {
-                    unlink(XOOPS_ROOT_PATH . "/uploads/backup/" . $ff->getFilename());
-                } else {
-                    $result[$i]['filename'] = $ff->getFilename();
-                    $result[$i]['time'] = date("d-m-Y H:i:s", $ff->getMTime());
-                }
-            }
-            $i++;
-        }
-        arsort($result);
-        return $result;
-    }
-
-    /** 
+    /**
      * Get latest html table of backups
      *
-     * @return html
+     * @return void
      */
     public function GetLatestBackupTable()
     {
@@ -170,7 +187,7 @@ class FileH extends \XoopsPersistableObjectHandler
 								<td class='date'>" . $file['time'] . "</td>
 								<td class='size'>
                                     <a href=" . XOOPS_URL . "/uploads/backup/" . $file['filename'] . ">" .
-                                        DO_XOOPSSECURE_DOWNLOAD_BACKUPFILEDOWNLOADTEXT . "
+                    DO_XOOPSSECURE_DOWNLOAD_BACKUPFILEDOWNLOADTEXT . "
                                     </a>
                                 </td>
 								<td class='delete'>
@@ -195,11 +212,45 @@ class FileH extends \XoopsPersistableObjectHandler
 							<td class='delete'></td>
 						</tr>";
         }
-         echo "</tbody>
+        echo "</tbody>
 						</table>";
     }
 
-    /** 
+    /**
+     * Get all zip files with unix dates
+     *
+     * @return array $result    Array containing filename and time
+     */
+    public function getBackupsFiles(): array
+    {
+        //path to directory to scan
+        if (!is_dir(XOOPS_ROOT_PATH . "/uploads/backup")) {
+            @mkdir(XOOPS_ROOT_PATH . "/uploads/backup", 0755, true);
+        }
+        $directory = XOOPS_ROOT_PATH . "/uploads/backup/";
+        $iterator = new DirectoryIterator($directory);
+        $eol = PHP_EOL;
+        $result = [];
+        $i = 0;
+        foreach ($iterator as $ff) {
+            if ($ff->isDot()) {
+                continue;
+            }
+            if ($ff->isFile() && $ff->getExtension() == "zip") {
+                if ($ff->getMTime() < $this->backupFilesMaxAge) {
+                    unlink(XOOPS_ROOT_PATH . "/uploads/backup/" . $ff->getFilename());
+                } else {
+                    $result[$i]['filename'] = $ff->getFilename();
+                    $result[$i]['time'] = date("d-m-Y H:i:s", $ff->getMTime());
+                }
+            }
+            $i++;
+        }
+        arsort($result);
+        return $result;
+    }
+
+    /**
      * Check coding standard of single path
      *
      * @param string $path of file
@@ -224,36 +275,46 @@ class FileH extends \XoopsPersistableObjectHandler
         $style->processFiles($path, $options['exclude']);
     }
 
-    /** 
+    /**
      * flatten array
      *
      * @param array $array
      * @return array $result
      */
-    public function xoopssecure_SuperUnique($array)
+    public function xoopssecure_SuperUnique($array): array
     {
         $result = array_map("unserialize", array_unique(array_map("serialize", $array)));
 
         foreach ($result as $key => $value) {
             if (is_array($value)) {
-                  $result[$key] = $this->xoopssecure_SuperUnique($value);
+                $result[$key] = $this->xoopssecure_SuperUnique($value);
             }
         }
         return $result;
     }
 
-    /** 
+    /**
+     * Count dirs in start path
+     *
+     * @return int count
+     */
+    public function countDirs(): int
+    {
+        return count($this->listdirs([$this->startPath]));
+    }
+
+    /**
      * Get dirs from path
      *
      * @param string $path the start path
      * @return array $dir_paths only unique dirs
      */
-    public function listdirs($path)
+    public function listdirs($path): array
     {
         global $dir_paths; //global variable where to store the result
         foreach ($path as $dir) { //loop the input
             $dir_paths[] = str_replace('\\', '/', $dir); //can use also "basename($dir)" or "realpath($dir)"
-            $subdir =  glob($dir . DIRECTORY_SEPARATOR . '*', GLOB_ONLYDIR); //use DIRECTORY_SEPARATOR to be OS independent
+            $subdir = glob($dir . DIRECTORY_SEPARATOR . '*', GLOB_ONLYDIR); //use DIRECTORY_SEPARATOR to be OS independent
             if (!empty($subdir)) { //if subdir is not empty make function recursive
                 $this->listdirs($subdir); //execute the function again with current subdir
             }
@@ -261,32 +322,22 @@ class FileH extends \XoopsPersistableObjectHandler
         return array_unique($dir_paths);
     }
 
-    /** 
-     * Count dirs in startpath
-     *
-     * @return int count
-     */
-    public function countDirs()
-    {
-        return count($this->listdirs([$this->startPath]));
-    }
-
-    /** 
-     * Does dir alrady have index file ?
+    /**
+     * Does dir already have index file ?
      *
      * @param string $dir the path
      * @return array with dir and bool value
      */
-    public function indexFileExists($dir)
+    public function indexFileExists($dir): array
     {
         $indexFileExists = 0;
         $ret = [];
         $filenames =
             [
-        'index.html',
-        'index.htm',
-        'index.php',
-        'index.php3'
+                'index.html',
+                'index.htm',
+                'index.php',
+                'index.php3'
             ];
         foreach ($filenames as $fn) {
             if (is_file($dir . DIRECTORY_SEPARATOR . $fn)) {
@@ -296,7 +347,7 @@ class FileH extends \XoopsPersistableObjectHandler
         return ($indexFileExists == 0) ? ["dir" => $dir, "code" => 1] : ["dir" => $dir, "code" => 0];
     }
 
-    /** 
+    /**
      * check folder for index files for database
      *
      * @param string $checkfile where to look
@@ -304,7 +355,7 @@ class FileH extends \XoopsPersistableObjectHandler
      * @param string $scanstart the time stamp set
      * @return void
      */
-    public function chkIndexFiles($checkfile, $autoFeature, $scanstart)
+    public function chkIndexFiles($checkfile, $autoFeature, $scanstart): void
     {
         $dat = new Db();
         foreach ($checkfile as $d => $c) {
@@ -345,13 +396,13 @@ class FileH extends \XoopsPersistableObjectHandler
         }
     }
 
-    /** 
+    /**
      * Create index file
      *
      * @param string $url where create
      * @return void
      */
-    public function createIndexFile($url)
+    public function createIndexFile($url): void
     {
         // Get original dir write permissions
         $orgch = substr(sprintf('%o', fileperms($url)), -4);
@@ -360,54 +411,40 @@ class FileH extends \XoopsPersistableObjectHandler
             chmod($url, 0777);
         }
         $text = "<?php" . "\n" .
-        "/**" . "\n" .
-        " * Index.php file." . "\n" .
-        " * " . "\n" .
-        " * Using an index file in every folder not having any is one way of preventing directory browsing" . "\n" .
-        " * The best way is to remove the Indexes directive from your httpd.conf, " . "\n" .
-        "this is however not always an option on for instance hosted server " . "\n" .
-        " * " . "\n" .
-        " */" . "\n" .
-        "\n" . "\n" .
-        "/**" . "\n" .
-        "  * This index.php file will show an error '404 not found' when entering this folder" . "\n" .
-        "  * and was created : " . date('d-m-Y H:i:s', $this->timestamp) . " by a xoopsSecure scan/create." . "\n\n" .
-        "  * @package      \XoopsModules\xoopssecure" . "\n" .
-        "  * @copyright    The XOOPS Project (https://xoops.org)" . "\n" .
-        "  * @copyright    " . date('Y', $this->timestamp) . " Culex" . "\n" .
-        "  * @author       Michael Albertsen (http://culex.dk) <culex@culex.dk>" . "\n" .
-        "  * @link         https://github.com/XoopsModules25x/xoopssecure" . "\n" .
-        "  * @since        1.0" . "\n" .
-        "  */\n" . "\n" .
-        "header(\$_SERVER[\"SERVER_PROTOCOL\"] . \" 404 Not Found\", true, 404);" .
-        "";
+            "/**" . "\n" .
+            " * Index.php file." . "\n" .
+            " * " . "\n" .
+            " * Using an index file in every folder not having any is one way of preventing directory browsing" . "\n" .
+            " * The best way is to remove the Indexes directive from your httpd.conf, " . "\n" .
+            "this is however not always an option on for instance hosted server " . "\n" .
+            " * " . "\n" .
+            " */" . "\n" .
+            "\n" . "\n" .
+            "/**" . "\n" .
+            "  * This index.php file will show an error '404 not found' when entering this folder" . "\n" .
+            "  * and was created : " . date('d-m-Y H:i:s', $this->timestamp) . " by a xoopsSecure scan/create." . "\n\n" .
+            "  * @package      \XoopsModules\xoopssecure" . "\n" .
+            "  * @copyright    The XOOPS Project (https://xoops.org)" . "\n" .
+            "  * @copyright    " . date('Y', $this->timestamp) . " Culex" . "\n" .
+            "  * @author       Michael Albertsen (http://culex.dk) <culex@culex.dk>" . "\n" .
+            "  * @link         https://github.com/XoopsModules25x/xoopssecure" . "\n" .
+            "  * @since        1.0" . "\n" .
+            "  */\n" . "\n" .
+            "header(\$_SERVER[\"SERVER_PROTOCOL\"] . \" 404 Not Found\", true, 404);" .
+            "";
         $path = $url . DIRECTORY_SEPARATOR . 'index.php';
         file_put_contents($path, $text);
-        //Set permissions back to origional
+        //Set permissions back to original
         chmod($url, $orgch);
     }
 
-    /** 
-     * Get file permission of file
-     *
-     * @param string $file the file to get fp from
-     * return decoct
-     */
-    public function getFilePermission($file)
-    {
-        if (is_readable($file)) {
-            $length = strlen(decoct(fileperms($file))) - 3;
-            return substr(decoct(fileperms($file)), $length);
-        }
-    }
-
-    /** 
+    /**
      * set file permissions based on config
      *
      * @param string $autocorrect
      * @return void
      */
-    public function xoopsFilesPermissions($autocorrect)
+    public function xoopsFilesPermissions($autocorrect): void
     {
         $dat = new Db();
         $mf = $this->getFilePermission(XOOPS_ROOT_PATH . '/mainfile.php');
@@ -526,19 +563,33 @@ class FileH extends \XoopsPersistableObjectHandler
         }
     }
 
-    /** 
+    /**
+     * Get file permission of file
+     *
+     * @param string $file the file to get fp from
+     * @return string|void
+     */
+    public function getFilePermission($file)
+    {
+        if (is_readable($file)) {
+            $length = strlen(decoct(fileperms($file))) - 3;
+            return substr(decoct(fileperms($file)), $length);
+        }
+    }
+
+    /**
      * Search for string in folder
      *
      * @param string $string to search for
      * @param string $folder the folder to look in
      * @return void
      */
-    public function searchRegex($string, $folder)
+    public function searchRegex($string, $folder): void
     {
-        $dir = new \RecursiveDirectoryIterator($folder);
+        $dir = new RecursiveDirectoryIterator($folder);
         foreach (new RecursiveIteratorIterator($dir) as $filename => $file) {
             $content = file_get_contents($file->getPathname());
-            if (strpos($content, $string) !== false) {
+            if (str_contains($content, $string)) {
                 echo "<br /><b>string found in file: " . $file->getPathname() . "</b><br /><br />";
             }
         }
@@ -546,31 +597,31 @@ class FileH extends \XoopsPersistableObjectHandler
 
     /**
      * Set basic javascript includes
-     * 
+     *
      * @return void
      */
-    public function setJqueryScript()
+    public function setJqueryScript(): void
     {
         if ($_SESSION["xoopssecureCoreEvents"] == 0) { // Check $_session
             global $xoopsConfig;
-            $theme = new \XoTheme();
+            $theme = new XoTheme();
             // Set javascript vars
             // initiate XoopsCache class
-            $xc = new \XoopsCache();
+            $xc = new XoopsCache();
             // Collect old cached to avoid double include script vars
             $xc->gc();
             $_SESSION["xoopssecureCoreEvents"] = 0;
 
-            $helper = \XoopsModules\xoopssecure\Helper::getInstance();
+            $helper = Helper::getInstance();
 
             $_SESSION["xoopssecureCoreEvents"] += 1;
             $script = null;
             $name = basename($_SERVER['REQUEST_URI']);
             // language files
             $language = $xoopsConfig['language'];
-            $script   = "if (typeof xoopsSecureSysUrl === 'undefined' || typeof xoopsSecureSysUrl === '') {" . "\n";
-            $script  .= "	var xoopsSecureSysUrl = '" . XOOPS_URL . "/modules/xoopssecure/admin/';" . "\n";
-            $script  .= '};' . "\n";
+            $script = "if (typeof xoopsSecureSysUrl === 'undefined' || typeof xoopsSecureSysUrl === '') {" . "\n";
+            $script .= "	var xoopsSecureSysUrl = '" . XOOPS_URL . "/modules/xoopssecure/admin/';" . "\n";
+            $script .= '};' . "\n";
             if ($_SESSION["xoopssecureCoreEvents"] <= 1) {
                 $theme->addScript(null, ['type' => 'text/javascript'], $script, 'xoopssecureCore');
             }
@@ -583,7 +634,7 @@ class FileH extends \XoopsPersistableObjectHandler
      * Based on time checking for changed files
      * @return void but sends email if something found
      */
-    public function cronScan()
+    public function cronScan(): void
     {
         if ((int)$this->helper->getConfig('XCISCRONTYPE') == 1) {
             if ($this->timeForCron === true) {
@@ -601,36 +652,15 @@ class FileH extends \XoopsPersistableObjectHandler
         }
     }
 
-    /** 
-     * Collect array to string
-     *
-     * If any files has changed collect to html string
-     * @param $arr the array of files
-     * @return html $content - the table with file paths
-     */
-    public function sumupFiles($arr)
-    {
-        $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
-        \xoops_loadLanguage('mail', $moduleDirName);
-        $content = "<h2 class='filelistheader'>" . sprintf(MAIL_XOOPSSECURE_FILESCHANGED, (int)$this->helper->getConfig('XCISCRONINTERVAL')) . "</h2><br><br>";
-        $content .= "<table align='center' class='filelisttable'>";
-        $content .= "<tr><th>" . "Filepath" . "</th></tr>";
-        foreach ($arr as $file) {
-            $content .= "<tr><td>{$file}</td></tr>";
-        }
-        $content .= "</table>";
-        return $content;
-    }
-
-    /** 
+    /**
      * Get all files
      *
      * Get files and test if modified or new in last X hours
-     * @return new array of files
+     * @return array $array of files
      */
-    public function get_allFilesTotal($path)
+    public function get_allFilesTotal($path): array
     {
-        $iter = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path));
+        $iter = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path));
         $spam = new SpamScanner();
         $files = [];
         $checkinterval = (int)$this->helper->getConfig('XCISCRONINTERVAL'); // 24
@@ -648,17 +678,38 @@ class FileH extends \XoopsPersistableObjectHandler
         return $files;
     }
 
-    /** 
+    /**
+     * Collect array to string
+     *
+     * If any files has changed collect to html string
+     * @param array $arr the array of files
+     * @return string $content - the table with file paths
+     */
+    public function sumupFiles($arr): string
+    {
+        $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
+        xoops_loadLanguage('mail', $moduleDirName);
+        $content = "<h2 class='filelistheader'>" . sprintf(MAIL_XOOPSSECURE_FILESCHANGED, (int)$this->helper->getConfig('XCISCRONINTERVAL')) . "</h2><br><br>";
+        $content .= "<table align='center' class='filelisttable'>";
+        $content .= "<tr><th>" . "Filepath" . "</th></tr>";
+        foreach ($arr as $file) {
+            $content .= "<tr><td>{$file}</td></tr>";
+        }
+        $content .= "</table>";
+        return $content;
+    }
+
+    /**
      * Sends mail
      *
      * @param $info
      * @return bool according to success of send.
      */
-    public function sendCronMail($info)
+    public function sendCronMail($info): bool
     {
         if ($this->timeForCron === true) {
             $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
-            \xoops_loadLanguage('mail', $moduleDirName);
+            xoops_loadLanguage('mail', $moduleDirName);
             $date = date('m-d-Y H:i:s', time());
             $mail = xoops_getMailer();
             $message = '';
@@ -672,9 +723,9 @@ class FileH extends \XoopsPersistableObjectHandler
             $link = XOOPS_ROOT_PATH . '/modules/xoopsSecure/admin/';
 
             $lnk = XOOPS_ROOT_PATH
-            . '/modules/xoopsSecure/language/'
-            . $GLOBALS['xoopsConfig']['language']
-            . '/mail/mail_cron.tpl';
+                . '/modules/xoopsSecure/language/'
+                . $GLOBALS['xoopsConfig']['language']
+                . '/mail/mail_cron.tpl';
 
             $xoopsMailer = xoops_getMailer();
             $xoopsMailer->useMail();
@@ -701,21 +752,5 @@ class FileH extends \XoopsPersistableObjectHandler
                 return false;
             }
         }
-    }
-
-    /** 
-     * Create text for the buy me a coffee link
-     *
-     * @return html $text
-     */
-    public static function buymecoffey()
-    {
-        $text = '
-		<a href="https://www.buymeacoffee.com/culex99906" target="_blank">
-			<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
-            alt="Buy Me A Coffee" 
-            style="height: 40px !important;width: 175px !important;" >
-		</a>';
-        return $text;
     }
 }

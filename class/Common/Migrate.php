@@ -15,6 +15,9 @@ namespace XoopsModules\xoopssecure\Common;
  */
 
 use XoopsModules\xoopssecure\Common;
+use function basename;
+use function dirname;
+use function mb_strpos;
 
 /**
  * Class Migrate synchronize existing tables with target schema
@@ -31,70 +34,15 @@ class Migrate extends \Xmf\Database\Migrate
     private $renameTables;
 
     /**
-     * @param \XoopsModules\xoopssecure\Common\Configurator|null $configurator
+     * @param Configurator|null $configurator
      */
-    public function __construct(Common\Configurator $configurator = null)
+    public function __construct(Configurator $configurator = null)
     {
         if (null !== $configurator) {
             $this->renameTables = $configurator->renameTables;
 
-            $moduleDirName = \basename(\dirname(__DIR__, 2));
+            $moduleDirName = basename(dirname(__DIR__, 2));
             parent::__construct($moduleDirName);
-        }
-    }
-
-    /**
-     * change table prefix if needed
-     */
-    private function changePrefix(): void
-    {
-        foreach ($this->renameTables as $oldName => $newName) {
-            if ($this->tableHandler->useTable($oldName) && !$this->tableHandler->useTable($newName)) {
-                $this->tableHandler->renameTable($oldName, $newName);
-            }
-        }
-    }
-
-    /**
-     * Change integer IPv4 column to varchar IPv6 capable
-     *
-     * @param string $tableName  table to convert
-     * @param string $columnName column with IP address
-     */
-    private function convertIPAddresses($tableName, $columnName): void
-    {
-        if ($this->tableHandler->useTable($tableName)) {
-            $attributes = $this->tableHandler->getColumnAttributes($tableName, $columnName);
-            if (false !== \mb_strpos($attributes, ' int(')) {
-                if (false === \mb_strpos($attributes, 'unsigned')) {
-                    $this->tableHandler->alterColumn($tableName, $columnName, " bigint(16) NOT NULL  DEFAULT '0' ");
-                    $this->tableHandler->update($tableName, [$columnName => "4294967296 + $columnName"], "WHERE $columnName < 0", false);
-                }
-                $this->tableHandler->alterColumn($tableName, $columnName, " varchar(45)  NOT NULL  DEFAULT '' ");
-                $this->tableHandler->update($tableName, [$columnName => "INET_NTOA($columnName)"], '', false);
-            }
-        }
-    }
-
-    /**
-     * Move do* columns from newbb_posts to newbb_posts_text table
-     */
-    private function moveDoColumns(): void
-    {
-        $tableName    = 'newbb_posts_text';
-        $srcTableName = 'newbb_posts';
-        if (
-            $this->tableHandler->useTable($tableName)
-            && $this->tableHandler->useTable($srcTableName)
-        ) {
-            $attributes = $this->tableHandler->getColumnAttributes($tableName, 'dohtml');
-            if (false === $attributes) {
-                $this->synchronizeTable($tableName);
-                $updateTable = $GLOBALS['xoopsDB']->prefix($tableName);
-                $joinTable   = $GLOBALS['xoopsDB']->prefix($srcTableName);
-                $sql         = "UPDATE `$updateTable` t1 INNER JOIN `$joinTable` t2 ON t1.post_id = t2.post_id \n" . "SET t1.dohtml = t2.dohtml,  t1.dosmiley = t2.dosmiley, t1.doxcode = t2.doxcode\n" . '  , t1.doimage = t2.doimage, t1.dobr = t2.dobr';
-                $this->tableHandler->addToQueue($sql);
-            }
         }
     }
 
@@ -116,5 +64,60 @@ class Migrate extends \Xmf\Database\Migrate
         $this->convertIPAddresses('newbb_posts', 'poster_ip');
         $this->convertIPAddresses('newbb_report', 'reporter_ip');
         */
+    }
+
+    /**
+     * change table prefix if needed
+     */
+    private function changePrefix(): void
+    {
+        foreach ($this->renameTables as $oldName => $newName) {
+            if ($this->tableHandler->useTable($oldName) && !$this->tableHandler->useTable($newName)) {
+                $this->tableHandler->renameTable($oldName, $newName);
+            }
+        }
+    }
+
+    /**
+     * Change integer IPv4 column to varchar IPv6 capable
+     *
+     * @param string $tableName table to convert
+     * @param string $columnName column with IP address
+     */
+    private function convertIPAddresses($tableName, $columnName): void
+    {
+        if ($this->tableHandler->useTable($tableName)) {
+            $attributes = $this->tableHandler->getColumnAttributes($tableName, $columnName);
+            if (false !== mb_strpos($attributes, ' int(')) {
+                if (false === mb_strpos($attributes, 'unsigned')) {
+                    $this->tableHandler->alterColumn($tableName, $columnName, " bigint(16) NOT NULL  DEFAULT '0' ");
+                    $this->tableHandler->update($tableName, [$columnName => "4294967296 + $columnName"], "WHERE $columnName < 0", false);
+                }
+                $this->tableHandler->alterColumn($tableName, $columnName, " varchar(45)  NOT NULL  DEFAULT '' ");
+                $this->tableHandler->update($tableName, [$columnName => "INET_NTOA($columnName)"], '', false);
+            }
+        }
+    }
+
+    /**
+     * Move do* columns from newbb_posts to newbb_posts_text table
+     */
+    private function moveDoColumns(): void
+    {
+        $tableName = 'newbb_posts_text';
+        $srcTableName = 'newbb_posts';
+        if (
+            $this->tableHandler->useTable($tableName)
+            && $this->tableHandler->useTable($srcTableName)
+        ) {
+            $attributes = $this->tableHandler->getColumnAttributes($tableName, 'dohtml');
+            if (false === $attributes) {
+                $this->synchronizeTable($tableName);
+                $updateTable = $GLOBALS['xoopsDB']->prefix($tableName);
+                $joinTable = $GLOBALS['xoopsDB']->prefix($srcTableName);
+                $sql = "UPDATE `$updateTable` t1 INNER JOIN `$joinTable` t2 ON t1.post_id = t2.post_id \n" . "SET t1.dohtml = t2.dohtml,  t1.dosmiley = t2.dosmiley, t1.doxcode = t2.doxcode\n" . '  , t1.doimage = t2.doimage, t1.dobr = t2.dobr';
+                $this->tableHandler->addToQueue($sql);
+            }
+        }
     }
 }

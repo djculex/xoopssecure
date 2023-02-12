@@ -42,7 +42,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  * ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     // The First Indices
     'LANG_NAME' => 'C (LoadRunner)',
     'COMMENT_SINGLE' => array(1 => '//'),
@@ -67,11 +67,11 @@ $language_data = array (
             'short', 'signed', 'sizeof', 'static', 'struct', 'switch',
             'typedef', 'union', 'unsigned', 'void', 'volatile', 'while',
             '_Bool', '_Complex', '_Imaginary'
-            ),
+        ),
         // C preprocessor directives from http://en.wikipedia.org/wiki/C_preprocessor
         2 => array(
             '#define', '#if', '#ifdef', '#ifndef', '#include', '#else', '#elif', '#endif', '#pragma', '#undef'
-            ),
+        ),
         // Functions from lrun.h
         3 => array(
             'lr_start_transaction', 'lr_start_sub_transaction', 'lr_start_transaction_instance', 'lr_end_transaction',
@@ -90,7 +90,7 @@ $language_data = array (
             'lr_eval_string', 'lr_eval_string_ext', 'lr_eval_string_ext_free', 'lr_param_increment', 'lr_save_var',
             'lr_save_string', 'lr_save_int', 'lr_save_datetime', 'lr_save_searched_string', 'lr_set_debug_message',
             'lr_get_debug_message', 'lr_enable_ip_spoofing', 'lr_disable_ip_spoofing', 'lr_convert_string_encoding'
-            ),
+        ),
         // Constants from lrun.h
         4 => array(
             'DP_FLAGS_NO_LOG', 'DP_FLAGS_STANDARD_LOG', 'DP_FLAGS_EXTENDED_LOG', 'merc_timer_handle_t', 'LR_EXIT_VUSER',
@@ -101,7 +101,7 @@ $language_data = array (
             'LR_SWITCH_DEFAULT', 'ONE_DAY', 'ONE_HOUR', 'ONE_MIN', 'DATE_NOW', 'TIME_NOW', 'LR_MSG_CLASS_BRIEF_LOG',
             'LR_MSG_CLASS_RESULT_DATA', 'LR_MSG_CLASS_FULL_TRACE', 'LR_MSG_CLASS_AUTO_LOG', 'LR_MSG_OFF', 'LR_MSG_ON',
             'LR_MSG_DEFAULT'
-            ),
+        ),
         // Functions from web_api.h
         5 => array(
             'web_reg_add_cookie', 'web_report_data_point', 'web_text_link', 'web_element', 'web_image_link', 'web_static_image',
@@ -109,12 +109,12 @@ $language_data = array (
             'web_map_area', 'web_eval_java_script', 'web_reg_dialog', 'web_reg_cross_step_download', 'web_browser',
             'web_set_rts_key', 'web_save_param_length', 'web_save_timestamp_param', 'web_load_cache', 'web_dump_cache',
             'web_add_cookie_ex'
-            ),
+        ),
         // Constants from web_api.h
         6 => array(
             'DESCRIPTION', 'ACTION', 'VERIFICATION', 'LR_NOT_FOUND', 'HTTP_INFO_TOTAL_REQUEST_STAT',
             'HTTP_INFO_TOTAL_RESPONSE_STAT', 'LRW_OPT_STOP_VUSER_ON_ERROR', 'LRW_OPT_DISPLAY_IMAGE_BODY'
-            ),
+        ),
         // Functions from as_web.h
         7 => array(
             'web_add_filter', 'web_add_auto_filter', 'web_add_auto_header', 'web_add_header', 'web_add_cookie',
@@ -127,7 +127,7 @@ $language_data = array (
             'web_set_sockets_option', 'web_set_option', 'web_set_timeout', 'web_set_user', 'web_sjis_to_euc_param',
             'web_submit_data', 'web_submit_form', 'web_url', 'web_set_proxy_bypass_local', 'web_cache_cleanup',
             'web_create_html_query', 'web_create_radio_button_param', 'web_switch_net_layer'
-            ),
+        ),
         // Constants from as_web.h
         8 => array(
             'ENDFORM', 'LAST', 'ENDITEM', 'EXTRARES', 'ITEMDATA', 'STARTHIDDENS', 'ENDHIDDENS', 'CONNECT', 'RECEIVE', 'RESOLVE',
@@ -137,7 +137,7 @@ $language_data = array (
             'LRW_NET_SOCKET_OPT_SSL_CIPHER_LIST', 'LRW_NET_SOCKET_OPT_SO_REUSE_ADDRESS', 'LRW_NET_SOCKET_OPT_USER_IP_ADDRESS',
             'LRW_NET_SOCKET_OPT_IP_ADDRESS_BY_INDEX', 'LRW_NET_SOCKET_OPT_HELP', 'LRW_NET_SOCKET_OPT_PRINT_USER_IP_ADDRESS_LIST',
             'LRW_OPT_HTML_CHAR_REF_BACKWARD_COMPATIBILITY', 'LRW_OPT_VALUE_YES', 'LRW_OPT_VALUE_NO'
-            ),
+        ),
         // Functions from as_sapgui.h
         9 => array(
             'sapgui_open_connection', 'sapgui_open_connection_ex', 'sapgui_logon', 'sapgui_create_session',
@@ -195,7 +195,7 @@ $language_data = array (
             'sapgui_toolbar_press_button', 'sapgui_toolbar_press_context_button', 'sapgui_toolbar_select_menu_item',
             'sapgui_toolbar_select_menu_item_by_text', 'sapgui_toolbar_select_context_menu_item',
             'sapgui_toolbar_select_context_menu_item_by_text'
-            ),
+        ),
         // Constants from as_sapgui.h
         10 => array(
             'BEGIN_OPTIONAL', 'END_OPTIONAL', 'al-keys', 'ENTER', 'HELP', 'F2', 'BACK', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9',
@@ -205,8 +205,8 @@ $language_data = array (
             'CTRL_SHIFT_F4', 'CTRL_SHIFT_F5', 'CTRL_SHIFT_F6', 'CTRL_SHIFT_F7', 'CTRL_SHIFT_F8', 'CTRL_SHIFT_F9', 'CTRL_SHIFT_F10',
             'CTRL_SHIFT_F11', 'CTRL_SHIFT_F12', 'CANCEL', 'CTRL_F', 'CTRL_PAGE_UP', 'PAGE_UP', 'PAGE_DOWN', 'CTRL_PAGE_DOWN',
             'CTRL_G', 'CTRL_P'
-            ),
         ),
+    ),
 
     // Symbols and Case Sensitivity
     // Symbols from: http://en.wikipedia.org/wiki/C_syntax
@@ -214,7 +214,7 @@ $language_data = array (
         '(', ')', '{', '}', '[', ']',
         '+', '-', '*', '/', '%',
         '=', '<', '>', '!', '^', '&', '|', '?', ':', ';', ','
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true, // Standard C reserved keywords
@@ -227,7 +227,7 @@ $language_data = array (
         8 => true, // Constants from as_web.h
         9 => true, // Functions from as_sapgui.h
         10 => true, // Constants from as_sapgui.h
-        ),
+    ),
 
     // Styles
     'STYLES' => array(
@@ -243,25 +243,25 @@ $language_data = array (
             8 => 'color: #0000ff;', // Constants from as_web.h
             9 => 'color: #8a0000;', // Functions from as_sapgui.h
             10 => 'color: #0000ff;', // Constants from as_sapgui.h
-            ),
+        ),
         'COMMENTS' => array(
             // Comments are grey
             1 => 'color: #9b9b9b;',
             'MULTI' => 'color: #9b9b9b;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             // GeSHi cannot define a separate style for ESCAPE_REGEXP. The style for ESCAPE_CHAR also applies to ESCAPE_REGEXP.
             // This is used for LoadRunner {parameters}
             // {parameters} are pink
             0 => 'color: #c000c0;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #000000;'
-            ),
+        ),
         'STRINGS' => array(
             // Strings are green
             0 => 'color: #008080;'
-            ),
+        ),
         'NUMBERS' => array(
             // Numbers are green
             0 => 'color: #008080;',
@@ -272,18 +272,16 @@ $language_data = array (
             GESHI_NUMBER_FLT_SCI_ZERO => 'color:#008080;',
             GESHI_NUMBER_FLT_NONSCI_F => 'color:#008080;',
             GESHI_NUMBER_FLT_NONSCI => 'color:#008080;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #000000;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #000000;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
 
     // URLs for Functions
     'URLS' => array(
@@ -297,24 +295,20 @@ $language_data = array (
         8 => '', // Constants from as_web.h
         9 => '', // Functions from as_sapgui.h
         10 => '', // Constants from as_sapgui.h
-        ),
+    ),
 
     // Object Orientation
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
 
     // Regular Expressions
     // Note that REGEXPS are not applied within strings.
-    'REGEXPS' => array(
-        ),
+    'REGEXPS' => array(),
 
     // Contextual Highlighting and Strict Mode
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
 
     // Tabs
     // Note that if you are using <pre> tags for your code, then the browser chooses how many spaces your tabs will translate to.

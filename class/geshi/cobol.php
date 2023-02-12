@@ -53,17 +53,17 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'COBOL',
     'COMMENT_SINGLE' => array(
         1 => '*>', // COBOL 2002 inline comment
         2 => '>>'  // COBOL compiler directive indicator
-        ),
+    ),
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
         1 => '/^......(\*.*?$)/m', // Fixed-form comment
         2 => '/\$SET.*/i'          // MF compiler directive indicator
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"', "'"),
     'ESCAPE_CHAR' => '',
@@ -78,7 +78,7 @@ $language_data = array (
         1 => array(
             'DELETE FILE', 'GO TO', 'NEXT SENTENCE', 'XML GENERATE',
             'XML PARSE'
-            ),
+        ),
 
         2 => array( // Other Reserved Words
             '3-D', 'ABSENT', 'ABSTRACT', 'ACCESS', 'ACQUIRE',
@@ -335,7 +335,7 @@ $language_data = array (
             'WRITE-VERIFY', 'WRITING', ' XML', 'XML ', 'XML-CODE', 'XML-EVENT',
             'XML-NTEXT', 'XML-TEXT', 'YIELDING', 'YYYYDDD', 'YYYYMMDD', 'ZERO',
             'ZERO-FILL', 'ZEROES', 'ZEROS'
-            ),
+        ),
         3 => array( // Statement Keywords containing no spaces.
             'ACCEPT', 'ADD', 'ALTER', 'ALLOCATE', 'ATTACH', 'CALL', 'CANCEL',
             'CHAIN', 'CREATE',
@@ -344,7 +344,7 @@ $language_data = array (
             'DIVIDE',
             'ENTER', 'ENTRY', 'EVALUATE', 'EXAMINE',
             'EXEC', 'EXECUTE', 'EXHIBIT', 'EXIT', 'FREE', 'GOBACK',
-            'IF',  'INITIALIZE', 'INITIATE', 'INSPECT', 'INVOKE', 'MERGE',
+            'IF', 'INITIALIZE', 'INITIATE', 'INSPECT', 'INVOKE', 'MERGE',
             'MODIFY', 'MOVE', 'MULTIPLY', 'NOTE', 'ON', 'OPEN',
             'PERFORM', 'RAISE', 'READ', 'RECEIVE', 'RELEASE', 'RETURN',
             'RESET', 'RESUME',
@@ -353,7 +353,7 @@ $language_data = array (
             'SUPPRESS', 'TERMINATE',
             'TRANSFORM', 'TRY', 'UNLOCKFILE', 'UNLOCK', 'UNSTRING', 'USE',
             'VALIDATE', 'WAIT', 'WRITE'
-            ),
+        ),
         4 => array( // Intrinsic functions
             'ABS', 'ACOS', 'ANNUITY', 'ASIN', 'ATAN', 'BOOLEAN-OF-INTEGER',
             'BYTE-LENGTH', 'CHAR', 'CHAR-NATIONAL',
@@ -382,72 +382,66 @@ $language_data = array (
             'TEST-DAY-YYYYDDD', 'TEST-FORMATTED-TIME', 'TEST-NUMVAL',
             'TEST-NUMVAL-C', 'TEST-NUMVAL-F',
             'TRIM', 'UPPER-CASE', 'VARIANCE', 'YEAR-TO-YYYY', 'WHEN-COMPILED'
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         //  Arithmetic and comparison operators must be surrounded by spaces.
         ' + ', ' - ', ' * ', ' / ', ' ** ', ' ^ ',
         '.', ',',
         ' = ', ' < ', ' > ', ' >= ', ' <= ', ' <> ',
         '(', ')', '[', ']'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
         4 => false,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #000000; font-weight: bold;',
             2 => 'color: #008000; font-weight: bold;',
             3 => 'color: #000000; font-weight: bold;',
             4 => 'color: #9d7700;',
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #a0a0a0; font-style: italic;',
             2 => 'color: #000080; font-weight: bold;',
-            ),
-        'ESCAPE_CHAR' => array(
-            ),
+        ),
+        'ESCAPE_CHAR' => array(),
         'BRACKETS' => array(
             0 => 'color: #339933;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #993399;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #800080;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #000066;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '::'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(

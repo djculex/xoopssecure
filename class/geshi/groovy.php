@@ -42,14 +42,14 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Groovy',
     'COMMENT_SINGLE' => array(1 => '//', 3 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
     'COMMENT_REGEXP' => array(
         //Import and Package directives (Basic Support only)
         2 => '/(?:(?<=import[\\n\\s])|(?<=package[\\n\\s]))[\\n\\s]*([a-zA-Z0-9_]+\\.)*([a-zA-Z0-9_]+|\*)(?=[\n\s;])/i',
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'''", '"""', "'", '"'),
     'ESCAPE_CHAR' => '\\',
@@ -57,7 +57,7 @@ $language_data = array (
         1 => array(
             'case', 'do', 'else', 'for', 'foreach', 'if', 'in', 'switch',
             'while',
-            ),
+        ),
         2 => array(
             'abstract', 'as', 'assert', 'break', 'catch', 'class', 'const',
             'continue', 'def', 'default', 'enum', 'extends',
@@ -67,7 +67,7 @@ $language_data = array (
             'public', 'return', 'static', 'strictfp', 'super',
             'synchronized', 'this', 'throw', 'throws',
             'transient', 'true', 'try', 'volatile'
-            ),
+        ),
         3 => array(
             'AbstractAction', 'AbstractBorder', 'AbstractButton',
             'AbstractCellEditor', 'AbstractCollection',
@@ -889,11 +889,11 @@ $language_data = array (
             '_BindingIteratorImplBase', '_BindingIteratorStub',
             '_IDLTypeStub', '_NamingContextImplBase',
             '_NamingContextStub', '_PolicyStub', '_Remote_Stub'
-            ),
+        ),
         4 => array(
             'boolean', 'byte', 'char', 'double', 'float', 'int', 'long',
             'short', 'void'
-            ),
+        ),
         5 => array(
             'allProperties', 'asImmutable', 'asSynchronized', 'collect',
             'count', 'each', 'eachProperty', 'eachPropertyName',
@@ -901,11 +901,11 @@ $language_data = array (
             'flatten', 'get', 'grep', 'inject', 'intersect',
             'join', 'max', 'min', 'pop', 'reverse',
             'reverseEach', 'size', 'sort', 'subMap', 'toList'
-            ),
+        ),
         6 => array(
             'center', 'contains', 'eachMatch', 'padLeft', 'padRight',
             'toCharacter', 'tokenize', 'toLong', 'toURL'
-            ),
+        ),
         7 => array(
             'append', 'eachByte', 'eachFile', 'eachFileRecurse', 'eachLine',
             'eachLines', 'encodeBase64', 'filterLine', 'getText',
@@ -913,20 +913,20 @@ $language_data = array (
             'withOutputStream', 'withPrintWriter', 'withReader',
             'withStream', 'withStreams', 'withWriter',
             'withWriterAppend', 'write', 'writeLine'
-            ),
+        ),
         8 => array(
             'dump', 'getLastMatcher', 'inspect', 'invokeMethod', 'print',
             'println', 'start', 'startDaemon', 'step', 'times',
             'upto', 'use'
-            ),
+        ),
         9 => array(
             'call', 'close', 'eachRow', 'execute', 'executeUpdate', 'Sql'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '[', ']', '{', '}', '*', '&', '%', '!', ';', '<', '>', '?', '|', '=',
         '=>', '||', '-', '+', '<<', '<<<', '&&'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => true,
         1 => false,
@@ -938,7 +938,7 @@ $language_data = array (
         7 => true,
         8 => true,
         9 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #b1b100;',
@@ -950,38 +950,37 @@ $language_data = array (
             7 => 'color: #FFCC33;',
             8 => 'color: #993399;',
             9 => 'color: #993399; font-weight: bold;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
             2 => 'color: #a1a100;',
             3 => 'color: #808080; font-style: italic;',
             'MULTI' => 'color: #808080; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #006600;',
             2 => 'color: #006600;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'
-            ),
-        'SCRIPT' => array(
-            ),
+        ),
+        'SCRIPT' => array(),
         'REGEXPS' => array(
             0 => 'color: #0000ff;'
-            )
-        ),
+        )
+    ),
     'URLS' => array(
         1 => 'http://www.google.de/search?q=site%3Agroovy.codehaus.org/%20{FNAMEL}',
         2 => 'http://www.google.de/search?q=site%3Agroovy.codehaus.org/%20{FNAMEL}',
@@ -992,18 +991,16 @@ $language_data = array (
         7 => 'http://www.google.de/search?q=site%3Agroovy.codehaus.org/%20{FNAME}',
         8 => 'http://www.google.de/search?q=site%3Agroovy.codehaus.org/%20{FNAME}',
         9 => 'http://www.google.de/search?q=site%3Agroovy.codehaus.org/%20{FNAME}'
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
+    ),
     'REGEXPS' => array(
         //Variables
         0 => '\\$\\{[a-zA-Z_][a-zA-Z0-9_]*\\}'
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

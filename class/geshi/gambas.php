@@ -42,7 +42,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'GAMBAS',
     'COMMENT_SINGLE' => array(1 => "'"),
     'COMMENT_MULTI' => array(),
@@ -63,7 +63,7 @@ $language_data = array (
             'PROCEDURE', 'PROPERTY', 'PUBLIC', 'QUIT', 'RAISE', 'RANDOMIZE', 'READ', 'REPEAT', 'RETURN', 'RMDIR',
             'SEEK', 'SELECT', 'SHELL', 'SLEEP', 'STATIC', 'STEP', 'STOP', 'SUB', 'SUPER', 'SWAP', 'THEN', 'TO',
             'TRUE', 'TRY', 'UNLOCK', 'UNTIL', 'WAIT', 'WATCH', 'WEND', 'WHILE', 'WITH', 'WRITE'
-            ),
+        ),
         //functions
         2 => array(
             'Abs', 'Access', 'Acos', 'Acosh', 'Alloc', 'Ang', 'Asc', 'ASin', 'ASinh', 'Asl', 'Asr', 'Assign', 'Atan',
@@ -85,22 +85,22 @@ $language_data = array (
             'Stat', 'Str', 'StrPtr', 'Subst',
             'Tan', 'Tanh', 'Temp$', 'Time', 'Timer', 'Tr', 'Trim', 'TypeOf',
             'UCase', 'Unquote', 'Val', 'VarPtr', 'Week', 'WeekDay', 'Year'
-            ),
+        ),
         //string functions
         3 => array(
             'Bin$', 'Chr$', 'Conv$', 'DConv$', 'Format$', 'Hex$', 'LCase$', 'Left$', 'LTrim$', 'Mid$', 'Quote$',
             'Replace$', 'Right$', 'SConv$', 'Space$', 'Str$', 'String$', 'Subst$', 'Tr$', 'Trim$', 'UCase$',
             'Unquote$'
-            ),
+        ),
         //datatypes
         4 => array(
             'Boolean', 'Byte', 'Short', 'Integer', 'Long', 'Single', 'Float', 'Date', 'String', 'Variant', 'Object',
             'Pointer', 'File'
-            ),
+        ),
         //operators
         5 => array(
             'AND', 'DIV', 'MOD', 'NOT', 'OR', 'XOR'
-            ),
+        ),
         //objects/classes
         6 => array(
             'Application', 'Array', 'Byte[]', 'Collection', 'Component', 'Enum', 'Observer', 'Param', 'Process',
@@ -122,16 +122,16 @@ $language_data = array (
             'CDRom', 'Channel', 'Music', 'Sound', 'Settings', 'VideoDevice', 'Vb', 'CGI', 'HTML', 'Request', 'Response',
             'Session', 'XmlDocument', 'XmlNode', 'XmlReader', 'XmlReaderNodeType', 'XmlWriter', 'RpcArray', 'RpcClient',
             'RpcFunction', 'RpcServer', 'RpcStruct', 'RpcType', 'XmlRpc', 'Xslt'
-            ),
+        ),
         //constants
         7 => array(
             'Pi'
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         '&', '&=', '&/', '*', '*=', '+', '+=', '-', '-=', '//', '/', '/=', '=', '==', '\\', '\\=',
         '^', '^=', '[', ']', '{', '}', '<', '>', '<>', '<=', '>='
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
@@ -141,7 +141,7 @@ $language_data = array (
         5 => false,
         6 => false,
         7 => false,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #0600FF; font-weight: bold;',          // Keywords
@@ -151,36 +151,34 @@ $language_data = array (
             5 => 'color: #1E90FF;',                             // Operators
             6 => 'color: #0600FF;',                             // Objects/Components
             7 => 'color: #0600FF;'                              // Constants
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #1A5B1A; font-style: italic;',
             'MULTI' => 'color: #1A5B1A; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #008080;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #612188;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #7E4B05;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #FF0000;',
             GESHI_NUMBER_INT_BASIC => 'color: #FF0000;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #0000FF;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #6132B2;'
-            ),
-        'REGEXPS' => array(
-            //3 => 'color: #8B1433;'  //fakes '$' colour matched by REGEXP
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(//3 => 'color: #8B1433;'  //fakes '$' colour matched by REGEXP
+        ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => 'http://gambasdoc.org/help/lang/{FNAMEL}',
         2 => 'http://gambasdoc.org/help/lang/{FNAMEL}',
@@ -189,24 +187,21 @@ $language_data = array (
         5 => 'http://gambasdoc.org/help/lang/{FNAMEL}',
         6 => 'http://www.google.com/search?hl=en&amp;q={FNAMEL}+site:http://gambasdoc.org/&amp;btnI=I%27m%20Feeling%20Lucky',
         7 => 'http://gambasdoc.org/help/lang/{FNAMEL}'
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
-    'REGEXPS' => array(
-        //3 => "\\$(?!\\w)"   //matches '$' at the end of Keyword
-        ),
+    ),
+    'REGEXPS' => array(//3 => "\\$(?!\\w)"   //matches '$' at the end of Keyword
+    ),
     'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             2 => array(
                 'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_\|%\\-&;\$])"
-                )
             )
         )
+    )
 );

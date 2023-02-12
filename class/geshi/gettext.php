@@ -36,7 +36,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'GNU Gettext',
     'COMMENT_SINGLE' => array('#:', '#.', '#,', '#|', '#'),
     'COMMENT_MULTI' => array(),
@@ -82,14 +82,12 @@ $language_data = array (
     ),
     'URLS' => array(
         1 => ''
-        ),
+    ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4
 );

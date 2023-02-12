@@ -50,7 +50,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'C++',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -63,7 +63,7 @@ $language_data = array (
         3 => '/(?:L|u8?|U)(?=")/',
         //C++ 11 string literal extensions (raw)
         4 => '/R"([^()\s\\\\]*)\((?:(?!\)\\1").)*\)\\1"/ms'
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',
@@ -78,7 +78,7 @@ $language_data = array (
         4 => "#\\\\U[\da-fA-F]{8}#",
         //Octal Char Specs
         5 => "#\\\\[0-7]{1,3}#"
-        ),
+    ),
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
         GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
@@ -87,7 +87,7 @@ $language_data = array (
         1 => array(
             'break', 'case', 'continue', 'default', 'do', 'else', 'for', 'goto', 'if', 'return',
             'switch', 'throw', 'while'
-            ),
+        ),
         2 => array(
             'NULL', 'false', 'true', 'enum', 'errno', 'EDOM',
             'ERANGE', 'FLT_RADIX', 'FLT_ROUNDS', 'FLT_DIG', 'DBL_DIG', 'LDBL_DIG',
@@ -107,7 +107,7 @@ $language_data = array (
             'decltype', 'override', 'final', 'noexcept', 'alignas', 'alignof', 'noreturn',
             'constexpr', 'and', 'and_eq', 'asm', 'bitand', 'bitor', 'thread_local',
             'static_assert', 'compl', 'or', 'or_eq', 'xor', 'xor_eq', 'not', 'not_eq'
-            ),
+        ),
         3 => array(
             'cin', 'cerr', 'clog', 'cout', 'delete', 'new', 'this', 'export',
             'printf', 'fprintf', 'snprintf', 'sprintf', 'assert',
@@ -129,12 +129,12 @@ $language_data = array (
             'strpbrk', 'strstr', 'strlen', 'strerror', 'strtok', 'strxfrm', 'memcpy',
             'memmove', 'memcmp', 'memchr', 'memset', 'clock', 'time', 'difftime', 'mktime',
             'asctime', 'ctime', 'gmtime', 'localtime', 'strftime'
-            ),
+        ),
         4 => array(
             'auto', 'bool', 'char', 'char16_t', 'char32_t', 'const', 'double', 'float',
-            'int', 'long', 'longint','register', 'short', 'shortint', 'signed',
+            'int', 'long', 'longint', 'register', 'short', 'shortint', 'signed',
             'static', 'struct', 'typedef', 'union', 'unsigned', 'void', 'volatile',
-            'extern', 'jmp_buf','signal', 'raise', 'va_list', 'ptrdiff_t', 'size_t',
+            'extern', 'jmp_buf', 'signal', 'raise', 'va_list', 'ptrdiff_t', 'size_t',
             'FILE', 'fpos_t', 'div_t', 'ldiv_t', 'clock_t', 'time_t', 'tm', 'wchar_t',
             'mutable',
 
@@ -151,36 +151,36 @@ $language_data = array (
             'uint8_t', 'uint16_t', 'uint32_t', 'uint64_t',
 
             'intmax_t', 'uintmax_t', 'intptr_t', 'uintptr_t'
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         0 => array('(', ')', '{', '}', '[', ']'),
-        1 => array('<', '>','='),
+        1 => array('<', '>', '='),
         2 => array('+', '-', '*', '/', '%'),
         3 => array('!', '^', '&', '|'),
         4 => array('?', ':', ';')
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
         2 => true,
         3 => true,
         4 => true,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #0000ff;',
             2 => 'color: #0000ff;',
             3 => 'color: #0000dd;',
             4 => 'color: #0000ff;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #666666;',
             2 => 'color: #339900;',
             3 => 'color: #FF0000;',
             4 => 'color: #FF0000;',
             'MULTI' => 'color: #ff0000; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;',
             1 => 'color: #000099; font-weight: bold;',
@@ -189,13 +189,13 @@ $language_data = array (
             4 => 'color: #660099; font-weight: bold;',
             5 => 'color: #006699; font-weight: bold;',
             'HARD' => '',
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #008000;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #FF0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #0000dd;',
             GESHI_NUMBER_BIN_PREFIX_0B => 'color: #208080;',
@@ -205,41 +205,36 @@ $language_data = array (
             GESHI_NUMBER_FLT_SCI_ZERO => 'color:#800080;',
             GESHI_NUMBER_FLT_NONSCI_F => 'color:#800080;',
             GESHI_NUMBER_FLT_NONSCI => 'color:#800080;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #007788;',
             2 => 'color: #007788;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #008000;',
             1 => 'color: #000080;',
             2 => 'color: #000040;',
             3 => 'color: #000040;',
             4 => 'color: #008080;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.',
         2 => '::'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(

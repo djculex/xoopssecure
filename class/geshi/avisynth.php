@@ -41,7 +41,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'AviSynth',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/', '[*' => '*]'),
@@ -52,11 +52,11 @@ $language_data = array (
         //  Reserved words.
         1 => array(
             'try', 'cache', 'function', 'global', 'return'
-            ),
+        ),
         // Constants / special variables.
         2 => array(
             'true', 'yes', 'false', 'no', '__END__'
-            ),
+        ),
         // Internal Filters.
         3 => array(
             'AviSource', 'AviFileSource', 'AddBorders', 'AlignedSplice', 'AssumeFPS', 'AssumeScaledFPS',
@@ -94,7 +94,7 @@ $language_data = array (
             'VToY', 'VToY8', 'VerticalReduceBy2', 'Version',
             'WavSource', 'Weave', 'WriteFile', 'WriteFileIf', 'WriteFileStart', 'WriteFileEnd',
             'YToUV'
-            ),
+        ),
         // Internal functions.
         4 => array(
             'Abs', 'Apply', 'Assert', 'AverageLuma', 'AverageChromaU', 'AverageChromaV',
@@ -120,8 +120,8 @@ $language_data = array (
             'VPlaneMin', 'VPlaneMedian', 'VPlaneMinMaxDifference',
             'YDifferenceFromPrevious', 'YDifferenceToNext', 'YPlaneMax', 'YPlaneMin', 'YPlaneMedian',
             'YPlaneMinMaxDifference'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '+', '++', '-', '--', '/', '*', '%',
         '=', '==', '<', '<=', '>', '>=', '<>', '!=',
@@ -130,64 +130,59 @@ $language_data = array (
         '\\',
         '(', ')', '{', '}',
         '.', ','
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
         4 => true,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color:#9966CC; font-weight:bold;',
             2 => 'color:#0000FF; font-weight:bold;',
             3 => 'color:#CC3300; font-weight:bold;',
             4 => 'color:#660000; font-weight:bold;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color:#008000; font-style:italic;',
             'MULTI' => 'color:#000080; font-style:italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color:#000099;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color:#006600; font-weight:bold;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color:#996600;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color:#006666;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color:#9900CC;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color:#006600; font-weight:bold;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => 'http://avisynth.org/mediawiki/{FNAME}',
         4 => ''
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4
 );

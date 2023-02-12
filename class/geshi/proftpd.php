@@ -38,7 +38,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'ProFTPd configuration',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
@@ -230,7 +230,7 @@ $language_data = array (
 
             //unknown
             'ScoreboardPath', 'ScoreboardScrub'
-            ),
+        ),
         /*keywords 3*/
         3 => array(
             //mod_core
@@ -247,7 +247,7 @@ $language_data = array (
 
             //mod_version
             'IfVersion'
-            ),
+        ),
         /*permissions*/
         4 => array(
             //mod_core
@@ -281,92 +281,85 @@ $language_data = array (
 
             //mod_site_misc
             'SITE_MKDIR', 'SITE_RMDIR', 'SITE_SYMLINK', 'SITE_UTIME',
-            ),
+        ),
         /*keywords 2*/
         2 => array(
-            'all','on','off','yes','no',
+            'all', 'on', 'off', 'yes', 'no',
             'standalone', 'inetd',
             'default', 'auth', 'write',
             'internet', 'local', 'limit', 'ip',
             'from'
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         '+', '-'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
         4 => false,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #00007f;',
             2 => 'color: #0000ff;',
             3 => 'color: #000000; font-weight:bold;',
             4 => 'color: #000080; font-weight:bold;',
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #adadad; font-style: italic;',
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #339933;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #7f007f;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #ff0000;'
-            ),
-        'METHODS' => array(
-            ),
+        ),
+        'METHODS' => array(),
         'SYMBOLS' => array(
             0 => 'color: #008000;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => 'http://www.google.com/search?hl=en&amp;q={FNAMEL}+site:www.proftpd.org+inurl:docs&amp;btnI=I%27m%20Feeling%20Lucky',
         2 => '',
         3 => 'http://www.google.com/search?hl=en&amp;q={FNAMEL}+site:www.proftpd.org+inurl:docs&amp;btnI=I%27m%20Feeling%20Lucky',
         4 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
-    'REGEXPS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
             'BRACKETS' => GESHI_NEVER,
             'SYMBOLS' => GESHI_NEVER
-            ),
+        ),
         'KEYWORDS' => array(
             2 => array(
                 'DISALLOWED_BEFORE' => '(?<=\s)(?<!=)',
                 'DISALLOWED_AFTER' => '(?!\+)(?!\w)',
-                ),
+            ),
             3 => array(
                 'DISALLOWED_BEFORE' => '(?<=&lt;|&lt;\/)',
                 'DISALLOWED_AFTER' => '(?=\s|\/|&gt;)',
-                ),
+            ),
             4 => array(
                 'DISALLOWED_BEFORE' => '(?<=\s)(?<!=)',
                 'DISALLOWED_AFTER' => '(?!\+)(?=\/|(?:\s+\w+)*\s*&gt;)',
-                )
             )
         )
+    )
 );

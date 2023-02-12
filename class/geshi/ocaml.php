@@ -39,7 +39,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'OCaml',
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array('(*' => '*)'),
@@ -52,11 +52,11 @@ $language_data = array (
         1 => array(
             'and', 'as', 'asr', 'begin', 'class', 'closed', 'constraint', 'do', 'done', 'downto', 'else',
             'end', 'exception', 'external', 'failwith', 'false', 'for', 'fun', 'function', 'functor',
-            'if', 'in', 'include', 'inherit',  'incr', 'land', 'let', 'load', 'los', 'lsl', 'lsr', 'lxor',
+            'if', 'in', 'include', 'inherit', 'incr', 'land', 'let', 'load', 'los', 'lsl', 'lsr', 'lxor',
             'match', 'method', 'mod', 'module', 'mutable', 'new', 'not', 'of', 'open', 'option', 'or', 'parser',
             'private', 'ref', 'rec', 'raise', 'regexp', 'sig', 'struct', 'stdout', 'stdin', 'stderr', 'then',
             'to', 'true', 'try', 'type', 'val', 'virtual', 'when', 'while', 'with'
-            ),
+        ),
         /* define names of main librarys, so we can link to it */
         2 => array(
             'Arg', 'Arith_status', 'Array', //'Array1', 'Array2', 'Array3',
@@ -70,7 +70,7 @@ $language_data = array (
             'Random', 'Scanf', 'Set', 'Sort', 'Stack', 'StdLabels', 'Str',
             'Stream', 'String', 'StringLabels', 'Sys', 'Thread', 'ThreadUnix',
             'Tk', 'Unix', 'UnixLabels', 'Weak'
-            ),
+        ),
         /* just link to the Pervasives functions library, cause it's the default opened library when starting OCaml */
         3 => array(
             'abs', 'abs_float', 'acos', 'asin', 'at_exit', 'atan', 'atan2',
@@ -87,7 +87,7 @@ $language_data = array (
             'open_in_bin', 'open_in_gen', 'open_out', 'open_out_bin',
             'open_out_gen', 'out_channel_length', 'output', 'output_binary_int',
             'output_byte', 'output_char', 'output_string', 'output_value',
-            'pos_in', 'pos_out',  'pred', 'prerr_char', 'prerr_endline',
+            'pos_in', 'pos_out', 'pred', 'prerr_char', 'prerr_endline',
             'prerr_float', 'prerr_int', 'prerr_newline', 'prerr_string',
             'print_char', 'print_endline', 'print_float', 'print_int',
             'print_newline', 'print_string', 'read_float', 'read_int',
@@ -95,24 +95,24 @@ $language_data = array (
             'set_binary_mode_in', 'set_binary_mode_out', 'sin', 'sinh', 'snd',
             'sqrt', 'string_of_bool', 'string_of_float', 'string_of_format',
             'string_of_int', 'succ', 'tan', 'tanh', 'truncate'
-            ),
-        /* here Pervasives Types */
-        4 => array (
-            'array','bool','char','exn','file_descr','format','fpclass',
-            'in_channel','int','int32','int64','list','nativeint','open_flag',
-            'out_channel','string','Sys_error','unit'
-            ),
-        /* finally Pervasives Exceptions */
-        5 => array (
-            'Exit', 'Invalid_Argument', 'Failure', 'Division_by_zero'
-            )
         ),
+        /* here Pervasives Types */
+        4 => array(
+            'array', 'bool', 'char', 'exn', 'file_descr', 'format', 'fpclass',
+            'in_channel', 'int', 'int32', 'int64', 'list', 'nativeint', 'open_flag',
+            'out_channel', 'string', 'Sys_error', 'unit'
+        ),
+        /* finally Pervasives Exceptions */
+        5 => array(
+            'Exit', 'Invalid_Argument', 'Failure', 'Division_by_zero'
+        )
+    ),
     /* highlighting symbols is really important in OCaml */
     'SYMBOLS' => array(
         '+.', '-.', '*.', '/.', '[<', '>]',
         ';', '!', ':', '.', '=', '%', '^', '*', '-', '/', '+',
         '>', '<', '(', ')', '[', ']', '&', '|', '#', "'",
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
@@ -120,7 +120,7 @@ $language_data = array (
         3 => true, /* types name too */
         4 => true, /* pervasives types */
         5 => true  /* pervasives exceptions */
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #06c; font-weight: bold;', /* nice blue */
@@ -128,35 +128,33 @@ $language_data = array (
             3 => 'color: #06c; font-weight: bold;', /* nice blue */
             4 => 'color: #06c; font-weight: bold;', /* nice blue */
             5 => 'color: #06c; font-weight: bold;' /* nice blue */
-            ),
+        ),
         'COMMENTS' => array(
             'MULTI' => 'color: #5d478b; font-style: italic;', /* light purple */
             1 => 'color: #5d478b; font-style: italic;' /* light purple */
-            ),
-        'ESCAPE_CHAR' => array(
-            ),
+        ),
+        'ESCAPE_CHAR' => array(),
         'BRACKETS' => array(
             0 => 'color: #a52a2a;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #3cb371;' /* nice green */
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #c6c;' /* pink */
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #060;' /* dark green */
-            ),
+        ),
         'REGEXPS' => array(
             1 => 'font-weight:bold; color:#339933;',
             2 => 'font-weight:bold; color:#993399;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #a52a2a;' /* maroon */
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         /* some of keywords are Pervasives functions (land, lxor, asr, ...) */
         1 => '',
@@ -168,18 +166,16 @@ $language_data = array (
         4 => 'http://caml.inria.fr/pub/docs/manual-ocaml/libref/Pervasives.html#TYPE{FNAME}',
         /* link to Pervasives exceptions */
         5 => 'http://caml.inria.fr/pub/docs/manual-ocaml/libref/Pervasives.html#EXCEPTION{FNAME}'
-        ),
+    ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
+    ),
     'REGEXPS' => array(
         1 => '~\w+',
         2 => '`(?=(?-i:[a-z]))\w*',
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

@@ -37,7 +37,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'GADV 4CS',
     'COMMENT_SINGLE' => array(1 => "//"),
     'COMMENT_MULTI' => array(),
@@ -75,63 +75,58 @@ $language_data = array (
             'System_Error', 'TerminateAllChilds', 'Terminates', 'Then', 'Throw', 'TimeOut',
             'To', 'TooLate', 'Trunc', 'UBound', 'Unexpected', 'Until', 'User_Error',
             'View', 'Wait', 'Warning', 'While', 'XOr'
-            ),
+        ),
         2 => array(
             'alias', 'winapi', 'long', 'char', 'double', 'float', 'int', 'short', 'lib'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '=', ':=', '<', '>', '<>'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #0000C0; font-weight: bold;',
             2 => 'color: #808080;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #008000;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #000080;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #800080;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #66cc66;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #000080;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099;'
-            ),
-        'SCRIPT' => array(
-            ),
-        'REGEXPS' => array(
-            )
         ),
+        'SCRIPT' => array(),
+        'REGEXPS' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

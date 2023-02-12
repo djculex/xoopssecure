@@ -39,14 +39,14 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'VBScript',
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
         // Comments (either single or multiline with _
         1 => '/\'.*(?<! _)\n/sU',
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '',
@@ -60,7 +60,7 @@ $language_data = array (
             'vbSaturday', 'vbSingle', 'vbString', 'vbSunday', 'vbTab',
             'vbThursday', 'vbTuesday', 'vbUseSystem', 'vbUseSystemDayOfWeek',
             'vbVariant', 'vbWednesday', 'FALSE', 'TRUE'
-            ),
+        ),
         2 => array(
             'bs', 'Array', 'Asc', 'Atn', 'CBool', 'CByte', 'CDate', 'CDbl', 'Chr',
             'CInt', 'CLng', 'Cos', 'CreateObject', 'CSng', 'CStr', 'Date', 'DateAdd',
@@ -75,79 +75,69 @@ $language_data = array (
             'Sgn', 'Sin', 'Space', 'Split', 'Sqr', 'StrComp', 'String', 'StrReverse',
             'Tan', 'Time', 'TimeSerial', 'TimeValue', 'Trim', 'TypeName', 'UBound',
             'UCase', 'VarType', 'Weekday', 'WeekdayName', 'Year'
-            ),
+        ),
         3 => array(
             'Call', 'Case', 'Const', 'Dim', 'Do', 'Each', 'Else', 'End', 'Erase',
             'Execute', 'Exit', 'For', 'Function', 'Gosub', 'Goto', 'If', 'Loop',
             'Next', 'On Error', 'Option Explicit', 'Private', 'Public',
             'Randomize', 'ReDim', 'Rem', 'Resume', 'Select', 'Set', 'Sub', 'Then',
             'Wend', 'While', 'With', 'In', 'To', 'Step'
-            ),
+        ),
         4 => array(
             'And', 'Eqv', 'Imp', 'Is', 'Mod', 'Not', 'Or', 'Xor'
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         '-', '&', '*', '/', '\\', '^', '+', '<', '<=', '<>', '=', '>', '>='
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
         4 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #F660AB; font-weight: bold;',
             2 => 'color: #E56717; font-weight: bold;',
             3 => 'color: #8D38C9; font-weight: bold;',
             4 => 'color: #151B8D; font-weight: bold;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #008000;'
-            ),
-        'BRACKETS' => array(
-            ),
+        ),
+        'BRACKETS' => array(),
         'STRINGS' => array(
             0 => 'color: #800000;'
-            ),
-        'NUMBERS' => array(
-            ),
-        'METHODS' => array(
-            ),
-        'SYMBOLS' => array(
-            ),
+        ),
+        'NUMBERS' => array(),
+        'METHODS' => array(),
+        'SYMBOLS' => array(),
         'ESCAPE_CHAR' => array(
             0 => 'color: #800000; font-weight: bold;'
-            ),
-        'SCRIPT' => array(
-            ),
-        'REGEXPS' => array(
-            )
         ),
+        'SCRIPT' => array(),
+        'REGEXPS' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
-    'REGEXPS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             'SPACE_AS_WHITESPACE' => true
-            ),
+        ),
         'ENABLE_FLAGS' => array(
             'BRACKETS' => GESHI_NEVER
-            )
         )
+    )
 );

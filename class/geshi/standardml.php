@@ -41,7 +41,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'StandardML',
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array('(*' => '*)'),
@@ -74,13 +74,13 @@ $language_data = array (
             'of', 'op', 'open', 'orelse',
             'rec', 'raise', 'sharing', 'sig', 'signature', 'struct', 'structure', 'then',
             'type', 'val', 'while', 'with', 'withtype'
-            ),
+        ),
         /* Top-level type and constructors */
         2 => array(
             'unit', 'int', 'word', 'real', 'char', 'string', 'substring', 'exn',
             'array', 'vector', 'bool', 'option',
             'list'
-            ),
+        ),
         /* standard structures/signatures/functors provided by Basis library */
         3 => array(
             'ARRAY', 'Array', 'Array2', 'ARRAY2', 'ArraySlice', 'ARRAY_SLICE',
@@ -95,7 +95,7 @@ $language_data = array (
             'STREAM_IO', 'StreamIO', 'STRING', 'String', 'StringCvt', 'SUBSTRING', 'Substring', 'TEXT', 'TEXT_IO',
             'TEXT_STREAM_IO', 'Time', 'Timer', 'Unix', 'UnixSock', 'VECTOR', 'Vector', 'VECTOR_SLICE',
             'Windows', 'WORD', 'Word'
-            ),
+        ),
         /* Top-level value identifiers / constructors */
         4 => array(
             'app', 'before', 'ceil', 'chr', 'concat', 'exnMessage', 'exnName', 'explode',
@@ -106,23 +106,23 @@ $language_data = array (
             'ref', 'true', 'false', 'NONE', 'SOME', 'LESS', 'EQUAL', 'GREATER', 'nil',
             /* overloaded identifiers */
             'div', 'mod', 'abs'
-            ),
+        ),
         /* standard exceptions */
-        5 => array (
+        5 => array(
             'Bind', 'Chr', 'Div', 'Domain', 'Empty', 'Fail', 'Match', 'Overflow', 'Size', 'Span', 'Subscript'
-            ),
+        ),
         /* implementation dependent keyword (not be sorted) */
-        6 => array (
+        6 => array(
             /**
- * SML/NJ
-*/
+             * SML/NJ
+             */
             /* functor signature > http://www.smlnj.org/doc/features.html */
             'funsig',
             /* lazy evaluation */
             'lazy',
             /**
- * SML#
-*/
+             * SML#
+             */
             /* binding to C function */
             '_import',
             /* read other source */
@@ -133,8 +133,8 @@ $language_data = array (
             '_sqlserver', '_sql', 'from', 'where', '_sqleval', '_sqlexec',
             'select', 'insert', 'update', 'begin', 'commit', 'rollback',
             'values', 'delete'
-            )
-        ),
+        )
+    ),
     /* highlighting symbols */
     'SYMBOLS' => array(
         0 => array('=', ':', ':>', '=>', '(', ')', '|', '_', '==', ';', '.'),
@@ -142,7 +142,7 @@ $language_data = array (
         2 => array('[', ']', '::', '{', '}'),
         /* overloaded identifiers */
         3 => array('+', '-', '*', '/', '~', '<', '>', '<=', '>=')
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true, /* keywords */
@@ -151,7 +151,7 @@ $language_data = array (
         4 => true, /* top level identifiers */
         5 => true, /* top level exceptions */
         6 => true  /* implementation dependent keyword */
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #557cde; font-weight: bold;',
@@ -160,42 +160,40 @@ $language_data = array (
             4 => 'color: #5c8cbb;',
             5 => 'color: #f33e64; font-weight: bold;',
             6 => 'color: #f33e64;'
-            ),
+        ),
         'COMMENTS' => array(
             'MULTI' => 'color: #5d478b; font-style: italic;', /* light purple */
             1 => 'color: #5d478b; font-style: italic;' /* light purple */
-            ),
-        'ESCAPE_CHAR' => array(
-            ),
+        ),
+        'ESCAPE_CHAR' => array(),
         'BRACKETS' => array(
             0 => 'color: #79c200;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #488614;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #fb7600;',
             1 => 'color: #fb7600;',
             2 => 'color: #fb7600;',
             3 => 'color: #fb7600;',
             4 => 'color: #fb7600;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #0066cc;'
-            ),
+        ),
         'REGEXPS' => array(
             1 => 'font-style:italic; color:#9f7eff;',
             2 => 'font-weight:bold; color:#8dda4a;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #ff4bcf;',
             1 => 'color: #ff4bcf; font-weight: bold;', // pink
             2 => 'color: #90f963;', // orange
             3 => 'color: #fa5bf8;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => 'http://www.standardml.org/Basis/top-level-chapter.html',
@@ -203,18 +201,16 @@ $language_data = array (
         4 => '',
         5 => 'http://www.standardml.org/Basis/top-level-chapter.html#section:2',
         6 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
+    ),
     'REGEXPS' => array(
         1 => '(?<!\w)#\w+',  /* record field access */
         2 => '(?:(?<![0-9a-zA-Z]))\'[a-z]+' /* type variable */
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

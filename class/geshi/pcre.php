@@ -41,11 +41,10 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'PCRE',
     'COMMENT_SINGLE' => array(),
-    'COMMENT_MULTI' => array(
-        ),
+    'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
         // Non-matching groups
         1 => "/(?<=\()\?(?::|(?=\())/",
@@ -97,25 +96,23 @@ $language_data = array (
 
         // Comment Subpattern
         17 => "/(?<=\()\?#[^\)]*/",
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array(),
     'ESCAPE_CHAR' => '\\',
-    'KEYWORDS' => array(
-        ),
+    'KEYWORDS' => array(),
     'SYMBOLS' => array(
         0 => array('.'),
         1 => array('(', ')'),
         2 => array('[', ']', '|'),
         3 => array('^', '$'),
         4 => array('?', '+', '*'),
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-        ),
+    ),
     'STYLES' => array(
-        'KEYWORDS' => array(
-            ),
+        'KEYWORDS' => array(),
         'COMMENTS' => array(
             1 => 'color: #993333; font-weight: bold;',
             2 => 'color: #cc3300; font-weight: bold;',
@@ -135,48 +132,41 @@ $language_data = array (
             16 => 'color: #333399; font-style: italic;',
             17 => 'color: #666666; font-style: italic;',
             'MULTI' => 'color: #666666; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;',
             'HARD' => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #009900;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;',
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #006600;',
             2 => 'color: #006600;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #333399; font-weight: bold;',
             1 => 'color: #993333; font-weight: bold;',
             2 => 'color: #339933; font-weight: bold;',
             3 => 'color: #333399; font-weight: bold;',
             4 => 'color: #333399; font-style: italic;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
-    'URLS' => array(
-        ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
+    'URLS' => array(),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
-    'REGEXPS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
             'BRACKETS' => GESHI_NEVER,

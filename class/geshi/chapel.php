@@ -37,17 +37,15 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Chapel',
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
-    'COMMENT_REGEXP' => array(
-        ),
+    'COMMENT_REGEXP' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',
-    'ESCAPE_REGEXP' => array(
-        ),
+    'ESCAPE_REGEXP' => array(),
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
         GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI | GESHI_NUMBER_FLT_NONSCI_F |
@@ -60,28 +58,28 @@ $language_data = array (
             'iter', 'inline', 'label', 'let', 'local', 'module',
             'otherwise', 'proc', 'record', 'return', 'select', 'serial',
             'then', 'use', 'var', 'when', 'where', 'while', 'yield'
-            ),
+        ),
         // literals
         2 => array(
             'nil', 'true', 'false'
-            ),
+        ),
         // built-in functions
         3 => array(
             'by', 'delete', 'dmapped', 'domain', 'enum', 'index', 'min',
             'minloc', 'max', 'maxloc', 'new', 'range', 'reduce', 'scan',
             'sparse', 'subdomain', 'sync', 'union', 'zip'
-            ),
+        ),
         // built-in types
         4 => array(
             'config', 'const', 'in', 'inout', 'opaque', 'on', 'out', 'param',
             'ref', 'single', 'type'
-            ),
+        ),
         // library types
         5 => array(
             'void', 'bool', 'int', 'uint', 'real', 'imag', 'complex', 'string',
             'locale'
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         '(', ')', '{', '}', '[', ']',
         '+', '-', '*', '/', '%',
@@ -89,7 +87,7 @@ $language_data = array (
         '!', '^', '&', '|',
         '?', ':',
         ';', ','
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
@@ -97,19 +95,19 @@ $language_data = array (
         3 => true,
         4 => true,
         5 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #b1b100;',
             2 => 'color: #000000; font-weight: bold;',
             3 => 'color: #000066;',
             4 => 'color: #993333;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
             //2 => 'color: #339933;',
             'MULTI' => 'color: #808080; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;',
             1 => 'color: #000099; font-weight: bold;',
@@ -118,13 +116,13 @@ $language_data = array (
             4 => 'color: #660099; font-weight: bold;',
             5 => 'color: #006699; font-weight: bold;',
             'HARD' => '',
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #009900;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #0000dd;',
             GESHI_NUMBER_BIN_PREFIX_0B => 'color: #208080;',
@@ -134,36 +132,31 @@ $language_data = array (
             GESHI_NUMBER_FLT_SCI_ZERO => 'color:#800080;',
             GESHI_NUMBER_FLT_NONSCI_F => 'color:#800080;',
             GESHI_NUMBER_FLT_NONSCI => 'color:#800080;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #202020;',
             2 => 'color: #202020;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #339933;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => '',
         5 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.',
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4
 );

@@ -53,21 +53,20 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'DCS',
     'COMMENT_SINGLE' => array(
         1 => ';'
-        ),
-    'COMMENT_MULTI' => array(
-        ),
+    ),
+    'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
         // Highlight embedded C code in a separate color:
         2 => '/\bINSERT_C_CODE\b.*?\bEND_C_CODE\b/ims'
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_UPPER,
     'QUOTEMARKS' => array(
         '"'
-        ),
+    ),
     'ESCAPE_CHAR' => '',
     'ESCAPE_REGEXP' => '',
     'NUMBERS' =>
@@ -102,7 +101,7 @@ $language_data = array (
             'summarise_units_record', 'suppress_record', 'table_correct',
             'table_validate', 'terminate', 'time', 'today', 'trim', 'ubound', 'year',
             'years_add', 'years_sub'
-            ),
+        ),
         2 => array(
             'and', 'as', 'begin', 'boolean', 'byref', 'byval', 'call', 'case', 'date',
             'default', 'do', 'else', 'elseif', 'end_c_code', 'endfor', 'endfunction',
@@ -111,71 +110,63 @@ $language_data = array (
             'if', 'insert_c_code', 'integer', 'le', 'loop', 'lt', 'ne', 'not',
             'number', 'or', 'private', 'proc', 'public', 'quitloop', 'return',
             'short', 'step', 'switch', 'text', 'then', 'to', 'true', 'while'
-            ),
+        ),
         3 => array(
             // These keywords are not highlighted by the DCS IDE but we may as well
             // keep track of them anyway:
             'mp_file', 'odbc_file'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '[', ']',
         '=', '<', '>',
         '+', '-', '*', '/', '^',
         ':', ','
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: red;',
             2 => 'color: blue;',
             3 => 'color: black;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: black; background-color: silver;',
             // Colors for highlighting embedded C code:
             2 => 'color: maroon; background-color: pink;'
-            ),
-        'ESCAPE_CHAR' => array(
-            ),
+        ),
+        'ESCAPE_CHAR' => array(),
         'BRACKETS' => array(
             0 => 'color: black;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: green;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: green;'
-            ),
-        'METHODS' => array(
-            ),
+        ),
+        'METHODS' => array(),
         'SYMBOLS' => array(
             0 => 'color: black;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            ),
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array(),
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
-    'REGEXPS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4
 );

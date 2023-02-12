@@ -42,7 +42,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Euphoria',
     'COMMENT_SINGLE' => array(1 => '--'),
     'COMMENT_MULTI' => array(), //Euphoria doesn't support multi-line comments
@@ -55,7 +55,7 @@ $language_data = array (
             'for', 'function', 'global', 'if', 'include', 'not', 'or',
             'procedure', 'return', 'then', 'to', 'type', 'while', 'with',
             'without', 'xor'
-            ),
+        ),
         2 => array( // built-ins
             'abort', 'and_bits', 'append', 'arctan', 'atom', 'c_func', 'call',
             'c_proc', 'call_func', 'call_proc', 'clear_screen', 'close', 'compare',
@@ -70,69 +70,65 @@ $language_data = array (
             'task_clock_start', 'task_create', 'task_list', 'task_schedule',
             'task_self', 'task_status', 'task_suspend', 'task_yield', 'time',
             'trace', 'xor_bits'
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         0 => array(
             '(', ')', '{', '}', '[', ']'
-            ),
+        ),
         1 => array(
             '+', '-', '*', '/', '=', '&', '^'
-            ),
+        ),
         2 => array(
             '&', '?', ','
-            )
-        ),
+        )
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
         2 => true,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #0000ff; font-weight: bold;', // keywords
             2 => 'color: #cc33ff; font-weight: bold;', // builtins
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #ff0000; font-style: italic;',
             'MULTI' => '' // doesn't exist
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #009900; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #999900; font-weight: bold;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #00cc00;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc33cc; font-style: italic'
-            ),
+        ),
         'METHODS' => array( // Doesn't exist in Euphoria.  Everything is a function =)
             0 => ''
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #999900;', // brackets
             1 => 'color: #333333;', // operators
             2 => 'color: #333333; font-style: bold' // print+concat
-            ),
-        'REGEXPS' => array(
-            ),
+        ),
+        'REGEXPS' => array(),
         'SCRIPT' => array( // Never included in scripts.
-            )
-        ),
-    'REGEXPS' => array(
-        ),
+        )
+    ),
+    'REGEXPS' => array(),
     'URLS' => array(
         1 => '',
         2 => ''
-        ),
+    ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

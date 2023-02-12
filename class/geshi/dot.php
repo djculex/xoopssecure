@@ -38,7 +38,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'dot',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -58,10 +58,10 @@ $language_data = array (
             'ranksep', 'ratio', 'regular', 'rotate', 'samehead', 'sametail', 'searchsize',
             'shape', 'shapefile', 'showboxes', 'sides', 'size', 'skew', 'style',
             'tailclip', 'taillabel', 'tailport', 'toplabel', 'weight', 'width'
-            ),
+        ),
         2 => array(
             'node', 'graph', 'digraph', 'strict', 'edge', 'subgraph'
-            ),
+        ),
         3 => array(
             'Mcircle', 'Mdiamond', 'Mrecord', 'Msquare', 'auto', 'back', 'bold',
             'both', 'box', 'circle', 'compress', 'dashed', 'diamond', 'dot',
@@ -71,7 +71,7 @@ $language_data = array (
             'invtriangle', 'local', 'max', 'min', 'none', 'normal', 'octagon',
             'odot', 'out', 'parallelogram', 'plaintext', 'polygon', 'record',
             'same', 'solid', 'trapezium', 'triangle', 'tripleoctagon', 'true'
-            ),
+        ),
         4 => array(
             'aliceblue', 'antiquewhite', 'aquamarine', 'azure', 'beige', 'bisque', 'black',
             'blanchedalmond', 'blue', 'blueviolet', 'brown', 'burlywood', 'cadetblue',
@@ -96,58 +96,55 @@ $language_data = array (
             'seagreen', 'seashell', 'sienna', 'skyblue', 'slateblue', 'slategray', 'snow',
             'springgreen', 'steelblue', 'tan', 'thistle', 'tomato', 'turquoise', 'violet',
             'violetred', 'wheat', 'white', 'whitesmoke', 'yellow', 'yellowgreen'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '[', ']', '{', '}', '-', '+', '*', '/', '<', '>', '!', '~', '%', '&', '|', '='
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
         4 => false,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #000066;',
             2 => 'color: #000000; font-weight: bold;',
             3 => 'color: #993333;',
             4 => 'color: #b1b100;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
             2 => 'color: #339933;',
             'MULTI' => 'color: #808080; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #af624d; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'
-            ),
-        'METHODS' => array(
-            ),
-        'SCRIPT' => array(
-            ),
-        'REGEXPS' => array(
-            ),
         ),
+        'METHODS' => array(),
+        'SCRIPT' => array(),
+        'REGEXPS' => array(),
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(),
@@ -158,5 +155,5 @@ $language_data = array (
         1 => true,
         2 => true,
         3 => true
-        )
+    )
 );

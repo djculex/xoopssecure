@@ -44,14 +44,14 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Visual Basic',
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
         // Comments (either single or multiline with _
         1 => '/\'.*(?<! _)$/sUm',
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '',
@@ -59,17 +59,17 @@ $language_data = array (
         1 => array(
             'Binary', 'Boolean', 'Byte', 'Currency', 'Date', 'Decimal', 'Double',
             'String', 'Enum', 'Integer', 'Long', 'Object', 'Single', 'Variant'
-            ),
+        ),
         2 => array(
             'CreateObject', 'GetObject', 'New', 'Option', 'Function',
             'Call', 'Private', 'Public', 'Sub', 'Explicit', 'Compare', 'Exit'
-            ),
+        ),
         3 => array(
             'And', 'Case', 'Do', 'Each', 'Else', 'ElseIf', 'End', 'For', 'GoSub',
             'Goto', 'If', 'Is', 'Loop', 'Next', 'Not', 'Or', 'Resume', 'Select',
             'Step', 'Then', 'To', 'Until', 'While', 'With', 'Xor', 'WithEvents',
             'DoEvents', 'Close', 'Like', 'In'
-            ),
+        ),
         4 => array(
             'As', 'Dim', 'Get', 'Set', 'ReDim', 'Error',
             'Declare', 'Let', 'ByRef', 'ByVal',
@@ -77,16 +77,15 @@ $language_data = array (
             'Implements', 'Input', 'LBound', 'Static', 'Stop',
             'Type', 'TypeOf', 'On', 'Open', 'Output', 'ParamArray',
             'Preserve', 'Print', 'RaiseEvent', 'Random', 'Line'
-            ),
+        ),
         5 => array(
             'Nothing', 'False', 'True', 'Null', 'Empty'
-            ),
+        ),
         6 => array(
-            'ErrorHandler','ExitProc', 'PublishReport'
-            ),
+            'ErrorHandler', 'ExitProc', 'PublishReport'
         ),
-    'SYMBOLS' => array(
-        ),
+    ),
+    'SYMBOLS' => array(),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
@@ -95,7 +94,7 @@ $language_data = array (
         4 => false,
         5 => false,
         6 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #F660AB; font-weight: bold;',
@@ -104,29 +103,23 @@ $language_data = array (
             4 => 'color: #151B8D; font-weight: bold;',
             5 => 'color: #00C2FF; font-weight: bold;',
             6 => 'color: #3EA99F; font-weight: bold;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #008000;'
-            ),
-        'BRACKETS' => array(
-            ),
+        ),
+        'BRACKETS' => array(),
         'STRINGS' => array(
             0 => 'color: #800000;'
-            ),
-        'NUMBERS' => array(
-            ),
-        'METHODS' => array(
-            ),
-        'SYMBOLS' => array(
-            ),
+        ),
+        'NUMBERS' => array(),
+        'METHODS' => array(),
+        'SYMBOLS' => array(),
         'ESCAPE_CHAR' => array(
             0 => 'color: #800000; font-weight: bold;'
-            ),
-        'SCRIPT' => array(
-            ),
-        'REGEXPS' => array(
-            )
         ),
+        'SCRIPT' => array(),
+        'REGEXPS' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -134,22 +127,18 @@ $language_data = array (
         4 => '',
         5 => '',
         6 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
-    'REGEXPS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
             'BRACKETS' => GESHI_NEVER,
             'SYMBOLS' => GESHI_NEVER,
             'NUMBERS' => GESHI_NEVER
-            )
         )
+    )
 );

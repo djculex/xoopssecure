@@ -34,7 +34,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'sdlBasic',
     'COMMENT_SINGLE' => array(1 => "'", 2 => "rem", 3 => "!", 4 => "#"),
     'COMMENT_MULTI' => array(),
@@ -104,60 +104,55 @@ $language_data = array (
             'isclientready', 'losesock', 'peeksock', 'readsock', 'readbytesock',
             'readlinesock', 'writesock', 'writebytesock', 'writelinesock',
             'getremoteip', 'getremoteport', 'getlocalip'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #b1b100;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #808080;',
             2 => 'color: #808080;',
             3 => 'color: #808080;',
             4 => 'color: #808080;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'
-            ),
+        ),
         'METHODS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099;'
-            ),
-        'SCRIPT' => array(
-            ),
-        'REGEXPS' => array(
-            )
         ),
+        'SCRIPT' => array(),
+        'REGEXPS' => array()
+    ),
     'URLS' => array(
         1 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

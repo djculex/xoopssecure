@@ -29,7 +29,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'LScript',
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -37,17 +37,17 @@ $language_data = array (
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
-    //Yes, I'm aware these are out of order,
-    //I had to rearrange and couldn't be bothered changing the numbers...
+        //Yes, I'm aware these are out of order,
+        //I had to rearrange and couldn't be bothered changing the numbers...
         7 => array(
             '@data', '@define', '@else', '@end', '@fpdepth', '@if', '@include',
             '@insert', '@library', '@localipc', '@name', '@save', '@script',
             '@sequence', '@version', '@warnings'
-            ),
+        ),
         1 => array(
             'break', 'case', 'continue', 'else', 'end', 'false', 'for',
             'foreach', 'if', 'return', 'switch', 'true', 'while',
-            ),
+        ),
         3 => array(
             'active', 'alertlevel', 'alpha', 'alphaprefix', 'animfilename', 'autokeycreate',
             'backdroptype', 'blue', 'boxthreshold', 'button',
@@ -83,7 +83,7 @@ $language_data = array (
             'x', 'xoffset',
             'y', 'yoffset',
             'z'
-            ),
+        ),
         4 => array(
             'addLayer', 'addParticle', 'alphaspot', 'ambient', 'asAsc', 'asBin',
             'asInt', 'asNum', 'asStr', 'asVec', 'attach', 'axislocks',
@@ -125,7 +125,7 @@ $language_data = array (
             'writeShort', 'writeString', 'writeVector',
             'vertex', 'vertexCount',
             'zoomFactor'
-            ),
+        ),
         2 => array(
             'abs', 'acos', 'angle', 'append', 'ascii', 'asin', 'atan',
             'binary',
@@ -165,7 +165,7 @@ $language_data = array (
             'tan', 'tanh', 'targetobject', 'terminate', 'text', 'time',
             'wait', 'warn', 'when', 'write', 'writeDouble', 'writeInt', 'writeNumber', 'writeShort',
             'var', 'vector', 'visitnodes', 'vmag',
-            ),
+        ),
         5 => array(
             'addcurve', 'addpoint', 'addpolygon', 'addquad', 'addtriangle', 'alignpols',
             'autoflex', 'axisdrill',
@@ -198,7 +198,7 @@ $language_data = array (
             'undo', 'undogroupend', 'undogroupbegin', 'unifypols', 'unweld',
             'vortex',
             'weldaverage', 'weldpoints'
-            ),
+        ),
         6 => array(
             'About', 'AboutOpenGL', 'AdaptiveSampling', 'AdaptiveThreshold',
             'AddAreaLight', 'AddBone', 'AddButton', 'AddCamera', 'AddChildBone',
@@ -302,11 +302,11 @@ $language_data = array (
             'ZenithColor', 'ZoomFactor', 'ZoomIn', 'ZoomInX2', 'ZoomOut', 'ZoomOutX2', 'ZYView',
             'Camera', 'Channel', 'ChannelGroup', 'Envelope', 'File', 'Glyph', 'Icon', 'Image',
             'Light', 'Mesh', 'Scene', 'Surface', 'VMap'
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         '(', ')', '{', '}', '[', ']', '=', '<', '>', '+', '-', '*', '/', '!', '%', '&', '@'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => true,
         1 => false,
@@ -316,7 +316,7 @@ $language_data = array (
         5 => false,
         6 => false,
         7 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #000000; font-weight: bold;',
@@ -326,32 +326,28 @@ $language_data = array (
             5 => 'color: #51BD95; font-weight: bold;', //LS_MODELER
             6 => 'color: #416F85; font-weight: bold;', //LS_GENERAL
             7 => 'color: #C92929; font-weight: bold;'  //LS_COMMANDS (cont)
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #7F7F7F;',
             'MULTI' => 'color: #7F7F7F;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #0040A0;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #00C800;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #6953AC;'
-            ),
-        'METHODS' => array(
-            ),
+        ),
+        'METHODS' => array(),
         'SYMBOLS' => array(
             0 => 'color: #0040A0;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            ),
-        'ESCAPE_CHAR' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array(),
+        'ESCAPE_CHAR' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -360,26 +356,22 @@ $language_data = array (
         5 => '',
         6 => '',
         7 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
-    'REGEXPS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             3 => array(
                 'DISALLOWED_BEFORE' => '(?<=\.)'
-                ),
+            ),
             4 => array(
                 'DISALLOWED_BEFORE' => '(?<=\.)'
-                )
             )
         )
+    )
 );

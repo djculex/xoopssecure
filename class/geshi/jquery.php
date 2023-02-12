@@ -37,7 +37,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'jQuery',
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -52,12 +52,12 @@ $language_data = array (
             'else', 'encodeURI', 'eval', 'finally', 'for', 'if', 'in', 'is', 'item',
             'instanceof', 'return', 'switch', 'this', 'throw', 'try', 'typeof', 'void',
             'while', 'write', 'with'
-            ),
+        ),
         2 => array(
             'class', 'const', 'default', 'debugger', 'export', 'extends', 'false',
             'function', 'import', 'namespace', 'new', 'null', 'package', 'private',
             'protected', 'public', 'super', 'true', 'use', 'var'
-            ),
+        ),
         3 => array(
             // common functions for Window object
             'alert', 'back', 'close', 'confirm', 'forward', 'home',
@@ -65,18 +65,18 @@ $language_data = array (
             'onresize', 'onunload', 'open', 'print', 'prompt', 'status',
             //'blur', 'focus', 'scroll', // Duplicate with kw9
             //'stop', //Duplicate with kw10
-            ),
+        ),
         4 => array(
             // jQuery Core Functions
             'jQuery', 'each', 'size', 'length', 'selector', 'context', 'eq',
             'index', 'data', 'removeData', 'queue', 'dequeue', 'noConflict'
             //'get', //Duplicate with kw11
-            ),
+        ),
         5 => array(
             // jQuery Attribute Functions
             'attr', 'removeAttr', 'addClass', 'hasClass', 'removeClass', 'toggleClass',
             'html', 'text', 'val',
-            ),
+        ),
         6 => array(
             // jQuery Traversing Functions
             'filter', 'not', 'slice', 'add', 'children', 'closest',
@@ -85,18 +85,18 @@ $language_data = array (
             //'is',  //Dup with kw1
             //'offsetParent', //Duplicate with kw8
             //'map', //Duplicate with kw12
-            ),
+        ),
         7 => array(
             // jQuery Manipulation Functions
             'append', 'appendTo', 'prepend', 'prependTo', 'after', 'before', 'insertAfter',
             'insertBefore', 'wrap', 'wrapAll', 'wrapInner', 'replaceWith', 'replaceAll',
             'empty', 'remove', 'clone',
-            ),
+        ),
         8 => array(
             // jQuery CSS Functions
             'css', 'offset', 'offsetParent', 'position', 'scrollTop', 'scrollLeft',
             'height', 'width', 'innerHeight', 'innerWidth', 'outerHeight', 'outerWidth',
-            ),
+        ),
         9 => array(
             // jQuery Events Functions
             'ready', 'bind', 'one', 'trigger', 'triggerHandler', 'unbind', 'live',
@@ -106,25 +106,25 @@ $language_data = array (
             'scroll', 'select', 'submit', 'unload',
             //'toggle', //Duplicate with kw10
             //'load', //Duplicate with kw11
-            ),
+        ),
         10 => array(
             // jQuery Effects Functions
             'show', 'hide', 'toggle', 'slideDown', 'slideUp', 'slideToggle', 'fadeIn',
             'fadeOut', 'fadeTo', 'animate', 'stop',
-            ),
+        ),
         11 => array(
             // jQuery Ajax Functions
             'ajax', 'load', 'get', 'getJSON', 'getScript', 'post', 'ajaxComplete',
             'ajaxError', 'ajaxSend', 'ajaxStart', 'ajaxStop', 'ajaxSuccess', 'ajaxSetup',
             'serialize', 'serializeArray',
-            ),
+        ),
         12 => array(
             // jQuery Utility Functions
             'support', 'browser', 'version', 'boxModal', 'extend', 'grep', 'makeArray',
             'map', 'inArray', 'merge', 'unique', 'isArray', 'isFunction', 'trim',
             'param',
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         0 => array(
             '(', ')', '[', ']', '{', '}',
@@ -132,11 +132,11 @@ $language_data = array (
             '!', '@', '&', '|', '^',
             '<', '>', '=',
             ',', ';', '?', ':'
-            ),
+        ),
         1 => array(
             '$'
-            )
-        ),
+        )
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
@@ -151,7 +151,7 @@ $language_data = array (
         10 => false,
         11 => false,
         12 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #000066; font-weight: bold;',
@@ -166,40 +166,39 @@ $language_data = array (
             10 => 'color: #000066;',
             11 => 'color: #000066;',
             12 => 'color: #000066;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #006600; font-style: italic;',
             2 => 'color: #009966; font-style: italic;',
             'MULTI' => 'color: #006600; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #009900;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #3366CC;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #CC0000;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #660066;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #339933;',
             1 => 'color: #000066;'
-            ),
-        'REGEXPS' => array(
-            ),
+        ),
+        'REGEXPS' => array(),
         'SCRIPT' => array(
             0 => '',
             1 => '',
             2 => '',
             3 => ''
-            )
-        ),
+        )
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -213,24 +212,23 @@ $language_data = array (
         10 => 'http://docs.jquery.com/Effects/{FNAME}',
         11 => 'http://docs.jquery.com/Ajax/{FNAME}',
         12 => 'http://docs.jquery.com/Utilities/{FNAME}'
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_MAYBE,
     'SCRIPT_DELIMITERS' => array(
         0 => array(
             '<script type="text/javascript">' => '</script>'
-            ),
+        ),
         1 => array(
             '<script language="javascript">' => '</script>'
-            )
-        ),
+        )
+    ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => true,
         1 => true
-        )
+    )
 );

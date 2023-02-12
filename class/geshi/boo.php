@@ -38,7 +38,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Boo',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -50,63 +50,63 @@ $language_data = array (
     'KEYWORDS' => array(
         1 => array(//Namespace
             'namespace', 'import', 'from'
-            ),
+        ),
         2 => array(//Jump
             'yield', 'return', 'goto', 'continue', 'break'
-            ),
+        ),
         3 => array(//Conditional
             'while', 'unless', 'then', 'in', 'if', 'for', 'else', 'elif'
-            ),
+        ),
         4 => array(//Property
             'set', 'get'
-            ),
+        ),
         5 => array(//Exception
             'try', 'raise', 'failure', 'except', 'ensure'
-            ),
+        ),
         6 => array(//Visibility
             'public', 'private', 'protected', 'internal'
-            ),
+        ),
         7 => array(//Define
             'struct', 'ref', 'of', 'interface', 'event', 'enum', 'do', 'destructor', 'def', 'constructor', 'class'
-            ),
+        ),
         8 => array(//Cast
             'typeof', 'cast', 'as'
-            ),
+        ),
         9 => array(//BiMacro
             'yieldAll', 'using', 'unchecked', 'rawArayIndexing', 'print', 'normalArrayIndexing', 'lock',
             'debug', 'checked', 'assert'
-            ),
+        ),
         10 => array(//BiAttr
             'required', 'property', 'meta', 'getter', 'default'
-            ),
+        ),
         11 => array(//BiFunc
             'zip', 'shellp', 'shellm', 'shell', 'reversed', 'range', 'prompt',
             'matrix', 'map', 'len', 'join', 'iterator', 'gets', 'enumerate', 'cat', 'array'
-            ),
+        ),
         12 => array(//HiFunc
             '__switch__', '__initobj__', '__eval__', '__addressof__', 'quack'
-            ),
+        ),
         13 => array(//Primitive
             'void', 'ushort', 'ulong', 'uint', 'true', 'timespan', 'string', 'single',
             'short', 'sbyte', 'regex', 'object', 'null', 'long', 'int', 'false', 'duck',
             'double', 'decimal', 'date', 'char', 'callable', 'byte', 'bool'
-            ),
+        ),
         14 => array(//Operator
             'not', 'or', 'and', 'is', 'isa',
-            ),
+        ),
         15 => array(//Modifier
             'virtual', 'transient', 'static', 'partial', 'override', 'final', 'abstract'
-            ),
+        ),
         16 => array(//Access
             'super', 'self'
-            ),
+        ),
         17 => array(//Pass
             'pass'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '[|', '|]', '${', '(', ')', '[', ']', '{', '}', '!', '@', '%', '&', '*', '|', '/', '<', '>', '+', '-', ';'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
@@ -126,7 +126,7 @@ $language_data = array (
         15 => true,
         16 => true,
         17 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color:green;font-weight:bold;',
@@ -146,39 +146,37 @@ $language_data = array (
             15 => 'color:brown;',
             16 => 'color:black;font-weight:bold;',
             17 => 'color:gray;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #999999; font-style: italic;',
             2 => 'color: #999999; font-style: italic;',
             'MULTI' => 'color: #008000; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #0000FF; font-weight: bold;',
             'HARD' => 'color: #0000FF; font-weight: bold;',
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #006400;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #008000;',
             'HARD' => 'color: #008000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #00008B;'
-            ),
+        ),
         'METHODS' => array(
             0 => 'color: 000000;',
             1 => 'color: 000000;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #006400;'
-            ),
-        'REGEXPS' => array(
-            // 0 => 'color: #0066ff;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(// 0 => 'color: #0066ff;'
+        ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -197,19 +195,16 @@ $language_data = array (
         15 => '',
         16 => '',
         17 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         0 => '.',
         1 => '::'
-        ),
-    'REGEXPS' => array(
-        // 0 => '%(@)?\/(?:(?(1)[^\/\\\\\r\n]+|[^\/\\\\\r\n \t]+)|\\\\[\/\\\\\w+()|.*?$^[\]{}\d])+\/%'
-        ),
+    ),
+    'REGEXPS' => array(// 0 => '%(@)?\/(?:(?(1)[^\/\\\\\r\n]+|[^\/\\\\\r\n \t]+)|\\\\[\/\\\\\w+()|.*?$^[\]{}\d])+\/%'
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4
 );

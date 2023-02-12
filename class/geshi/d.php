@@ -46,7 +46,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'D',
     'COMMENT_SINGLE' => array(2 => '///', 1 => '//'),
     'COMMENT_MULTI' => array('/*' => '*/', '/+' => '+/'),
@@ -57,7 +57,7 @@ $language_data = array (
         4 => '#r"[^"]*"#s',
         // Script Style interpreter comment
         5 => "/\A#!(?=\\/).*?$/m"
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"', "'"),
     'ESCAPE_CHAR' => '',
@@ -119,7 +119,7 @@ $language_data = array (
             "pades|u(?:be?|m|p[123e]?)|zlig)|t(?:au|h(?:e(?:re4|ta(?:sym)?)|insp|" .
             "orn)|i(?:lde|mes)|rade)|u(?:Arr|a(?:cute|rr)|circ|grave|ml|" .
             "psi(?:h|lon)|uml)|weierp|xi|y(?:acute|en|uml)|z(?:eta|w(?:j|nj)));#",
-        ),
+    ),
     'HARDQUOTE' => array('`', '`'),
     'HARDESCAPE' => array(),
     'NUMBERS' =>
@@ -128,61 +128,61 @@ $language_data = array (
         GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
         1 => array(
-                'break', 'case', 'continue', 'do', 'else',
-                'for', 'foreach', 'goto', 'if', 'return',
-                'switch', 'while', 'foreach_reverse'
-            ),
-        2 => array(
-                'alias', 'asm', 'assert', 'body', 'cast',
-                'catch', 'default', 'delegate', 'delete',
-                'extern', 'false', 'finally', 'function',
-                'import', 'in', 'inout',
-                'invariant', 'is', 'lazy', 'mixin', 'module', 'new',
-                'null', 'out', 'pragma', 'ref', 'super', 'this',
-                'throw', 'true', 'try', 'typeid',
-                'typeof', 'union', 'with', 'scope'
-            ),
-        3 => array(
-                'ClassInfo', 'Error', 'Exception',
-                'Interface', 'Object', 'IMonitor',
-                'OffsetTypeInfo', 'Throwable',
-                'TypeInfo_Class', 'TypeInfo', '__traits',
-                '__EOF__', '__FILE__', '__LINE__',
-            ),
-        4 => array(
-                'abstract', 'align', 'auto', 'bit', 'bool',
-                'byte', 'cdouble', 'cfloat', 'char',
-                'class', 'const', 'creal', 'dchar', 'dstring', 'debug',
-                'deprecated', 'double', 'enum', 'export',
-                'final', 'float', 'idouble', 'ifloat', 'immutable', 'int',
-                'interface', 'ireal', 'long', 'nothrow', 'override',
-                'package', 'private', 'protected', 'ptrdiff_t',
-                'public', 'real', 'short', 'shared', 'size_t',
-                'static', 'string', 'struct', 'synchronized',
-                'template', 'ubyte', 'ucent', 'uint',
-                'ulong', 'unittest', 'ushort', 'version',
-                'void', 'volatile', 'wchar', 'wstring',
-                '__gshared', '@disable', '@property', 'pure', 'safe'
-            )
+            'break', 'case', 'continue', 'do', 'else',
+            'for', 'foreach', 'goto', 'if', 'return',
+            'switch', 'while', 'foreach_reverse'
         ),
+        2 => array(
+            'alias', 'asm', 'assert', 'body', 'cast',
+            'catch', 'default', 'delegate', 'delete',
+            'extern', 'false', 'finally', 'function',
+            'import', 'in', 'inout',
+            'invariant', 'is', 'lazy', 'mixin', 'module', 'new',
+            'null', 'out', 'pragma', 'ref', 'super', 'this',
+            'throw', 'true', 'try', 'typeid',
+            'typeof', 'union', 'with', 'scope'
+        ),
+        3 => array(
+            'ClassInfo', 'Error', 'Exception',
+            'Interface', 'Object', 'IMonitor',
+            'OffsetTypeInfo', 'Throwable',
+            'TypeInfo_Class', 'TypeInfo', '__traits',
+            '__EOF__', '__FILE__', '__LINE__',
+        ),
+        4 => array(
+            'abstract', 'align', 'auto', 'bit', 'bool',
+            'byte', 'cdouble', 'cfloat', 'char',
+            'class', 'const', 'creal', 'dchar', 'dstring', 'debug',
+            'deprecated', 'double', 'enum', 'export',
+            'final', 'float', 'idouble', 'ifloat', 'immutable', 'int',
+            'interface', 'ireal', 'long', 'nothrow', 'override',
+            'package', 'private', 'protected', 'ptrdiff_t',
+            'public', 'real', 'short', 'shared', 'size_t',
+            'static', 'string', 'struct', 'synchronized',
+            'template', 'ubyte', 'ucent', 'uint',
+            'ulong', 'unittest', 'ushort', 'version',
+            'void', 'volatile', 'wchar', 'wstring',
+            '__gshared', '@disable', '@property', 'pure', 'safe'
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '[', ']', '{', '}', '?', '!', ';', ':', ',', '...', '..',
         '+', '-', '*', '/', '%', '&', '|', '^', '<', '>', '=', '~',
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
         2 => true,
         3 => true,
         4 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #b1b100;',
             2 => 'color: #000000; font-weight: bold;',
             3 => 'color: #aaaadd; font-weight: bold;',
             4 => 'color: #993333;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
             2 => 'color: #009933; font-style: italic;',
@@ -190,7 +190,7 @@ $language_data = array (
             4 => 'color: #ff0000;',
             5 => 'color: #0040ff;',
             'MULTI' => 'color: #808080; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;',
             1 => 'color: #000099; font-weight: bold;',
@@ -200,14 +200,14 @@ $language_data = array (
             5 => 'color: #006699; font-weight: bold;',
             6 => 'color: #666699; font-weight: bold; font-style: italic;',
             'HARD' => '',
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;',
             'HARD' => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #0000dd;',
             GESHI_NUMBER_BIN_PREFIX_0B => 'color: #208080;',
@@ -217,34 +217,29 @@ $language_data = array (
             GESHI_NUMBER_FLT_SCI_ZERO => 'color:#800080;',
             GESHI_NUMBER_FLT_NONSCI_F => 'color:#800080;',
             GESHI_NUMBER_FLT_NONSCI => 'color:#800080;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #006600;',
             2 => 'color: #006600;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'
-            ),
-        'SCRIPT' => array(
-            ),
-        'REGEXPS' => array(
-            )
         ),
+        'SCRIPT' => array(),
+        'REGEXPS' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.',
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

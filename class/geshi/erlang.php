@@ -67,12 +67,12 @@ $language_data = array(
         1 => array(
             'after', 'andalso', 'begin', 'case', 'catch', 'end', 'fun', 'if',
             'of', 'orelse', 'receive', 'try', 'when', 'query'
-            ),
+        ),
         //Binary operators
         2 => array(
             'and', 'band', 'bnot', 'bor', 'bsl', 'bsr', 'bxor', 'div', 'not',
             'or', 'rem', 'xor'
-            ),
+        ),
         3 => array(
             'abs', 'alive', 'apply', 'atom_to_list', 'binary_to_list',
             'binary_to_term', 'concat_binary', 'date', 'disconnect_node',
@@ -86,14 +86,14 @@ $language_data = array(
             'setelement', 'size', 'spawn', 'spawn_link', 'split_binary',
             'statistics', 'term_to_binary', 'throw', 'time', 'tl', 'trunc',
             'tuple_to_list', 'unlink', 'unregister', 'whereis'
-            ),
+        ),
         // Built-In Functions
         4 => array(
             'atom', 'binary', 'constant', 'function', 'integer', 'is_atom',
             'is_binary', 'is_constant', 'is_function', 'is_integer', 'is_list',
             'is_number', 'is_pid', 'is_reference', 'is_record', 'list',
             'number', 'pid', 'ports', 'port_close', 'port_info', 'reference'
-            ),
+        ),
         // Erlang/OTP internal modules (scary one)
         5 => array(
             'alarm_handler', 'any', 'app', 'application', 'appmon', 'appup',
@@ -269,19 +269,19 @@ $language_data = array(
             'wxWindowDC', 'wxWindowDestroyEvent', 'wxXmlResource', 'xmerl',
             'xmerl_eventp', 'xmerl_scan', 'xmerl_xpath', 'xmerl_xs',
             'xmerl_xsd', 'xref', 'yecc', 'zip', 'zlib', 'zlib_stub'
-            ),
+        ),
         // Binary modifiers
         6 => array(
             'big', 'binary', 'float', 'integer', 'little', 'signed', 'unit', 'unsigned'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         0 => array('(', ')', '[', ']', '{', '}'),
         1 => array('->', ',', ';', '.'),
         2 => array('<<', '>>'),
         3 => array('=', '||', '-', '+', '*', '/', '++', '--', '!', '<', '>', '>=',
-                    '=<', '==', '/=', '=:=', '=/=')
-        ),
+            '=<', '==', '/=', '=:=', '=/=')
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
@@ -290,7 +290,7 @@ $language_data = array(
         4 => true,
         5 => true,
         6 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #186895;',
@@ -299,34 +299,34 @@ $language_data = array(
             4 => 'color: #fa6fff;',
             5 => 'color: #ff4e18;',
             6 => 'color: #9d4f37;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
             'MULTI' => 'color: #666666; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;',
             'HARD' => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #109ab8;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff7800;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #ff9600;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #006600;',
             2 => 'color: #006600;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #004866;',
             1 => 'color: #6bb810;',
             2 => 'color: #ee3800;',
             3 => 'color: #014ea4;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #6941fd;',
             1 => 'color: #d400ed;',
@@ -337,10 +337,9 @@ $language_data = array(
             6 => 'color: #ff9600;',
             7 => 'color: #d400ed;',
             8 => 'color: #ff9600;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -348,12 +347,12 @@ $language_data = array(
         4 => '',
         5 => 'http://erlang.org/doc/man/{FNAME}.html',
         6 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '-&gt;',
         2 => ':'
-        ),
+    ),
     'REGEXPS' => array(
         //�Macro definitions
         0 => array(
@@ -362,7 +361,7 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => '\3'
-            ),
+        ),
         // Record definitions
         1 => array(
             GESHI_SEARCH => '(-record\s*\()([a-zA-Z0-9_]+)(,)',
@@ -370,7 +369,7 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => '\3'
-            ),
+        ),
         // Precompiler directives
         2 => array(
             GESHI_SEARCH => '(-)([a-z][a-zA-Z0-9_]*)(\()',
@@ -378,7 +377,7 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => '\3'
-            ),
+        ),
         // Functions
         3 => array(
             GESHI_SEARCH => '([a-z]\w*|\'\w*\')(\s*\()',
@@ -386,7 +385,7 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => '\2'
-            ),
+        ),
         // Macros
         4 => array(
             GESHI_SEARCH => '(\?)([a-zA-Z0-9_]+)',
@@ -394,7 +393,7 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => ''
-            ),
+        ),
         // Variables - With hack to avoid interfering wish GeSHi internals
         5 => array(
             GESHI_SEARCH => '([([{,<+*-\/=\s!]|&lt;)(?!(?:PIPE|SEMI|DOT|NUM|REG3XP\d*)\W)([A-Z_]\w*)(?!\w)',
@@ -402,7 +401,7 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => ''
-            ),
+        ),
         // ASCII�codes
         6 => '(\$[a-zA-Z0-9_])',
         // Records
@@ -412,10 +411,10 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => '\3'
-            ),
+        ),
         // Numbers with a different radix
         8 => '(?<=>)(#[a-zA-Z0-9]*)'
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array(),
@@ -425,15 +424,15 @@ $language_data = array(
             3 => array(
                 'DISALLOWED_BEFORE' => '(?<![\w])',
                 'DISALLOWED_AFTER' => ''//'(?=\s*\()'
-                ),
+            ),
             5 => array(
                 'DISALLOWED_BEFORE' => '(?<=\'|)',
                 'DISALLOWED_AFTER' => '(?=(\'|):)'
-                ),
+            ),
             6 => array(
                 'DISALLOWED_BEFORE' => '(?<=\/|-)',
                 'DISALLOWED_AFTER' => ''
-                )
             )
         )
+    )
 );

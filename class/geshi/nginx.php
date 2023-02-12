@@ -53,7 +53,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'nginx',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
@@ -91,7 +91,7 @@ $language_data = array (
             //'multi_accept',
             //'use',
             //'worker_connections',
-            ),
+        ),
         2 => array( // events module
             // http://wiki.nginx.org/EventsModule
             // http://nginx.org/en/docs/ngx_core_module.html
@@ -110,7 +110,7 @@ $language_data = array (
             'rtsig_overflow_threshold',
             'use',
             'worker_connections',
-            ),
+        ),
         3 => array( // http module
             // http://wiki.nginx.org/HttpCoreModule
             // http://nginx.org/en/docs/http/ngx_http_core_module.html
@@ -189,7 +189,7 @@ $language_data = array (
             'underscores_in_headers',
             'variables_hash_bucket_size',
             'variables_hash_max_size',
-            ),
+        ),
         4 => array( // upstream module
             // http://wiki.nginx.org/HttpUpstreamModule
             // http://nginx.org/en/docs/http/ngx_http_upstream_module.html
@@ -199,26 +199,26 @@ $language_data = array (
             // Use the documentation from the core module since every conf will have at least one of those.
             //'server',
             'upstream',
-            ),
+        ),
         5 => array( // access module
             // http://wiki.nginx.org/HttpAccessModule
             // http://nginx.org/en/docs/http/ngx_http_access_module.html
             'deny',
             'allow',
-            ),
+        ),
         6 => array( // auth basic module
             // http://wiki.nginx.org/HttpAuthBasicModule
             // http://nginx.org/en/docs/http/ngx_http_auth_basic_module.html
             'auth_basic',
             'auth_basic_user_file'
-            ),
+        ),
         7 => array( // auto index module
             // http://wiki.nginx.org/HttpAutoindexModule
             // http://nginx.org/en/docs/http/ngx_http_autoindex_module.html
             'autoindex',
             'autoindex_exact_size',
             'autoindex_localtime',
-            ),
+        ),
         8 => array( // browser module
             // http://wiki.nginx.org/HttpBrowserModule
             // http://nginx.org/en/docs/http/ngx_http_browser_module.html
@@ -226,7 +226,7 @@ $language_data = array (
             'ancient_browser_value',
             'modern_browser',
             'modern_browser_value',
-            ),
+        ),
         9 => array( // charset module
             // http://wiki.nginx.org/HttpCharsetModule
             // http://nginx.org/en/docs/http/ngx_http_charset_module.html
@@ -235,12 +235,12 @@ $language_data = array (
             'charset_types',
             'override_charset',
             'source_charset',
-            ),
+        ),
         10 => array( // empty gif module
             // http://wiki.nginx.org/HttpEmptyGifModule
             // http://nginx.org/en/docs/http/ngx_http_empty_gif_module.html
             'empty_gif',
-            ),
+        ),
         11 => array( // fastcgi module
             // http://wiki.nginx.org/HttpFastcgiModule
             // http://nginx.org/en/docs/http/ngx_http_fastcgi_module.html
@@ -281,12 +281,12 @@ $language_data = array (
             'fastcgi_store_access',
             'fastcgi_temp_file_write_size',
             'fastcgi_temp_path',
-            ),
+        ),
         12 => array( // geo module
             // http://wiki.nginx.org/HttpGeoModule
             // http://nginx.org/en/docs/http/ngx_http_geo_module.html
             'geo'
-            ),
+        ),
         13 => array( // gzip module
             // http://wiki.nginx.org/HttpGzipModule
             // http://nginx.org/en/docs/http/ngx_http_gzip_module.html
@@ -299,46 +299,46 @@ $language_data = array (
             'gzip_proxied',
             'gzip_types',
             'gzip_vary',
-            ),
+        ),
         14 => array( // headers module
             // http://wiki.nginx.org/HttpHeadersModule
             // http://nginx.org/en/docs/http/ngx_http_headers_module.html
             'add_header',
             'expires',
-            ),
+        ),
         15 => array( // index module
             // http://wiki.nginx.org/HttpIndexModule
             // http://nginx.org/en/docs/http/ngx_http_index_module.html
             'index',
-            ),
+        ),
         16 => array( // limit requests module
             // http://wiki.nginx.org/HttpLimitReqModule
             // http://nginx.org/en/docs/http/ngx_http_limit_req_module.html
             'limit_req',
             'limit_req_log_level',
             'limit_req_zone',
-            ),
+        ),
         17 => array( // referer module
             // http://wiki.nginx.org/HttpRefererModule
             // http://nginx.org/en/docs/http/ngx_http_referer_module.html
             'referer_hash_bucket_size',
             'referer_hash_max_size',
             'valid_referers',
-            ),
+        ),
         18 => array( // limit zone module
             // deprecated in 1.1.8
             // http://wiki.nginx.org/HttpLimitZoneModule
             'limit_zone',
             // Covered by documentation for ngx_http_limit_conn_module
             //'limit_conn',
-            ),
+        ),
         19 => array( // limit connection module
             // http://wiki.nginx.org/HttpLimitConnModule
             // http://nginx.org/en/docs/http/ngx_http_limit_conn_module.html
             'limit_conn',
             'limit_conn_zone',
             'limit_conn_log_level',
-            ),
+        ),
         20 => array( // log module
             // http://wiki.nginx.org/HttpLogModule
             // http://nginx.org/en/docs/http/ngx_http_log_module.html
@@ -347,14 +347,14 @@ $language_data = array (
             // Appears to be deprecated
             'log_format_combined',
             'open_log_file_cache',
-            ),
+        ),
         21 => array( // map module
             // http://wiki.nginx.org/HttpMapModule
             // http://nginx.org/en/docs/http/ngx_http_map_module.html
             'map',
             'map_hash_max_size',
             'map_hash_bucket_size',
-            ),
+        ),
         22 => array( // memcached module
             // http://wiki.nginx.org/HttpMemcachedModule
             // http://nginx.org/en/docs/http/ngx_http_memcached_module.html
@@ -364,7 +364,7 @@ $language_data = array (
             'memcached_pass',
             'memcached_read_timeout',
             'memcached_send_timeout',
-            ),
+        ),
         23 => array( // proxy module
             // http://wiki.nginx.org/HttpProxyModule
             // http://nginx.org/en/docs/http/ngx_http_proxy_module.html
@@ -415,7 +415,7 @@ $language_data = array (
             'proxy_temp_path',
             'proxy_upstream_fail_timeout',
             'proxy_upstream_max_fails',
-            ),
+        ),
         24 => array( // rewrite module
             // http://wiki.nginx.org/HttpRewriteModule
             // http://nginx.org/en/docs/http/ngx_http_rewrite_module.html
@@ -426,7 +426,7 @@ $language_data = array (
             'rewrite_log',
             'set',
             'uninitialized_variable_warn',
-            ),
+        ),
         25 => array( // ssi module
             // http://wiki.nginx.org/HttpSsiModule
             // http://nginx.org/en/docs/http/ngx_http_ssi_module.html
@@ -434,7 +434,7 @@ $language_data = array (
             'ssi_silent_errors',
             'ssi_types',
             'ssi_value_length',
-            ),
+        ),
         26 => array( // user id module
             // http://wiki.nginx.org/HttpUseridModule
             // http://nginx.org/en/docs/http/ngx_http_userid_module.html
@@ -445,14 +445,14 @@ $language_data = array (
             'userid_p3p',
             'userid_path',
             'userid_service',
-            ),
+        ),
         27 => array( // addition module
             // http://wiki.nginx.org/HttpAdditionModule
             // http://nginx.org/en/docs/http/ngx_http_addition_module.html
             'add_before_body',
             'add_after_body',
             'addition_types',
-            ),
+        ),
         28 => array( // embedded Perl module
             // http://wiki.nginx.org/HttpPerlModule
             // http://nginx.org/en/docs/http/ngx_http_perl_module.html
@@ -460,12 +460,12 @@ $language_data = array (
             'perl_modules',
             'perl_require',
             'perl_set',
-            ),
+        ),
         29 => array( // flash video files module
             // http://wiki.nginx.org/HttpFlvModule
             // http://nginx.org/en/docs/http/ngx_http_flv_module.html
             'flv',
-            ),
+        ),
         30 => array( // gzip precompression module
             // http://wiki.nginx.org/HttpGzipStaticModule
             // http://nginx.org/en/docs/http/ngx_http_gzip_static_module.html
@@ -475,19 +475,19 @@ $language_data = array (
             //'gzip_proxied',
             //'gzip_disable',
             //'gzip_vary',
-            ),
+        ),
         31 => array( // random index module
             // http://wiki.nginx.org/HttpRandomIndexModule
             // http://nginx.org/en/docs/http/ngx_http_random_index_module.html
             'random_index',
-            ),
+        ),
         32 => array( // real ip module
             // http://wiki.nginx.org/HttpRealipModule
             // http://nginx.org/en/docs/http/ngx_http_realip_module.html
             'set_real_ip_from',
             'real_ip_header',
             'real_ip_recursive',
-            ),
+        ),
         33 => array( // https module
             // http://wiki.nginx.org/HttpSslModule
             // http://nginx.org/en/docs/http/ngx_http_ssl_module.html
@@ -507,18 +507,18 @@ $language_data = array (
             'ssl_session_timeout',
             'ssl_verify_client',
             'ssl_verify_depth',
-            ),
+        ),
         34 => array( // status module
             // http://wiki.nginx.org/HttpStubStatusModule
             'stub_status',
-            ),
+        ),
         35 => array( // substitution module
             // http://wiki.nginx.org/HttpSubModule
             // http://nginx.org/en/docs/http/ngx_http_sub_module.html
             'sub_filter',
             'sub_filter_once',
             'sub_filter_types',
-            ),
+        ),
         36 => array( // NginxHttpDavModule
             // http://wiki.nginx.org/HttpDavModule
             // http://nginx.org/en/docs/http/ngx_http_dav_module.html
@@ -526,11 +526,11 @@ $language_data = array (
             'dav_methods',
             'create_full_put_path',
             'min_delete_depth',
-            ),
+        ),
         37 => array( // Google performance tools module
             // http://wiki.nginx.org/GooglePerftoolsModule
             'google_perftools_profiles',
-            ),
+        ),
         38 => array( // xslt module
             // http://wiki.nginx.org/HttpXsltModule
             // http://nginx.org/en/docs/http/ngx_http_xslt_module.html
@@ -539,7 +539,7 @@ $language_data = array (
             'xslt_string_param',
             'xslt_stylesheet',
             'xslt_types',
-            ),
+        ),
         39 => array( // uWSGI module
             // http://wiki.nginx.org/HttpUwsgiModule
             'uwsgi_bind',
@@ -578,7 +578,7 @@ $language_data = array (
             'uwsgi_string',
             'uwsgi_temp_file_write_size',
             'uwsgi_temp_path',
-            ),
+        ),
         40 => array( // SCGI module
             // http://wiki.nginx.org/HttpScgiModule
             // Note: These directives were pulled from nginx 1.2.3
@@ -617,12 +617,12 @@ $language_data = array (
             'scgi_store_access',
             'scgi_temp_file_write_size',
             'scgi_temp_path',
-            ),
+        ),
         41 => array( // split clients module
             // http://wiki.nginx.org/HttpSplitClientsModule
             // http://nginx.org/en/docs/http/ngx_http_split_clients_module.html
             'split_clients',
-            ),
+        ),
         42 => array( // X-Accel module
             // http://wiki.nginx.org/X-accel
             'X-Accel-Redirect',
@@ -630,12 +630,12 @@ $language_data = array (
             'X-Accel-Charset',
             'X-Accel-Expires',
             'X-Accel-Limit-Rate',
-            ),
+        ),
         43 => array( // degradation module
             // http://wiki.nginx.org/HttpDegradationModule
             'degradation',
             'degrade',
-            ),
+        ),
         44 => array( // GeoIP module
             // http://wiki.nginx.org/HttpGeoipModule
             // http://nginx.org/en/docs/http/ngx_http_geoip_module.html
@@ -643,7 +643,7 @@ $language_data = array (
             'geoip_city',
             'geoip_proxy',
             'geoip_proxy_recursive',
-            ),
+        ),
         45 => array( // Image filter module
             // http://wiki.nginx.org/HttpImageFilterModule
             // http://nginx.org/en/docs/http/ngx_http_image_filter_module.html
@@ -652,21 +652,21 @@ $language_data = array (
             'image_filter_jpeg_quality',
             'image_filter_sharpen',
             'image_filter_transparency',
-            ),
+        ),
         46 => array( // MP4 module
             // http://wiki.nginx.org/HttpMp4Module
             // http://nginx.org/en/docs/http/ngx_http_mp4_module.html
             'mp4',
             'mp4_buffer_size',
             'mp4_max_buffer_size',
-            ),
+        ),
         47 => array( // Secure Link module
             // http://wiki.nginx.org/HttpSecureLinkModule
             // http://nginx.org/en/docs/http/ngx_http_secure_link_module.html
             'secure_link',
             'secure_link_md',
             'secure_link_secret',
-            ),
+        ),
         48 => array( // Mail Core module
             // http://wiki.nginx.org/MailCoreModule
             'auth',
@@ -683,13 +683,13 @@ $language_data = array (
             //'listen',
             //'server',
             //'server_name',
-            ),
+        ),
         49 => array( // Mail Auth module
             // http://wiki.nginx.org/MailAuthModule
             'auth_http',
             'auth_http_header',
             'auth_http_timeout',
-            ),
+        ),
         50 => array( // Mail Proxy module
             // http://wiki.nginx.org/MailProxyModule
             'proxy',
@@ -697,7 +697,7 @@ $language_data = array (
             'proxy_pass_error_message',
             'proxy_timeout',
             'xclient',
-            ),
+        ),
         51 => array( // Mail SSL module
             // http://wiki.nginx.org/MailSslModule
             // Removed to prioritize documentation for http
@@ -710,11 +710,11 @@ $language_data = array (
             //'ssl_session_cache',
             //'ssl_session_timeout',
             'starttls',
-            ),
         ),
+    ),
     'SYMBOLS' => array(
         '(', ')', '{', '}', '=', '~', ';'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => true,
         1 => true,
@@ -768,41 +768,40 @@ $language_data = array (
         49 => true,
         50 => true,
         51 => true,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #b1b100;',
             2 => 'color: #000000; font-weight: bold;',
             3 => 'color: #000066;',
             4 => 'color: #993333;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
-            ),
-        'NUMBERS' => array(
-            ),
+        ),
+        'NUMBERS' => array(),
         'METHODS' => array(
             1 => 'color: #202020;',
             2 => 'color: #202020;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #000066;',
             4 => 'color: #000000; font-weight: bold;',
         ),
         'SCRIPT' => array()
-        ),
+    ),
     'URLS' => array(
         1 => 'http://wiki.nginx.org/CoreModule#{FNAME}',
         2 => 'http://wiki.nginx.org/NginxHttpEventsModule#{FNAME}',
@@ -855,19 +854,19 @@ $language_data = array (
         49 => 'http://wiki.nginx.org/MailAuthModule#{FNAME}',
         50 => 'http://wiki.nginx.org/MailProxyModule#{FNAME}',
         51 => 'http://wiki.nginx.org/MailSslModule#{FNAME}',
-        ),
+    ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
         0 => '[\\$%@]+[a-zA-Z_][a-zA-Z0-9_]*',
         4 => '&lt;[a-zA-Z_][a-zA-Z0-9_]*&gt;',
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
             'NUMBERS' => GESHI_NEVER
-            )
         )
+    )
 );

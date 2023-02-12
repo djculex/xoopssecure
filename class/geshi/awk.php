@@ -37,60 +37,60 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'awk',
     'COMMENT_SINGLE' => array(
         1 => '#'
-        ),
+    ),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '\\',
-    'KEYWORDS' => array (
+    'KEYWORDS' => array(
         1 => array(
             'for', 'in', 'if', 'else', 'while', 'do', 'continue', 'break'
-            ),
+        ),
         2 => array(
             'BEGIN', 'END'
-            ),
+        ),
         3 => array(
             'ARGC', 'ARGV', 'CONVFMT', 'ENVIRON',
             'FILENAME', 'FNR', 'FS', 'NF', 'NR', 'OFMT',
-            'OFS','ORS','RLENGTH','RS','RSTART','SUBSEP'
-            ),
+            'OFS', 'ORS', 'RLENGTH', 'RS', 'RSTART', 'SUBSEP'
+        ),
         4 => array(
-            'gsub','index','length','match','split',
-            'sprintf','sub','substr','tolower','toupper',
-            'atan2','cos','exp','int','log','rand',
-            'sin','sqrt','srand'
-            ),
+            'gsub', 'index', 'length', 'match', 'split',
+            'sprintf', 'sub', 'substr', 'tolower', 'toupper',
+            'atan2', 'cos', 'exp', 'int', 'log', 'rand',
+            'sin', 'sqrt', 'srand'
+        ),
         5 => array(
-            'print','printf','getline','close','fflush','system'
-            ),
+            'print', 'printf', 'getline', 'close', 'fflush', 'system'
+        ),
         6 => array(
             'function', 'return'
-            )
-        ),
-    'SYMBOLS' => array (
+        )
+    ),
+    'SYMBOLS' => array(
         0 => array(
-            '(',')','[',']','{','}'
-            ),
-        1 => array(
-            '!','||','&&'
-            ),
-        2 => array(
-            '<','>','<=','>=','==','!='
-            ),
-        3 => array(
-            '+','-','*','/','%','^','++','--'
-            ),
-        4 => array(
-            '~','!~'
-            ),
-        5 => array(
-            '?',':'
-            )
+            '(', ')', '[', ']', '{', '}'
         ),
+        1 => array(
+            '!', '||', '&&'
+        ),
+        2 => array(
+            '<', '>', '<=', '>=', '==', '!='
+        ),
+        3 => array(
+            '+', '-', '*', '/', '%', '^', '++', '--'
+        ),
+        4 => array(
+            '~', '!~'
+        ),
+        5 => array(
+            '?', ':'
+        )
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
@@ -99,7 +99,7 @@ $language_data = array (
         4 => false,
         5 => false,
         6 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #000000; font-weight: bold;',
@@ -108,13 +108,13 @@ $language_data = array (
             4 => 'color: #07D589; font-weight: bold;',
             5 => 'color: #0BD507; font-weight: bold;',
             6 => 'color: #078CD5; font-weight: bold;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color:#808080;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color:black;',
             1 => 'color:black;',
@@ -125,18 +125,18 @@ $language_data = array (
         'SCRIPT' => array(),
         'REGEXPS' => array(
             0 => 'color:#000088;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #000000;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #7a0874; font-weight: bold;'
-            ),
-        'METHODS' => array()
         ),
+        'METHODS' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -144,13 +144,13 @@ $language_data = array (
         4 => '',
         5 => '',
         6 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array (),
+    'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
         0 => "\\$[a-zA-Z0-9_]+"
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array (),
+    'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array()
 );

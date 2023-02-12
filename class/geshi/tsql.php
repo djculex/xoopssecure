@@ -37,7 +37,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'T-SQL',
     'COMMENT_SINGLE' => array(1 => '--'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -57,59 +57,59 @@ $language_data = array (
             */
 
             //Configuration Functions
-            '@@DATEFIRST','@@OPTIONS','@@DBTS','@@REMSERVER','@@LANGID','@@SERVERNAME',
-            '@@LANGUAGE','@@SERVICENAME','@@LOCK_TIMEOUT','@@SPID','@@MAX_CONNECTIONS',
-            '@@TEXTSIZE','@@MAX_PRECISION','@@VERSION','@@NESTLEVEL',
+            '@@DATEFIRST', '@@OPTIONS', '@@DBTS', '@@REMSERVER', '@@LANGID', '@@SERVERNAME',
+            '@@LANGUAGE', '@@SERVICENAME', '@@LOCK_TIMEOUT', '@@SPID', '@@MAX_CONNECTIONS',
+            '@@TEXTSIZE', '@@MAX_PRECISION', '@@VERSION', '@@NESTLEVEL',
 
             //Cursor Functions
-            '@@CURSOR_ROWS','@@FETCH_STATUS',
+            '@@CURSOR_ROWS', '@@FETCH_STATUS',
 
             //Date and Time Functions
-            'DATEADD','DATEDIFF','DATENAME','DATEPART','GETDATE','GETUTCDATE',
-            'DATEFROMPARTS','DATETIMEFROMPARTS', 'SMALLDATETIMEFROMPARTS', 'DATETIME2FROMPARTS', 'TIMEFROMPARTS',
+            'DATEADD', 'DATEDIFF', 'DATENAME', 'DATEPART', 'GETDATE', 'GETUTCDATE',
+            'DATEFROMPARTS', 'DATETIMEFROMPARTS', 'SMALLDATETIMEFROMPARTS', 'DATETIME2FROMPARTS', 'TIMEFROMPARTS',
             'CURRENT_TIME', 'CURRENT_TIMESTAMP', 'SYSDATETIME', 'SYSUTCDATETIME',
             'YEAR', 'QUARTER', 'MONTH', 'DAY', 'HOUR', 'MINUTE', 'SECOND',
             'EOMONTH',
 
             //Mathematical Functions
-            'ABS','DEGREES','RAND','ACOS','EXP','ROUND','ASIN','FLOOR','SIGN',
-            'ATAN','LOG','SIN','ATN2','LOG10','SQUARE','CEILING','PI','SQRT','COS',
-            'POWER','TAN','COT','RADIANS', 'RANK',
+            'ABS', 'DEGREES', 'RAND', 'ACOS', 'EXP', 'ROUND', 'ASIN', 'FLOOR', 'SIGN',
+            'ATAN', 'LOG', 'SIN', 'ATN2', 'LOG10', 'SQUARE', 'CEILING', 'PI', 'SQRT', 'COS',
+            'POWER', 'TAN', 'COT', 'RADIANS', 'RANK',
 
             //Meta Data Functions
-            'COL_LENGTH','COL_NAME','FULLTEXTCATALOGPROPERTY',
-            'COLUMNPROPERTY','FULLTEXTSERVICEPROPERTY','DATABASEPROPERTY','INDEX_COL',
-            'DATABASEPROPERTYEX','INDEXKEY_PROPERTY','DB_ID','INDEXPROPERTY','DB_NAME',
-            'OBJECT_ID','FILE_ID','OBJECT_NAME','FILE_NAME','OBJECTPROPERTY','FILEGROUP_ID',
-            '@@PROCID','FILEGROUP_NAME','SQL_VARIANT_PROPERTY','FILEGROUPPROPERTY',
-            'TYPEPROPERTY','FILEPROPERTY','OBJECT_SCHEMA_NAME', 'SCHEMA_ID', 'SCHEMA_NAME', 'OBJECT_DEFINITION',
+            'COL_LENGTH', 'COL_NAME', 'FULLTEXTCATALOGPROPERTY',
+            'COLUMNPROPERTY', 'FULLTEXTSERVICEPROPERTY', 'DATABASEPROPERTY', 'INDEX_COL',
+            'DATABASEPROPERTYEX', 'INDEXKEY_PROPERTY', 'DB_ID', 'INDEXPROPERTY', 'DB_NAME',
+            'OBJECT_ID', 'FILE_ID', 'OBJECT_NAME', 'FILE_NAME', 'OBJECTPROPERTY', 'FILEGROUP_ID',
+            '@@PROCID', 'FILEGROUP_NAME', 'SQL_VARIANT_PROPERTY', 'FILEGROUPPROPERTY',
+            'TYPEPROPERTY', 'FILEPROPERTY', 'OBJECT_SCHEMA_NAME', 'SCHEMA_ID', 'SCHEMA_NAME', 'OBJECT_DEFINITION',
 
             //Security Functions
-            'IS_SRVROLEMEMBER','SUSER_SID','SUSER_SNAME','USER_NAME', 'SUSER_NAME', 'USER_ID',
-            'HAS_DBACCESS','IS_MEMBER', 'CURRENT_USER',
+            'IS_SRVROLEMEMBER', 'SUSER_SID', 'SUSER_SNAME', 'USER_NAME', 'SUSER_NAME', 'USER_ID',
+            'HAS_DBACCESS', 'IS_MEMBER', 'CURRENT_USER',
 
             //String Functions
-            'ASCII','SOUNDEX','PATINDEX','CHARINDEX','REPLACE','STR','LEFT', 'RIGHT','DATALENGTH','HASHBYTES',
-            'DIFFERENCE','QUOTENAME','STUFF','REPLICATE','SUBSTRING','LEN',
-            'REVERSE','UNICODE','LOWER','UPPER','LTRIM','RTRIM','FORMAT','TRY_CONVERT','TRY_PARSE','PARSE','CONVERT','CONCAT',
+            'ASCII', 'SOUNDEX', 'PATINDEX', 'CHARINDEX', 'REPLACE', 'STR', 'LEFT', 'RIGHT', 'DATALENGTH', 'HASHBYTES',
+            'DIFFERENCE', 'QUOTENAME', 'STUFF', 'REPLICATE', 'SUBSTRING', 'LEN',
+            'REVERSE', 'UNICODE', 'LOWER', 'UPPER', 'LTRIM', 'RTRIM', 'FORMAT', 'TRY_CONVERT', 'TRY_PARSE', 'PARSE', 'CONVERT', 'CONCAT',
 
             //System Functions
-            'APP_NAME','COLLATIONPROPERTY','@@ERROR','FORMATMESSAGE',
-            'GETANSINULL','HOST_ID','HOST_NAME','IDENT_CURRENT','IDENT_INCR',
-            'IDENT_SEED','@@IDENTITY','ISDATE','ISNUMERIC','PARSENAME','PERMISSIONS','PROGRAM_NAME',
-            '@@ROWCOUNT','ROWCOUNT_BIG','SCOPE_IDENTITY','SERVERPROPERTY','SESSIONPROPERTY',
-            'STATS_DATE','@@TRANCOUNT',
+            'APP_NAME', 'COLLATIONPROPERTY', '@@ERROR', 'FORMATMESSAGE',
+            'GETANSINULL', 'HOST_ID', 'HOST_NAME', 'IDENT_CURRENT', 'IDENT_INCR',
+            'IDENT_SEED', '@@IDENTITY', 'ISDATE', 'ISNUMERIC', 'PARSENAME', 'PERMISSIONS', 'PROGRAM_NAME',
+            '@@ROWCOUNT', 'ROWCOUNT_BIG', 'SCOPE_IDENTITY', 'SERVERPROPERTY', 'SESSIONPROPERTY',
+            'STATS_DATE', '@@TRANCOUNT',
 
             // Error handling
             'ERROR_STATE', 'ERROR_SEVERITY', 'ERROR_NUMBER', 'ERROR_MESSAGE', 'ERROR_LINE', 'ERROR_PROCEDURE',
 
             //System Statistical Functions
-            '@@CONNECTIONS','@@PACK_RECEIVED','@@CPU_BUSY','@@PACK_SENT',
-            '@@TIMETICKS','@@IDLE','@@TOTAL_ERRORS','@@IO_BUSY',
-            '@@TOTAL_READ','@@PACKET_ERRORS','@@TOTAL_WRITE',
+            '@@CONNECTIONS', '@@PACK_RECEIVED', '@@CPU_BUSY', '@@PACK_SENT',
+            '@@TIMETICKS', '@@IDLE', '@@TOTAL_ERRORS', '@@IO_BUSY',
+            '@@TOTAL_READ', '@@PACKET_ERRORS', '@@TOTAL_WRITE',
 
             //Text and Image Functions
-            'TEXTPTR','TEXTVALID',
+            'TEXTPTR', 'TEXTVALID',
 
             //Aggregate functions
             'AVG', 'MAX', 'BINARY_CHECKSUM', 'MIN', 'CHECKSUM', 'SUM', 'CHECKSUM_AGG',
@@ -182,7 +182,7 @@ $language_data = array (
             'ANSI_NULL_DFLT_OFF', 'ANSI_NULLS', 'ANSI_PADDING', 'ANSI_WARNINGS', 'ARITHABORT', 'ARITHIGNORE', 'ASSEMBLY', 'ASYMMETRIC', 'ATTACH_REBUILD_LOG', 'AUTO', 'AUTO_CLEANUP',
             'AUTO_CLOSE', 'AUTO_CREATE_STATISTICS', 'AUTO_SHRINK', 'AUTO_UPDATE_STATISTICS', 'AUTO_UPDATE_STATISTICS_ASYNC', 'BATCHSIZE', 'BEGIN_DIALOG',
             'BINDING', 'BROKER', 'BROKER_INSTANCE', 'BULK_LOGGED', 'CAP_CPU_PERCENT', 'CATALOG_DEFAULT', 'CATCH', 'CERTIFICATE', 'CHANGE_RETENTION',
-            'CHANGE_TRACKING', 'CHECK_EXPIRATION',  'CHECK_POLICY', 'CLASSIFIER_FUNCTION', 'CLUSTER', 'CODEPAGE', 'COLLECTION',
+            'CHANGE_TRACKING', 'CHECK_EXPIRATION', 'CHECK_POLICY', 'CLASSIFIER_FUNCTION', 'CLUSTER', 'CODEPAGE', 'COLLECTION',
             'COLUMN_SET', 'COMPATIBILITY_LEVEL', 'COMPRESSION', 'CONCAT_NULL_YIELDS_NULL', 'CONTENT', 'CONTRACT', 'CONVERSATION', 'CPU', 'CPU_ID', 'CREDENTIAL',
             'CRYPTOGRAPHIC', 'CURSOR_CLOSE_ON_COMMIT', 'CURSOR_DEFAULT', 'DATA_COMPRESSION', 'DATABASE_MIRRORING', 'DATAFILETYPE', 'DATE_CORRELATION_OPTIMIZATION',
             'DATEFIRST', 'DATEFORMAT', 'DAYS', 'DB_CHAINING', 'DEADLOCK_PRIORITY', 'DECRYPTION', 'DEFAULT_DATABASE', 'DEFAULT_FULLTEXT_LANGUAGE', 'DEFAULT_LANGUAGE',
@@ -229,16 +229,16 @@ $language_data = array (
             'xp_grantlogin', 'xp_logininfo', 'xp_repl_convert_encrypt_sysadmin_wrapper', 'xp_revokelogin',
 
             // extended procedures
-            'xp_availablemedia',  'xp_cmdshell', 'xp_create_subdir', 'xp_delete_file', 'xp_dirtree', 'xp_enum_oledb_providers',
-            'xp_enumerrorlogs', 'xp_enumgroups',  'xp_fileexist', 'xp_fixeddrives', 'xp_get_script', 'xp_get_tape_devices',
-            'xp_getnetname', 'xp_instance_regaddmultistring',  'xp_instance_regdeletekey', 'xp_instance_regdeletevalue',
-            'xp_instance_regenumkeys', 'xp_instance_regenumvalues',  'xp_instance_regread', 'xp_instance_regremovemultistring',
-            'xp_instance_regwrite', 'xp_logevent', 'xp_loginconfig', 'xp_msver',  'xp_msx_enlist', 'xp_passAgentInfo',
-            'xp_prop_oledb_provider', 'xp_qv', 'xp_readerrorlog', 'xp_regaddmultistring',  'xp_regdeletekey', 'xp_regdeletevalue',
-            'xp_regenumkeys', 'xp_regenumvalues', 'xp_regread', 'xp_regremovemultistring',  'xp_regwrite', 'xp_replposteor',
-            'xp_servicecontrol', 'xp_sprintf', 'xp_sqlagent_enum_jobs', 'xp_sqlagent_is_starting',  'xp_sqlagent_monitor',
-            'xp_sqlagent_notify', 'xp_sqlagent_param', 'xp_sqlmaint', 'xp_sscanf', 'xp_subdirs',  'xp_sysmail_activate',
-            'xp_sysmail_attachment_load',  'xp_sysmail_format_query',
+            'xp_availablemedia', 'xp_cmdshell', 'xp_create_subdir', 'xp_delete_file', 'xp_dirtree', 'xp_enum_oledb_providers',
+            'xp_enumerrorlogs', 'xp_enumgroups', 'xp_fileexist', 'xp_fixeddrives', 'xp_get_script', 'xp_get_tape_devices',
+            'xp_getnetname', 'xp_instance_regaddmultistring', 'xp_instance_regdeletekey', 'xp_instance_regdeletevalue',
+            'xp_instance_regenumkeys', 'xp_instance_regenumvalues', 'xp_instance_regread', 'xp_instance_regremovemultistring',
+            'xp_instance_regwrite', 'xp_logevent', 'xp_loginconfig', 'xp_msver', 'xp_msx_enlist', 'xp_passAgentInfo',
+            'xp_prop_oledb_provider', 'xp_qv', 'xp_readerrorlog', 'xp_regaddmultistring', 'xp_regdeletekey', 'xp_regdeletevalue',
+            'xp_regenumkeys', 'xp_regenumvalues', 'xp_regread', 'xp_regremovemultistring', 'xp_regwrite', 'xp_replposteor',
+            'xp_servicecontrol', 'xp_sprintf', 'xp_sqlagent_enum_jobs', 'xp_sqlagent_is_starting', 'xp_sqlagent_monitor',
+            'xp_sqlagent_notify', 'xp_sqlagent_param', 'xp_sqlmaint', 'xp_sscanf', 'xp_subdirs', 'xp_sysmail_activate',
+            'xp_sysmail_attachment_load', 'xp_sysmail_format_query',
 
             // extended procedures named with sp_
             'sp_AddFunctionalUnitToComponent', 'sp_audit_write', 'sp_availability_group_command_internal', 'sp_begin_parallel_nested_tran',
@@ -266,23 +266,23 @@ $language_data = array (
             'sys', 'INFORMATION_SCHEMA',
 
             // inline TVFs
-            'dm_cryptographic_provider_algorithms','dm_cryptographic_provider_keys','dm_cryptographic_provider_sessions',
-            'dm_db_database_page_allocations','dm_db_index_operational_stats','dm_db_index_physical_stats',
-            'dm_db_missing_index_columns','dm_db_objects_disabled_on_compatibility_level_change',
-            'dm_exec_cached_plan_dependent_objects','dm_exec_cursors','dm_exec_describe_first_result_set',
-            'dm_exec_describe_first_result_set_for_object','dm_exec_plan_attributes','dm_exec_query_plan','dm_exec_sql_text',
-            'dm_exec_text_query_plan','dm_exec_xml_handles','dm_fts_index_keywords','dm_fts_index_keywords_by_document',
-            'dm_fts_index_keywords_by_property','dm_fts_parser','dm_io_virtual_file_stats','dm_logconsumer_cachebufferrefs',
-            'dm_logconsumer_privatecachebuffers','dm_logpool_consumers','dm_logpool_sharedcachebuffers','dm_logpoolmgr_freepools',
-            'dm_logpoolmgr_respoolsize','dm_logpoolmgr_stats','dm_os_volume_stats','dm_sql_referenced_entities',
-            'dm_sql_referencing_entities','fn_builtin_permissions','fn_check_object_signatures','fn_dblog','fn_dump_dblog',
-            'fn_get_audit_file','fn_get_sql','fn_helpcollations','fn_MSxe_read_event_stream','fn_trace_gettable',
-            'fn_translate_permissions', 'fn_validate_plan_guide',  'fn_xe_file_target_read_file',
+            'dm_cryptographic_provider_algorithms', 'dm_cryptographic_provider_keys', 'dm_cryptographic_provider_sessions',
+            'dm_db_database_page_allocations', 'dm_db_index_operational_stats', 'dm_db_index_physical_stats',
+            'dm_db_missing_index_columns', 'dm_db_objects_disabled_on_compatibility_level_change',
+            'dm_exec_cached_plan_dependent_objects', 'dm_exec_cursors', 'dm_exec_describe_first_result_set',
+            'dm_exec_describe_first_result_set_for_object', 'dm_exec_plan_attributes', 'dm_exec_query_plan', 'dm_exec_sql_text',
+            'dm_exec_text_query_plan', 'dm_exec_xml_handles', 'dm_fts_index_keywords', 'dm_fts_index_keywords_by_document',
+            'dm_fts_index_keywords_by_property', 'dm_fts_parser', 'dm_io_virtual_file_stats', 'dm_logconsumer_cachebufferrefs',
+            'dm_logconsumer_privatecachebuffers', 'dm_logpool_consumers', 'dm_logpool_sharedcachebuffers', 'dm_logpoolmgr_freepools',
+            'dm_logpoolmgr_respoolsize', 'dm_logpoolmgr_stats', 'dm_os_volume_stats', 'dm_sql_referenced_entities',
+            'dm_sql_referencing_entities', 'fn_builtin_permissions', 'fn_check_object_signatures', 'fn_dblog', 'fn_dump_dblog',
+            'fn_get_audit_file', 'fn_get_sql', 'fn_helpcollations', 'fn_MSxe_read_event_stream', 'fn_trace_gettable',
+            'fn_translate_permissions', 'fn_validate_plan_guide', 'fn_xe_file_target_read_file',
 
             // multi-statement TVFs
             'fn_EnumCurrentPrincipals', 'fn_helpdatatypemap', 'fn_listextendedproperty', 'fn_my_permissions',
             'fn_PhysLocCracker', 'fn_replgetcolidfrombitmap', 'fn_RowDumpCracker', 'fn_servershareddrives',
-            'fn_trace_geteventinfo', 'fn_trace_getfilterinfo', 'fn_trace_getinfo',  'fn_virtualfilestats',
+            'fn_trace_geteventinfo', 'fn_trace_getfilterinfo', 'fn_trace_getinfo', 'fn_virtualfilestats',
             'fn_virtualservernodes',
 
             // aggregate functions
@@ -291,13 +291,13 @@ $language_data = array (
             'ORMask',
 
             // scalar functions
-            'fn_cColvEntries_80','fn_cdc_check_parameters','fn_cdc_get_column_ordinal','fn_cdc_get_max_lsn','fn_cdc_get_min_lsn',
-            'fn_cdc_has_column_changed','fn_cdc_hexstrtobin','fn_cdc_map_lsn_to_time','fn_cdc_map_time_to_lsn','fn_fIsColTracked',
-            'fn_GetCurrentPrincipal','fn_GetRowsetIdFromRowDump','fn_hadr_backup_is_preferred_replica','fn_IsBitSetInBitmask',
-            'fn_isrolemember','fn_MapSchemaType','fn_MSdayasnumber','fn_MSgeneration_downloadonly','fn_MSget_dynamic_filter_login',
-            'fn_MSorbitmaps','fn_MSrepl_map_resolver_clsid','fn_MStestbit','fn_MSvector_downloadonly','fn_numberOf1InBinaryAfterLoc',
-            'fn_numberOf1InVarBinary','fn_PhysLocFormatter','fn_repladjustcolumnmap','fn_repldecryptver4','fn_replformatdatetime',
-            'fn_replgetparsedddlcmd','fn_replp2pversiontotranid', 'fn_replreplacesinglequote',
+            'fn_cColvEntries_80', 'fn_cdc_check_parameters', 'fn_cdc_get_column_ordinal', 'fn_cdc_get_max_lsn', 'fn_cdc_get_min_lsn',
+            'fn_cdc_has_column_changed', 'fn_cdc_hexstrtobin', 'fn_cdc_map_lsn_to_time', 'fn_cdc_map_time_to_lsn', 'fn_fIsColTracked',
+            'fn_GetCurrentPrincipal', 'fn_GetRowsetIdFromRowDump', 'fn_hadr_backup_is_preferred_replica', 'fn_IsBitSetInBitmask',
+            'fn_isrolemember', 'fn_MapSchemaType', 'fn_MSdayasnumber', 'fn_MSgeneration_downloadonly', 'fn_MSget_dynamic_filter_login',
+            'fn_MSorbitmaps', 'fn_MSrepl_map_resolver_clsid', 'fn_MStestbit', 'fn_MSvector_downloadonly', 'fn_numberOf1InBinaryAfterLoc',
+            'fn_numberOf1InVarBinary', 'fn_PhysLocFormatter', 'fn_repladjustcolumnmap', 'fn_repldecryptver4', 'fn_replformatdatetime',
+            'fn_replgetparsedddlcmd', 'fn_replp2pversiontotranid', 'fn_replreplacesinglequote',
             'fn_replreplacesinglequoteplusprotectstring', 'fn_repluniquename', 'fn_replvarbintoint', 'fn_sqlvarbasetostr',
             'fn_varbintohexstr', 'fn_varbintohexsubstring', 'fn_yukonsecuritymodelrequired',
 
@@ -305,13 +305,13 @@ $language_data = array (
             'EventNotificationErrorsQueue', 'QueryNotificationErrorsQueue', 'ServiceBrokerQueue',
 
             // system tables
-            'sysallocunits','sysasymkeys','sysaudacts','sysbinobjs','sysbinsubobjs','sysbrickfiles','syscerts','syschildinsts','sysclones','sysclsobjs',
-            'syscolpars','syscompfragments','sysconvgroup','syscscolsegments','syscsdictionaries','sysdbfiles','sysdbfrag','sysdbreg','sysdercv','sysdesend',
-            'sysendpts','sysfgfrag','sysfiles1','sysfoqueues','sysfos','sysftinds','sysftproperties','sysftsemanticsdb','sysftstops','sysguidrefs',
-            'sysidxstats','sysiscols','syslnklgns','sysmultiobjrefs','sysnsobjs','sysobjkeycrypts','sysobjvalues','sysowners','sysphfg','syspriorities',
-            'sysprivs','syspru','sysprufiles','sysqnames','sysremsvcbinds','sysrmtlgns','sysrowsetrefs','sysrowsets','sysrscols','sysrts',
-            'sysscalartypes','sysschobjs','sysseobjvalues','syssingleobjrefs','syssoftobjrefs','syssqlguides','systypedsubobjs','sysusermsgs','syswebmethods',
-            'sysxlgns','sysxmitbody', 'sysxmitqueue', 'sysxmlcomponent', 'sysxmlfacet', 'sysxmlplacement', 'sysxprops', 'sysxsrvs',
+            'sysallocunits', 'sysasymkeys', 'sysaudacts', 'sysbinobjs', 'sysbinsubobjs', 'sysbrickfiles', 'syscerts', 'syschildinsts', 'sysclones', 'sysclsobjs',
+            'syscolpars', 'syscompfragments', 'sysconvgroup', 'syscscolsegments', 'syscsdictionaries', 'sysdbfiles', 'sysdbfrag', 'sysdbreg', 'sysdercv', 'sysdesend',
+            'sysendpts', 'sysfgfrag', 'sysfiles1', 'sysfoqueues', 'sysfos', 'sysftinds', 'sysftproperties', 'sysftsemanticsdb', 'sysftstops', 'sysguidrefs',
+            'sysidxstats', 'sysiscols', 'syslnklgns', 'sysmultiobjrefs', 'sysnsobjs', 'sysobjkeycrypts', 'sysobjvalues', 'sysowners', 'sysphfg', 'syspriorities',
+            'sysprivs', 'syspru', 'sysprufiles', 'sysqnames', 'sysremsvcbinds', 'sysrmtlgns', 'sysrowsetrefs', 'sysrowsets', 'sysrscols', 'sysrts',
+            'sysscalartypes', 'sysschobjs', 'sysseobjvalues', 'syssingleobjrefs', 'syssoftobjrefs', 'syssqlguides', 'systypedsubobjs', 'sysusermsgs', 'syswebmethods',
+            'sysxlgns', 'sysxmitbody', 'sysxmitqueue', 'sysxmlcomponent', 'sysxmlfacet', 'sysxmlplacement', 'sysxprops', 'sysxsrvs',
 
             // user tables (these are currently in dbo schema but will be fixed)
             'trace_xe_action_map', 'trace_xe_event_map',
@@ -350,7 +350,7 @@ $language_data = array (
             'numbered_procedures', 'objects', 'openkeys', 'parameter_type_usages', 'parameter_xml_schema_collection_usages',
             'partition_functions', 'partition_parameters', 'partition_range_values', 'partition_schemes',
             'partitions', 'plan_guides', 'procedures', 'registered_search_properties', 'registered_search_property_lists',
-            'remote_logins', 'remote_service_bindings', 'resource_governor_configuration',  'resource_governor_resource_pool_affinity',
+            'remote_logins', 'remote_service_bindings', 'resource_governor_configuration', 'resource_governor_resource_pool_affinity',
             'resource_governor_resource_pools', 'resource_governor_workload_groups', 'routes', 'schemas', 'securable_classes',
             'server_assembly_modules', 'server_audit_specification_details', 'server_audit_specifications',
             'server_audits', 'server_event_notifications', 'server_event_session_actions', 'server_event_session_events',
@@ -366,7 +366,7 @@ $language_data = array (
             'trace_columns', 'trace_event_bindings', 'trace_events', 'trace_subclass_values', 'traces', 'transmission_queue',
             'trigger_event_types', 'trigger_events', 'triggers', 'type_assembly_usages', 'types', 'user_token', 'via_endpoints',
             'xml_indexes', 'xml_schema_attributes', 'xml_schema_collections', 'xml_schema_component_placements',
-            'xml_schema_components',  'xml_schema_elements', 'xml_schema_facets', 'xml_schema_model_groups', 'xml_schema_namespaces',
+            'xml_schema_components', 'xml_schema_elements', 'xml_schema_facets', 'xml_schema_model_groups', 'xml_schema_namespaces',
             'xml_schema_types', 'xml_schema_wildcard_namespaces', 'xml_schema_wildcards',
 
             // DMVs / DMFs
@@ -560,7 +560,7 @@ $language_data = array (
             'sp_usertypes_rowset', 'sp_usertypes_rowset_rmt', 'sp_usertypes_rowset2', 'sp_validate_redirected_publisher',
             'sp_validate_replica_hosts_as_publishers', 'sp_validatecache', 'sp_validatelogins', 'sp_validatemergepublication',
             'sp_validatemergepullsubscription', 'sp_validatemergesubscription', 'sp_validlang', 'sp_validname', 'sp_verifypublisher', 'sp_views_rowset',
-            'sp_views_rowset2', 'sp_vupgrade_mergeobjects', 'sp_vupgrade_mergetables',  'sp_vupgrade_replication', 'sp_vupgrade_replsecurity_metadata',
+            'sp_views_rowset2', 'sp_vupgrade_mergeobjects', 'sp_vupgrade_mergetables', 'sp_vupgrade_replication', 'sp_vupgrade_replsecurity_metadata',
             'sp_who', 'sp_who2', 'sp_xml_schema_rowset', 'sp_xml_schema_rowset2',
         ),
         6 => array(
@@ -779,8 +779,7 @@ $language_data = array (
         'REGEXPS' => array(
             0 => 'color: #cc3333;'
         ),
-        'SCRIPT' => array(
-        )
+        'SCRIPT' => array()
     ),
     'URLS' => array(
         1 => '',
@@ -800,10 +799,8 @@ $language_data = array (
         0 => "[\\@]+[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*"
     ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-    ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-    ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             2 => array(

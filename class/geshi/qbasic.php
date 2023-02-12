@@ -50,7 +50,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'QBasic/QuickBASIC',
     'COMMENT_SINGLE' => array(1 => "'"),
     'COMMENT_MULTI' => array(),
@@ -59,7 +59,7 @@ $language_data = array (
         2 => "/\bREM.*?$/i",
         //Line numbers
         3 => "/^\s*\d+/im"
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_UPPER,
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '',
@@ -72,7 +72,7 @@ $language_data = array (
             'DO', 'LOOP', 'WHILE', 'WEND', 'THEN', 'ELSE', 'ELSEIF', 'IF',
             'FOR', 'TO', 'NEXT', 'STEP', 'GOTO', 'GOSUB', 'CALL', 'CALLS',
             'SUB', 'FUNCTION', 'RETURN', 'RESUME', 'SELECT', 'CASE', 'UNTIL'
-            ),
+        ),
         3 => array(
             'ABS', 'ABSOLUTE', 'ACCESS', 'ALIAS', 'AND', 'ANY', 'APPEND', 'AS', 'ASC', 'ATN',
             'BASE', 'BEEP', 'BINARY', 'BLOAD', 'BSAVE', 'BYVAL',
@@ -97,65 +97,60 @@ $language_data = array (
             'STRING', 'STRING$', 'SWAP', 'SYSTEM', 'TAB', 'TAN', 'TIME$', 'TIMER',
             'TROFF', 'TRON', 'TYPE', 'UBOUND', 'UCASE$', 'UEVENT', 'UNLOCK', 'USING', 'VAL',
             'VARPTR', 'VARPTR$', 'VARSEG', 'VIEW', 'WAIT', 'WIDTH', 'WINDOW', 'WRITE', 'XOR'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', ',', '+', '-', '*', '/', '=', '<', '>', '^'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         3 => false
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #a1a100;',
             3 => 'color: #000066;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #808080;',
             2 => 'color: #808080;',
             3 => 'color: #8080C0;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'
-            ),
-        'METHODS' => array(
-            ),
+        ),
+        'METHODS' => array(),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099;'
-            ),
-        'SCRIPT' => array(
-            ),
+        ),
+        'SCRIPT' => array(),
         'REGEXPS' => array(
             1 => 'color: #cc66cc;',
             2 => 'color: #339933;'
-            )
-        ),
+        )
+    ),
     'URLS' => array(
         1 => '',
         3 => 'http://www.qbasicnews.com/qboho/qck{FNAMEL}.shtml'
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
         1 => '&amp;(?:H[0-9a-fA-F]+|O[0-7]+)(?!\w)',
         2 => '#[0-9]+(?!\w)'
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 8
 );

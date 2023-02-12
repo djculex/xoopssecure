@@ -48,7 +48,7 @@ $language_data = array(
     'COMMENT_REGEXP' => array(
         // Raw strings
         1 => '/\\br(\\#*)".*?"\\1/'
-        ),
+    ),
 
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
@@ -64,7 +64,7 @@ $language_data = array(
         4 => "#\\\\U[\da-fA-F]{8}#",
         //Octal Char Specs
         5 => "#\\\\[0-7]{1,3}#"
-        ),
+    ),
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
         GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
@@ -78,9 +78,9 @@ $language_data = array(
             'impl', 'in', 'let', 'log', 'loop', 'match', 'mod', 'mut', 'of',
             'priv', 'pub', 'ref', 'return', 'self', 'static', 'struct', 'super',
             'to', 'trait', 'type', 'unsafe', 'use', 'with', 'while'
-            ),
+        ),
         // Boolean values
-        2 => array( 'true', 'false' ),
+        2 => array('true', 'false'),
         // Structs and built-in types
         3 => array(
             'u8', 'i8',
@@ -137,7 +137,7 @@ $language_data = array(
             'WindowIter', 'WriteRequest', 'XorShiftRng', 'Zip', 'addrinfo',
             'uv_buf_t', 'uv_err_data', 'uv_process_options_t', 'uv_stat_t',
             'uv_stdio_container_t', 'uv_timespec_t'
-            ),
+        ),
         // Enums
         4 => array(
             'Alignment', 'Count', 'Either', 'ExponentFormat', 'FPCategory',
@@ -149,8 +149,8 @@ $language_data = array(
             'SignificantDigits', 'Signum', 'SocketType', 'StdioContainer',
             'TaskResult', 'TaskType', 'UvSocketAddr', 'Void', 'uv_handle_type',
             'uv_membership', 'uv_req_type'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '{', '}', '[', ']',
         '+', '-', '*', '/', '%',
@@ -158,7 +158,7 @@ $language_data = array(
         ':',
         ';', ',',
         '='
-        ),
+    ),
 
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -166,7 +166,7 @@ $language_data = array(
         2 => true,
         3 => true,
         4 => true
-        ),
+    ),
 
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -174,12 +174,12 @@ $language_data = array(
             2 => 'color: #219;',
             3 => 'color: #05a;',
             4 => 'color: #800;'
-            ),
+        ),
         'COMMENTS' => array(
             0 => 'color: #a50; font-style: italic;',
             1 => 'color: #a11;',
             'MULTI' => 'color: #a50; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;',
             1 => 'color: #000099; font-weight: bold;',
@@ -188,10 +188,10 @@ $language_data = array(
             4 => 'color: #660099; font-weight: bold;',
             5 => 'color: #006699; font-weight: bold;',
             'HARD' => ''
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #a11;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #0000dd;',
             GESHI_NUMBER_BIN_PREFIX_0B => 'color: #208080;',
@@ -201,35 +201,30 @@ $language_data = array(
             GESHI_NUMBER_FLT_SCI_ZERO => 'color:#800080;',
             GESHI_NUMBER_FLT_NONSCI_F => 'color:#800080;',
             GESHI_NUMBER_FLT_NONSCI => 'color:#800080;'
-            ),
+        ),
         'BRACKETS' => array(''),
         'METHODS' => array(
             1 => 'color: #164;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #339933;'
-            ),
-        'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'REGEXPS' => array(),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => '',
         4 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '::'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4
 );

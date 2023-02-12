@@ -34,7 +34,7 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Apt sources',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
@@ -45,7 +45,7 @@ $language_data = array (
         /*keywords*/
         1 => array(
             'deb-src', 'deb'
-            ),
+        ),
         2 => array(
             //Generic
             'stable', 'old-stable', 'testing', 'testing-proposed-updates',
@@ -77,63 +77,52 @@ $language_data = array (
             'raring', 'raring-updates', 'raring-security', 'raring-proposed', 'raring-backports',
             'saucy', 'saucy-updates', 'saucy-security', 'saucy-proposed', 'saucy-backports',
             'trusty', 'trusty-updates', 'trusty-security', 'trusty-proposed', 'trusty-backports'
-            ),
+        ),
         3 => array(
             'main', 'restricted', 'preview', 'contrib', 'non-free',
             'commercial', 'universe', 'multiverse'
-            )
-        ),
+        )
+    ),
     'REGEXPS' => array(
         0 => "(((http|ftp):\/\/|file:\/)[^\s]+)|(cdrom:\[[^\]]*\][^\s]*)",
-        ),
-    'SYMBOLS' => array(
-        ),
+    ),
+    'SYMBOLS' => array(),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => true,
         3 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #00007f;',
             2 => 'color: #b1b100;',
             3 => 'color: #b16000;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #adadad; font-style: italic;',
-            ),
-        'ESCAPE_CHAR' => array(
-            ),
-        'BRACKETS' => array(
-            ),
-        'STRINGS' => array(
-            ),
-        'NUMBERS' => array(
-            ),
-        'METHODS' => array(
-            ),
-        'SYMBOLS' => array(
-            ),
+        ),
+        'ESCAPE_CHAR' => array(),
+        'BRACKETS' => array(),
+        'STRINGS' => array(),
+        'NUMBERS' => array(),
+        'METHODS' => array(),
+        'SYMBOLS' => array(),
         'REGEXPS' => array(
             0 => 'color: #009900;',
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => ''
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
             'NUMBERS' => GESHI_NEVER,

@@ -29,14 +29,14 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *****************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Wolfram',
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array('(*' => '*)'),
     'COMMENT_REGEXP' => array(
         2 => '/\\(\\*.*\\*\\)/',
         3 => '/\\\\\\[\\w+]/'
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '\\',
@@ -907,61 +907,55 @@ $language_data = array (
             'Wronskian', 'XMLElement', 'XMLObject', 'Yellow', 'ZernikeR',
             'YuleDissimilarity', 'ZeroTest', 'ZeroWidthTimes', 'ZetaZero',
             'ZipfDistribution', 'ZTransform'
-            )
-        ),
+        )
+    ),
     /* Most symbol combinations can be valid Wolfram operators */
     'SYMBOLS' => array(
         '!', '@', '#', '$', '%', '&', '*', '-', '+', '=',
         '^', '~', '|', '\\', '>', '<', ':', '?', '/'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true /* Wolfram is a case sensitive language */
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'font-weight: bold;', /* make the system functions bold */
-            ),
+        ),
         'COMMENTS' => array(
             'MULTI' => 'color: grey;',
             2 => 'color: grey;', /* nested comments are grey as well */
             3 => 'color: #000aa; font-weight: bold;' /* complex symbols */
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'background-color: #3cb371; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: green; font-weight: bold;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: grey; font-weight: bold;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: red;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #060;'
-            ),
-        'REGEXPS' => array(
-            ),
+        ),
+        'REGEXPS' => array(),
         'SYMBOLS' => array(
             0 => 'color: #339933; font-weight: bold;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         /* online documentation for system functions */
         1 => 'http://reference.wolfram.com/language/ref/{FNAME}.html'
-        ),
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
-    'REGEXPS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

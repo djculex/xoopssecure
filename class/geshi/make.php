@@ -36,13 +36,13 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'GNU make',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_REGEXP' => array(
         //Escaped String Starters
         2 => "/\\\\['\"]/siU"
-        ),
+    ),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
@@ -53,12 +53,12 @@ $language_data = array (
             'ifeq', 'else', 'endif', 'ifneq', 'ifdef', 'ifndef',
             'include', 'vpath', 'export', 'unexport', 'override',
             'info', 'warning', 'error'
-            ),
+        ),
         2 => array(
             // macros, literals
             '.SUFFIXES', '.PHONY', '.DEFAULT', '.PRECIOUS', '.IGNORE', '.SILENT', '.EXPORT_ALL_VARIABLES', '.KEEP_STATE',
             '.LIBPATTERNS', '.NOTPARALLEL', '.DELETE_ON_ERROR', '.INTERMEDIATE', '.POSIX', '.SECONDARY'
-            ),
+        ),
         /*
         3 => array(
             // funcs - see regex
@@ -66,7 +66,7 @@ $language_data = array (
             //'findstring', 'firstword', 'foreach', 'if', 'join', 'notdir', 'origin', 'patsubst', 'shell', 'sort', 'strip',
             //'suffix', 'warning', 'wildcard', 'word', 'wordlist', 'words'
             )*/
-        ),
+    ),
     'SYMBOLS' => array(
         '(', ')', '[', ']', '{', '}',
         '!', '@', '%', '&', '|', '/',
@@ -74,52 +74,52 @@ $language_data = array (
         '=', '-', '+', '*',
         '.', ':', ',', ';',
         '$'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         //3 => false,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #666622; font-weight: bold;',
             2 => 'color: #990000;',
             //3 => 'color: #000000; font-weight: bold;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #339900; font-style: italic;',
             2 => 'color: #000099; font-weight: bold;',
             'MULTI' => ''
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(  // keep same as symbols so as to make ${} and $() equiv.
             0 => 'color: #004400;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #CC2200;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #CC2200;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #004400;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #000088; font-weight: bold;',
             1 => 'color: #0000CC; font-weight: bold;',
             2 => 'color: #000088;'
-            ),
+        ),
         'SCRIPT' => array(),
         'METHODS' => array()
-        ),
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         //3 => ''
-        ),
+    ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
@@ -132,16 +132,16 @@ $language_data = array (
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\\1',
             GESHI_AFTER => '\\3'
-            ),
-            //Complex variables/functions [others]
+        ),
+        //Complex variables/functions [others]
         2 => array(
             GESHI_SEARCH => '(\\$[({])([A-Za-z_][A-Za-z_0-9]*)([ })])',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\\1',
             GESHI_AFTER => '\\3'
-            ),
         ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array(),

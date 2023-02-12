@@ -36,13 +36,13 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'SciLab',
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
         2 => "/(?<=\)|\]|\w)'/"
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '\\',
@@ -51,13 +51,13 @@ $language_data = array (
     'KEYWORDS' => array(
         1 => array(
             'if', 'else', 'elseif', 'end', 'select', 'case', 'for', 'while', 'break'
-            ),
+        ),
         2 => array(
             'STDIN', 'STDOUT', 'STDERR',
             '%i', '%pi', '%e', '%eps', '%nan', '%inf', '%s', '%t', '%f',
             'usual', 'polynomial', 'boolean', 'character', 'function', 'rational', 'state-space',
             'sparse', 'boolean sparse', 'list', 'tlist', 'library', 'endfunction'
-            ),
+        ),
         3 => array(
             '%asn', '%helps', '%k', '%sn', 'abcd', 'abinv', 'abort', 'about', 'About_M2SCI_tools',
             'abs', 'acos', 'acosh', 'acoshm', 'acosm', 'AdCommunications', 'add_demo', 'add_edge',
@@ -67,8 +67,8 @@ $language_data = array (
             'arma', 'arma2p', 'armac', 'armax', 'armax1', 'arsimul', 'artest', 'articul', 'ascii',
             'asciimat', 'asin', 'asinh', 'asinhm', 'asinm', 'assignation', 'atan', 'atanh', 'atanhm',
             'atanm', 'augment', 'auread', 'auwrite', 'axes_properties', 'axis_properties', 'backslash',
-            'balanc', 'balreal', 'bandwr', 'banner','bar', 'barh', 'barhomogenize', 'basename', 'bdiag',
-            'beep', 'besselh', 'besseli', 'besselj', 'besselk', 'bessely', 'best_match', 'beta','bezout',
+            'balanc', 'balreal', 'bandwr', 'banner', 'bar', 'barh', 'barhomogenize', 'basename', 'bdiag',
+            'beep', 'besselh', 'besseli', 'besselj', 'besselk', 'bessely', 'best_match', 'beta', 'bezout',
             'bifish', 'bilin', 'binomial', 'black', 'bloc2exp', 'bloc2ss', 'bode', 'bool2s',
             'boucle', 'brackets', 'browsevar', 'bsplin3val', 'bstap', 'buttmag', 'buttondialog',
             'bvode', 'bvodeS', 'c_link', 'cainv', 'calendar', 'calerf', 'calfrq', 'call', 'canon', 'casc',
@@ -76,7 +76,7 @@ $language_data = array (
             'cdfgam', 'cdfnbn', 'cdfnor', 'cdfpoi', 'cdft', 'ceil', 'cell', 'cell2mat', 'cellstr', 'center',
             'cepstrum', 'chain_struct', 'chaintest', 'champ', 'champ_properties', 'champ1', 'char', 'chart',
             'chartooem', 'chdir', 'cheb1mag', 'cheb2mag', 'check_graph', 'chepol', 'chfact', 'chol', 'chsolve',
-            'circuit', 'classmarkov', 'clc', 'clean', 'clear', 'clear_pixmap', 'clearfun', 'clearglobal','clf',
+            'circuit', 'classmarkov', 'clc', 'clean', 'clear', 'clear_pixmap', 'clearfun', 'clearglobal', 'clf',
             'clipboard', 'close', 'cls2dls', 'cmb_lin', 'cmndred', 'cmoment', 'code2str', 'coeff', 'coff', 'coffg',
             'colcomp', 'colcompr', 'colinout', 'colon', 'color', 'color_list', 'colorbar', 'colordef', 'colormap',
             'colregul', 'comma', 'comments', 'comp', 'companion', 'comparison', 'Compound_properties', 'con_nodes',
@@ -174,7 +174,7 @@ $language_data = array (
             'pvm_gsize', 'pvm_halt', 'pvm_joingroup', 'pvm_kill', 'pvm_lvgroup', 'pvm_mytid', 'pvm_parent', 'pvm_probe',
             'pvm_recv', 'pvm_reduce', 'pvm_sci2f77', 'pvm_send', 'pvm_set_timer', 'pvm_spawn', 'pvm_spawn_independent',
             'pvm_start', 'pvm_tasks', 'pvm_tidtohost', 'pvmd3', 'pwd', 'qassign', 'qld', 'qmr', 'qr', 'quapro', 'quart',
-            'quaskro', 'quit', 'quote', 'rand', 'randpencil', 'range', 'rank', 'rankqr', 'rat',  'rcond',
+            'quaskro', 'quit', 'quote', 'rand', 'randpencil', 'range', 'rank', 'rankqr', 'rat', 'rcond',
             'rdivf', 'read', 'read4b', 'readb', 'readc_', 'readmps', 'readxls', 'real', 'realtime', 'realtimeinit',
             'rectangle_properties', 'recur', 'reglin', 'regress', 'remez', 'remezb', 'repfreq', 'replot', 'resethistory',
             'residu', 'resume', 'return', 'rgb2name', 'ric_desc', 'ricc', 'riccati', 'rlist', 'rmdir', 'roots', 'rotate',
@@ -200,7 +200,7 @@ $language_data = array (
             'TCL_EvalFile', 'TCL_EvalStr', 'TCL_ExistInterp', 'TCL_ExistVar', 'TCL_GetVar', 'TCL_GetVersion', 'TCL_SetVar',
             'TCL_UnsetVar', 'TCL_UpVar', 'tdinit', 'testmatrix', 'texprint', 'text_properties', 'tf2des', 'tf2ss', 'then',
             'thrownan', 'tic', 'tilda', 'time_id', 'timer', 'title', 'titlepage', 'TK_EvalFile', 'TK_EvalStr', 'tk_getdir',
-            'tk_getfile', 'TK_GetVar', 'tk_savefile', 'TK_SetVar',  'toc', 'toeplitz', 'tohome', 'tokenpos',
+            'tk_getfile', 'TK_GetVar', 'tk_savefile', 'TK_SetVar', 'toc', 'toeplitz', 'tohome', 'tokenpos',
             'tokens', 'toolbar', 'toprint', 'trace', 'trans', 'trans_closure', 'translatepaths', 'tree2code', 'trfmod',
             'trianfml', 'tril', 'trimmean', 'trisolve', 'triu', 'try', 'trzeros', 'twinkle', 'type', 'Type', 'typename',
             'typeof', 'ui_observer', 'uicontrol', 'uimenu', 'uint16', 'uint32', 'uint8', 'ulink', 'unglue', 'union',
@@ -216,78 +216,75 @@ $language_data = array (
             'xpoly', 'xpolys', 'xrect', 'xrects', 'xrpoly', 'xs2bmp', 'xs2emf', 'xs2eps', 'xs2fig', 'xs2gif', 'xs2ppm',
             'xs2ps', 'xsave', 'xsegs', 'xselect', 'xset', 'xsetech', 'xsetm', 'xstring', 'xstringb', 'xstringl', 'xtape',
             'xtitle', 'yulewalk', 'zeropen', 'zeros', 'zgrid', 'zoom_rect', 'zpbutt', 'zpch1', 'zpch2', 'zpell'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '<', '>', '=',
         '!', '@', '~', '&', '|',
-        '+','-', '*', '/', '%',
+        '+', '-', '*', '/', '%',
         ',', ';', '?', ':', "'"
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => true,
         1 => true,
         2 => true,
         3 => true,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #b1b100;',
             2 => 'color: #000000; font-weight: bold;',
             3 => 'color: #000066;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
             2 => '',
             'MULTI' => 'color: #666666; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;',
             'HARD' => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #009900;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #ff0000;',
             'HARD' => 'color: #ff0000;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #006600;',
             2 => 'color: #006600;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #339933;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #0000ff;',
             4 => 'color: #009999;',
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => 'http://www.scilab.org/product/dic-mat-sci/M2SCI_doc.htm',
         2 => 'http://www.scilab.org/product/dic-mat-sci/M2SCI_doc.htm',
         3 => 'http://www.scilab.org/product/dic-mat-sci/M2SCI_doc.htm'
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '-&gt;',
         2 => '::'
-        ),
+    ),
     'REGEXPS' => array(
         //Variable
         0 => '[\\$%@]+[a-zA-Z_][a-zA-Z0-9_]*',
         //File Descriptor
         4 => '&lt;[a-zA-Z_][a-zA-Z0-9_]*&gt;',
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );

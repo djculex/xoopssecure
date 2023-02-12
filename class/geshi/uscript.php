@@ -42,12 +42,12 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Unreal Script',
     'COMMENT_SINGLE' => array(
-            1 => '//',
-            2 => '#'
-            ),
+        1 => '//',
+        2 => '#'
+    ),
     'COMMENT_MULTI' => array('/*' => '*/'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
@@ -63,13 +63,13 @@ $language_data = array (
             'private', 'public', 'protected', 'reliable', 'replication',
             'singular', 'static', 'struct', 'transient', 'unreliable',
             'hidedropdown', 'cacheexempt', 'exec', 'delegate', 'import', 'placeable', 'exportstructs'
-            ),
+        ),
         2 => array(        //control flow keywords
             'for', 'while', 'do', 'if', 'else', 'switch', 'case', 'return', 'break', 'continue',
             'begin', 'loop', 'assert',
             'foreach', 'AllActors', 'DynamicActors', 'ChildActors', 'BasedActors', 'TouchingActors',
             'TraceActors', 'RadiusActors', 'VisibleActors', 'CollidingActors', 'VisibleCollidingActors'
-            ),
+        ),
         3 => array(        //global (object) functions
             'log', 'warn', 'rot', 'vect', 'Rand', 'Min', 'Max', 'Clamp', 'Abs', 'Sin', 'ASin',
             'Cos', 'ACos', 'Tan', 'ATan', 'Exp', 'Loge', 'Sqrt', 'Square', 'FRand', 'FMin', 'FMax', 'FClamp',
@@ -88,7 +88,7 @@ $language_data = array (
             'PlatformIsMacOS', 'PlatformIsUnix', 'PlatformIsWindows', 'PlatformIs64Bit',
             'BeginState', 'EndState', 'Created', 'AllObjects', 'GetReferencers', 'GetItemName',
             'ReplaceText', 'EatStr'
-            ),
+        ),
         4 => array(        //common almost-global (actor) functions
             'ClientMessage', 'ConsoleCommand', 'CopyObjectToClipboard', 'TextToSpeech',
             'Error', 'Sleep', 'SetCollision', 'SetCollisionSize', 'SetDrawScale', 'SetDrawScale3D',
@@ -108,11 +108,11 @@ $language_data = array (
             'TraceThisActor', 'spawn', 'Destroy', 'TornOff', 'SetTimer', 'PlaySound', 'PlayOwnedSound',
             'GetSoundDuration', 'MakeNoise', 'BeginPlay', 'GetAllInt', 'RenderOverlays', 'RenderTexture',
             'PreBeginPlay', 'PostBeginPlay', 'PostNetBeginPlay', 'HurtRadius', 'Reset', 'Crash'
-            ),
+        ),
         5 => array(        //data types
             'none', 'null',
             'float', 'int', 'bool', 'byte', 'char', 'double', 'iterator', 'name', 'string',    //primitive
-            'plane', 'rotator', 'vector', 'spline',    'coords', 'Quat', 'Range', 'RangeVector', //structs
+            'plane', 'rotator', 'vector', 'spline', 'coords', 'Quat', 'Range', 'RangeVector', //structs
             'Scale', 'Color', 'Box', 'IntBox', 'FloatBox', 'BoundingVolume', 'Matrix', 'InterpCurvePoint',
             'InterpCurve', 'CompressedPosition', 'TMultiMap', 'PointRegion',
             'KRigidBodyState', 'KSimParams', 'AnimRep', 'FireProperties',
@@ -125,10 +125,10 @@ $language_data = array (
             'FractalTexture', 'FireTexture', 'IceTexture', 'WaterTexture', 'FluidTexture', 'WaveTexture',
             'WetTexture', 'ConstantMaterial', 'ConstantColor', 'FadeColor', 'ParticleMaterial',
             'ProjectorMaterial', 'Shader', 'TerrainMaterial', 'VertexColor'
-            ),
+        ),
         6 => array(        //misc keywords
             'false', 'true', 'self', 'super', 'MaxInt', 'Pi'
-            ),
+        ),
         7 => array(        //common actor enums & variables
             'DT_None', 'DT_Sprite', 'DT_Mesh', 'DT_Brush', 'DT_RopeSprite',
             'DT_VerticalSprite', 'DT_TerraForm', 'DT_SpriteAnimOnce', 'DT_StaticMesh', 'DT_DrawType',
@@ -151,7 +151,7 @@ $language_data = array (
             'RelativeLocation', 'RelativeRotation', 'DrawScale', 'DrawScale3D', 'Skins', 'Style',
             'SoundVolume', 'SoundPitch', 'SoundRadius', 'TransientSoundVolume', 'TransientSoundRadius',
             'CollisionRadius', 'CollisionHeight', 'Mass', 'Buoyancy', 'RotationRate', 'DesiredRotation'
-            ),
+        ),
         8 => array(        //common non-actor uscript classes
             'Object',
             'CacheManager', 'CameraEffect', 'Canvas', 'CheatManager', 'Commandlet', 'DecoText', 'GUI',
@@ -163,7 +163,7 @@ $language_data = array (
             'speciesType', 'StreamBase', 'Stream', 'EditorEngine', 'Engine', 'Time', 'WeaponFire',
             'WebApplication', 'WebRequest', 'WebResponse', 'WebSkin', 'xPawnGibGroup', 'xPawnSoundGroup',
             'xUtil'
-            ),
+        ),
         9 => array(        //common actor-based uscript classes
             'Actor',
             'Controller', 'AIController', 'ScriptedController', 'Bot', 'xBot',
@@ -186,15 +186,15 @@ $language_data = array (
             'Pickup', 'Ammo', 'UTAmmoPickup', 'ArmorPickup', 'KeyPickup', 'TournamentPickup',
             'Projectile', 'Projector', 'DynamicProjector', 'ShadowProjector', 'xScorch',
             'xEmitter', 'xPickupBase', 'xProcMesh', 'xWeatherEffect', 'PhysicsVolume', 'Volume'
-            ),
+        ),
         10 => array(    //symbol-like operators
-            'dot','cross'
-            )
-        ),
+            'dot', 'cross'
+        )
+    ),
     'SYMBOLS' => array(
-        '+','-','=','/','*','-','%','>','<','&','^','!','|','`','(',')','[',']','{','}',
-        '<<','>>','$','@'
-        ),
+        '+', '-', '=', '/', '*', '-', '%', '>', '<', '&', '^', '!', '|', '`', '(', ')', '[', ']', '{', '}',
+        '<<', '>>', '$', '@'
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
@@ -207,7 +207,7 @@ $language_data = array (
         8 => false,
         9 => false,
         10 => false,
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #0000FF;',
@@ -220,38 +220,38 @@ $language_data = array (
             8 => 'color: #AA6600;',
             9 => 'color: #FF8800;',
             10 => 'color: #0000FF;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #008080; font-style: italic;',
             2 => 'color: #000000; font-weight: bold;',
             'MULTI' => 'color: #008080; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => ''
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #000000;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #999999;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #FF0000;'
-            ),
+        ),
         'METHODS' => array(
             0 => 'color: #006600;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #669966;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #E000E0;',
             1 => 'color: #E000E0;'
-            ),
+        ),
         'SCRIPT' => array(
             0 => ''
-            )
-        ),
+        )
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -263,7 +263,7 @@ $language_data = array (
         8 => 'http://wiki.beyondunreal.com/wiki?search={FNAME}',
         9 => 'http://wiki.beyondunreal.com/wiki?search={FNAME}',
         10 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array('.'),
     'REGEXPS' => array(            //handle template-style variable definitions
@@ -273,25 +273,23 @@ $language_data = array (
             GESHI_MODIFIERS => 'i',
             GESHI_BEFORE => '',
             GESHI_AFTER => "< \${3} >"
-            ),
+        ),
         1 => array(
             GESHI_SEARCH => '(array\s*)<(\s*(\w+)\s*)>',
             GESHI_REPLACE => "\${1}",
             GESHI_MODIFIERS => 'i',
             GESHI_BEFORE => '',
             GESHI_AFTER => "< \${3} >"
-            )
-        ),
+        )
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             10 => array(
                 'DISALLOWED_BEFORE' => '(?<!<)(?=DOT>)'
-                )
             )
         )
+    )
 );
