@@ -35,7 +35,7 @@ require_once XOOPS_ROOT_PATH . '/class/template.php';
 require __DIR__ . '/header.php';
 $helper = Helper::getInstance();
 
-$type = isset($_GET['type']) ? $_GET['type'] : '';
+$type = $_GET['type'] ?? '';
 $dir = (isset($_GET['Dir'])) ? $_GET['Dir'] : '';
 $val = (isset($_GET['val'])) ? $_GET['val'] : '';
 $t = time();
@@ -44,23 +44,23 @@ $fh = new FileH();
 $dat = new Db();
 $spam = new SpamScanner();
 
-    $filename = "";
+$filename = "";
 switch ($type) {
-        // Get a list of files to scan from path defined. From these only thoose
-        // modified since last scan and skipping files defined in omit files
+    // Get a list of files to scan from path defined. From these only thoose
+    // modified since last scan and skipping files defined in omit files
     case 'getFilesJson':
-                header("Content-Type: application/json; charset=UTF-8");
-                $pattern = "/^.*\.php$/i";
-                $dir = $spam->startPathCs;
-                //echo $dir;
-                // script time : 18.29 seconds (16213 files) without db check
-                // ----- // -- : 31,00 seconds (16213 files) with mod check empty db
-                // ----- // -- : 38,00 seconds (63 files)      with unix - 2 days
-                $f = $spam->getFilesJsonCS($dir, $pattern);
-                echo json_encode($f, JSON_PRETTY_PRINT);
+        header("Content-Type: application/json; charset=UTF-8");
+        $pattern = "/^.*\.php$/i";
+        $dir = $spam->startPathCs;
+        //echo $dir;
+        // script time : 18.29 seconds (16213 files) without db check
+        // ----- // -- : 31,00 seconds (16213 files) with mod check empty db
+        // ----- // -- : 38,00 seconds (63 files)      with unix - 2 days
+        $f = $spam->getFilesJsonCS($dir, $pattern);
+        echo json_encode($f, JSON_PRETTY_PRINT);
         break;
 
-        // Do malware scan on single page.
+    // Do malware scan on single page.
     case 'singleCsScan':
         //header("Content-Type: application/json; charset=UTF-8");
         $p = $_GET['filePath'];
@@ -82,4 +82,4 @@ switch ($type) {
         break;
 }
 
-    $GLOBALS['xoopsLogger']->activated = false;
+$GLOBALS['xoopsLogger']->activated = false;
