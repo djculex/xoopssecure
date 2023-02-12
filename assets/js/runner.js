@@ -19,17 +19,17 @@
  */
 $(document).ready(
     function () {
-        function xoopssecure_timeforcron(bValue)
-        {
+        function xoopssecure_timeforcron(bValue) {
             if (bValue == true) {
-                $.getJSON(xoopsSecureSysUrl + 'agent.php?type=doCronScan', (data) => {});
+                $.getJSON(xoopsSecureSysUrl + 'agent.php?type=doCronScan', (data) => {
+                });
             }
         }
-        
-        function xoopssecure_timeforbackup(bValue)
-        {
+
+        function xoopssecure_timeforbackup(bValue) {
             if (bValue == true) {
-                $.getJSON(xoopsSecureSysUrl + 'agent.php?type=doAutoCreatezip', (data) => {});
+                $.getJSON(xoopsSecureSysUrl + 'agent.php?type=doAutoCreatezip', (data) => {
+                });
             }
         }
 
