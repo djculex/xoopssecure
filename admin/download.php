@@ -44,11 +44,11 @@ $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
 
 $adminObject = Admin::getInstance();
 
-$moduleDirName      = $GLOBALS['xoopsModule']->getVar('dirname');
-$moduleDirNameUpper = \mb_strtoupper($moduleDirName);
-\xoops_loadLanguage('scanner', $moduleDirName);
-\xoops_loadLanguage('mech', $moduleDirName);
-\xoops_loadLanguage('download', $moduleDirName);
+$moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
+$moduleDirNameUpper = mb_strtoupper($moduleDirName);
+xoops_loadLanguage('scanner', $moduleDirName);
+xoops_loadLanguage('mech', $moduleDirName);
+xoops_loadLanguage('download', $moduleDirName);
 
 $fileClass = new fileH();
 $api = new Api();
