@@ -95,13 +95,12 @@ class FileH extends XoopsPersistableObjectHandler
      */
     public static function buymecoffey(): string
     {
-        $text = '
+        return '
 		<a href="https://www.buymeacoffee.com/culex99906" target="_blank">
 			<img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
             alt="Buy Me A Coffee" 
             style="height: 40px !important;width: 175px !important;" >
 		</a>';
-        return $text;
     }
 
     /**
@@ -350,7 +349,7 @@ class FileH extends XoopsPersistableObjectHandler
     /**
      * check folder for index files for database
      *
-     * @param string $checkfile where to look
+     * @param string|array $checkfile where to look
      * @param string $autoFeature string bool is set/ not set
      * @param string $scanstart the time stamp set
      * @return void
@@ -681,7 +680,7 @@ class FileH extends XoopsPersistableObjectHandler
     /**
      * Collect array to string
      *
-     * If any files has changed collect to html string
+     * If any files have changed collect to html string
      * @param array $arr the array of files
      * @return string $content - the table with file paths
      */
@@ -707,6 +706,7 @@ class FileH extends XoopsPersistableObjectHandler
      */
     public function sendCronMail($info): bool
     {
+        $ret = false;
         if ($this->timeForCron === true) {
             $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
             xoops_loadLanguage('mail', $moduleDirName);
@@ -746,11 +746,11 @@ class FileH extends XoopsPersistableObjectHandler
             $xoopsMailer->setSubject($subject);
             $xoopsMailer->multimailer->isHTML(true);
             $ret = $xoopsMailer->send();
-            if ($ret) {
-                return true;
-            } else {
-                return false;
-            }
+        }
+        if ($ret) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
