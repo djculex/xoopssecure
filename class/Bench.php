@@ -83,7 +83,7 @@ class Bench extends Mech
     }
 
     /**
-     * Sum up time
+     * Sum-up time
      *
      */
     public function getTotal()
