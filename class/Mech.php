@@ -61,12 +61,12 @@ class Mech
 
         // BASIC SERVER SETTINGS / NAMES
         $resp['status']['pcname'] = (isset($init["Environment"]["COMPUTERNAME"])) ? $init["Environment"]["COMPUTERNAME"] : $_SERVER['SERVER_NAME'];
-        $resp['status']['os'] = self::getOS();
+        $resp['status']['os'] = $this->getOS();
         $resp['status']['os_builtdate'] = (isset($init["General"]["Build Date"])) ? date('d-m-Y', strtotime($init["General"]["Build Date"])) : "??-??-????";
         $resp['status']['numberofprocessors'] = (isset($init["Environment"]["NUMBER_OF_PROCESSORS"])) ? $init["Environment"]["NUMBER_OF_PROCESSORS"] : "?";
         $resp['status']['processorarchetecture'] = (isset($init["Environment"]["PROCESSOR_ARCHITECTURE"])) ? $init["Environment"]["PROCESSOR_ARCHITECTURE"] : "?";
-        $resp['status']['serveruptime'] = self::mysqlUptimeToString($dat->serverUptime());
-        $resp['status']['serveruse'] = (self::isLocalhost($whitelist = ['127.0.0.1', '::1']) === true) ? 'localhost' : 'live';
+        $resp['status']['serveruptime'] = $this->mysqlUptimeToString($dat->serverUptime());
+        $resp['status']['serveruse'] = ($this->isLocalhost($whitelist = ['127.0.0.1', '::1']) === true) ? 'localhost' : 'live';
         $resp['status']['serveripadress'] = ($resp['status']['serveruse'] == 'localhost') ? $init["Apache Environment"]["SERVER_ADDR"] : $_SERVER['REMOTE_ADDR'];
 
         // core
@@ -180,31 +180,31 @@ class Mech
             $resp['phpini'][$i]['errortype'] = $this->errorButton("notice", $resp['phpini'][$i]['ref']);
         }
 
-        if ($memorylimit > self::convertToBytes('40M')) {
+        if ($memorylimit > $this->convertToBytes('40M')) {
             $i++;
             $resp['phpini'][$i]['name'] = "memory_limit";
             $resp['phpini'][$i]['current'] = $memorylimit;
-            $resp['phpini'][$i]['recommended'] = "< " . self::convertToBytes('40M');
+            $resp['phpini'][$i]['recommended'] = "< " . $this->$this->convertToBytes('40M');
             $resp['phpini'][$i]['description'] = _MECH_XOOPSSECURE_MAXMEMORYLIMIT;
             $resp['phpini'][$i]['ref'] = "https://www.developer.com/design/top-php-security-tips/";
             $resp['phpini'][$i]['errortype'] = $this->errorButton("notice", $resp['phpini'][$i]['ref']);
         }
 
-        if ($uploadmaxfilesize > self::convertToBytes('2M')) {
+        if ($uploadmaxfilesize > $this->convertToBytes('2M')) {
             $i++;
             $resp['phpini'][$i]['name'] = "max_file_uploads";
             $resp['phpini'][$i]['current'] = $uploadmaxfilesize;
-            $resp['phpini'][$i]['recommended'] = "< " . self::convertToBytes('2M');
+            $resp['phpini'][$i]['recommended'] = "< " . $this->convertToBytes('2M');
             $resp['phpini'][$i]['description'] = _MECH_XOOPSSECURE_UPLOADMAXFILESIZE;
             $resp['phpini'][$i]['ref'] = "https://learn.microsoft.com/en-us/iis/application-frameworks/install-and-configure-php-on-iis/secure-php-with-configuration-settings";
             $resp['phpini'][$i]['errortype'] = $this->errorButton("notice", $resp['phpini'][$i]['ref']);
         }
 
-        if ($postmaxsize > self::convertToBytes('8M')) {
+        if ($postmaxsize > $this->convertToBytes('8M')) {
             $i++;
             $resp['phpini'][$i]['name'] = "post_max_size";
             $resp['phpini'][$i]['current'] = $postmaxsize;
-            $resp['phpini'][$i]['recommended'] = "< " . self::convertToBytes('8M');
+            $resp['phpini'][$i]['recommended'] = "< " . $this->convertToBytes('8M');
             $resp['phpini'][$i]['description'] = _MECH_XOOPSSECURE_POSTMAXSIZE;
             $resp['phpini'][$i]['ref'] = "https://learn.microsoft.com/en-us/iis/application-frameworks/install-and-configure-php-on-iis/secure-php-with-configuration-settings";
             $resp['phpini'][$i]['errortype'] = $this->errorButton("notice", $resp['phpini'][$i]['ref']);
@@ -400,18 +400,20 @@ class Mech
      *
      * @param $string the text of error notice
      * @param $ref    the url to see more info_arr
-     * @return string $string of styled link
+     * @return string $ret of styled link
      */
     public function errorButton($string, $ref): string
     {
+        $ret = "";
         switch ($string) {
             case 'warning':
-                return "<a href='{$ref}' target='_BLANK'><span class='xoopssecure_phpini_pill badge badge-pill badge-danger'>" . _MECH_XOOPSSECURE_PHIINI_WARNING . "</span></a>";
+                $ret = "<a href='{$ref}' target='_BLANK'><span class='xoopssecure_phpini_pill badge badge-pill badge-danger'>" . _MECH_XOOPSSECURE_PHIINI_WARNING . "</span></a>";
                 break;
             case 'notice':
-                return "<a href='{$ref}' target='_BLANK'><span class='xoopssecure_phpini_pill badge badge-pill badge-warning'>" . _MECH_XOOPSSECURE_PHIINI_NOTICE . "</span></a>";
+                $ret = "<a href='{$ref}' target='_BLANK'><span class='xoopssecure_phpini_pill badge badge-pill badge-warning'>" . _MECH_XOOPSSECURE_PHIINI_NOTICE . "</span></a>";
                 break;
         }
+        return $ret;
     }
 
     /**
@@ -430,7 +432,6 @@ class Mech
                 $return[$key] = $value;
             }
         }
-
         return $return;
     }
 
@@ -476,7 +477,7 @@ class Mech
         $resp['xoops']['version'] = preg_replace('/[^0-9.]+/', '', substr(XOOPS_VERSION, 6, strlen(XOOPS_VERSION) - 6));
         $resp['xoops']['type'] = 'xoops';
         $resp['xoops']['icon'] = $this->getIcons(strtoupper($resp['xoops']['type']));
-        $resp['xoops']['release'] = self::xoopsVersion($resp['xoops']['version']);
+        $resp['xoops']['release'] = $this->xoopsVersion($resp['xoops']['version']);
         $resp['xoops']['vulner'] = $this->getVul('xoops', $resp['xoops']['version'], 4);
 
         return $resp;
@@ -488,7 +489,7 @@ class Mech
      * @param string $val the name of the value to return setting for
      * @return string|array $value containing php, mysql, apache value
      */
-    public function getServerValues($val): string|array
+    public function getServerValues($val): string|array|null
     {
         switch ($val) {
             case 'os':
@@ -500,14 +501,13 @@ class Mech
             case 'phprelease':
                 $search = $this->phpInfoArray();
                 $value = $search["General"]['Build Date'];
-                $result = date('d-m-Y', strtotime($value));
-                return $result;
+                return date('d-m-Y', strtotime($value));
                 break;
             case 'mysqlversion':
-                return self::getApacheModules($val = '', $version = false);
+                return $this->getApacheModules('');
                 break;
             case 'mod_rewrite':
-                $search = self::getApacheModules($val = 'mod_rewrite');
+                $search = $this->getApacheModules($val = 'mod_rewrite');
 
                 return $search['value'];
                 break;
@@ -523,9 +523,7 @@ class Mech
                 break;
             case 'allow_urlfopen':
                 $search = $this->parsePHPModules($name = INFO_ALL);
-                $value = $search['Core']['allow_url_fopen'];
-
-                return $value;
+                return $search['Core']['allow_url_fopen'];
         }
     }
 
@@ -546,7 +544,6 @@ class Mech
             $rtn['exists'] = true;
             $trn['value'] = array_search($val, $apachemod);
         }
-
         return $trn;
     }
 
@@ -593,7 +590,6 @@ class Mech
                 }
             }
         }
-
         return $vModules;
     }
 
@@ -606,23 +602,25 @@ class Mech
      */
     public function getIcons($type): string
     {
+        $url = "";
         switch ($type) {
             case 'PHP':
-                return XOOPS_URL . "/modules/xoopssecure/assets/images/phpicon.png";
+                $url = XOOPS_URL . "/modules/xoopssecure/assets/images/phpicon.png";
                 break;
             case 'APACHE':
-                return XOOPS_URL . "/modules/xoopssecure/assets/images/apacheicon.png";
+                $url = XOOPS_URL . "/modules/xoopssecure/assets/images/apacheicon.png";
                 break;
             case 'MYSQL':
-                return XOOPS_URL . "/modules/xoopssecure/assets/images/mysqlicon.png";
+                $url = XOOPS_URL . "/modules/xoopssecure/assets/images/mysqlicon.png";
                 break;
             case 'MARIADB':
-                return XOOPS_URL . "/modules/xoopssecure/assets/images/mariadbicon.png";
+                $url = XOOPS_URL . "/modules/xoopssecure/assets/images/mariadbicon.png";
                 break;
             case 'XOOPS':
-                return XOOPS_URL . "/modules/xoopssecure/assets/images/xoopsicon.png";
+                $url = XOOPS_URL . "/modules/xoopssecure/assets/images/xoopsicon.png";
                 break;
         }
+        return $url;
     }
 
     /**
