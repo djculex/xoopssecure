@@ -467,23 +467,23 @@ $(document).ready(
                 $("#xoopssecure_scanner_processbar_cs").css("width", "0"); //Set processbar at null
 
                 scannerstarttime = new Date().getTime(); // Start the clock
-                if (0 == scannerTypeSelected || 2 == scannerTypeSelected) {
+                if (scannerTypeSelected == 0 || scannerTypeSelected == 2) {
                     if (!indexRunning) {
                         startScan(); //Start scan
                     }
                 }
-                if (0 == scannerTypeSelected || 1 == scannerTypeSelected) {
+                if (scannerTypeSelected == 0 || scannerTypeSelected == 1) {
                     if (!permRunning) {
                         checkpermissions();
                         doBackup();
                     }
                 }
-                if (scannerTypeSelected == 0 || 3 == scannerTypeSelected) {
+                if (scannerTypeSelected == 0 || scannerTypeSelected == 3) {
                     if (!malwareRunning) {
                         startScanMalware();
                     }
                 }
-                if (4 == scannerTypeSelected) {
+                if (scannerTypeSelected == 4) {
                     if (!codingstandardRunning) {
                         startcodingstandard();
                     }
@@ -503,7 +503,7 @@ $(document).ready(
 
         // If coding standard hide check buttons else enable them
         function xoopssecure_SelectChanger(value) {
-            if (4 == value) {
+            if (value == 4) {
                 $("#checkIndexfiles, #checkPermissions").prop("disabled", true);
             } else {
                 $("#checkIndexfiles, #checkPermissions").prop("disabled", false);
@@ -529,7 +529,7 @@ $(document).ready(
                             function (i, item) {
                                 $('#xoopssecureScannerGettingFilesWaitModal').modal('hide');
                                 scannerprocessedfiles = scannercountedfiles + i;
-                                if (0 == scannerTypeSelected || 2 == scannerTypeSelected) {
+                                if (scannerTypeSelected == 0 || scannerTypeSelected == 2) {
                                     singleFileScan(item, scannerprocessedfiles);
                                 }
                             }
@@ -559,14 +559,14 @@ $(document).ready(
                     success: function (data) {
                         $('#xoopssecureScannerGettingFilesWaitModal').modal('hide');
                         scannermalwaretotalfilestoprocess = data.length;
-                        if (1 > scannermalwaretotalfilestoprocess) {
+                        if (scannermalwaretotalfilestoprocess < 1) {
                             $("#xoopssecure_scanner_processbar_mal").css("width", "100%");
                         }
                         $.each(
                             data,
                             function (i, item) {
                                 scannerprocessedMalwarefiles += i;
-                                if (0 == scannerTypeSelected || 3 == scannerTypeSelected) {
+                                if (scannerTypeSelected == 0 || scannerTypeSelected == 3) {
                                     singleFileScanMalware(item, scannerprocessedMalwarefiles);
                                 }
                             }
@@ -609,7 +609,7 @@ $(document).ready(
                             function (i, item) {
 
                                 scannerprocessedCSfiles += i;
-                                if (4 == scannerTypeSelected) {
+                                if (scannerTypeSelected == 4) {
                                     singleFileScanCS(item, scannerprocessedCSfiles);
                                 }
                             }
@@ -740,9 +740,7 @@ $(document).ready(
          *
          */
         function deleteIssueByFN(fn, conf) {
-            if (!conf) {
-                return false;
-            } else {
+            if (conf) {
                 $.ajax(
                     {
                         url: xoopsSecureSysUrl + 'agent.php?type=xoopsSecuredeleteIssueByFN' + '&id=' + fn + '&conf=' +
@@ -755,6 +753,8 @@ $(document).ready(
                         }
                     }
                 );
+            } else {
+                return false;
             }
         }
 
@@ -1010,7 +1010,7 @@ $(document).ready(
                             scannerSingleFilecounter,
                             "#xoopssecure_scanner_processbar_if"
                         );
-                        if (0 == i % 10) {
+                        if (i % 2 == 0) {
                             doTime(
                                 '#xoopssecure_scanner_eta_if',
                                 scannerSingleFilecounter,
@@ -1044,7 +1044,7 @@ $(document).ready(
                             scannerSingleFileMalwarecounter,
                             "#xoopssecure_scanner_processbar_mal"
                         );
-                        if (0 == i % 50) {
+                        if (0 == i % 10) {
                             doTime(
                                 '#xoopssecure_scanner_eta_mal',
                                 scannerSingleFileMalwarecounter,
@@ -1112,13 +1112,13 @@ $(document).ready(
 
                     },
                     complete: function (data) {
-                        if (10 > scanFileStackNum) {
+                        if (scanFileStackNum < 10) {
                             $('#xoopssecureScannerJsonSizeContainer').addClass("alert alert-primary");
-                        } else if (10 < scanFileStackNum && scanFileStackNum <= 50) {
+                        } else if (scanFileStackNum > 10 && scanFileStackNum <= 50) {
                             $('#xoopssecureScannerJsonSizeContainer').addClass("alert alert-secondary");
-                        } else if (50 < scanFileStackNum && scanFileStackNum <= 200) {
+                        } else if (scanFileStackNum > 50 && scanFileStackNum <= 200) {
                             $('#xoopssecureScannerJsonSizeContainer').addClass("alert alert-warning");
-                        } else if (200 < scanFileStackNum) {
+                        } else if (scanFileStackNum > 200) {
                             $('#xoopssecureScannerJsonSizeContainer').addClass("alert alert-danger");
                         }
                         $('#xoopssecureScannerJsonSizeNumber').html(scanFileStackNum);
@@ -1144,7 +1144,7 @@ $(document).ready(
                         scanGetLatestScanTime = data;
                     },
                     complete: function (data) {
-                        if (0 < scanGetLatestScanTime) {
+                        if (scanGetLatestScanTime > 0) {
                             $('#xoopssecureScannerFirstTime').modal('hide');
                         } else {
                             $('#xoopssecureScannerFirstTime').modal('show');
@@ -1162,13 +1162,13 @@ $(document).ready(
             var cs = 0;
             $(document).ajaxStop(
                 function () {
-                    if (true == SendStatCall) {
+                    if (SendStatCall == true) {
                         setTimeout(
                             function () {
 
                                 // We wait only permission scan
-                                if (1 == scannerTypeSelected) {
-                                    if (false == permRunning) {
+                                if (scannerTypeSelected == 1) {
+                                    if (permRunning == false) {
                                         ps = 3;
                                         is = 0;
                                         ms = 0;
@@ -1176,16 +1176,16 @@ $(document).ready(
                                 }
 
                                 //We wait for indexscan to finish
-                                if (2 == scannerTypeSelected) {
-                                    if (false == indexRunning) {
+                                if (scannerTypeSelected == 2) {
+                                    if (indexRunning == false) {
                                         ps = 0;
                                         is = scannertotalfilestoprocess;
                                         ms = 0;
                                     }
                                 }
                                 // We wait for Malwarescan to finish
-                                if (3 == scannerTypeSelected) {
-                                    if (false == malwareRunning) {
+                                if (scannerTypeSelected == 3) {
+                                    if (malwareRunning == false) {
                                         ps = 0;
                                         is = 0;
                                         ms = scannermalwaretotalfilestoprocess;
@@ -1193,8 +1193,8 @@ $(document).ready(
                                 }
 
                                 // We wait for CSscan to finish
-                                if (4 == scannerTypeSelected) {
-                                    if (false == codingstandardRunning) {
+                                if (scannerTypeSelected == 4) {
+                                    if (codingstandardRunning == false) {
                                         ps = 0;
                                         is = 0;
                                         ms = 0;
@@ -1203,8 +1203,8 @@ $(document).ready(
                                 }
 
                                 // We wait all. Last scan is malware
-                                if (0 == scannerTypeSelected) {
-                                    if (false === malwareRunning && false === indexRunning && false === permRunning) {
+                                if (scannerTypeSelected == 0) {
+                                    if (malwareRunning === false && indexRunning === false && permRunning === false) {
                                         ps = 3;
                                         is = scannertotalfilestoprocess;
                                         ms = scannermalwaretotalfilestoprocess;
