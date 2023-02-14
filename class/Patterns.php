@@ -314,19 +314,18 @@ class Patterns
     }
 
     /**
-     * Merget arrays
+     * Merger arrays
      *
      * @return array
      */
     public function arrayMerge(): array
     {
         $s = [];
-        $s = array_merge(
+        return array_merge(
             $this->BadFileNames,
             $this->BadPatterns,
             explode('|', $this->BadFileScanners),
             explode('|', $this->BadStrings)
         );
-        return $s;
     }
 }
