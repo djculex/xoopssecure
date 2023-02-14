@@ -1,6 +1,6 @@
 1.3.4 RC3 [2023/02/02 18:10:00]
 ==============================================================
-- FIX : Multible fixes incl. (undefined constants, typoes, undefined class etc) thanks Mamba
+- FIX : Multible fixes incl. (undefined constants, types, undefined class etc.) thanks Mamba
 - FIX : Min version php 8.0 & missing language constant (thanks GregMage)
 
 1.3.3 RC3 [2023/01/21 14:30:00]
@@ -12,8 +12,8 @@
 
 1.3.2 RC2 [2023/01/17 17:23:00]
 ==============================================================
-- FIX : Backup paths as not all subfolders was included
-- ADD : a function to call automatic backup if loged in as Admin
+- FIX : Backup paths as not all sub folders was included
+- ADD : a function to call automatic backup if logged in as Admin
 - Fix : Should we run cron and backup always was true
 - Fix : timestamp for last cron scan was a string while int was expected.
 - FIX : Folder for backup had wrong permissions.
@@ -30,7 +30,7 @@
 - ADD : Special file for Coding standard checks
 - ADD : Bootstrap and bootbox functions and styles
 - ADD : Logging for scan issues and scans dates
-- ADD : Using Github api for repository updates
+- ADD : Using GitHub api for repository updates
 - ADD : Benchmarking class for later use
 - Separating language files by class and added some new
 - Including recursively to allow keeping class files in folders
@@ -55,7 +55,7 @@
 1.0.0 [2015/03/25 00:00:00]
 ==============================================================
  - Original release xoopsSecure (Culex)
- - Rebirth of the indexscan idea but started over
+ - Rebirth of the index scan idea but started over
  
  Adoption and namechange from IndexFile
  =============================================================
