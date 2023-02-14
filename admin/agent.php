@@ -44,7 +44,7 @@ $autobackup = (int)$helper->getConfig('XCISAUTOBACKUP');
 switch ($type) {
     // Get All files to json
     case 'jsonfiledir':
-        $af = $fh->listdirs($fh->startPath);
+        $af = $fh->listdirs(array($fh->startPath));
         header("Content-Type: application/json; charset=UTF-8");
         echo json_encode($af, JSON_PRETTY_PRINT);
         break;
