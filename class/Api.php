@@ -95,7 +95,7 @@ class Api
         return $info;
     }
 
-    /** Strip a string for letters etc keeping only numbers and dots
+    /** Strip a string for letters etc. keeping only numbers and dots
      *
      * @param string $string text to be checked
      * @return string $string with replaced values
