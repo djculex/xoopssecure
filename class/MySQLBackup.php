@@ -60,15 +60,15 @@ class MySQLBackup
      */
     public string $extension = 'sql';
     /**
-     * Is file is delete at the end ?
+     * Is file deleted at the end ?
      *
-     * @var boolean
+     * @var bool
      */
     public bool $deleteFile = false;
     /**
      * Is file is downloaded automatically ?
      *
-     * @var boolean
+     * @var bool
      */
     public bool $downloadFile = false;
     /**
@@ -288,12 +288,12 @@ class MySQLBackup
     /**
      * Dump selected tables
      *
-     * @param array $tables Tables to backup
+     * @param array $tables Tables to back up
      * @return object MySQLBackup
      */
     public function addTables(array $tables): object
     {
-        if (is_array($tables) && count($tables) > 0) {
+        if (count($tables) > 0) {
             foreach ($tables as $t) {
                 $this->addTable($t);
             }
