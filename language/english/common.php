@@ -67,7 +67,7 @@ define('CO_' . $moduleDirNameUpper . '_OVERVIEW', 'Overview');
 
 //\define('CO_' . $moduleDirNameUpper . '_HELP_DIR', __DIR__);
 
-//help multi-page
+//help multipage
 define('CO_' . $moduleDirNameUpper . '_DISCLAIMER', 'Disclaimer');
 define('CO_' . $moduleDirNameUpper . '_LICENSE', 'License');
 define('CO_' . $moduleDirNameUpper . '_SUPPORT', 'Support');
