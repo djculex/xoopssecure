@@ -30,9 +30,9 @@ use function xoops_loadLanguage;
 class FileH extends XoopsPersistableObjectHandler
 {
     /**
-     * @var int
+     * @var int|string
      */
-    public int $timestamp;
+    public int|string $timestamp;
     /**
      * @var array
      */
