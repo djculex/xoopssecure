@@ -118,7 +118,7 @@ class SpamScanner
     }
 
     /**
-     * Get files without the folders and files not not scan
+     * Get files without the folders scan
      *
      * @param string $dir
      * @param string $pattern
@@ -208,7 +208,7 @@ class SpamScanner
     }
 
     /**
-     * Get files without the folders and files not not scan for coding standard
+     * Get files without the folders for coding standard
      *
      * @param string $dir
      * @param string $pattern
