@@ -16,7 +16,7 @@
                     <div class="meta-wrap">
                         <p class="meta">
                             <span>
-                        <h6><small><{$arr.humantime}></small></h6></span>
+                        <h6><small><{$arr.humantime}></small></h6>
                         <span>
                             <h2><strong><{$arr.title}></strong></h2>
                         </span>
