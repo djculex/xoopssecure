@@ -15,13 +15,6 @@ declare(strict_types=1);
 namespace XoopsModules\Xoopssecure;
 
 use XoopsModules\Xoopssecure;
-use XoopsModules\Xoopssecure\Constants;
-use XoopsModules\Xoopssecure\FileH;
-use XoopsModules\Xoopssecure\SpamScanner;
-use XoopsModules\Xoopssecure\Db;
-use XoopsModules\Xoopssecure\GeSHi;
-use Xmf\Request;
-use function mb_strtoupper;
 use function xoops_loadLanguage;
 
 require_once dirname(__DIR__, 3) . '/mainfile.php';
@@ -31,11 +24,9 @@ require_once XOOPS_ROOT_PATH . '/class/template.php';
 //@set_time_limit(3000);
 //ignore_user_abort(true);
 
-//$helper = Helper::getInstance();
+$helper = Helper::getInstance();
 require __DIR__ . '/header.php';
 $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
-$moduleDirNameUpper = mb_strtoupper($moduleDirName);
-$helper = Helper::getInstance();
 xoops_loadLanguage('scanner', $moduleDirName);
 xoops_loadLanguage('log', $moduleDirName);
 xoops_loadLanguage('download', $moduleDirName);
@@ -45,16 +36,15 @@ $dir = $_GET['Dir'] ?? '';
 $val = $_GET['val'] ?? '';
 $t = time();
 
-$fh = new FileH();
-$dat = new Db();
+$fh = new Xoopssecure\FileH();
+$dat = new Xoopssecure\Db();
 $spam = new Xoopssecure\SpamScanner();
 $autobackup = (int)$helper->getConfig('XCISAUTOBACKUP');
 
 switch ($type) {
     // Get All files to json
     case 'jsonfiledir':
-        $af = $fh->listdirs(array($fh->startPath));
-        $fh->parseFolders(array_unique($af));
+        $af = $fh->listdirs($fh->startPath);
         header("Content-Type: application/json; charset=UTF-8");
         echo json_encode($af, JSON_PRETTY_PRINT);
         break;
@@ -94,7 +84,7 @@ switch ($type) {
     // Setting scan begin time
     case 'initStats':
         // At start of script
-        $f = $dat->setScanDateStart(time());
+        $f = $spam->timestamp;
         break;
 
     //Delete issues by filename
@@ -102,7 +92,7 @@ switch ($type) {
         $fn = $_GET['id'];
         $confirm = ($_GET['conf'] === true) ? true : false;
         if ($confirm === true) {
-            $dat->deleteIssueByFN($fn, $confirm);
+            $dat->deleteIssueByFN($fn, true);
         } else {
             echo json_encode("NO", JSON_PRETTY_PRINT);
         }
@@ -121,7 +111,7 @@ switch ($type) {
 
         if ($confirm === true) {
             $dat->getConfigDateOmitfile($fn);
-            $dat->deleteIssueByFN($fn, $confirm);
+            $dat->deleteIssueByFN($fn, true);
             echo json_encode("YES", JSON_PRETTY_PRINT);
         } else {
             echo json_encode("NO", JSON_PRETTY_PRINT);
@@ -133,9 +123,9 @@ switch ($type) {
         $fn = $_GET['id'];
         $confirm = ($_GET['conf'] === true) ? true : false;
 
-        if ($confirm == true) {
-            $dat->getConfigDateOmitdir($fn, $confirm);
-            $dat->deleteIssueByDirname($fn, $confirm); // Delete all containing dir name
+        if ($confirm) {
+            $dat->getConfigDateOmitdir($fn);
+            $dat->deleteIssueByDirname($fn, true); // Delete all containing dir name
             echo json_encode("YES", JSON_PRETTY_PRINT);
         } else {
             echo json_encode("NO", JSON_PRETTY_PRINT);
@@ -164,13 +154,13 @@ switch ($type) {
         if ($ln != "" || $ln != 0) {
             $g->highlight_lines_extra((int)$ln, 'background-color:yellow'); // if line number is real make highligh yellow of this line
         }
-        echo "<style type='text/css'>"; // Echo style start
+        echo "<style>"; // Echo style start
         echo $g->get_stylesheet(); // echo stylesheet for file ext
         echo "</style>"; // close style
         echo $g->parse_code(); // print the styles, numbered and highlighted code
         break;
 
-    //Check codingstandards
+    //Check coding-standards
     case 'singleCSScan':
         $p = $_GET['filePath'];
         $spam->timestamp = $_GET['scanstart'];
@@ -222,12 +212,12 @@ switch ($type) {
         $fh->xoopsFilesPermissions($checkPermissions);
         break;
 
-    // Set div with latest log result for short info
+    // Set div with the latest log result for short info
     case 'GetLatestInfoforScanpage':
         $dat->GetLatestLogCandT();
         break;
 
-    //After scan set stats to be used befor next scan.
+    //After scan set stats to be used before next scan.
     // Also set counts of issues for stats.
     case 'DoStatsEnd':
         $t = array(
@@ -296,7 +286,7 @@ switch ($type) {
     case 'deleteZip':
         $name = $_GET['fn'];
         $link = XOOPS_ROOT_PATH . DIRECTORY_SEPARATOR . "uploads" . DIRECTORY_SEPARATOR . "backup" . DIRECTORY_SEPARATOR . $name;
-        if ($xoopsUser->isAdmin($xoopsModule->mid())) {
+        if ($helper->isUserAdmin()) {
             unlink($link);
         }
         $fh->autoDelBackupsFiles();
