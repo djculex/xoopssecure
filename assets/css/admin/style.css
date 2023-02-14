@@ -73,12 +73,6 @@ legend {
     border-color: black;
     border-style: solid;
     border-width: 1px;
-    border-right-style: solid;
-    border-right-color: black;
-    border-right-width: 1px;
-    border-left-color: black;
-    border-left-style: solid;
-    border-left-width: 1px;
 }
 
 .xoopssecure_last_log_div {
@@ -594,7 +588,6 @@ legend {
 
 #xo-toolbar > li > a {
     display: block;
-    padding: 0;
     text-align: center;
     line-height: 32px !important;
     padding: 10px 8px;
