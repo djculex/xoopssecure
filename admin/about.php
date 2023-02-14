@@ -1,5 +1,7 @@
 <?php
+
 declare(strict_types=1);
+
 /**
  * Xoops XoopsSecure module for xoops
  *
@@ -11,8 +13,13 @@ declare(strict_types=1);
  * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
  */
 
+use Xmf\Module\Admin;
+use XoopsModules\Xoopssecure\Helper;
+
 require __DIR__ . '/header.php';
 $templateMain = 'xoopssecure_admin_about.tpl';
+$helper = Helper::getInstance();
+$adminObject = Admin::getInstance();
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
