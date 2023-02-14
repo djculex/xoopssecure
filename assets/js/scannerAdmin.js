@@ -19,7 +19,6 @@
  */
 $(document).ready(
     function () {
-
         var scannerstarttime = 0;
         var scannerendtime = 0;
         var scannerpertotal = 0;
@@ -581,7 +580,8 @@ $(document).ready(
             malwareRunning = false;
             scannerendtime = new Date().getTime(); // Start the clock
         }
-
+        
+        // start scan for coding standards
         function startcodingstandard() {
             //$('#xoopssecureScannerGettingFilesWaitModal').modal('show');
             timeBefore = Date.now();
@@ -607,7 +607,6 @@ $(document).ready(
                         $.each(
                             data,
                             function (i, item) {
-
                                 scannerprocessedCSfiles += i;
                                 if (scannerTypeSelected == 4) {
                                     singleFileScanCS(item, scannerprocessedCSfiles);
@@ -654,7 +653,8 @@ $(document).ready(
             var SecondsLeft = Math.round(TimeForStack / 1000);
             $(selector).text("Eta " + formatTime(SecondsLeft));
         }
-
+        
+        //format seconds to human time
         function formatTime(seconds) {
             const h = Math.floor(seconds / 3600);
             const m = Math.floor((seconds % 3600) / 60);
@@ -666,6 +666,7 @@ $(document).ready(
             ].filter(Boolean).join(':');
         }
 
+        //get file source code to html data
         function loadSourcecode(filename, linenumber, selector) {
             var v = 0;
             $.ajax(
@@ -685,7 +686,8 @@ $(document).ready(
                 }
             );
         }
-
+        
+        // Scan files for permissions
         function checkpermissions() {
             var psBefore = 0;
             permRunning = true;
@@ -711,6 +713,7 @@ $(document).ready(
 
         }
 
+        // Get scan dates for dropdown
         function populateScanDates() {
             $.ajax(
                 {
@@ -992,6 +995,7 @@ $(document).ready(
             }
         }
 
+        // Scan file 
         function singleFileScan(fn, i) {
             $.ajax(
                 {
@@ -1022,7 +1026,8 @@ $(document).ready(
                 }
             );
         }
-
+        
+        // Scan file for malware
         function singleFileScanMalware(fn, i) {
             $('#xoopssecureScannerGettingFilesWaitModal').modal('hide');
             $.ajax(
@@ -1044,7 +1049,7 @@ $(document).ready(
                             scannerSingleFileMalwarecounter,
                             "#xoopssecure_scanner_processbar_mal"
                         );
-                        if (0 == i % 10) {
+                        if (i % 10 == 0) {
                             doTime(
                                 '#xoopssecure_scanner_eta_mal',
                                 scannerSingleFileMalwarecounter,
@@ -1058,6 +1063,7 @@ $(document).ready(
             );
         }
 
+        // Scan single file for CS
         function singleFileScanCS(fn, i) {
             $('#xoopssecureScannerGettingFilesWaitModal').modal('hide');
             $.ajax(
@@ -1084,6 +1090,9 @@ $(document).ready(
                                 scannerCStotalfilestoprocess,
                                 timeBefore
                             );
+                        }
+                        if (i === scannerSingleFileCScounter) {
+                            $("#xoopssecure_scanner_eta_cs").html('<i class="fa fa-check" aria-hidden="true"></i>');
                         }
                         doStats();
                     },
@@ -1232,6 +1241,7 @@ $(document).ready(
 
         }
 
+        // Send stats
         function sendStats(starttime, endtime, type, ps, is, ms, cs) {
             SendStatCall = false;
             $.ajax(
@@ -1249,6 +1259,7 @@ $(document).ready(
             return false;
         }
 
+        // Get latest infor for inline html for scan page
         function updateLastInfor() {
             $.ajax(
                 {
@@ -1264,6 +1275,7 @@ $(document).ready(
             return false;
         }
 
+        // Do the back up
         function doBackup() {
             $.ajax(
                 {
@@ -1273,6 +1285,7 @@ $(document).ready(
             return false;
         }
 
+        // Do manual backup
         function doManualBackup() {
             $.ajax(
                 {
@@ -1287,6 +1300,7 @@ $(document).ready(
             return false;
         }
 
+        // set percentage and counter for processbar
         function upDateProcessScanner(scannertotalfilestoprocess, scannerprocessedfiles, name) {
             var percent = (scannerprocessedfiles / scannertotalfilestoprocess) * 100;
             $(name).css("width", Math.round(percent) + "%"); //update processbar width
@@ -1294,6 +1308,7 @@ $(document).ready(
             $(name).html(scannerprocessedfiles + "/" + scannertotalfilestoprocess + " (" + Math.round(percent) + "%)");
         }
 
+        // Is item checked or not
         function isChecked(val) {
             if ($(val).is(':checked')) {
                 return true;
@@ -1302,6 +1317,7 @@ $(document).ready(
             }
         }
 
+        // dummy test
         function test(i) {
             $.getJSON(xoopsSecureSysUrl + 'agent.php?type=test?id=' + i, (data) => {
             });
