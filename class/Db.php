@@ -846,23 +846,25 @@ class Db extends XoopsPersistableObjectHandler
      * is it time for automatic scan ?
      *
      * @param string $config the type to look for
-     * @return string
+     * @return string $ret initiall set to ""
      */
     public function setTimedEvent($config): string
     {
+        $ret = "";
         switch ($config) {
             case "cronscan":
-                return strtotime(
+                $ret = strtotime(
                         " + " . $this->helper->getConfig('XCISCRONINTERVAL') . " HOURS", $this->getLatestLog('cronscan')
                     ) < time();
                 break;
 
             case "backup":
-                return strtotime(
+                $ret = strtotime(
                         " + " . $this->helper->getConfig('XCISAUTOBACKUPINTERVAL') . " DAYS", $this->getLatestLog('backup')
                     ) < time();
                 break;
         }
+        return $ret;
     }
 
     /**
