@@ -188,8 +188,7 @@ function xoopssecure_Filter($url, $type = '')
     $url .= htmlentities($url, ENT_COMPAT, 'utf-8');
     $url .= preg_replace('`&([a-z])(acute|uml|circ|grave|ring|cedil|slash|tilde|caron|lig);`i', "\1", $url);
     $url .= preg_replace([$regular_expression, '`[-]+`'], '-', $url);
-    $url = ('' == $url) ? $type : strtolower(trim($url, '-'));
-    return $url;
+    return ('' == $url) ? $type : strtolower(trim($url, '-'));
 }
 
 /**
@@ -239,7 +238,7 @@ function xoopssecure_GetClassSubFolders(string $path): array
  * @return string $returnText
  * @author Michael Albertsen (culex@culex.dk)
  */
-function xoopssecure_TranslateString($text): string
+function xoopssecure_TranslateString(string $text): string
 {
     $def = get_defined_constants();
     $returnText = $def[$text];
@@ -305,26 +304,28 @@ function xoopssecure_backupFilesMin(): array
  *
  * Translate value to corresponding string
  *
- * @param value is the scantype fron db log
- * @return string
+ * @param string $val is the scantype fron db log
+ * @return string $ret;
  */
 function xoopssecure_scantypeToString($val): string
 {
+    $ret = "";
     switch ($val) {
         case '0':
-            return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_FULL;
+            $ret = _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_FULL;
             break;
         case '1':
-            return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_PERM;
+            $ret = _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_PERM;
             break;
         case '2':
-            return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_INDX;
+            $ret = _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_INDX;
             break;
         case '3':
-            return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_MALLW;
+            $ret = _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_MALLW;
             break;
         case '4':
-            return _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_CODES;
+            $ret = _SCAN_XOOPSSECURE_MALLWARE_SHORTTITLE_CODES;
             break;
     }
+    return $ret;
 }
