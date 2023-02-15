@@ -184,7 +184,7 @@ class Mech
             $i++;
             $resp['phpini'][$i]['name'] = "memory_limit";
             $resp['phpini'][$i]['current'] = $memorylimit;
-            $resp['phpini'][$i]['recommended'] = "< " . $this->$this->convertToBytes('40M');
+            $resp['phpini'][$i]['recommended'] = "< " . $this->convertToBytes('40M');
             $resp['phpini'][$i]['description'] = _MECH_XOOPSSECURE_MAXMEMORYLIMIT;
             $resp['phpini'][$i]['ref'] = "https://www.developer.com/design/top-php-security-tips/";
             $resp['phpini'][$i]['errortype'] = $this->errorButton("notice", $resp['phpini'][$i]['ref']);
