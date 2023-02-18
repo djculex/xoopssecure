@@ -58,7 +58,7 @@ class Db extends XoopsPersistableObjectHandler
      * saving Coding Standard array to Database
      *
      * @param array $array response from phpcheckstyle
-     * @param timestamp $timestamp what time is it
+     * @param int|string $timestamp what time is it
      */
     public function parseCsArray($array, $timestamp)
     {
@@ -103,7 +103,12 @@ class Db extends XoopsPersistableObjectHandler
      */
     public function issueExists($desc, $linenumber): bool
     {
-        $sql = "Select * From " . $this->db->prefix('xoopssecure_issues') . " where `desc` = '" . addslashes($desc) . "' AND `linenumber` = '" . addslashes($linenumber) . "'";
+        $sql = "Select * From " .
+            $this->db->prefix('xoopssecure_issues') .
+            " where `desc` = '" . addslashes($desc) .
+            "' AND `linenumber` = '" .
+            addslashes($linenumber) .
+            "'";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         if ($numrows == 0 || $numrows == '') {
@@ -139,13 +144,19 @@ class Db extends XoopsPersistableObjectHandler
         $rating = 0,
         $linenumber = 0,
         $op = 'save'
-    ): bool
-    {
+    ): bool {
         if ($op == 'save') {
-            $sql = 'INSERT INTO ' . $this->db->prefix('xoopssecure_issues')
-                . ' (`id`, `time`, `scantype`, `value`, `title`, `filename`, `dirname`, `linenumber`, `desc`, `rating`) VALUES '
-                . '(null, "' . $scanTime . '", "' . addslashes($scanType) . '", "' . addslashes($scanValue)
-                . '", "' . addslashes($title) . '", "' . addslashes($filename) . '", "' . addslashes($dirname) . '", "' . addslashes($linenumber) . '", "' . addslashes($scanDesc)
+            $sql = 'INSERT INTO '
+                . $this->db->prefix('xoopssecure_issues')
+                . ' (`id`, `time`, `scantype`, `value`, `title`, `filename`, `dirname`, '
+                . '`linenumber`, `desc`, `rating`) VALUES '
+                . '(null, "' . $scanTime . '", "' . addslashes($scanType) . '", "'
+                . addslashes($scanValue)
+                . '", "' . addslashes($title)
+                . '", "' . addslashes($filename)
+                . '", "' . addslashes($dirname) . '", "'
+                . addslashes($linenumber) . '", "'
+                . addslashes($scanDesc)
                 . '", "' . addslashes($rating)
                 . '")';
         }
@@ -166,7 +177,11 @@ class Db extends XoopsPersistableObjectHandler
         $this->SetGlobal();
         $arr = [];
         $sql = "Select * From "
-            . $this->db->prefix('xoopssecure_issues') . " where `time` = '" . addslashes($start) . "' AND scantype = '1' GROUP BY `dirname` ORDER BY `dirname` ASC";
+            . $this->db->prefix('xoopssecure_issues')
+            . " where `time` = '"
+            . addslashes($start)
+            . "' AND scantype = '1' GROUP BY `dirname` "
+            . "ORDER BY `dirname` ASC";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         if ($numrows >= 1) {
@@ -206,7 +221,10 @@ class Db extends XoopsPersistableObjectHandler
         //$this->SetGlobal();
         $arr = [];
         $sql = "Select * From "
-            . $this->db->prefix('xoopssecure_issues') . " where `time` = '" . addslashes($start) . "' AND scantype = 'x' GROUP BY `dirname` ORDER BY `dirname` ASC";
+            . $this->db->prefix('xoopssecure_issues')
+            . " where `time` = '"
+            . addslashes($start)
+            . "' AND scantype = 'x' GROUP BY `dirname` ORDER BY `dirname` ASC";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         if ($numrows >= 1) {
@@ -233,7 +251,10 @@ class Db extends XoopsPersistableObjectHandler
         $this->SetGlobal();
         $arr = [];
         $sql = "Select * From "
-            . $this->db->prefix('xoopssecure_issues') . " where `time` = '" . addslashes($start) . "' AND scantype = '0' GROUP BY `filename` ORDER BY `filename` ASC";
+            . $this->db->prefix('xoopssecure_issues')
+            . " where `time` = '"
+            . addslashes($start)
+            . "' AND scantype = '0' GROUP BY `filename` ORDER BY `filename` ASC";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         if ($numrows >= 1) {
@@ -262,7 +283,10 @@ class Db extends XoopsPersistableObjectHandler
         $val = '1';
         $this->SetGlobal();
         $sql = "Select * From "
-            . $this->db->prefix('xoopssecure_issues') . " where `time` = '" . addslashes($start) . "' AND `scantype` = '2' GROUP BY `filename` ORDER BY `filename` ASC";
+            . $this->db->prefix('xoopssecure_issues')
+            . " where `time` = '"
+            . addslashes($start)
+            . "' AND `scantype` = '2' GROUP BY `filename` ORDER BY `filename` ASC";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         if ($numrows >= 1) {
@@ -277,7 +301,8 @@ class Db extends XoopsPersistableObjectHandler
                 $arr[$i]['dirname'] = $row['dirname'];
                 $arr[$i]['shortname'] = basename($row['filename']);
                 $arr[$i]['filepermissions'] = $file->getFilePermission($row['filename']);
-                $arr[$i]['lastmod'] = (is_readable($row['filename'])) ? date("d-m-Y H:i:s", filemtime($row['filename'])) : 0;
+                $arr[$i]['lastmod'] = (is_readable($row['filename'])) ?
+                    date("d-m-Y H:i:s", filemtime($row['filename'])) : 0;
                 $arr[$i]['issues'] = $this->getIssuesByFn($row['filename'], $row['time'], $val);
                 $i++;
             }
@@ -296,8 +321,14 @@ class Db extends XoopsPersistableObjectHandler
     public function getIssuesByFn($filename, $date, $val): array
     {
         $arr = [];
-        $sql = "Select * From " . $this->db->prefix('xoopssecure_issues') . " where `time` = '" . addslashes($date) .
-            "' AND `filename` = '" . addslashes($filename) . "' AND value = '" . $val . "' ORDER BY CAST(linenumber AS INT) ASC";
+        $sql = "Select * From "
+            . $this->db->prefix('xoopssecure_issues')
+            . " where `time` = '" . addslashes($date)
+            . "' AND `filename` = '"
+            . addslashes($filename)
+            . "' AND value = '"
+            . $val
+            . "' ORDER BY CAST(linenumber AS INT) ASC";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         if ($numrows >= 1) {
@@ -330,7 +361,10 @@ class Db extends XoopsPersistableObjectHandler
         $val = '0';
         $this->SetGlobal();
         $sql = "Select * From "
-            . $this->db->prefix('xoopssecure_issues') . " where `time` = '" . addslashes($start) . "' AND `scantype` = '4' GROUP BY `filename` ORDER BY `filename` ASC";
+            . $this->db->prefix('xoopssecure_issues')
+            . " where `time` = '"
+            . addslashes($start)
+            . "' AND `scantype` = '4' GROUP BY `filename` ORDER BY `filename` ASC";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         if ($numrows >= 1) {
@@ -362,7 +396,11 @@ class Db extends XoopsPersistableObjectHandler
     public function getConfigDateOmitfile($value): bool
     {
         $mid = $this->midByName(_MI_XOOPSSECURE_NAME);
-        $sql = "SELECT `conf_value` FROM " . $GLOBALS['xoopsDB']->prefix('config') . " WHERE `conf_modid` = '" . $mid . "' AND conf_title = '\_MI_XOOPSSECURE_SCISSKIPFILES'";
+        $sql = "SELECT `conf_value` FROM "
+            . $GLOBALS['xoopsDB']->prefix('config')
+            . " WHERE `conf_modid` = '"
+            . $mid
+            . "' AND conf_title = '\_MI_XOOPSSECURE_SCISSKIPFILES'";
         $result = $this->db->queryF($sql);
         $val = [];
         $value = str_replace(XOOPS_ROOT_PATH . "/", "", str_replace("\\", "", trim($value)));
@@ -375,7 +413,13 @@ class Db extends XoopsPersistableObjectHandler
         }
         asort($val);
         $valstr = implode("\n", $val);
-        $sql = "UPDATE " . $GLOBALS['xoopsDB']->prefix('config') . " SET `conf_value` = '" . addslashes($valstr) . "' WHERE `conf_modid` = '" . addslashes($mid) . "' AND conf_title = '\_MI_XOOPSSECURE_SCISSKIPFILES'";
+        $sql = "UPDATE "
+            . $GLOBALS['xoopsDB']->prefix('config')
+            . " SET `conf_value` = '"
+            . addslashes($valstr)
+            . "' WHERE `conf_modid` = '"
+            . addslashes($mid)
+            . "' AND conf_title = '\_MI_XOOPSSECURE_SCISSKIPFILES'";
         if (!$result = $this->db->queryF($sql)) {
             return true;
         } else {
@@ -392,7 +436,11 @@ class Db extends XoopsPersistableObjectHandler
     public function midByName($name): string
     {
         $n = '';
-        $query = 'SELECT mid FROM ' . $GLOBALS['xoopsDB']->prefix('modules') . " WHERE name = '" . addslashes($name) . "' ORDER BY mid ASC ";
+        $query = 'SELECT mid FROM '
+            . $GLOBALS['xoopsDB']->prefix('modules')
+            . " WHERE name = '"
+            . addslashes($name)
+            . "' ORDER BY mid ASC ";
         $result = $GLOBALS['xoopsDB']->queryF($query);
         $counter = $GLOBALS['xoopsDB']->getRowsNum($result);
         if ($counter >= 1) {
@@ -412,7 +460,11 @@ class Db extends XoopsPersistableObjectHandler
     public function getConfigDateOmitdir($value): bool
     {
         $mid = $this->midByName(_MI_XOOPSSECURE_NAME);
-        $sql = "SELECT `conf_value` FROM " . $GLOBALS['xoopsDB']->prefix('config') . " WHERE `conf_modid` = '" . $mid . "' AND conf_title = '\_MI_XOOPSSECURE_SCISSKIPFOLDERS'";
+        $sql = "SELECT `conf_value` FROM "
+            . $GLOBALS['xoopsDB']->prefix('config')
+            . " WHERE `conf_modid` = '"
+            . $mid
+            . "' AND conf_title = '\_MI_XOOPSSECURE_SCISSKIPFOLDERS'";
         $result = $this->db->queryF($sql);
         $val = [];
         while ($row = $this->db->fetchArray($result)) {
@@ -424,7 +476,13 @@ class Db extends XoopsPersistableObjectHandler
         }
         asort($val);
         $valstr = implode("\n", $val);
-        $sql = "UPDATE " . $GLOBALS['xoopsDB']->prefix('config') . " SET `conf_value` = '" . addslashes($valstr) . "' WHERE `conf_modid` = '" . addslashes($mid) . "' AND conf_title = '\_MI_XOOPSSECURE_SCISSKIPFOLDERS'";
+        $sql = "UPDATE "
+            . $GLOBALS['xoopsDB']->prefix('config')
+            . " SET `conf_value` = '"
+            . addslashes($valstr)
+            . "' WHERE `conf_modid` = '"
+            . addslashes($mid)
+            . "' AND conf_title = '\_MI_XOOPSSECURE_SCISSKIPFOLDERS'";
         if (!$result = $this->db->queryF($sql)) {
             return true;
         } else {
@@ -442,7 +500,11 @@ class Db extends XoopsPersistableObjectHandler
     public function deleteIssueByFN(string $fn, bool $conf)
     {
         if ($conf) {
-            $sql = "DELETE FROM " . $this->db->prefix('xoopssecure_issues') . " WHERE `filename` = '" . addslashes($fn) . "'";
+            $sql = "DELETE FROM "
+                . $this->db->prefix('xoopssecure_issues')
+                . " WHERE `filename` = '"
+                . addslashes($fn)
+                . "'";
             $result = $this->db->queryF($sql);
             echo json_encode("OK", JSON_PRETTY_PRINT);
         }
@@ -458,7 +520,11 @@ class Db extends XoopsPersistableObjectHandler
     public function deleteIssueByDirname($dn, $conf): void
     {
         if ($conf) {
-            $sql = "DELETE FROM " . $this->db->prefix('xoopssecure_issues') . " WHERE `dirname` = '" . addslashes($dn) . "'";
+            $sql = "DELETE FROM "
+                . $this->db->prefix('xoopssecure_issues')
+                . " WHERE `dirname` = '"
+                . addslashes($dn)
+                . "'";
             $result = $this->db->queryF($sql);
             echo json_encode("OK", JSON_PRETTY_PRINT);
         }
@@ -564,7 +630,9 @@ class Db extends XoopsPersistableObjectHandler
     public function getLogDropdownDates(): array
     {
         $values = [];
-        $sql = "Select DISTINCT `scanstart`, `type` From " . $this->db->prefix('xoopssecure_stats') . " ORDER BY `scanstart` ASC";
+        $sql = "Select DISTINCT `scanstart`, `type` From "
+            . $this->db->prefix('xoopssecure_stats')
+            . " ORDER BY `scanstart` ASC";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         while ($row = $this->db->fetchArray($result)) {
@@ -585,7 +653,12 @@ class Db extends XoopsPersistableObjectHandler
      */
     public function getIssueCount($time, $issue): string
     {
-        $sql = "Select count(*) as count From " . $this->db->prefix('xoopssecure_issues') . " where `time` = '" . addslashes($time) . "' AND `scantype` = '" . $issue . "'";
+        $sql = "Select count(*) as count From "
+            . $this->db->prefix('xoopssecure_issues')
+            . " where `time` = '"
+            . addslashes($time)
+            . "' AND `scantype` = '"
+            . $issue . "'";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         while ($row = $this->db->fetchArray($result)) {
@@ -614,7 +687,15 @@ class Db extends XoopsPersistableObjectHandler
         }
 
         if ($op == 'update') {
-            $sql = "UPDATE " . $this->db->prefix('xoopssecure_files') . " SET lastscan = '" . addslashes($scantime) . "', modified = '" . addslashes($mod) . "' WHERE path = '" . addslashes($path) . "'";
+            $sql = "UPDATE "
+                . $this->db->prefix('xoopssecure_files')
+                . " SET lastscan = '"
+                . addslashes($scantime)
+                . "', modified = '"
+                . addslashes($mod)
+                . "' WHERE path = '"
+                . addslashes($path)
+                . "'";
         }
         if (!$result = $this->db->queryF($sql)) {
             return false;
@@ -630,7 +711,11 @@ class Db extends XoopsPersistableObjectHandler
      */
     public function Fexists($filename): bool
     {
-        $sql = "Select * From " . $this->db->prefix('xoopssecure_files') . " where path = '" . addslashes($filename) . "'";
+        $sql = "Select * From "
+            . $this->db->prefix('xoopssecure_files')
+            . " where path = '"
+            . addslashes($filename)
+            . "'";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         if ($numrows == 0) {
@@ -648,7 +733,11 @@ class Db extends XoopsPersistableObjectHandler
      */
     public function StatExists($start): bool
     {
-        $sql = "Select * From " . $this->db->prefix('xoopssecure_stats') . " where `scanstart` = '" . addslashes($start) . "'";
+        $sql = "Select * From "
+            . $this->db->prefix('xoopssecure_stats')
+            . " where `scanstart` = '"
+            . addslashes($start)
+            . "'";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         if ($numrows == 0) {
@@ -662,12 +751,17 @@ class Db extends XoopsPersistableObjectHandler
      * Has file been modified since last ?
      *
      * @param string $filename the url to file
-     * @rapam int $mod the modification timestamp
+     * @param $mod
      * @return bool
+     * @rapam int $mod the modification timestamp
      */
     public function Fchanged($filename, $mod): bool
     {
-        $sql = "Select * From " . $this->db->prefix('xoopssecure_files') . " where path = '" . addslashes($filename) . "'";
+        $sql = "Select * From "
+            . $this->db->prefix('xoopssecure_files')
+            . " where path = '"
+            . addslashes($filename)
+            . "'";
         $result = $this->db->queryF($sql);
         while ($row = $this->db->fetchArray($result)) {
             $arr[] = $row;
@@ -708,7 +802,10 @@ class Db extends XoopsPersistableObjectHandler
         $num = $this->db->getRowsNum($result);
         if ($num > 0) {
             while ($row = $this->db->fetchArray($result)) {
-                $i = ((int)$row['permissues'] + (int)$row['indexissues'] + (int)$row['malissues'] + (int)$row['csissues']);
+                $i = ((int)$row['permissues'] +
+                    (int)$row['indexissues'] +
+                    (int)$row['malissues'] +
+                    (int)$row['csissues']);
                 echo '<div class="row">
                     <div class="col"><h3>' . _SCAN_XOOPSSECURE_INLINEISSUESFOUND . '<h3></div>
                     <div class="col"><h3>' . _SCAN_XOOPSSECURE_INLINEDATESCANNED . '</h3></div>
@@ -736,7 +833,9 @@ class Db extends XoopsPersistableObjectHandler
      */
     public function getLatestTimeStamp(): bool|int
     {
-        $sql = "Select `scanfinished` from " . $this->db->prefix('xoopssecure_stats') . " order by `scanfinished` DESC limit 0,1";
+        $sql = "Select `scanfinished` from "
+            . $this->db->prefix('xoopssecure_stats')
+            . " order by `scanfinished` DESC limit 0,1";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         $arr = [];
@@ -759,7 +858,11 @@ class Db extends XoopsPersistableObjectHandler
     public function getTodayStart($d): int|string
     {
         $dt = date('d-m-Y', ($d));
-        $sql = "Select `time` from " . $this->db->prefix('xoopssecure_issues') . " WHERE FROM_UNIXTIME(`time`, '%d-%m-%Y') = '" . $dt . "' order by `time` ASC limit 0,1";
+        $sql = "Select `time` from "
+            . $this->db->prefix('xoopssecure_issues')
+            . " WHERE FROM_UNIXTIME(`time`, '%d-%m-%Y') = '"
+            . $dt
+            . "' order by `time` ASC limit 0,1";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         $arr = [];
@@ -785,7 +888,9 @@ class Db extends XoopsPersistableObjectHandler
         // if time exists already
         if ($op = 'save') {
             $sql = "INSERT INTO " . $this->db->prefix('xoopssecure_stats')
-                . "(`type`, `scanstart`, `scanfinished`, `permissues`, `perfilestotal`, `indexissues`, `indexfilestotal`, `malissues`, `malfilestotal`, `csissues`, `csfilestotal`) VALUES "
+                . "(`type`, `scanstart`, `scanfinished`, `permissues`, `perfilestotal`, "
+                . "`indexissues`, `indexfilestotal`, `malissues`, `malfilestotal`, `csissues`, "
+                . "`csfilestotal`) VALUES "
                 . "('" . addslashes($array['type']) . "', "
                 . "'" . addslashes($array['start']) . "', "
                 . "'" . addslashes($array['end']) . "', "
@@ -813,7 +918,11 @@ class Db extends XoopsPersistableObjectHandler
      */
     public function ExistsStats($starttime): bool
     {
-        $sql = "Select * from " . $this->db->prefix('xoopssecure_stats') . " WHERE `scanstart` = '" . $starttime . "' order by `scanstart` ASC limit 0,1";
+        $sql = "Select * from "
+            . $this->db->prefix('xoopssecure_stats')
+            . " WHERE `scanstart` = '"
+            . $starttime
+            . "' order by `scanstart` ASC limit 0,1";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         if ($numrows < 1) {
@@ -832,7 +941,13 @@ class Db extends XoopsPersistableObjectHandler
      */
     public function filealreadyscanned($filename, $starttime): bool
     {
-        $sql = "Select * from " . $this->db->prefix('xoopssecure_issues') . " WHERE `time` = '" . addslashes($starttime) . "' AND `filename` = '" . addslashes($filename) . "' order by `time` ASC limit 0,1";
+        $sql = "Select * from "
+            . $this->db->prefix('xoopssecure_issues')
+            . " WHERE `time` = '"
+            . addslashes($starttime)
+            . "' AND `filename` = '"
+            . addslashes($filename)
+            . "' order by `time` ASC limit 0,1";
         $result = $this->db->queryF($sql);
         $numrows = $this->db->getRowsNum($result);
         if ($numrows == 0) {
@@ -854,14 +969,16 @@ class Db extends XoopsPersistableObjectHandler
         switch ($config) {
             case "cronscan":
                 $ret = strtotime(
-                        " + " . $this->helper->getConfig('XCISCRONINTERVAL') . " HOURS", $this->getLatestLog('cronscan')
-                    ) < time();
+                    " + " . $this->helper->getConfig('XCISCRONINTERVAL') . " HOURS",
+                    $this->getLatestLog('cronscan')
+                ) < time();
                 break;
 
             case "backup":
                 $ret = strtotime(
-                        " + " . $this->helper->getConfig('XCISAUTOBACKUPINTERVAL') . " DAYS", $this->getLatestLog('backup')
-                    ) < time();
+                    " + " . $this->helper->getConfig('XCISAUTOBACKUPINTERVAL') . " DAYS",
+                    $this->getLatestLog('backup')
+                ) < time();
                 break;
         }
         return $ret;

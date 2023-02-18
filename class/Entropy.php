@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DESCRIPTION
  *
@@ -12,23 +13,36 @@
 
 namespace XoopsModules\Xoopssecure;
 
+/**
+ *
+ */
 class Entropy
 {
-    private static string $specialCharacters = ' !"#$%&\'()*+,-./:;<=>?@[\]^_{|}~';
-    private static string $lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz";
-    private static string $uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static string $numbers = "0123456789";
-
     /**
+     * @var string $specialCharacters special characters to look for.
+     */
+    private static string $specialCharacters = ' !"#$%&\'()*+,-./:;<=>?@[\]^_{|}~';
+/**
+     * @var string $lowercaseCharacters english characters in lower case.
+     */
+    private static string $lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz";
+/**
+     * @var string $uppercaseCharacters english characters in upper case.
+     */
+    private static string $uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+/**
+     * @var string $numbers numeric characters to look for.
+     */
+    private static string $numbers = "0123456789";
+/**
      * The maximum number of times the same character can appear in the password
-     * @var int
+     * @var int $maxOccurrences
      */
     private static int $maxOccurrences = 2;
-
-    /**
+/**
      * Html result
      * Get it all to html
-     * @param string $password
+     * @param string $password the password to check.
      * @param int $min
      * @param int $medium
      * @param int $max
@@ -38,13 +52,11 @@ class Entropy
     {
         // Get the base of the password (characters from different character sets used)
         $base = Entropy::getBase($password);
-
-        // get the length of the password (characters used (only allows 2 of any single character)
+// get the length of the password (characters used (only allows 2 of any single character)
         $length = Entropy::getLength($password);
-
-        // get the entropy of the password
+// get the entropy of the password
         $entropy = Entropy::getEntropy($password);
-        //Guess time
+//Guess time
 
         $guessCent = Entropy::getGuess($password, $entropy, $min);
         $guessCentPos = Entropy::getGuess($password, $entropy, (2 * $min));
@@ -52,11 +64,17 @@ class Entropy
         $guessMillPos = Entropy::getGuess($password, $entropy, (2 * $medium));
         $guessCentMill = Entropy::getGuess($password, $entropy, $max);
         $guessCentMillPos = Entropy::getGuess($password, $entropy, (2 * $max));
-        $guessCentText = ($guessCent == "Instantly") ? 'INSTANTLY' : '- Between ' . $guessCentPos . ' <strong>&</strong> ' . $guessCent;
-        $guessMillText = ($guessMill == "Instantly") ? 'INSTANTLY' : '- Between ' . $guessMillPos . ' <strong>&</strong> ' . $guessMill;
+        $guessCentText = ($guessCent == "Instantly") ?
+            'INSTANTLY' : '- Between ' . $guessCentPos . ' <strong>&</strong> ' . $guessCent;
+        $guessMillText = ($guessMill == "Instantly") ?
+            'INSTANTLY' : '- Between ' . $guessMillPos . ' <strong>&</strong> ' . $guessMill;
         $guessCentMillText = ($guessCentMill == "Instantly") ? 'INSTANTLY' : '- Between ' . $guessCentMillPos . ' <strong>&</strong> ' . $guessCentMill;
         return '
-                <p><span style="font-size:12px"><strong>Password</strong></span><span style="font-size:10px"> : ' . $password . ' (Password to test)</span><br />
+                <p>
+                    <span style="font-size:12px">
+                        <strong>Password</strong>
+                    </span>
+                    <span style="font-size:10px"> : ' . $password . ' (Password to test)</span><br />
                 <p><span style="font-size:12px"><strong>Base amount of characters</strong></span><span style="font-size:10px"> : ' . $base . ' (number of chars to choose from)</span><br />
                 <span style="font-size:12px"><strong>Password lenght</strong></span><span style="font-size:10px"> : ' . $length . ' (lenght of password in chars)</span><br />
                 <span style="font-size:12px"><strong>Password Entropy</strong></span><span style="font-size:10px"><strong> </strong>: ' . $entropy . ' (Strenght of password)</span><br />
@@ -93,7 +111,6 @@ class Entropy
         $hasLower = false;
         $hasUpper = false;
         $hasDigits = false;
-
         foreach ($characters as $character) {
             if (
                 !$hasLower &&
@@ -145,7 +162,6 @@ class Entropy
         $usedCharacters = [];
         $characters = str_split($password);
         $length = 0;
-
         foreach ($characters as $character) {
             if (
                 array_key_exists($character, $usedCharacters) &&
@@ -172,20 +188,15 @@ class Entropy
      * @return float
      * @see bannedPassords()
      */
-    public static function getEntropy(
-        string $password,
-        int    $decimalPlaces = 2,
-        array  $bannedPasswords = []
-    ): float
+    public static function getEntropy(string $password, int $decimalPlaces = 2, array $bannedPasswords = []): float
     {
         $banned = array_merge(self::bannedPasswords(), $bannedPasswords);
         if (in_array(strtolower($password), $banned)) {
-            // these are so weak, we just want to outright ban them. Entropy will be 0 for anything in this list.
+        // these are so weak, we just want to outright ban them. Entropy will be 0 for anything in this list.
             return 0;
         }
         $base = self::getBase($password);
         $length = self::getLength($password);
-
         return number_format(log($base ** $length), $decimalPlaces);
     }
 
@@ -201,7 +212,7 @@ class Entropy
     public static function bannedPasswords(): array
     {
         return array_merge(
-        // passwords from https://raw.githubusercontent.com/DavidWittman/wpxmlrpcbrute/master/wordlists/1000-most-common-passwords.txt (taken 2021-01-21)
+            // passwords from https://raw.githubusercontent.com/DavidWittman/wpxmlrpcbrute/master/wordlists/1000-most-common-passwords.txt (taken 2021-01-21)
             [
                 "123456",
                 "password",
@@ -1201,8 +1212,7 @@ class Entropy
                 "wildcat",
                 "polina",
                 "freepass",
-            ],
-            // passwords from https://nordpass.com/most-common-passwords-list/ (taken 2021-01-21)
+            ], // passwords from https://nordpass.com/most-common-passwords-list/ (taken 2021-01-21)
             // Only uses items which take > 1s to crack
             [
                 "jobandtalent",
@@ -1239,11 +1249,9 @@ class Entropy
                 "princess1",
                 "iloveyou1",
                 "zing",
-            ],
-            // https://www.safetydetectives.com/blog/the-most-hacked-passwords-in-the-world/
+            ], // https://www.safetydetectives.com/blog/the-most-hacked-passwords-in-the-world/
             // Deduplicated from other lists
-            ["27653"],
-            // https://www.forbes.com/sites/daveywinder/2019/12/14/ranked-the-worlds-100-worst-passwords/
+            ["27653"], // https://www.forbes.com/sites/daveywinder/2019/12/14/ranked-the-worlds-100-worst-passwords/
             [
                 "00000",
                 "000000",
@@ -1380,7 +1388,6 @@ class Entropy
                 "seconds" => 0,
             ];
             $string = "";
-
             if ($time >= 31556926) {
                 $value["years"] = floor($time / 31556926);
                 $string .= ($value['years'] > 0) ? $value['years'] . " years : " : "";

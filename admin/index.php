@@ -3,16 +3,16 @@
 declare(strict_types=1);
 
 /*
- You may not change or alter any portion of this comment or credits
- of supporting developers from this source code or any supporting source code
- which is considered copyrighted (c) material of the original comment or credit authors.
+    You may not change or alter any portion of this comment or credits
+    of supporting developers from this source code or any supporting source code
+    which is considered copyrighted (c) material of the original comment or credit authors.
 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
 
-/**
+/*
  * Xoops XoopsSecure module for xoops
  *
  * @copyright 2021 XOOPS Project (https://xoops.org)
@@ -27,10 +27,10 @@ use XoopsModules\Xoopssecure\Common;
 use XoopsModules\Xoopssecure\FileH;
 use XoopsModules\Xoopssecure\SpamScanner;
 
-require_once dirname(__DIR__) . '/preloads/autoloader.php';
-require __DIR__ . '/header.php';
+require_once dirname(__DIR__).'/preloads/autoloader.php';
+require __DIR__.'/header.php';
 
-// Template Index
+// Template Index.
 $templateMain = 'xoopssecure_admin_index.tpl';
 
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));
@@ -38,9 +38,9 @@ $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
 
 
-// Render Index
+// Render Index.
 $GLOBALS['xoopsTpl']->assign('navigation', $adminObject->displayNavigation('index.php'));
 $GLOBALS['xoopsTpl']->assign('index', $adminObject->displayIndex());
 
 
-require __DIR__ . '/footer.php';
+require __DIR__.'/footer.php';

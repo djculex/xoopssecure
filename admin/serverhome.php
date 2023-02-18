@@ -3,16 +3,16 @@
 declare(strict_types=1);
 
 /*
- You may not change or alter any portion of this comment or credits
- of supporting developers from this source code or any supporting source code
- which is considered copyrighted (c) material of the original comment or credit authors.
+    You may not change or alter any portion of this comment or credits
+    of supporting developers from this source code or any supporting source code
+    which is considered copyrighted (c) material of the original comment or credit authors.
 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
 
-/**
+/*
  * Xoops XoopsSecure module for xoops
  *
  * @copyright 2021 XOOPS Project (https://xoops.org)
@@ -32,20 +32,20 @@ use XoopsModules\Xoopssecure\SpamScanner;
 use XoopsModules\Xoopssecure\Db;
 use XoopsModules\Xoopssecure\Mech;
 
-require __DIR__ . '/header.php';
+require __DIR__.'/header.php';
 
 
 $adminObject = Admin::getInstance();
 
 // It recovered the value of argument op in URL$
-$op = Request::getString('op', 'list');
-$moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
+$op                 = Request::getString('op', 'list');
+$moduleDirName      = $GLOBALS['xoopsModule']->getVar('dirname');
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 xoops_loadLanguage('mech', $moduleDirName);
-$mech = new Mech();
+$mech       = new Mech();
 $testserver = $mech->testServer();
 $systeminfo = $mech->systemArray();
-$phpinfo = $mech->phpInfoArray();
+$phpinfo    = $mech->phpInfoArray();
 
 $GLOBALS['xoopsLogger']->activated = true;
 
@@ -54,14 +54,14 @@ $GLOBALS['xoopsTpl']->assign('testserverstats', $testserver['status']);
 
 $GLOBALS['xoopsTpl']->assign(
     [
-        'pcname' => $testserver['status']['pcname'],
-        'os' => $testserver['status']['os'],
-        'os_builtdate' => $testserver['status']['os_builtdate'],
-        'numberofprocessors' => $testserver['status']['numberofprocessors'],
+        'pcname'                => $testserver['status']['pcname'],
+        'os'                    => $testserver['status']['os'],
+        'os_builtdate'          => $testserver['status']['os_builtdate'],
+        'numberofprocessors'    => $testserver['status']['numberofprocessors'],
         'processorarchetecture' => $testserver['status']['processorarchetecture'],
-        'serveruptime' => $testserver['status']['serveruptime'],
-        'serveruse' => $testserver['status']['serveruse'],
-        'serveripadress' => $testserver['status']['serveripadress'],
+        'serveruptime'          => $testserver['status']['serveruptime'],
+        'serveruse'             => $testserver['status']['serveruse'],
+        'serveripadress'        => $testserver['status']['serveripadress'],
     ]
 );
 
@@ -70,9 +70,9 @@ $GLOBALS['xoopsTpl']->assign('phpinfo', $phpinfo);
 $templateMain = 'xoopssecure_admin_system.tpl';
 $GLOBALS['xoTheme']->addStylesheet($helper->url('assets/css/bootstrap.css'));
 $GLOBALS['xoTheme']->addStylesheet($helper->url('assets/css/admin/style.css'));
-$GLOBALS['xoTheme']->addStylesheet(XOOPS_URL . '/xoops.css');
-$GLOBALS['xoTheme']->addStylesheet(XOOPS_URL . '/modules/system/themes/transition/css/style.css');
+$GLOBALS['xoTheme']->addStylesheet(XOOPS_URL.'/xoops.css');
+$GLOBALS['xoTheme']->addStylesheet(XOOPS_URL.'/modules/system/themes/transition/css/style.css');
 
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
-require __DIR__ . '/footer.php';
+require __DIR__.'/footer.php';

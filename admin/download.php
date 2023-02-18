@@ -3,16 +3,16 @@
 declare(strict_types=1);
 
 /*
- You may not change or alter any portion of this comment or credits
- of supporting developers from this source code or any supporting source code
- which is considered copyrighted (c) material of the original comment or credit authors.
+    You may not change or alter any portion of this comment or credits
+    of supporting developers from this source code or any supporting source code
+    which is considered copyrighted (c) material of the original comment or credit authors.
 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 */
 
-/**
+/*
  * Xoops XoopsSecure module for xoops
  *
  * @copyright 2021 XOOPS Project (https://xoops.org)
@@ -32,7 +32,7 @@ use XoopsModules\Xoopssecure\SpamScanner;
 use XoopsModules\Xoopssecure\Db;
 use XoopsModules\Xoopssecure\Api;
 
-require __DIR__ . '/header.php';
+require __DIR__.'/header.php';
 $templateMain = 'xoopssecure_admin_download.tpl';
 $GLOBALS['xoTheme']->addStylesheet($helper->url('assets/css/bootstrap.css'));
 $GLOBALS['xoTheme']->addStylesheet($helper->url('assets/css/admin/style.css'));
@@ -44,15 +44,15 @@ $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
 
 $adminObject = Admin::getInstance();
 
-$moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
+$moduleDirName      = $GLOBALS['xoopsModule']->getVar('dirname');
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 xoops_loadLanguage('scanner', $moduleDirName);
 xoops_loadLanguage('mech', $moduleDirName);
 xoops_loadLanguage('download', $moduleDirName);
 
 $fileClass = new fileH();
-$api = new Api();
+$api       = new Api();
 
 $GLOBALS['xoopsTpl']->assign('backupfiles', $fileClass->getBackupsFiles());
 $GLOBALS['xoopsTpl']->assign('downloadfiles', $api->parseObjs());
-require __DIR__ . '/footer.php';
+require __DIR__.'/footer.php';

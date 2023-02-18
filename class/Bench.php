@@ -39,17 +39,17 @@ class Bench extends Mech
 {
     //var $userdatetype;
     /**
-     * @var
+     * @var Helper
      */
     public $helper;
     /**
      * @var array
      */
-    public $start = [];
+    public array $start = [];
     /**
      * @var array
      */
-    public $end = [];
+    public array $end = [];
     /**
      * @var array
      */

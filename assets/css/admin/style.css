@@ -23,7 +23,7 @@
 body {
     font-size: 12px;
     font-family: 'Roboto', Verdana, tahoma, Helvetica, sans-serif;
-    color: #4e5159;
+    color: #4E5159;
 }
 
 img {
@@ -31,7 +31,7 @@ img {
 }
 
 fieldset {
-    border: #ddd groove 1px !important;
+    border: #DDD groove 1px !important;
     padding: 0 1.4em 1.4em 1.4em !important;
     margin: 0 0 1.5em 0 !important;
     box-shadow: 0 0 0 0 #000;
@@ -42,7 +42,7 @@ legend {
     font-weight: bold !important;
     text-align: left !important;
     background-color: #000;
-    color: #fff;
+    color: #FFF;
     padding: 3px 6px;
     width: min-content;
 }
@@ -50,7 +50,7 @@ legend {
 .xoopssecure_shadow_legend {
     font-weight: bold;
     text-shadow: 3px 4px darkblue;
-    color: #e2dbfd;
+    color: #E2DBFD;
     max-width: 400px;
     width: max-content;
 }
@@ -78,7 +78,7 @@ legend {
 .xoopssecure_last_log_div {
     text-align: center;
     background-color: lavender;
-    padding: 1% 1%;
+    padding: 1%;
     border: gray dotted 1px;
     border-radius: 12px;
     font-size: 12px;
@@ -91,10 +91,10 @@ legend {
 }
 
 .xoopssecureContentResultCheckDiv {
-    border: #f2f2f2 solid 1px;
+    border: #F2F2F2 solid 1px;
     height: 280px;
     border-radius: 20px;
-    background: #fff;
+    background: #FFF;
 }
 
 .xoopssecureContentResultCheckDiv_header {
@@ -108,7 +108,7 @@ legend {
     width: 50px;
     height: 50px;
     border-radius: 100%;
-    background: #fff;
+    background: #FFF;
     text-align: center;
 }
 
@@ -143,7 +143,7 @@ legend {
 .xoopssecureContentResultSuccess a {
     width: 200px;
     height: 35px;
-    color: #fff;
+    color: #FFF;
     border-radius: 30px;
     padding: 5px 10px;
     background: rgb(0, 0, 0);
@@ -199,7 +199,7 @@ legend {
     background-color: burlywood;
     width: 100%;
     border: 1px solid cornsilk;
-    border-radius: 10px 10px;
+    border-radius: 10px;
     margin: 0px;
 }
 
@@ -213,7 +213,7 @@ legend {
 }
 
 .xoopssecure_system_panel-heading {
-    border-radius: 10px 10px;
+    border-radius: 10px;
     background-color: bisque;
     border: 1px solid burlywood;
     margin: 20px auto;
@@ -223,21 +223,21 @@ legend {
 #xoopssecure_systemIcon {
     max-height: 80px;
     display: inline-block;
-    padding: 5px 5px;
+    padding: 5px;
     margin: 8px 0;
     cursor: pointer;
     background-color: white;
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 10px;
 }
 
 #xoopssecure_downloadIcon {
     max-height: 80px;
     display: inline-block;
-    padding: 5px 5px;
+    padding: 5px;
     margin: 8px 0;
     cursor: pointer;
     background-color: white;
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 10px;
 }
 
 #xoopssecure_downloadIconsmall {
@@ -272,7 +272,7 @@ legend {
 }
 
 .xoopssecure_dobackup_action.btn.btn-primary.text-center {
-    margin: 10px 10px;
+    margin: 10px;
     width: fit-content;
     font-size: 12px;
 }
@@ -281,7 +281,7 @@ legend {
     width: 90%;
     background-color: burlywood;
     height: fit-content;
-    padding: 20px 20px;
+    padding: 20px;
     margin: auto;
 }
 
@@ -368,7 +368,7 @@ legend {
     display: inline-block;
     margin: 2% 0;
     font-size: 10px;
-    font-family: Arial Black;
+    font-family: arial black;
     font-weight: bold;
     text-shadow: 1px 2px 8px midnightblue;
 }
@@ -391,7 +391,7 @@ legend {
 .xoopssecure_system_settingissuesdescholderrow {
     margin: 10px auto 20px auto;
     text-align: center;
-    padding: 10px 10px;
+    padding: 10px;
     min-width: 55%;
     max-width: 65%;
     background-color: white;
@@ -410,12 +410,12 @@ legend {
 
 .xoopssecure_cvedetail_row {
     font-weight: bold;
-    margin: 10px 5px 0px;
+    margin: 10px 5px 0px 5px;
     max-width: 50%;
 }
 
 .xoopssecure_cvedetail_summary {
-    margin: 2px 5px 25px;
+    margin: 2px 5px 25px 5px;
     text-align: justify;
     border: 1px gray dotted;
     float: left;
@@ -432,7 +432,7 @@ legend {
 
 .xoopssecure_cvedetail_url a {
     float: right;
-    margin: 10px 10px;
+    margin: 10px;
 }
 
 .xoopssecure_system_iconheader {
@@ -455,7 +455,7 @@ legend {
 .xoopssecure_system_collapsepanelbody {
     width: 100%;
     border: 1px solid;
-    margin: 2px 2px;
+    margin: 2px;
     padding: 10px 0;
     display: inline-grid;
     background-color: moccasin;
@@ -463,7 +463,7 @@ legend {
 
 .xoopssecure_download_backuptitle {
     width: 80%;
-    margin: 0px 0px;
+    margin: 0px;
     display: inherit;
     font-weight: bold;
     border: 1px solid;
@@ -497,7 +497,7 @@ legend {
     width: 80%;
     margin: 10px 0px;
     display: flex;
-    padding: 0px 0px;
+    padding: 0px;
     height: 40px;
 }
 
@@ -536,7 +536,7 @@ legend {
     overflow-wrap: break-word;
     max-width: 40%;
     border: black solid 1px;
-    padding: 10px 10px;
+    padding: 10px;
     position: relative;
     background-color: lightsteelblue;
     float: left;
@@ -610,7 +610,7 @@ legend {
 
 #xo-nav-options {
     padding: 0 0 0 15px;
-    background: #175d73;
+    background: #175D73;
     border-bottom: 1px solid #000;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     text-align: right;
@@ -626,7 +626,7 @@ legend {
     color: white;
     font-size: 12px;
     font-weight: bold;
-    padding: 10px 10px;
+    padding: 10px;
     width: fit-content;
     text-align: right;
 }
@@ -634,13 +634,13 @@ legend {
 #xoopssecure_logheader_deletedate a, button {
     color: white;
     width: 120px;
-    padding: 4px 4px;
+    padding: 4px;
     margin: 0 20px;
     display: inline-table;
     border: 1px ridge yellow;
     text-align: center;
     font-weight: normal;
-    border-radius: 6px 6px 6px 6px;
+    border-radius: 6px;
 }
 
 .xoopssecure_inlinetdheader {
@@ -649,8 +649,8 @@ legend {
     width: 200px;
     text-align: center;
     display: inline-block;
-    margin: 5px 5px;
-    border-radius: 5px 5px;
+    margin: 5px;
+    border-radius: 5px;
 }
 
 .tooltip {
@@ -680,7 +680,7 @@ legend {
 .xoopssecure_IndexFiles_shadow_legend {
     font-weight: bold;
     text-shadow: 3px 4px darkblue;
-    color: #e2dbfd;
+    color: #E2DBFD;
     max-width: 400px;
     width: max-content;
 }
@@ -696,9 +696,9 @@ legend {
     width: 15px;
     margin: 5px 0px;
     text-align: center;
-    padding: 1px 1px;
+    padding: 1px;
     font-size: 11px;
-    border-radius: 4px 4px 4px 4px;
+    border-radius: 4px;
     opacity: 0.8;
     color: white;
     text-shadow: 2px 2px 0px black;
@@ -711,9 +711,9 @@ legend {
     width: 15px;
     margin: 5px 0px;
     text-align: center;
-    padding: 1px 1px;
+    padding: 1px;
     font-size: 11px;
-    border-radius: 4px 4px 4px 4px;
+    border-radius: 4px;
     opacity: 0.8;
     color: white;
     text-shadow: 2px 2px 0px black;

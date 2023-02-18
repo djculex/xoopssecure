@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-/**
+/*
  * Xoops XoopsSecure module for xoops
  *
  * @copyright 2021 XOOPS Project (https://xoops.org)
@@ -16,10 +16,10 @@ declare(strict_types=1);
 use Xmf\Module\Admin;
 use XoopsModules\Xoopssecure\Helper;
 
-require __DIR__ . '/header.php';
+require __DIR__.'/header.php';
 $templateMain = 'xoopssecure_admin_about.tpl';
-$helper = Helper::getInstance();
-$adminObject = Admin::getInstance();
+$helper       = Helper::getInstance();
+$adminObject  = Admin::getInstance();
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
@@ -29,4 +29,4 @@ $adminObject::setPaypal('culex@culex.dk');
 $GLOBALS['xoopsTpl']->assign('about', $adminObject->renderAbout(false));
 
 $GLOBALS['xoTheme']->addStylesheet($helper->url('assets/css/bootstrap.css'));
-require __DIR__ . '/footer.php';
+require __DIR__.'/footer.php';
