@@ -27,10 +27,10 @@ use Xmf\Module\Admin;
 use Xmf\Request;
 use XoopsModules\Xoopssecure;
 use XoopsModules\Xoopssecure\Constants;
-use XoopsModules\Xoopssecure\FileH;
-use XoopsModules\Xoopssecure\SpamScanner;
-use XoopsModules\Xoopssecure\Db;
-use XoopsModules\Xoopssecure\Api;
+use XoopsModules\Xoopssecure\Xoopssecure_FileH;
+use XoopsModules\Xoopssecure\Xoopssecure_SpamScanner;
+use XoopsModules\Xoopssecure\Xoopssecure_Db;
+use XoopsModules\Xoopssecure\Xoopssecure_Api;
 
 require __DIR__.'/header.php';
 $templateMain = 'xoopssecure_admin_download.tpl';
@@ -50,8 +50,8 @@ xoops_loadLanguage('scanner', $moduleDirName);
 xoops_loadLanguage('mech', $moduleDirName);
 xoops_loadLanguage('download', $moduleDirName);
 
-$fileClass = new fileH();
-$api       = new Api();
+$fileClass = new Xoopssecure_fileH();
+$api       = new Xoopssecure_Api();
 
 $GLOBALS['xoopsTpl']->assign('backupfiles', $fileClass->getBackupsFiles());
 $GLOBALS['xoopsTpl']->assign('downloadfiles', $api->parseObjs());

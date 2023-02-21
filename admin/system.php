@@ -27,10 +27,10 @@ use Xmf\Module\Admin;
 use Xmf\Request;
 use XoopsModules\Xoopssecure;
 use XoopsModules\Xoopssecure\Constants;
-use XoopsModules\Xoopssecure\FileH;
-use XoopsModules\Xoopssecure\SpamScanner;
-use XoopsModules\Xoopssecure\Db;
-use XoopsModules\Xoopssecure\Mech;
+use XoopsModules\Xoopssecure\Xoopssecure_FileH;
+use XoopsModules\Xoopssecure\Xoopssecure_SpamScanner;
+use XoopsModules\Xoopssecure\Xoopssecure_Db;
+use XoopsModules\Xoopssecure\Xoopssecure_Mech;
 
 require __DIR__.'/header.php';
 
@@ -41,8 +41,8 @@ $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/scannerAdmin.js'));
 
 $adminObject = Admin::getInstance();
-$dat         = new db();
-$sys         = new Mech();
+$dat         = new Xoopssecure_db();
+$sys         = new Xoopssecure_Mech();
 
 // It recovered the value of argument op in URL$
 $moduleDirName      = $GLOBALS['xoopsModule']->getVar('dirname');

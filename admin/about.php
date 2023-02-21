@@ -14,11 +14,11 @@ declare(strict_types=1);
  */
 
 use Xmf\Module\Admin;
-use XoopsModules\Xoopssecure\Helper;
+use XoopsModules\Xoopssecure\Xoopssecure_Helper;
 
 require __DIR__.'/header.php';
 $templateMain = 'xoopssecure_admin_about.tpl';
-$helper       = Helper::getInstance();
+$helper       = Xoopssecure_Helper::getInstance();
 $adminObject  = Admin::getInstance();
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootbox.min.js'));

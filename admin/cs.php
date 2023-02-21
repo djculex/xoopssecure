@@ -27,22 +27,22 @@ namespace XoopsModules\Xoopssecure;
 
 use XoopsModules\Xoopssecure;
 use XoopsModules\Xoopssecure\Constants;
-use XoopsModules\Xoopssecure\Db;
+use XoopsModules\Xoopssecure\Xoopssecure_Db;
 
 require_once dirname(__DIR__, 3).'/mainfile.php';
 require_once XOOPS_ROOT_PATH.'/class/template.php';
 
 require __DIR__.'/header.php';
-$helper = Helper::getInstance();
+$helper = Xoopssecure_Helper::getInstance();
 
 $type = ($_GET['type'] ?? '');
 $dir  = (isset($_GET['Dir'])) ? $_GET['Dir'] : '';
 $val  = (isset($_GET['val'])) ? $_GET['val'] : '';
 $t    = time();
 
-$fh   = new FileH();
-$dat  = new Db();
-$spam = new SpamScanner();
+$fh   = new Xoopssecure_FileH();
+$dat  = new Xoopssecure_Db();
+$spam = new Xoopssecure_SpamScanner();
 
 $filename = '';
 switch ($type) {

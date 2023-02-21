@@ -23,7 +23,7 @@ require_once XOOPS_ROOT_PATH.'/class/template.php';
 // Dont disrupt script
 // @set_time_limit(3000);
 // ignore_user_abort(true);
-$helper = Helper::getInstance();
+$helper = Xoopssecure_Helper::getInstance();
 require __DIR__.'/header.php';
 $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
 xoops_loadLanguage('scanner', $moduleDirName);
@@ -35,9 +35,9 @@ $dir  = ($_GET['Dir'] ?? '');
 $val  = ($_GET['val'] ?? '');
 $t    = time();
 
-$fh         = new Xoopssecure\FileH();
-$dat        = new Xoopssecure\Db();
-$spam       = new Xoopssecure\SpamScanner();
+$fh         = new Xoopssecure\Xoopssecure_FileH();
+$dat        = new Xoopssecure\Xoopssecure_Db();
+$spam       = new Xoopssecure\Xoopssecure_SpamScanner();
 $autobackup = (int) $helper->getConfig('XCISAUTOBACKUP');
 
 switch ($type) {
@@ -89,7 +89,7 @@ switch ($type) {
     // Delete issues by filename
     case 'xoopssecuredeleteIssueByFN':
         $fn      = $_GET['id'];
-        $confirm = ($_GET['conf'] === true) ? true : false;
+        $confirm = ($_GET['conf'] === 'true') ? true : false;
         if ($confirm === true) {
             $dat->deleteIssueByFN($fn, true);
         } else {
@@ -106,7 +106,7 @@ switch ($type) {
     // Add file path to omit file setting
     case 'xoopsSecureAddtoOmitfilesByFilename':
         $fn      = $_GET['id'];
-        $confirm = ($_GET['conf'] === true) ? true : false;
+        $confirm = ($_GET['conf'] === 'true') ? true : false;
 
         if ($confirm === true) {
             $dat->getConfigDateOmitfile($fn);
@@ -120,9 +120,9 @@ switch ($type) {
     // Add directory path to omit dirs setting
     case 'xoopssecureaddToOmitByDirN':
         $fn      = $_GET['id'];
-        $confirm = ($_GET['conf'] === true) ? true : false;
+        $confirm = ($_GET['conf'] === 'true') ? true : false;
 
-        if ($confirm) {
+        if ($confirm === true) {
             $dat->getConfigDateOmitdir($fn);
             $dat->deleteIssueByDirname($fn, true);
             // Delete all containing dir name
@@ -281,8 +281,8 @@ switch ($type) {
 
     // Create backup of db and files
     case 'createzip':
-        header('Content-type: application/zip');
-        $zip = new Zipper();
+        //header('Content-type: application/zip');
+        $zip = new Xoopssecure_Zipper();
         if ($helper->getConfig('XCISBACKUPTYPE') != 'none') {
             $zip->doZip($zip->archive, $zip->dirToBackup);
             $dat->updateLog('backup');
@@ -293,7 +293,7 @@ switch ($type) {
     case 'doAutoCreatezip':
         if ($autobackup == 1) {
             if ($fh->timeForBackup === true) {
-                $zip = new Zipper();
+                $zip = new Xoopssecure_Zipper();
                 if ($helper->getConfig('XCISBACKUPTYPE') != 'none') {
                     $zip->doZip($zip->archive, $zip->dirToBackup);
                 }

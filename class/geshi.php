@@ -3,7 +3,7 @@
 namespace XoopsModules\Xoopssecure;
 
 /**
- * GeSHi - Generic Syntax Highlighter
+ * Xoopssecure_GeSHi - Generic Syntax Highlighter
  *
  * The GeSHi class for Generic Syntax Highlighting. Please refer to the
  * documentation at http://qbnz.com/highlighter/documentation.php for more

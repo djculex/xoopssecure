@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use XoopsModules\Xoopssecure\FileH;
+use XoopsModules\Xoopssecure\Xoopssecure_FileH;
 
 /*
  You may not change or alter any portion of this comment or credits
@@ -26,7 +26,7 @@ use XoopsModules\Xoopssecure\FileH;
  */
 
 if (isset($templateMain)) {
-    $fh = new FileH();
+    $fh = new Xoopssecure_FileH();
     $GLOBALS['xoopsTpl']->assign('buymecoffey', $fh::buymecoffey());
     $GLOBALS['xoopsTpl']->assign('maintainedby', $helper->getConfig('maintainedby'));
     $GLOBALS['xoopsTpl']->display("db:{$templateMain}");

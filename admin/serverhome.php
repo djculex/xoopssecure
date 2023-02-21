@@ -27,10 +27,10 @@ use Xmf\Module\Admin;
 use Xmf\Request;
 use XoopsModules\Xoopssecure;
 use XoopsModules\Xoopssecure\Constants;
-use XoopsModules\Xoopssecure\FileH;
-use XoopsModules\Xoopssecure\SpamScanner;
-use XoopsModules\Xoopssecure\Db;
-use XoopsModules\Xoopssecure\Mech;
+use XoopsModules\Xoopssecure\Xoopssecure_FileH;
+use XoopsModules\Xoopssecure\Xoopssecure_SpamScanner;
+use XoopsModules\Xoopssecure\Xoopssecure_Db;
+use XoopsModules\Xoopssecure\Xoopssecure_Mech;
 
 require __DIR__.'/header.php';
 
@@ -42,7 +42,7 @@ $op                 = Request::getString('op', 'list');
 $moduleDirName      = $GLOBALS['xoopsModule']->getVar('dirname');
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 xoops_loadLanguage('mech', $moduleDirName);
-$mech       = new Mech();
+$mech       = new Xoopssecure_Mech();
 $testserver = $mech->testServer();
 $systeminfo = $mech->systemArray();
 $phpinfo    = $mech->phpInfoArray();

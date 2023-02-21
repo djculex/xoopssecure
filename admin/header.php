@@ -24,8 +24,8 @@ declare(strict_types=1);
  */
 
 use Xmf\Module\Admin;
-use XoopsModules\Xoopssecure\FileH;
-use XoopsModules\Xoopssecure\Helper;
+use XoopsModules\Xoopssecure\Xoopssecure_FileH;
+use XoopsModules\Xoopssecure\Xoopssecure_Helper;
 
 require dirname(__DIR__, 3).'/include/cp_header.php';
 require_once dirname(__DIR__).'/include/common.php';
@@ -37,7 +37,7 @@ $modPathIcon16   = XOOPSSECURE_URL.'/'.$GLOBALS['xoopsModule']->getInfo('modicon
 $modPathIcon32   = XOOPSSECURE_URL.'/'.$GLOBALS['xoopsModule']->getInfo('modicons32').'/';
 
 // Get instance of module
-$helper = Helper::getInstance();
+$helper = Xoopssecure_Helper::getInstance();
 $myts   = MyTextSanitizer::getInstance();
 if (!isset($xoopsTpl) || !is_object($xoopsTpl)) {
     include_once XOOPS_ROOT_PATH.'/class/template.php';
@@ -57,7 +57,7 @@ if (file_exists($GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php'))) {
 
 xoops_cp_header();
 
-$fh       = new fileH();
+$fh       = new Xoopssecure_fileH();
 $crontest = $fh->timeForCron;
 
 $script = "var xoopsSecureSysUrl = '".XOOPS_URL."/modules/xoopssecure/admin/';"."\n";
