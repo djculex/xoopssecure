@@ -33,7 +33,15 @@ use XoopsModules\Xoopssecure\Xoopssecure_Db;
 use XoopsModules\Xoopssecure\Xoopssecure_Mech;
 
 require __DIR__.'/header.php';
-
+/*
+ * Vars defined by inclusion of ./admin_header.php
+ *
+ * @var \XoopsModules\Xoopssecure\Admin $admin
+ * @var \Xmf\Module\Admin $adminObject
+ * @var \XoopsModules\Xoopssecure\Helper $helper
+ * @var string $moduleDirName
+ * @var string $moduleDirNameUpper
+ */
 $GLOBALS['xoTheme']->addStylesheet($helper->url('assets/css/bootstrap.css'));
 $GLOBALS['xoTheme']->addStylesheet($helper->url('assets/css/admin/style.css'));
 $GLOBALS['xoTheme']->addScript($helper->url('assets/js/bootstrap.bundle.js'));

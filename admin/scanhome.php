@@ -26,6 +26,15 @@ declare(strict_types=1);
 use Xmf\Request;
 
 require __DIR__.'/header.php';
+/*
+ * Vars defined by inclusion of ./admin_header.php
+ *
+ * @var \XoopsModules\Xoopssecure\Admin $admin
+ * @var \Xmf\Module\Admin $adminObject
+ * @var \XoopsModules\Xoopssecure\Helper $helper
+ * @var string $moduleDirName
+ * @var string $moduleDirNameUpper
+ */
 $moduleDirName      = $GLOBALS['xoopsModule']->getVar('dirname');
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 xoops_loadLanguage('scanner', $moduleDirName);

@@ -33,6 +33,15 @@ require_once dirname(__DIR__, 3).'/mainfile.php';
 require_once XOOPS_ROOT_PATH.'/class/template.php';
 
 require __DIR__.'/header.php';
+/*
+ * Vars defined by inclusion of ./admin_header.php
+ *
+ * @var \XoopsModules\Xoopssecure\Admin $admin
+ * @var \Xmf\Module\Admin $adminObject
+ * @var \XoopsModules\Xoopssecure\Helper $helper
+ * @var string $moduleDirName
+ * @var string $moduleDirNameUpper
+ */
 $helper = Xoopssecure_Helper::getInstance();
 
 $type = ($_GET['type'] ?? '');

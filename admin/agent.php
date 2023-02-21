@@ -20,11 +20,18 @@ use function xoops_loadLanguage;
 require_once dirname(__DIR__, 3).'/mainfile.php';
 require_once XOOPS_ROOT_PATH.'/class/template.php';
 
-// Dont disrupt script
-// @set_time_limit(3000);
-// ignore_user_abort(true);
+
 $helper = Xoopssecure_Helper::getInstance();
 require __DIR__.'/header.php';
+/*
+ * Vars defined by inclusion of ./admin_header.php
+ *
+ * @var \XoopsModules\Xoopssecure\Admin $admin
+ * @var \Xmf\Module\Admin $adminObject
+ * @var \XoopsModules\Xoopssecure\Helper $helper
+ * @var string $moduleDirName
+ * @var string $moduleDirNameUpper
+ */
 $moduleDirName = $GLOBALS['xoopsModule']->getVar('dirname');
 xoops_loadLanguage('scanner', $moduleDirName);
 xoops_loadLanguage('log', $moduleDirName);

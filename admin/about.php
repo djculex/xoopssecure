@@ -17,6 +17,16 @@ use Xmf\Module\Admin;
 use XoopsModules\Xoopssecure\Xoopssecure_Helper;
 
 require __DIR__.'/header.php';
+/*
+ * Vars defined by inclusion of ./admin_header.php
+ *
+ * @var \XoopsModules\Xoopssecure\Admin $admin
+ * @var \Xmf\Module\Admin $adminObject
+ * @var \XoopsModules\Xoopssecure\Helper $helper
+ * @var string $moduleDirName
+ * @var string $moduleDirNameUpper
+ */
+
 $templateMain = 'xoopssecure_admin_about.tpl';
 $helper       = Xoopssecure_Helper::getInstance();
 $adminObject  = Admin::getInstance();

@@ -28,7 +28,15 @@ use Xmf\Request;
 use XoopsModules\Xoopssecure\Common\ModuleFeedback;
 
 require __DIR__.'/header.php';
-
+/*
+ * Vars defined by inclusion of ./admin_header.php
+ *
+ * @var \XoopsModules\Xoopssecure\Admin $admin
+ * @var \Xmf\Module\Admin $adminObject
+ * @var \XoopsModules\Xoopssecure\Helper $helper
+ * @var string $moduleDirName
+ * @var string $moduleDirNameUpper
+ */
 $adminObject = Admin::getInstance();
 
 $feedback = new ModuleFeedback();
