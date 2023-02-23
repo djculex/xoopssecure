@@ -72,7 +72,3 @@ $GLOBALS['xoopsTpl']->assign('modPathIcon32', $modPathIcon32);
 $adminObject = Admin::getInstance();
 $style       = XOOPSSECURE_URL.'/assets/css/admin/style.css';
 $GLOBALS['xoTheme']->addStylesheet('', '', $style);
-
-// The very top of your php script
-$vars = get_defined_vars();
-var_dump("<pre>", $vars, "</pre>");

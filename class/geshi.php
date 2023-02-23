@@ -9,7 +9,7 @@ namespace XoopsModules\Xoopssecure;
  * documentation at http://qbnz.com/highlighter/documentation.php for more
  * information about how to use this class.
  *
- * For changes, release notes, TODOs etc, see the relevant files in the docs/
+ * For changes, release notes, TODOs etc., see the relevant files in the docs/
  * directory.
  *
  *   This file is part of GeSHi.
