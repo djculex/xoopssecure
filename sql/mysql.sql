@@ -1,5 +1,5 @@
 #
-SQL Dump for xoops iscanner module
+# SQL Dump for xoopssecure module
 # PhpMyAdmin Version: 4.0.4
 # https://www.phpmyadmin.net
 #

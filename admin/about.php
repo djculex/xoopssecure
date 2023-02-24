@@ -22,7 +22,7 @@ require __DIR__.'/header.php';
  *
  * @var \XoopsModules\Xoopssecure\Admin $admin
  * @var \Xmf\Module\Admin $adminObject
- * @var \XoopsModules\Xoopssecure\Helper $helper
+ * @var \XoopsModules\Xoopssecure\Xoopssecure_Helper $helper
  * @var string $moduleDirName
  * @var string $moduleDirNameUpper
  */

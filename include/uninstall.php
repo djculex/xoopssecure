@@ -39,7 +39,7 @@ function xoops_module_uninstall_xoopssecure(XoopsModule $module)
     $moduleDirName = basename(dirname(__DIR__));
     $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
-    $helper = Xoopssecure\Helper::getInstance();
+    $helper = Xoopssecure\Xoopssecure_Helper::getInstance();
 
     $success = true;
     $helper->loadLanguage('admin');

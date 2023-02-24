@@ -24,7 +24,7 @@ function xoops_module_pre_install_xoopssecure(XoopsModule $module)
 {
     include dirname(__DIR__) . '/preloads/autoloader.php';
 
-    $utility = new Xoopssecure\Utility();
+    $utility = new Xoopssecure\Xoopssecure_Utility();
 
     //check for minimum XOOPS version
     $xoopsSuccess = $utility::checkVerXoops($module);
@@ -50,8 +50,8 @@ function xoops_module_install_xoopssecure(XoopsModule $module)
 {
     include dirname(__DIR__) . '/preloads/autoloader.php';
 
-    $helper = Xoopssecure\Helper::getInstance();
-    $utility = new Xoopssecure\Utility();
+    $helper = Xoopssecure\Xoopssecure_Helper::getInstance();
+    $utility = new Xoopssecure\Xoopssecure_Utility();
     $configurator = new Common\Configurator();
 
     // Load language files

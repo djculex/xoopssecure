@@ -12,7 +12,7 @@ declare(strict_types=1);
  * @author    Culex - Email:culex@culex.dk - Website:https://www.culex.dk
  */
 
-use XoopsModules\Xoopssecure\Helper;
+use XoopsModules\Xoopssecure\Xoopssecure_Helper;
 
 /**
  * Get the number of stats from the sub categories of a category or sub topics of or topic
@@ -89,7 +89,7 @@ function xoopssecure_MetaDescription($content)
 function xoopssecure_RewriteUrl($module, $array, $type = 'content')
 {
     $comment = '';
-    $helper = Helper::getInstance();
+    $helper = Xoopssecure_Helper::getInstance();
     $statsHandler = $helper->getHandler('stats');
     $lenght_id = $helper->getConfig('lenght_id');
     $rewrite_url = $helper->getConfig('rewrite_url');
@@ -178,7 +178,7 @@ function xoopssecure_Filter($url, $type = '')
 {
 
     // Get regular expression from module setting. default setting is : `[^a-z0-9]`i
-    $helper = Helper::getInstance();
+    $helper = Xoopssecure_Helper::getInstance();
     $statsHandler = $helper->getHandler('stats');
     $regular_expression = $helper->getConfig('regular_expression');
 
