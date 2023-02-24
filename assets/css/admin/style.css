@@ -114,6 +114,7 @@ legend {
 
 .xoopssecureIssueContainer {
     margin: auto;
+    max-width: 1125px;
     /* width: 65%; */
 }
 
